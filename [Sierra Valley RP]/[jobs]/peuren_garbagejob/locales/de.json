@@ -1,0 +1,200 @@
+{    
+    "job_menu_header": "Sanitation",
+    "interact_with_job_npc": "Mit dem Job-Manager sprechen",
+    "incorrect_group_pass": "Falsches Gruppenpasswort",
+    "left_group_job": "Du hast die Gruppe erfolgreich verlassen",
+    "entered_group_job": "Du bist der Gruppe erfolgreich beigetreten",
+
+    "you_have_job": "Du kannst keinen neuen Job starten oder beitreten, weil du bereits einen Job hast",
+    "max_players_reached_for_this_job": "Du kannst diesen Job im Moment nicht machen, weil zu viele Spieler ihn machen!",
+    "successfully_started_job": "Du hast einen neuen Job gestartet! Fahre zu den markierten Orten auf der Karte",
+    "job_successfully_finished": "Der Job wurde erfolgreich beendet!",
+    "cant_start_job_no_space": "Es ist kein Platz vorhanden, um ein Arbeitsfahrzeug auszustellen!",
+
+    "not_holding_container": "Du bewegst keinen Container!",
+
+    "group_is_full": "Die Gruppe ist voll und kann keine weiteren Mitglieder aufnehmen!",
+    "not_in_gruppe_6_territory": "Sie befinden sich nicht im Gruppe6-Territorium!",
+    "job_ended_return_vehicle": "Der Job ist beendet! Bitte geben Sie das Fahrzeug zurück, um den Vorgang abzuschließen.",
+    "interaction_search_trash": "Container durchsuchen",
+    "progress_searching": "Durchsuchen...",
+    "task_drive_to_location": "Fahre zum Standort",
+    "notify_found_items": "Du hast wertvolle Gegenstände im Container gefunden!",
+    "notify_no_items_found": "Keine wertvollen Gegenstände im Container gefunden.",
+
+    "interaction_place_trash_veh": "Container platzieren",
+    "interaction_remove_trash_veh": "Container entfernen",
+    "interaction_move_trash": "Container bewegen",
+    "interaction_return_trash": "[E] - Container zurückgeben",
+    "interaction_return_vehicle": "[E] - LKW zurückgeben",
+    "interaction_take_trash": "Müll aufnehmen",
+    "interaction_place_bags": "Müllsack platzieren",
+    "interaction_deliver_bags": "Müllsack abliefern",
+    "interaction_take_bags": "Müllsack aufnehmen",
+    "interaction_recycle_trash": "Müll recyceln",
+
+    "progress_collecting": "Sammeln...",
+
+    "this_bin_is_empty": "Dieser Container wurde bereits geleert",
+    "trash_collected_return_veh": "Gute Arbeit! Kehre jetzt zur Mülldeponie zurück und gib den LKW zurück!",
+
+    "no_more_trash_recycle": "Es gibt keinen weiteren Müll, der recycelt werden kann!",
+    "trash_collected_go_recycle": "Müllsack gesammelt, bring ihn zur Recyclinganlage!",
+    "trash_bag_recycled": "Du hast erfolgreich einen Müllsack recycelt!",
+
+    "garbage_collected_drive_recycle": "Du hast den Müll gesammelt, fahre jetzt zur Recyclinganlage!",
+    "not_in_driver_seat": "Sie müssen auf dem Fahrersitz Platz nehmen!",
+
+    "task_empty_dumpsters": "Container leeren",
+    "task_collect_bags": "Müllsäcke sammeln",
+    "task_remove_bags": "Müllsäcke entladen",
+    "task_return_job_vehicle": "Fahrzeug zur Müllzentrale zurückbringen",
+
+    "job_vehicle_trunk_busy": "Der Kofferraum des Arbeitsfahrzeugs wird von einem anderen Spieler benutzt, bitte warten!",
+
+    "inventory_no_space": "Inventar voll",
+	"inventory_no_space_desc": "Sie haben keinen Platz mehr in Ihrem Inventar",
+
+    "ui": {
+        "header": {
+            "job_tab_title": "Job",
+            "job_stock_title": "Lager",
+            "job_rank_title": "Rang"
+        },    
+            
+        "warehouse": {
+            "stock_header": "Lagerbestand",
+            "stock_description": "Hier können Sie die aktuelle Bestandsmenge jeder Pakettyp-Kategorie einsehen. Verschiedene Paketkategorien werden für verschiedene Jobtypen benötigt. Wenn kein Bestand oder zu viel Bestand für diesen Pakettyp vorhanden ist, können Sie diesen Job nicht starten.",
+            "features": {
+                "stock_management": {
+                    "title": "Bestandsverwaltung",
+                    "description": "Überwachen und verfolgen Sie Ihre Lagerbestände in Echtzeit"
+                },
+                "inventory_tracking": {
+                    "title": "Inventarverfolgung",
+                    "description": "Verfolgen Sie Lagerbestände und erhalten Sie Warnungen bei niedrigem Inventar"
+                },
+                "stock_rotation": {
+                    "title": "Bestandsrotation",
+                    "description": "Effiziente Verwaltung der Bestandsrotation und des Inventarflusses"
+                }
+            }
+        },
+
+        "home": {
+            "groups_header_title": "Gruppen",
+            "group_job_description": "Durch die Auswahl dieser Option können Sie einen neuen Job starten und auch Ihre Freunde einladen, damit Sie in einer Gruppe arbeiten können",
+            "groups_description": "Durch die Auswahl dieser Option können Sie anderen von Spielern erstellten Gruppen beitreten, damit Sie in einem Paar arbeiten können",
+            "job_header_title": "Sanitation",
+            "job_header_descriptions": "Suchen Sie nach einem stabilen, lohnenden Job? Werden Sie Mitglied des Los Santos Sanitation Department! Als Müllsammler spielen Sie eine entscheidende Rolle dabei, unsere Stadt sauber und lebendig zu halten. Genießen Sie wettbewerbsfähige Bezahlung, ausgezeichnete Leistungen und die Zufriedenheit, jeden Tag einen Unterschied zu machen. Arbeiten Sie mit einem engagierten Team, bedienen Sie modernste Ausrüstung und erleben Sie die dynamischen Straßen von Los Santos aus einer einzigartigen Perspektive. Keine Vorerfahrung erforderlich; wir bieten alle notwendigen Schulungen.",
+            "start_job": "Starte einen neuen Job",
+            "join_group": "Gruppe beitreten",
+            "start_solo_job": "Neue Gruppe erstellen",
+            "join_group_title": "Gruppe beitreten",
+            "features": {
+                "competitive_pay": {
+                    "title": "Wettbewerbsfähige Bezahlung",
+                    "description": "Verdienen Sie gute Löhne mit Leistungsboni"
+                },
+                "flexible_hours": {
+                    "title": "Flexible Arbeitszeiten",
+                    "description": "Arbeiten Sie, wann es Ihnen am besten passt"
+                },
+                "career_growth": {
+                    "title": "Karrierewachstum",
+                    "description": "Steigen Sie durch Fertigkeitsstufen auf und schalten Sie neue Fähigkeiten frei"
+                },
+                "team_environment": {
+                    "title": "Teamumgebung",
+                    "description": "Arbeiten Sie allein oder schließen Sie sich mit anderen Betreibern zusammen"
+                }
+            }
+        },
+
+        "stock": {
+            "garbage_center_header": "Müll-Hauptquartier",
+            "garbage_center_description": "Diese Fortschrittsleiste zeigt an, wie viel Müllbestand sich derzeit in der Müllzentrale befindet und welcher Prozentsatz des Platzes noch frei ist, um neuen Müll zu sammeln.",
+            "recycle_center_header": "Recyclingzentrum",
+            "recycle_center_description": "Diese Fortschrittsleiste zeigt an, wie viel Müllbestand sich derzeit im Recyclingzentrum befindet und welcher Prozentsatz des Platzes noch frei ist, um neuen Müll zu liefern."
+        },
+
+        "jobStart": {
+            "group_information": "GRUPPENINFORMATIONEN",
+            "group_members_title": "GRUPPENMITGLIEDER",
+            "prompt_not": "Nein",
+            "prompt_yes": "Ja",
+            "group_owner_tag": "BESITZER",
+            "group_member_tag": "MITGLIED",
+            "group_id": "Gruppen-ID: ",
+            "group_password": "Passwort: ",
+            "group_kick_player_confirm": "Möchtest du dieses Mitglied wirklich kicken?",
+            "group_kick_player_confirm_yes": "Ja",
+            "group_kick_player_confirm_no": "Nein",
+            "want_to_start_job": "Möchtest du diesen Job starten?",
+            "group_your_profile": "DEIN PROFIL",
+            "group_start_job": "Job starten",
+            "group_leave_job": "Job verlassen",
+            "job_controls": "Job-Steuerung",
+            "job_statistics": "Job-Statistiken",
+            "group_end_job": "Job beenden",
+            "completed_jobs": "Abgeschlossene Aufträge",
+            "total_earnings": "Gesamteinnahmen"
+        },
+        
+        "groups": {
+            "groups_header_title": "Verfügbare Gruppen",
+            "group_title": "Gruppe",
+            "group_password": "Passwort",
+            "search_groups": "Gruppen nach ID suchen...",
+            "join_group": "Gruppe beitreten",
+            "active_status": "Aktiv",
+            "members_count": "Mitglieder",
+            "enter_password": "Gruppenpasswort eingeben",
+            "cancel": "Abbrechen",
+            "join": "Gruppe beitreten",
+            "subtitle": "Verfügbare Abschleppgruppen finden und beitreten",
+            "no_groups_title": "Keine Gruppen verfügbar",
+            "no_groups_description": "Es sind derzeit keine Gruppen verfügbar. Versuchen Sie stattdessen, eine neue Gruppe zu erstellen."
+        },
+
+        "selectJobs": {
+            "header": "Jobtyp auswählen",
+            "subtitle": "Wählen Sie die Art der Lieferarbeit, die Sie machen möchten",
+            "pickup": {
+                "title": "Abholjobs",
+                "description": "Sammeln Sie Pakete von verschiedenen Orten und liefern Sie sie zurück zum Lager"
+            },
+            "delivery": {
+                "title": "Lieferjobs",
+                "description": "Liefern Sie Pakete vom Lager zu verschiedenen Orten in der Stadt"
+            },
+            "select_job": "Auswählen",
+            "stock_status": "Lagerstatus",
+            "stock_full": "Lager voll",
+            "no_stock": "Kein Lager",
+            "multiplayer": "Mehrspieler",
+            "not_multiplayer": "Kein Mehrspieler",
+            "want_to_start_job": "Möchten Sie diesen Lieferjob starten?",
+            "loading": "Verfügbare Jobs werden geladen...",
+            "no_jobs": "Derzeit keine Jobs verfügbar"
+        },
+
+        "jobTypes": {
+            "select_job_type": "Jobtyp auswählen",
+            "select_type_subtitle": "Wählen Sie Ihren bevorzugten Abfallwirtschaftsdienst",
+            "recycling_job_title": "Recycling-Service",
+            "recycling_job_description": "Recycelbare Materialien im Recyclingzentrum sortieren und verarbeiten",
+            "collect_job_title": "Abfallsammlung",
+            "collect_job_description": "Abfälle von verschiedenen Orten in der Stadt sammeln",
+            "recycle_job_disabled": "Recyclingzentrum voll",
+            "collecting_job_disabled": "Depot ist voller Müll",
+            "available": "Verfügbar"
+        },
+
+        "task": {
+            "header": "Aktuelle Aufgabe",
+            "subtitle": "Schließen Sie die Aufgabe ab, um fortzufahren",
+            "progress": "Fortschritt"
+        }
+    }
+}

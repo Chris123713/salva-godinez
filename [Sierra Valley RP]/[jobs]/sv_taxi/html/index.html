@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sierra Valley Taxi</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Main UI Container -->
+    <div id="taxiUI" class="taxi-ui hidden">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <button class="nav-item active" data-tab="overview">
+                <i class="fas fa-home"></i>
+                <span>Overview</span>
+            </button>
+            <button class="nav-item" data-tab="progress">
+                <i class="fas fa-list"></i>
+                <span>Progress</span>
+            </button>
+            <button class="nav-item" data-tab="vehicles">
+                <i class="fas fa-car"></i>
+                <span>Vehicles</span>
+            </button>
+            <button class="nav-item" data-tab="challenges">
+                <i class="fas fa-bolt"></i>
+                <span>Challenges</span>
+            </button>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="content-header">
+                <h1 id="pageTitle">Overview</h1>
+                <button class="close-btn" onclick="closeUI()">
+                    <span>CLOSE</span>
+                    <span class="key-hint">ESC</span>
+                </button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-container">
+                <!-- Overview Tab -->
+                <div class="tab-pane active" id="overview-tab">
+                    <div class="overview-circles">
+                        <div class="circle-box">
+                            <div class="circle-progress" id="rankCircle">
+                                <span class="rank-num" id="rankNumber">4</span>
+                            </div>
+                            <p class="circle-title">Progress to Next Level</p>
+                            <p class="circle-subtitle" id="xpProgress">3,459 / 5,000</p>
+                        </div>
+
+                        <div class="circle-box" style="position: relative;">
+                            <div class="circle-progress" id="rewardCircle">
+                                <span class="rank-num">2</span>
+                            </div>
+                            <p class="circle-title">Rides To Reward</p>
+                            <p class="circle-subtitle">2 / 5</p>
+                            <div class="reward-badges">
+                                <span class="reward-badge-small"><i class="fas fa-dollar-sign"></i> $1,000</span>
+                                <span class="reward-badge-small"><i class="fas fa-star"></i> 600 XP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overview-stats-grid">
+                        <div class="stat-box">
+                            <h3>Daily Earnings</h3>
+                            <p class="stat-value green" id="dailyEarnings">$148</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>Total Rides Today</h3>
+                            <p class="stat-value yellow" id="dailyRides">2</p>
+                        </div>
+                        <div class="stat-box" id="workingCard">
+                            <h3 id="workingTitle">Stop Working</h3>
+                            <p class="stat-description" id="workingText">Return your vehicle to stop working.</p>
+                            <button class="working-btn" id="workingBtn">Return Vehicle</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Tab -->
+                <div class="tab-pane" id="progress-tab">
+                    <div class="progress-header">
+                        <h2>CURRENT LEVEL PROGRESS</h2>
+                        <div class="level-bar">
+                            <div class="level-info">
+                                <span class="level-text">Level: <span id="currentLevel">1</span></span>
+                                <span class="level-xp" id="levelXP">0 / 500</span>
+                                <span class="level-percent" id="levelPercent">0%</span>
+                            </div>
+                            <div class="progress-bar-track">
+                                <div class="progress-bar-fill" id="progressBarFill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="next-level-preview">
+                        <h2 class="level-title">Level: <span id="nextLevelNum">2</span></h2>
+
+                        <div class="level-rewards">
+                            <div class="reward-col">
+                                <h3>Experience Bonus</h3>
+                                <p class="bonus-text"><span class="yellow">25%</span> Bonus Experience</p>
+                            </div>
+                            <div class="reward-col">
+                                <h3>NEW UNLOCKS</h3>
+                                <div class="unlock-item">
+                                    <i class="fas fa-car"></i>
+                                    <span>New Vehicle Unlocked <span id="unlockedVehicle">Modern Taxi</span></span>
+                                </div>
+                            </div>
+                            <div class="reward-col">
+                                <h3>Money Bonus</h3>
+                                <p class="bonus-text"><span class="yellow">5%</span> Bonus Money</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicles Tab -->
+                <div class="tab-pane" id="vehicles-tab">
+                    <div id="vehicleGrid" class="vehicle-grid">
+                        <!-- Vehicles populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Challenges Tab -->
+                <div class="tab-pane" id="challenges-tab">
+                    <div class="challenge-list">
+                        <div class="challenge-item">
+                            <div class="challenge-header">
+                                <h3>NPC Passenger Rides</h3>
+                                <div class="challenge-rewards">
+                                    <span><i class="fas fa-coins"></i> $500</span>
+                                    <span><i class="fas fa-star"></i> 100 XP</span>
+                                </div>
+                            </div>
+                            <div class="challenge-progress">
+                                <div class="progress-label">
+                                    <span>Stage: <span id="npcStage">0</span></span>
+                                    <span id="npcCount">0 / 10</span>
+                                    <span id="npcPercent">0%</span>
+                                </div>
+                                <div class="progress-bar-track">
+                                    <div class="progress-bar-fill yellow" id="npcProgressBar"></div>
+                                </div>
+                            </div>
+                            <button class="claim-btn">Start Job</button>
+                        </div>
+
+                        <div class="challenge-item locked">
+                            <div class="challenge-header">
+                                <h3>Long Distance Rides</h3>
+                                <div class="challenge-rewards">
+                                    <span><i class="fas fa-coins"></i> $1,500</span>
+                                    <span><i class="fas fa-star"></i> 500 XP</span>
+                                </div>
+                            </div>
+                            <div class="locked-overlay">
+                                <i class="fas fa-lock"></i>
+                                <p>UNLOCKS AT LEVEL 5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Taxi Meter -->
+    <div id="taxiMeter" class="taxi-meter hidden">
+        <div class="meter-header">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>TAXI METER</span>
+        </div>
+        <div class="meter-body">
+            <div class="meter-row">
+                <span class="meter-label">Fare:</span>
+                <span class="meter-value fare" id="meterFare">$0.00</span>
+            </div>
+            <div class="meter-row">
+                <span class="meter-label">Distance:</span>
+                <span class="meter-value" id="meterDistance">0.00m</span>
+            </div>
+            <div class="meter-row">
+                <span class="meter-label">Time:</span>
+                <span class="meter-value" id="meterDuration">00:00</span>
+            </div>
+            <div class="meter-row">
+                <span class="meter-label">Speed:</span>
+                <span class="meter-value" id="meterSpeed">0 km/h</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dispatch Overlay (Separate from main UI) -->
+    <div id="dispatchOverlay" class="dispatch-overlay hidden">
+        <div class="dispatch-container">
+            <div class="dispatch-header-bar">
+                <div class="dispatch-title">
+                    <i class="fas fa-phone-volume"></i>
+                    <span>TAXI DISPATCH</span>
+                </div>
+                <button class="dispatch-close-btn" onclick="hideDispatch()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="dispatchCallsList" class="dispatch-calls-container">
+                <!-- Calls populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

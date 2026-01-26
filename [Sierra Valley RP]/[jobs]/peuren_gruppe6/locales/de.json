@@ -1,0 +1,190 @@
+{
+    "job_menu_header": "Gruppe 6",
+    "interact_with_job_npc": "Sprechen Sie mit dem Jobmanager",
+
+    "left_group_job": "Sie haben die Gruppe erfolgreich verlassen",
+    "entered_group_job": "Sie sind der Gruppe erfolgreich beigetreten",
+
+    "incorrect_group_pass" : "Falsches Gruppenpasswort!",
+
+    "you_have_job": "Sie können keinem Job beitreten oder einen neuen starten, da Sie bereits einen Job haben",
+    "max_players_reached_for_this_job": "Sie können diesen Job im Moment nicht machen, da zu viele Spieler ihn ausführen!",
+    "successfully_started_job": "Sie haben einen neuen Job gestartet! Verwenden Sie /tablet, um Vertragsjobs anzuzeigen",
+    "job_successfully_finished": "Der Job wurde erfolgreich abgeschlossen!",
+    "finished_go_next_place": "Fertig! Gehen Sie zum nächsten Punkt!",
+
+    "interaction_take_bag": "Geldbeutel nehmen",
+    "interaction_place_bag": "Geldbeutel platzieren",
+    "interaction_take_money": "Geld nehmen",
+    "interaction_deliver_money": "Geld liefern",
+    "interaction_open_container": "Container öffnen",
+    "interaction_close_container": "Container schließen",
+    "interaction_rob_vehicle": "Fahrzeug berauben",
+
+    "interaction_pickup": "Aufheben",
+
+    "successfully_finished_order": "Sie haben den Auftrag erfolgreich abgeschlossen, bringen Sie das Fahrzeug zur Gruppe 6 Zentrale zurück",
+    "prompt_return_vehicle": "[E] - Jobfahrzeug zurückgeben",
+
+    "you_do_not_have_job": "Sie haben derzeit keinen Zugang zum Vertragstablet!", 
+    "not_in_gruppe_6_territory": "Sie müssen sich im Gebiet des Gruppe sechs Jobcenters befinden, um einen neuen Vertrag anzunehmen!",
+    "not_group_owner_tablet": "Das Tablet ist nur für den Gruppenleiter zugänglich!",
+
+    "contract_is_active": "Sie haben einen Vertrag gestartet!",
+    "group_is_full": "Sie können dieser Gruppe nicht beitreten, da sie keinen Platz mehr hat!",
+
+    "not_job_vehicle": "Das ist nicht das bereitgestellte Jobfahrzeug!",
+
+    "robbery_context_header": "Erlauben Sie diesem Spieler, Ihr Fahrzeug zu berauben?",
+    "robbery_confirm_yes_title": "Raub erlauben",
+    "robbery_confirm_yes_description": "Wenn bestätigt, kann der Spieler Ihr Fahrzeug berauben",
+    "robbery_confirm_no_title": "Raub ablehnen",
+    "robbery_confirm_no_description": "Wenn abgelehnt, kann der Spieler Ihr Fahrzeug nicht berauben",
+
+    "robbery_confirmed_yes": "Der Gruppenleiter hat Ihre Raubanfrage bestätigt!",
+    "robbery_confirmed_no": "Der Gruppenleiter hat Ihre Raubanfrage abgelehnt!",
+    "robbery_confirm_sent": "Ihre Bestätigungsantwort wurde gesendet!",
+    "robbery_taking_money_progress": "Fahrzeug wird beraubt...",
+
+    "robbery_vehicle_empty": "Dieses Fahrzeug ist leer!",
+    "robbery_successfully_robbed": "Sie haben das Fahrzeug erfolgreich beraubt!",
+    "robbery_already_robbed": "Dieses Fahrzeug wird bereits beraubt!",
+    "robbery_request_sent": "Sie haben eine Raubanfrage an den Gruppenleiter gesendet!",
+
+    "task_use_table_to_start": "Verwenden Sie das gegebene Tablet-Item oder den Befehl /tablet",
+    "task_pickup_bags": "Geld sammeln",
+    "task_deliver_bags": "Geld zur Bank liefern",
+    "task_return_job_vehicle": "Das Jobfahrzeug zur Gruppe 6 Zentrale zurückbringen",
+
+    "job_vehicle_not_finished_loading": "Das Jobfahrzeug lädt noch. Gehen Sie in die Nähe des Fahrzeugs, bis Sie die Schlüssel davon bekommen!",
+
+    "ui": {
+        "header": {
+            "job_tab_title": "Job",
+            "rank_tab_title": "Rang"
+        },
+
+        "home": {
+            "groups_header_title": "Gruppen",
+            "group_job_description": "Starten Sie einen neuen Job und laden Sie andere ein, zusammenzuarbeiten",
+            "groups_description": "Treten Sie bestehenden Gruppen bei und arbeiten Sie als Team",
+            "job_header_title": "Gruppe sechs",
+            "job_header_descriptions": "Suchen Sie einen stabilen, lohnenden Job? Treten Sie der Los Santos Sanitätsabteilung bei! Als Müllsammler spielen Sie eine entscheidende Rolle dabei, unsere Stadt sauber und lebendig zu halten. Genießen Sie wettbewerbsfähige Bezahlung, ausgezeichnete Vorteile und die Zufriedenheit, jeden Tag einen Unterschied zu machen. Arbeiten Sie mit einem engagierten Team, bedienen Sie modernste Ausrüstung und erleben Sie die dynamischen Straßen von Los Santos aus einer einzigartigen Perspektive. Keine Vorerfahrung erforderlich; wir bieten alle notwendigen Schulungen.",
+            "start_job": "Neuen Job starten",
+            "join_group": "Gruppe beitreten",
+            "start_solo_job": "Neue Gruppe erstellen",
+            "join_group_title": "Einer Gruppe beitreten",
+            "features": {
+                "competitive_pay": {
+                    "title": "Wettbewerbsfähige Bezahlung",
+                    "description": "Verdienen Sie großartige Löhne mit Leistungsboni"
+                },
+                "flexible_hours": {
+                    "title": "Flexible Arbeitszeiten",
+                    "description": "Arbeiten Sie, wann es Ihnen am besten passt"
+                },
+                "career_growth": {
+                    "title": "Karrierewachstum",
+                    "description": "Steigen Sie durch Fertigkeitsstufen auf und schalten Sie neue Fähigkeiten frei"
+                },
+                "team_environment": {
+                    "title": "Teamumgebung",
+                    "description": "Arbeiten Sie alleine oder schließen Sie sich mit anderen Operatoren zusammen"
+                }
+            }
+        },
+
+        "jobStart": {
+            "group_information": "INFORMATIONEN",
+            "group_members_title": "GRUPPENMITGLIEDER",
+            "prompt_not": "Nein",
+            "prompt_yes": "Ja",
+            "group_owner_tag": "BESITZER",
+            "group_member_tag": "MITGLIED",
+            "group_id": "Gruppen-ID: ",
+            "group_password": "Passwort: ",
+            "group_kick_player_confirm": "Sind Sie sicher, dass Sie dieses Mitglied kicken möchten?",
+            "group_kick_player_confirm_yes": "Ja",
+            "group_kick_player_confirm_no": "Nein",
+            "want_to_start_job": "Möchten Sie diesen Job starten?",
+            "group_your_profile": "IHR PROFIL",
+            "group_start_job": "Job starten",
+            "group_leave_job": "Job verlassen",
+            "job_controls": "Job-Kontrollen",
+            "job_statistics": "Job-Statistiken",
+            "group_end_job": "Job beenden",
+            "completed_jobs": "Abgeschlossene Jobs",
+            "total_earnings": "Gesamtverdienst",
+            "vehicle_warning_title": "Fahrzeug nicht zurückgegeben",
+            "vehicle_warning_message": "Möchten Sie den Job beenden, ohne das Fahrzeug zurückzugeben? Sie werden nicht bezahlt, ohne das Fahrzeug zurückzugeben.",
+            "end_without_return": "Beenden ohne Rückgabe",
+            "return_to_job": "Zurück zum Job"
+        },
+        
+        "groups": {
+            "groups_header_title": "Verfügbare Gruppen",
+            "group_title": "Gruppe",
+            "group_password": "Passwort",
+            "search_groups": "Gruppen nach ID suchen...",
+            "join_group": "Gruppe beitreten",
+            "active_status": "Aktiv",
+            "members_count": "Mitglieder",
+            "enter_password": "Gruppenpasswort eingeben",
+            "cancel": "Abbrechen",
+            "join": "Gruppe beitreten",
+            "subtitle": "Finden und treten Sie verfügbaren Abschleppgruppen bei",
+            "no_groups_title": "Keine Gruppen verfügbar",
+            "no_groups_description": "Es sind derzeit keine Gruppen zum Beitreten verfügbar. Versuchen Sie stattdessen, eine neue Gruppe zu erstellen."
+        },
+
+        "tablet": {
+            "active_calls": "Aktive Anrufe",
+            "no_active_calls": "Momentan keine aktiven Anrufe",
+            "accept_call": "Anruf annehmen",
+            "accept_call_confirm": "Sind Sie sicher, dass Sie diesen Anruf annehmen möchten?",
+            "yes": "Ja",
+            "no": "Nein",
+            "clipboard_success": "In Zwischenablage kopiert",
+            "waypoint_confirm_title": "Wegpunkt setzen",
+            "waypoint_set": "Wegpunkt gesetzt",
+            "waypoint_set_description": "Der Wegpunkt wurde auf Ihrer Karte gesetzt",
+            "current_job": "Aktueller Job",
+            "arrived": "Angekommen",
+            "loaded": "Geladen",
+            "finished": "Beendet",
+            "next_step": "Nächster Schritt",
+            "cancel_job": "Job abbrechen",
+            "cancel_job_confirm": "Sind Sie sicher, dass Sie diesen Job abbrechen möchten?",
+            "password_copied": "Passwort in Zwischenablage kopiert",
+            "player_stats": "Spielerstatistiken",
+            "level": "Level",
+            "completed_jobs": "Abgeschlossene Jobs",
+            "total_earnings": "Gesamtverdienst",
+            "available_contracts": "Verfügbare Gruppe sechs Verträge anzeigen und verwalten",
+            "contract_type": "Vertragstyp",
+            "contract_bags": "Erforderliche Taschen",
+            "contract_payout": "Vertragsauszahlung",
+            "contract_take": "Vertrag annehmen",
+            "take_contract_confirm": "Sind Sie sicher, dass Sie diesen Vertrag annehmen möchten?"
+        },
+
+        "rank": {
+            "level": "Level",
+            "unlockables": "Freischaltbare Jobs",
+            "required_level": "Erforderliches Level:",
+            "rank_unlockable_jobs_header": "Freischaltbare Jobs",
+            "want_to_start_job": "Möchten Sie diesen Job starten?",
+            "profile_level": "Aktuelles Level",
+            "profile_xp": "Erfahrung",
+            "profile_next_level": "Nächstes Level",
+            "job_locked": "Job gesperrt",
+            "job_unlocked": "Job freigeschaltet"
+        },
+
+        "task": {
+            "header": "Aktuelle Aufgabe",
+            "subtitle": "Schließen Sie die Aufgabe ab, um fortzufahren",
+            "progress": "Fortschritt"
+        }
+    }
+}

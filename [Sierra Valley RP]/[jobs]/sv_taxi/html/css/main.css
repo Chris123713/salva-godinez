@@ -1,0 +1,990 @@
+/* Sierra Valley Taxi UI - Inspired Design */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    background: transparent;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Main Container */
+.taxi-ui {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: 140px;
+    background: rgba(20, 20, 30, 0.95);
+    border-radius: 10px 0 0 10px;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.nav-item {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 15px 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.nav-item i {
+    font-size: 22px;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #FFA500;
+}
+
+.nav-item.active {
+    background: rgba(255, 165, 0, 0.15);
+    color: #FFA500;
+    border-left: 4px solid #FFA500;
+}
+
+/* Main Content */
+.main-content {
+    width: 750px;
+    height: 520px;
+    background: linear-gradient(135deg, rgba(30, 30, 45, 0.98), rgba(20, 20, 35, 0.98));
+    border-radius: 0 10px 10px 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.content-header {
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.content-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFA500;
+    text-transform: uppercase;
+}
+
+.close-btn {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #FFA500;
+}
+
+.key-hint {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #FFA500;
+}
+
+/* Tab Container */
+.tab-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px 25px;
+}
+
+.tab-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tab-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.tab-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 165, 0, 0.5);
+    border-radius: 10px;
+}
+
+.tab-pane {
+    display: none;
+    animation: slideIn 0.3s ease;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Overview Tab - New Layout */
+.overview-circles {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-bottom: 30px;
+    padding: 20px 0;
+}
+
+.circle-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.circle-progress {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#FFA500 0deg, #FFA500 var(--progress, 0deg), rgba(255, 255, 255, 0.15) var(--progress, 0deg));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.circle-progress::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(20, 20, 30, 0.95);
+    border-radius: 50%;
+}
+
+.rank-num {
+    font-size: 52px;
+    font-weight: 900;
+    color: #FFA500;
+    z-index: 1;
+}
+
+.circle-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.circle-subtitle {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 5px;
+}
+
+.reward-badges {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    flex-direction: column;
+}
+
+.reward-badge-small {
+    font-size: 11px;
+    color: #FFA500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.reward-badge-small i {
+    font-size: 10px;
+}
+
+.overview-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+}
+
+.stat-box {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+.stat-box.full-width {
+    grid-column: 1 / -1;
+}
+
+.stat-box h3 {
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-size: 42px;
+    font-weight: 900;
+}
+
+.stat-value.green {
+    color: #FFA500;
+}
+
+.stat-value.yellow {
+    color: #fff;
+}
+
+.stat-description {
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 15px;
+    font-size: 11px;
+}
+
+.working-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.working-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Progress Tab */
+.progress-header {
+    margin-bottom: 50px;
+}
+
+.progress-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.level-bar {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.level-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.level-text {
+    font-size: 28px;
+    font-weight: 900;
+    color: #FFA500;
+}
+
+.level-xp {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.level-percent {
+    font-size: 24px;
+    font-weight: 900;
+    color: #FFA500;
+}
+
+.progress-bar-track {
+    width: 100%;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FFA500, #FF8C00);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.progress-bar-fill.yellow {
+    background: linear-gradient(90deg, #FFD700, #FFA500);
+}
+
+.next-level-preview {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.level-title {
+    font-size: 42px;
+    font-weight: 900;
+    color: #FFA500;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.level-rewards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.reward-col h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.bonus-text {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.bonus-text .yellow {
+    color: #FFA500;
+    font-weight: 900;
+    font-size: 24px;
+}
+
+.unlock-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.unlock-item i {
+    color: #FFA500;
+    font-size: 24px;
+}
+
+/* Vehicles Tab */
+.vehicle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.vehicle-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.vehicle-card:hover {
+    border-color: #FFA500;
+    transform: translateY(-5px);
+}
+
+.vehicle-card.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.vehicle-card.locked:hover {
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.vehicle-image {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(255, 140, 0, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.vehicle-image i {
+    font-size: 72px;
+    color: rgba(255, 165, 0, 0.5);
+}
+
+.vehicle-lock {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(231, 76, 60, 0.9);
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.vehicle-info-box {
+    padding: 20px;
+}
+
+.vehicle-name-header {
+    font-size: 20px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.vehicle-price {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.price {
+    font-size: 24px;
+    font-weight: 900;
+    color: #2ECC71;
+}
+
+.rent-btn {
+    background: linear-gradient(135deg, #FFA500, #FF8C00);
+    border: none;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.rent-btn:hover {
+    transform: scale(1.05);
+}
+
+.rent-btn:disabled {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+}
+
+/* Challenges Tab */
+.challenge-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.challenge-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 30px;
+    position: relative;
+}
+
+.challenge-item.locked {
+    opacity: 0.5;
+}
+
+.challenge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.challenge-header h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.challenge-rewards {
+    display: flex;
+    gap: 20px;
+}
+
+.challenge-rewards span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.challenge-rewards i {
+    color: #FFA500;
+}
+
+.challenge-progress {
+    margin-bottom: 20px;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFA500;
+}
+
+.claim-btn {
+    background: linear-gradient(135deg, #2ECC71, #27AE60);
+    border: none;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.claim-btn:hover {
+    transform: scale(1.05);
+}
+
+.locked-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border-radius: 8px;
+}
+
+.locked-overlay i {
+    font-size: 48px;
+    color: #FFA500;
+}
+
+.locked-overlay p {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+/* Dispatch Overlay (Side Panel) */
+.dispatch-overlay {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 999;
+    animation: slideInRight 0.4s ease-out;
+}
+
+.dispatch-overlay.hidden {
+    display: none;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateY(-50%) translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(-50%) translateX(0);
+        opacity: 1;
+    }
+}
+
+.dispatch-container {
+    width: 420px;
+    background: rgba(20, 20, 30, 0.98);
+    border: 2px solid rgba(255, 165, 0, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+.dispatch-header-bar {
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 140, 0, 0.2));
+    border-bottom: 2px solid rgba(255, 165, 0, 0.3);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dispatch-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFA500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.dispatch-title i {
+    font-size: 20px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.dispatch-close-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.dispatch-close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #FFA500;
+    color: #FFA500;
+}
+
+.dispatch-calls-container {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 12px;
+}
+
+.dispatch-calls-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dispatch-calls-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.dispatch-calls-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 165, 0, 0.5);
+    border-radius: 3px;
+}
+
+/* Individual Dispatch Call Entry */
+.dispatch-call-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+}
+
+.dispatch-call-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 165, 0, 0.3);
+    transform: translateX(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dispatch-call-item.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.dispatch-call-item.locked:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.call-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.call-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.call-lock {
+    background: rgba(231, 76, 60, 0.2);
+    border: 1px solid rgba(231, 76, 60, 0.5);
+    padding: 4px 10px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.call-lock i {
+    color: #E74C3C;
+    font-size: 12px;
+}
+
+.call-info-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.call-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    flex: 1;
+}
+
+.call-location i {
+    color: #FFA500;
+    font-size: 14px;
+}
+
+.call-rewards-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.reward-badge {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.reward-badge.money {
+    color: #2ECC71;
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.reward-badge.money i {
+    color: #2ECC71;
+    font-size: 12px;
+}
+
+.reward-badge.xp {
+    color: #FFA500;
+    border: 1px solid rgba(255, 165, 0, 0.3);
+}
+
+.reward-badge.xp i {
+    color: #FFA500;
+    font-size: 12px;
+}
+
+.start-route-btn {
+    margin-left: auto;
+    background: linear-gradient(135deg, #2ECC71, #27AE60);
+    border: none;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.start-route-btn i {
+    font-size: 14px;
+}
+
+.start-route-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+}
+
+.start-route-btn.locked {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
+}
+
+.start-route-btn.locked:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.no-calls-message {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.no-calls-message i {
+    font-size: 48px;
+    margin-bottom: 15px;
+    opacity: 0.3;
+}
+
+.no-calls-message p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Taxi Meter (Keep original) */
+.taxi-meter {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 280px;
+    background: rgba(26, 26, 46, 0.95);
+    border: 2px solid rgba(243, 156, 18, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: slideInRight 0.4s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(350px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.meter-header {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 10px rgba(243, 156, 18, 0.3);
+}
+
+.meter-header i {
+    color: #fff;
+    font-size: 18px;
+}
+
+.meter-header span {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.meter-body {
+    padding: 15px;
+}
+
+.meter-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.meter-row:last-child {
+    margin-bottom: 0;
+}
+
+.meter-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+.meter-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.meter-value.fare {
+    color: #2ecc71;
+    font-size: 20px;
+}
+
+.yellow {
+    color: #FFA500;
+}

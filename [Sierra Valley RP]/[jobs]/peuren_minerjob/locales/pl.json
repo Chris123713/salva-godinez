@@ -1,0 +1,131 @@
+{
+    "interact_with_job_npc": "Porozmawiaj z kierownikiem pracy",
+    "successfully_started_job": "Rozpocząłeś nową pracę!",
+    "job_successfully_finished": "Praca została zakończona!",
+    "incorrect_group_pass": "Nieprawidłowe hasło grupy",
+    "left_group_job": "Pomyślnie opuściłeś grupę",
+    "entered_group_job": "Pomyślnie dołączyłeś do grupy",
+    "cant_start_job_no_space": "Brak miejsca na wyprowadzenie pojazdu służbowego!",
+    "no_space_in_truck": "Ciężarówka jest pełna ładunku!",
+
+    "interaction_use_hammer": "Użyj młota",
+    "interaction_use_pickaxe": "Użyj kilofa",
+    "interaction_use_drill": "Użyj wiertła",
+    "interaction_use_laser_drill": "Użyj wiertła laserowego",
+
+    "progress_mining": "Wydobywanie...",
+
+    "interaction_process_rock": "Przetwórz skały",
+
+    "textui_carry_place": "[X] - Połóż",
+
+    "interaction_pickup_object": "Podnieś",
+    "interaction_take_rock": "Weź skały",
+    "interaction_place_rock": "Połóż skały",
+
+    "interaction_cutting_drill": "Wiertło do obróbki rudy",
+    "menu_cut_crystal_title": "Przetwórz: %s",
+    "menu_cut_crystal_description": "Przetwórz rudę w kształt, aby wyglądała lepiej",
+    "menu_crystal_cutting_header": "Przetwarzanie cennej rudy",
+    "cutting_menu_amount": "Ilość",
+    "input_invalid_input": "Nieprawidłowe dane, spróbuj ponownie",
+    "you_dont_have_crystals": "Nie masz wystarczającej ilości kryształów, aby rozpocząć cięcie!",
+    "rock_busy": "Ta skała jest już wydobywana przez kogoś innego!",
+    "job_vehicle_not_finished_loading": "Pojazd służbowy wciąż się ładuje. Podejdź bliżej pojazdu, aż otrzymasz do niego kluczyki!",
+    "successfuly_purchased_tool": "Pomyślnie zakupiłeś nowe narzędzie!",
+    "you_cant_afford_this_tool": "Nie stać cię na to narzędzie!",
+
+    "progress_cutting_crystal": "Przetwarzanie rudy...",
+
+    "ui": {
+        "header": {
+            "job_tab_title": "Praca",
+            "job_rank_title": "Ranga"
+        },
+
+        "home": {
+            "groups_header_title": "Grupy",
+            "group_job_description": "Rozpocznij nową pracę i zaproś innych do współpracy",
+            "groups_description": "Dołącz do istniejących grup i pracuj zespołowo",
+            "job_header_title": "Górnictwo",
+            "job_header_descriptions": "Szukasz stabilnej, dobrze płatnej pracy? Dołącz do kopalni Los Santos! Jako górnik odegrasz kluczową rolę w wydobyciu surowców. Ciesz się konkurencyjnym wynagrodzeniem, świetnymi benefitami i satysfakcją z codziennej pracy. Pracuj z zaangażowanym zespołem, obsługuj najnowocześniejszy sprzęt i doświadcz dynamicznego podziemia Los Santos z wyjątkowej perspektywy. Nie wymagamy doświadczenia; zapewniamy wszystkie niezbędne szkolenia.",
+            "start_job": "Rozpocznij nową pracę",
+            "join_group": "Dołącz do grupy",
+            "start_solo_job": "Utwórz nową grupę",
+            "join_group_title": "Dołącz do grupy",
+            "features": {
+                "competitive_pay": {
+                    "title": "Konkurencyjne Wynagrodzenie",
+                    "description": "Zarabiaj wysokie stawki z premiami za wyniki"
+                },
+                "flexible_hours": {
+                    "title": "Elastyczne Godziny",
+                    "description": "Pracuj kiedy ci najbardziej odpowiada"
+                },
+                "career_growth": {
+                    "title": "Rozwój Kariery",
+                    "description": "Awansuj poprzez poziomy umiejętności i odblokowuj nowe możliwości"
+                },
+                "team_environment": {
+                    "title": "Środowisko Zespołowe",
+                    "description": "Pracuj sam lub współpracuj z innymi górnikami"
+                }
+            }
+        },
+
+        "jobStart": {
+            "group_information": "INFORMACJE",
+            "group_members_title": "CZŁONKOWIE GRUPY",
+            "prompt_not": "Nie",
+            "prompt_yes": "Tak",
+            "group_owner_tag": "WŁAŚCICIEL",
+            "group_member_tag": "CZŁONEK",
+            "group_id": "ID Grupy: ",
+            "group_password": "Hasło: ",
+            "group_kick_player_confirm": "Czy na pewno chcesz wyrzucić tego członka?",
+            "group_kick_player_confirm_yes": "Tak",
+            "group_kick_player_confirm_no": "Nie",
+            "want_to_start_job": "Czy chcesz rozpocząć tę pracę?",
+            "group_your_profile": "TWÓJ PROFIL",
+            "group_start_job": "Rozpocznij pracę",
+            "group_leave_job": "Opuść pracę",
+            "job_controls": "Kontrolki Pracy",
+            "job_statistics": "Statystyki Pracy",
+            "group_end_job": "Zakończ Pracę",
+            "completed_jobs": "Ukończone Prace",
+            "total_earnings": "Łączne Zarobki"
+        },
+        
+        "groups": {
+            "groups_header_title": "Dostępne Grupy",
+            "group_title": "Grupa",
+            "group_password": "Hasło",
+            "search_groups": "Szukaj grup po ID...",
+            "join_group": "Dołącz do Grupy",
+            "active_status": "Aktywna",
+            "members_count": "Członkowie",
+            "enter_password": "Wprowadź Hasło Grupy",
+            "cancel": "Anuluj",
+            "join": "Dołącz",
+            "subtitle": "Znajdź i dołącz do dostępnych grup górniczych",
+            "no_groups_title": "Brak Dostępnych Grup",
+            "no_groups_description": "Aktualnie nie ma dostępnych grup. Spróbuj utworzyć nową grupę."
+        },
+
+        "rank": {
+            "level": "Poziom",
+            "unlockables": "Odblokowywalne prace",
+            "required_level": "Wymagany poziom:",
+            "want_to_purchase": "Czy chcesz kupić to narzędzie?",
+            "prompt_not": "Nie",
+            "prompt_yes": "Tak",
+            "unlockables_header": "ODBLOKOWYWALNE NARZĘDZIA PRACY",
+            "profile_title": "Profil",
+            "progress_title": "Postęp Poziomu",
+            "purchase_button": "Kup",
+            "stats_header": "Statystyki Profilu",
+            "total_xp": "Całkowite PD",
+            "current_level": "Aktualny Poziom"
+        }
+    }
+}

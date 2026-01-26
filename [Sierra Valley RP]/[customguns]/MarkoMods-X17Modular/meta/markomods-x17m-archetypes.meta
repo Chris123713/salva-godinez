@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CWeaponModelInfo__InitDataList>
+    <InitDatas>
+        <Item>
+            <modelName>markomods-x17m</modelName>
+            <txdName>markomods-x17m</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17ms</modelName>
+            <txdName>markomods-x17m</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+		<Item>
+            <modelName>markomods-x17m-frame1</modelName>
+            <txdName>markomods-x17m</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-frame2</modelName>
+            <txdName>markomods-x17m</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-frame3</modelName>
+            <txdName>markomods-x17m</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-frame4</modelName>
+            <txdName>markomods-x17m</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-frame5</modelName>
+            <txdName>markomods-x17m</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-frame6</modelName>
+            <txdName>markomods-x17m</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-frame7</modelName>
+            <txdName>markomods-x17m</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-frame8</modelName>
+            <txdName>markomods-x17m</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-frame9</modelName>
+            <txdName>markomods-x17m</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-frame10</modelName>
+            <txdName>markomods-x17m</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-barrel1</modelName>
+            <txdName>markomods-x17m-barrel1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-barrel2</modelName>
+            <txdName>markomods-x17m-barrel2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-barrel3</modelName>
+            <txdName>markomods-x17m-barrel2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-barrel4</modelName>
+            <txdName>markomods-x17m-barrel2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-barrel5</modelName>
+            <txdName>markomods-x17m-barrel2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-barrel6</modelName>
+            <txdName>markomods-x17m-barrel3</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-barrel7</modelName>
+            <txdName>markomods-x17m-barrel3</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-barrel8</modelName>
+            <txdName>markomods-x17m-barrel3</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-barrel9</modelName>
+            <txdName>markomods-x17m-barrel3</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-muzzle1</modelName>
+            <txdName>markomods-x17m-barrel3</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-muzzle2</modelName>
+            <txdName>markomods-x17m-barrel2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-suppressor1</modelName>
+            <txdName>markomods-x17m-suppressor</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-suppressor2</modelName>
+            <txdName>markomods-x17m-suppressor2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-suppressor3</modelName>
+            <txdName>markomods-x17m-suppressor2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-suppressor4</modelName>
+            <txdName>markomods-x17m-suppressor2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-slide1</modelName>
+            <txdName>markomods-x17m-slide1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-slide2</modelName>
+            <txdName>markomods-x17m-slide1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-switchslide1</modelName>
+            <txdName>markomods-x17m-slide1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-switchslide2</modelName>
+            <txdName>markomods-x17m-slide1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-cover1</modelName>
+            <txdName>markomods-x17m-slide1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-slide3</modelName>
+            <txdName>markomods-x17m-slide3</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-switchslide3</modelName>
+            <txdName>markomods-x17m-slide3</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-cover2</modelName>
+            <txdName>markomods-x17m-slide3</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-slide4</modelName>
+            <txdName>markomods-x17m-slide4</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-switchslide4</modelName>
+            <txdName>markomods-x17m-slide4</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-cover3</modelName>
+            <txdName>markomods-x17m-slide4</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-slide5</modelName>
+            <txdName>markomods-x17m-slide5</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-switchslide5</modelName>
+            <txdName>markomods-x17m-slide5</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-cover4</modelName>
+            <txdName>markomods-x17m-slide5</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-flashlight1</modelName>
+            <txdName>markomods-x17m-flashlight1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-flashlight2</modelName>
+            <txdName>markomods-x17m-flashlight2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-flashlight3</modelName>
+            <txdName>markomods-x17m-flashlight2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-flashlight4</modelName>
+            <txdName>markomods-x17m-flashlight3</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-flashlight5</modelName>
+            <txdName>markomods-x17m-flashlight3</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-flashlight6</modelName>
+            <txdName>markomods-x17m-flashlight3</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-scope1</modelName>
+            <txdName>markomods-x17m-scope1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-scope2</modelName>
+            <txdName>markomods-x17m-scope1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-scope3</modelName>
+            <txdName>markomods-x17m-scope2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-scope4</modelName>
+            <txdName>markomods-x17m-scope2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-magazine1</modelName>
+            <txdName>markomods-x17m-magazine1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-magazine2</modelName>
+            <txdName>markomods-x17m-magazine1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-magazine3</modelName>
+            <txdName>markomods-x17m-magazine1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-magazine4</modelName>
+            <txdName>markomods-x17m-magazine1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-magazine5</modelName>
+            <txdName>markomods-x17m-magazine1</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-magazine6</modelName>
+            <txdName>markomods-x17m-magazine2</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+        <Item>
+            <modelName>markomods-x17m-magazine7</modelName>
+            <txdName>markomods-x17m-magazine3</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='75'/>
+        </Item>
+    </InitDatas>
+</CWeaponModelInfo__InitDataList>

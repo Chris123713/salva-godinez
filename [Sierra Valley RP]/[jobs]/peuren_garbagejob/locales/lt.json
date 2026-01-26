@@ -1,0 +1,200 @@
+{    
+    "job_menu_header": "Sanitarija",
+    "interact_with_job_npc": "Kalbėtis su darbo vadovu",
+    "incorrect_group_pass": "Neteisingas grupės slaptažodis",
+    "left_group_job": "Sėkmingai palikote grupę",
+    "entered_group_job": "Sėkmingai prisijungėte prie grupės",
+
+    "you_have_job": "Negalite prisijungti ar pradėti naujo darbo, nes jau turite paskirtą darbą",
+    "max_players_reached_for_this_job": "Šiuo metu negalite dirbti šio darbo, nes per daug žaidėjų jį dirba!",
+    "successfully_started_job": "Pradėjote naują darbą! Važiuokite į pažymėtas vietas žemėlapyje",
+    "job_successfully_finished": "Darbas sėkmingai baigtas!",
+    "cant_start_job_no_space": "Nėra laisvos vietos darbo automobiliui!",
+
+    "not_holding_container": "Nejudate konteinerio!",
+
+    "group_is_full": "Grupė pilna ir nebegali priimti daugiau narių!",
+    "not_in_gruppe_6_territory": "Nesate Gruppe6 teritorijoje!",
+    "job_ended_return_vehicle": "Darbas baigtas! Prašome grąžinti transporto priemonę, kad užbaigtumėte procesą.",
+    "interaction_search_trash": "Ieškoti konteineryje",
+    "progress_searching": "Ieškoma...",
+    "task_drive_to_location": "Važiuoti į vietą",
+    "notify_found_items": "Konteineryje radote vertingų daiktų!",
+    "notify_no_items_found": "Konteineryje vertingų daiktų nerasta.",
+
+    "interaction_place_trash_veh": "Pastatyti konteinerį",
+    "interaction_remove_trash_veh": "Pašalinti konteinerį",
+    "interaction_move_trash": "Judinti konteinerį",
+    "interaction_return_trash": "[E] - Grąžinti konteinerį",
+    "interaction_return_vehicle": "[E] - Grąžinti sunkvežimį",
+    "interaction_take_trash": "Paimti šiukšles",
+    "interaction_place_bags": "Pastatyti šiukšlių maišą",
+    "interaction_deliver_bags": "Pristatyti šiukšlių maišą",
+    "interaction_take_bags": "Paimti šiukšlių maišą",
+    "interaction_recycle_trash": "Perdirbti šiukšles",
+
+    "progress_collecting": "Renkama...",
+
+    "this_bin_is_empty": "Šis konteineris jau ištuštintas",
+    "trash_collected_return_veh": "Puikus darbas! Dabar grįžkite į šiukšlių saugyklą, pažymėtą žemėlapyje, ir grąžinkite sunkvežimį!",
+
+    "no_more_trash_recycle": "Nebeliko šiukšlių surinkimui ir perdirbimui!",
+    "trash_collected_go_recycle": "Šiukšlių maišas surinktas, nuvežkite jį į perdirbimo liniją!",
+    "trash_bag_recycled": "Sėkmingai perdirbo šiukšlių maišą!",
+
+    "garbage_collected_drive_recycle": "Surinkote šiukšles, dabar važiuokite į perdirbimo centrą!",
+    "not_in_driver_seat": "Turite būti vairuotojo sėdynėje!",
+
+    "task_empty_dumpsters": "Ištuštinti konteinerius",
+    "task_collect_bags": "Surinkti šiukšlių maišus",
+    "task_remove_bags": "Iškrauti šiukšlių maišus",
+    "task_return_job_vehicle": "Grąžinti darbo automobilį į šiukšlių saugyklos centrą",
+
+    "job_vehicle_trunk_busy": "Darbo automobilio bagažinę naudoja kitas žaidėjas, palaukite!",
+
+    "inventory_no_space": "Inventorius pilnas",
+	"inventory_no_space_desc": "Jūsų inventoriuje nebeliko vietos",
+
+    "ui": {
+        "header": {
+            "job_tab_title": "Darbas",
+            "job_stock_title": "Sandėlis",
+            "job_rank_title": "Rangas"
+        },    
+            
+        "warehouse": {
+            "stock_header": "Sandėlio atsargos",
+            "stock_description": "Čia galite peržiūrėti dabartinį kiekvienos paketo tipo kategorijos atsargų kiekį. Skirtingos paketo kategorijos reikalingos skirtingiems darbo tipams. Jei nėra atsargų arba per daug atsargų tam paketo tipui, negalėsite pradėti to darbo.",
+            "features": {
+                "stock_management": {
+                    "title": "Atsargų valdymas",
+                    "description": "Stebėkite ir sekite savo atsargų lygius realiu laiku"
+                },
+                "inventory_tracking": {
+                    "title": "Inventoriaus sekimas",
+                    "description": "Sekite atsargų lygius ir gaukite įspėjimus apie mažas atsargas"
+                },
+                "stock_rotation": {
+                    "title": "Atsargų rotacija",
+                    "description": "Efektyviai valdykite atsargų rotaciją ir inventoriaus srautą"
+                }
+            }
+        },
+
+        "home": {
+            "groups_header_title": "Grupės",
+            "group_job_description": "Pradėkite naują darbą ir pakvieskite kitus dirbti kartu",
+            "groups_description": "Prisijunkite prie esamų grupių ir dirbkite komandoje",
+            "job_header_title": "Sanitarija",
+            "job_header_descriptions": "Ieškote stabilaus, apmokamo darbo? Prisijunkite prie Los Santos sanitarijos departamento! Kaip šiukšlių surinkėjas, vaidinsiti svarbų vaidmenį išlaikant mūsų miestą švarų ir gyvybingą. Mėgaukitės konkurencingu atlyginimu, puikiomis išmokomis ir pasitenkinimo jausmu, kasdien darydami pokyčius. Dirbkite su atsidavusia komanda, naudokite pažangiausią įrangą ir patirti dinamiškas Los Santos gatves iš unikalios perspektyvos. Ankstesnės patirties nereikia; mes suteikiame visus reikalingus mokymus.",
+            "start_job": "Pradėti naują darbą",
+            "join_group": "Prisijungti prie grupės",
+            "start_solo_job": "Sukurti naują grupę",
+            "join_group_title": "Prisijungti prie grupės",
+            "features": {
+                "competitive_pay": {
+                    "title": "Konkurencingas atlyginimas",
+                    "description": "Uždirbkite gerą atlyginimą su veiklos premijomis"
+                },
+                "flexible_hours": {
+                    "title": "Lankstūs darbo valandos",
+                    "description": "Dirbkite tada, kai jums patogu"
+                },
+                "career_growth": {
+                    "title": "Karjeros augimas",
+                    "description": "Kylėkite per įgūdžių lygius ir atrakinkite naujas galimybes"
+                },
+                "team_environment": {
+                    "title": "Komandos aplinka",
+                    "description": "Dirbkite vienas arba suvienykit jėgas su kitais operatoriais"
+                }
+            }
+        },
+
+        "jobStart": {
+            "group_information": "INFORMACIJA",
+            "group_members_title": "GRUPĖS NARIAI",
+            "prompt_not": "Ne",
+            "prompt_yes": "Taip",
+            "group_owner_tag": "SAVININKAS",
+            "group_member_tag": "NARYS",
+            "group_id": "Grupės ID: ",
+            "group_password": "Slaptažodis: ",
+            "group_kick_player_confirm": "Ar tikrai norite pašalinti šį narį?",
+            "group_kick_player_confirm_yes": "Taip",
+            "group_kick_player_confirm_no": "Ne",
+            "want_to_start_job": "Ar norite pradėti šį darbą?",
+            "group_your_profile": "JŪSŲ PROFILIS",
+            "group_start_job": "Pradėti darbą",
+            "group_leave_job": "Palikti darbą",
+            "job_controls": "Darbo valdymas",
+            "job_statistics": "Darbo statistika",
+            "group_end_job": "Baigti darbą",
+            "completed_jobs": "Užbaigti užsakymai",
+            "total_earnings": "Bendri uždarbiai"
+        },
+        
+        "groups": {
+            "groups_header_title": "Prieinamos grupės",
+            "group_title": "Grupė",
+            "group_password": "Slaptažodis",
+            "search_groups": "Ieškoti grupių pagal ID...",
+            "join_group": "Prisijungti prie grupės",
+            "active_status": "Aktyvi",
+            "members_count": "Nariai",
+            "enter_password": "Įveskite grupės slaptažodį",
+            "cancel": "Atšaukti",
+            "join": "Prisijungti prie grupės",
+            "subtitle": "Raskite ir prisijunkite prie prieinamų vilkimo grupių",
+            "no_groups_title": "Nėra prieinamų grupių",
+            "no_groups_description": "Šiuo metu nėra prieinamų grupių prisijungimui. Pabandykite sukurti naują grupę."
+        },
+
+        "stock": {
+            "garbage_center_header": "Šiukšlių centras",
+            "garbage_center_description": "Šis progreso juosta rodo, kiek šiukšlių atsargų šiuo metu yra šiukšlių centre ir kiek procentų vietos dar liko naujiems šiukšlėms surinkti.",
+            "recycle_center_header": "Perdirbimo centras",
+            "recycle_center_description": "Šis progreso juosta rodo, kiek šiukšlių atsargų šiuo metu yra perdirbimo centre ir kiek procentų vietos dar liko naujiems šiukšlėms pristatyti."
+        },
+
+        "selectJobs": {
+            "header": "Pasirinkite darbo tipą",
+            "subtitle": "Pasirinkite pristatymo darbo tipą, kurį norite atlikti",
+            "pickup": {
+                "title": "Paėmimo darbai",
+                "description": "Rinkite paketus iš įvairių vietų ir pristatykite juos atgal į sandėlį"
+            },
+            "delivery": {
+                "title": "Pristatymo darbai",
+                "description": "Pristatykite paketus iš sandėlio į įvairias vietas mieste"
+            },
+            "select_job": "Pasirinkti",
+            "stock_status": "Atsargų būsena",
+            "stock_full": "Atsargos pilnos",
+            "no_stock": "Nėra atsargų",
+            "multiplayer": "Daugžaidis",
+            "not_multiplayer": "Ne daugžaidis",
+            "want_to_start_job": "Ar norite pradėti šį pristatymo darbą?",
+            "loading": "Kraunami prieinami darbai...",
+            "no_jobs": "Šiuo metu nėra prieinamų darbų"
+        },
+
+        "jobTypes": {
+            "select_job_type": "Pasirinkite darbo tipą",
+            "select_type_subtitle": "Pasirinkite pageidaujamą atliekų tvarkymo paslaugą",
+            "recycling_job_title": "Perdirbimo paslauga",
+            "recycling_job_description": "Rūšiuokite ir apdorokite perdirbamus medžiagas perdirbimo centre",
+            "collect_job_title": "Atliekų rinkimas",
+            "collect_job_description": "Rinkite atliekas iš įvairių vietų mieste",
+            "recycle_job_disabled": "Perdirbimo centras pilnas",
+            "collecting_job_disabled": "Saugykla pilna šiukšlių",
+            "available": "Prieinama"
+        },
+
+        "task": {
+            "header": "Dabartinė užduotis",
+            "subtitle": "Užbaikite užduotį, kad galėtumėte tęsti",
+            "progress": "Progresas"
+        }
+    }
+}

@@ -1,0 +1,202 @@
+{    
+    "job_menu_header": "Sanitation",
+    "interact_with_job_npc": "Talk with the job manager",
+    "incorrect_group_pass": "Incorrect group password",
+    "left_group_job": "You successfully left the group",
+    "entered_group_job": "You have successfully joined the group",
+
+    "you_have_job": "You can't join or start a new job, because you already have a job",
+    "max_players_reached_for_this_job": "You can't do this job right now, because there are too many players doing it!",
+    "successfully_started_job": "You have started a new job! Drive to the marked locations on the map",
+    "job_successfully_finished": "The job has been finished!",
+    "cant_start_job_no_space": "There is no available space to take out a job vehicle!",
+
+    "not_holding_container": "You are not moving a container!",
+
+    "group_is_full": "The group is full and cannot accept more members!",
+    "not_in_gruppe_6_territory": "You are not in the Gruppe6 territory!",
+    "job_ended_return_vehicle": "The job has ended! Please return the vehicle to complete the process.",
+
+    "interaction_place_trash_veh": "Place dumpster",
+    "interaction_remove_trash_veh": "Remove dumpster",
+    "interaction_move_trash": "Move dumpster",
+    "interaction_search_trash": "Search dumpster",
+    "interaction_return_trash": "[E] - Return dumpster",
+    "interaction_return_vehicle": "[E] - Return truck",
+    "interaction_take_trash": "Take trash",
+    "interaction_place_bags": "Place trash bag",
+    "interaction_deliver_bags": "Deliver trash bag",
+    "interaction_take_bags": "Take trash bag",
+    "interaction_recycle_trash": "Recycle trash",
+
+    "progress_collecting": "Collecting...",
+    "progress_searching": "Searching...",
+
+    "this_bin_is_empty": "This container has been already emptied out",
+    "trash_collected_return_veh": "Nice work! Now return to the garbage depot marked on the map and return the truck!",
+
+    "no_more_trash_recycle": "There is no more trash to be collected and recycled!",
+    "trash_collected_go_recycle": "Trash bag collected, bring it to the recycling line!",
+    "trash_bag_recycled": "You have successfully recycled a trash bag!",
+
+    "garbage_collected_drive_recycle": "You have collected the garbage, now drive to the recycling center!",
+    "not_in_driver_seat": "You need to be in the driver seat!",
+
+    "task_empty_dumpsters": "Empty dumpsters",
+    "task_collect_bags": "Collect trash bags",
+    "task_remove_bags": "Offload trash bags",
+    "task_return_job_vehicle": "Return the job vehicle to the garbage depot headquarters",
+
+    "task_drive_to_location": "Drive to the marked location on the map",
+
+    "job_vehicle_trunk_busy": "The job vehicle trunk is being used by another player, please wait!",
+
+    "notify_found_items": "You have found valuable items in the dumpster!",
+    "notify_no_items_found": "No valuable items found in the dumpster.",
+
+    "inventory_no_space": "Inventory Full",
+	"inventory_no_space_desc": "You don't have any space left in your inventory",
+
+    "ui": {
+        "header": {
+            "job_tab_title": "Job",
+            "job_stock_title": "Warehouse",
+            "job_rank_title": "Rank"
+        },    
+            
+        "warehouse": {
+            "stock_header": "Warehouse Stock",
+            "stock_description": "Here you can view current inventory stock amount of each package type category. Different package categories are needed for different job types. If there is no stock or too much stock for that package type, you will not be able to start that job.",
+            "features": {
+                "stock_management": {
+                    "title": "Stock Management",
+                    "description": "Monitor and track your inventory levels in real-time"
+                },
+                "inventory_tracking": {
+                    "title": "Inventory Tracking",
+                    "description": "Track stock levels and get alerts for low inventory"
+                },
+                "stock_rotation": {
+                    "title": "Stock Rotation",
+                    "description": "Efficiently manage stock rotation and inventory flow"
+                }
+            }
+        },
+
+        "home": {
+            "groups_header_title": "Groups",
+            "group_job_description": "Start a new job and invite others to work together",
+            "groups_description": "Join existing groups and work as a team",
+            "job_header_title": "Sanitation",
+            "job_header_descriptions": "Looking for a stable, rewarding job? Join the Los Santos Sanitation Department! As a garbage collector, you'll play a crucial role in keeping our city clean and vibrant. Enjoy competitive pay, excellent benefits, and the satisfaction of making a difference every day. Work with a dedicated team, operate state-of-the-art equipment, and experience the dynamic streets of Los Santos from a unique perspective. No prior experience required; we provide all necessary training.",
+            "start_job": "Start a new job",
+            "join_group": "Join a group",
+            "start_solo_job": "Create new group",
+            "join_group_title": "Join a Group",
+            "features": {
+                "competitive_pay": {
+                    "title": "Competitive Pay",
+                    "description": "Earn great wages with performance bonuses"
+                },
+                "flexible_hours": {
+                    "title": "Flexible Hours",
+                    "description": "Work when it suits you best"
+                },
+                "career_growth": {
+                    "title": "Career Growth",
+                    "description": "Advance through skill levels and unlock new abilities"
+                },
+                "team_environment": {
+                    "title": "Team Environment",
+                    "description": "Work solo or join forces with other operators"
+                }
+            }
+        },
+
+        "jobStart": {
+            "group_information": "INFORMATION",
+            "group_members_title": "GROUP MEMBERS",
+            "prompt_not": "No",
+            "prompt_yes": "Yes",
+            "group_owner_tag": "OWNER",
+            "group_member_tag": "MEMBER",
+            "group_id": "Group ID: ",
+            "group_password": "Password: ",
+            "group_kick_player_confirm": "Are you sure you want to kick this member?",
+            "group_kick_player_confirm_yes": "Yes",
+            "group_kick_player_confirm_no": "No",
+            "want_to_start_job": "Would you like to start this job?",
+            "group_your_profile": "YOUR PROFILE",
+            "group_start_job": "Start job",
+            "group_leave_job": "Leave job",
+            "job_controls": "Job Controls",
+            "job_statistics": "Job Statistics",
+            "group_end_job": "End Job",
+            "completed_jobs": "Completed orders",
+            "total_earnings": "Total Earnings"
+        },
+        
+        "groups": {
+            "groups_header_title": "Available Groups",
+            "group_title": "Group",
+            "group_password": "Password",
+            "search_groups": "Search groups by ID...",
+            "join_group": "Join Group",
+            "active_status": "Active",
+            "members_count": "Members",
+            "enter_password": "Enter Group Password",
+            "cancel": "Cancel",
+            "join": "Join Group",
+            "subtitle": "Find and join available job groups",
+            "no_groups_title": "No Groups Available",
+            "no_groups_description": "There are currently no groups available to join. Try creating a new group instead."
+        },
+
+        "stock": {
+            "garbage_center_header": "Garbage HQ",
+            "garbage_center_description": "This progress bar represents how much garbage stock is currently in the garbage hq and what percentage of the space is still free for new trash to be collected.",
+            "recycle_center_header": "Recycling center",
+            "recycle_center_description": "This progress bar represents how much garbage stock is currently in the recycling center and what percentage of the space is still free for new trash to be delivered."
+        },
+
+        "selectJobs": {
+            "header": "Select Job Type",
+            "subtitle": "Choose the type of delivery work you want to do",
+            "pickup": {
+                "title": "Pick Up Jobs",
+                "description": "Collect packages from various locations and deliver them back to the warehouse"
+            },
+            "delivery": {
+                "title": "Delivery Jobs",
+                "description": "Deliver packages from the warehouse to various locations around the city"
+            },
+            "select_job": "Select",
+            "stock_status": "Stock Status",
+            "stock_full": "Stock Full",
+            "no_stock": "No Stock",
+            "multiplayer": "Multiplayer",
+            "not_multiplayer": "Not Multiplayer",
+            "want_to_start_job": "Would you like to start this delivery job?",
+            "loading": "Loading available jobs...",
+            "no_jobs": "No jobs available at this time"
+        },
+
+        "jobTypes": {
+            "select_job_type": "Select Job Type",
+            "select_type_subtitle": "Choose your preferred waste management service",
+            "recycling_job_title": "Recycling Service",
+            "recycling_job_description": "Sort and process recyclable materials at the recycling center",
+            "collect_job_title": "Waste Collection",
+            "collect_job_description": "Collect waste from various locations around the city",
+            "recycle_job_disabled": "Recycling Center Full",
+            "collecting_job_disabled": "Depot is full of trash",
+            "available": "Available"
+        },
+
+        "task": {
+            "header": "Current Task",
+            "subtitle": "Complete the task to proceed",
+            "progress": "Progress"
+        }
+    }
+}

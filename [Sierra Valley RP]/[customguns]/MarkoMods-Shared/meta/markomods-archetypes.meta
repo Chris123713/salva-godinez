@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="UTF - 8"?>
+
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<Item>
+			<modelName>markomods-shared-scope1</modelName>
+			<txdName>markomods-shared-scope1-4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-scope1-light</modelName>
+			<txdName>markomods-shared-scope1-4-light</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-scope2-light</modelName>
+			<txdName>markomods-shared-scope1-4-light</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-scope3-light</modelName>
+			<txdName>markomods-shared-scope1-4-light</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-scope4-light</modelName>
+			<txdName>markomods-shared-scope1-4-light</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-scope5-light</modelName>
+			<txdName>markomods-shared-scope5-8-light</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-scope6-light</modelName>
+			<txdName>markomods-shared-scope5-8-light</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-scope7-light</modelName>
+			<txdName>markomods-shared-scope5-8-light</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-scope8-light</modelName>
+			<txdName>markomods-shared-scope5-8-light</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-scope2</modelName>
+			<txdName>markomods-shared-scope1-4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-scope1fde</modelName>
+			<txdName>markomods-shared-scope1-4fde</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-scope2fde</modelName>
+			<txdName>markomods-shared-scope1-4fde</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-scope3</modelName>
+			<txdName>markomods-shared-scope1-4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-scope4</modelName>
+			<txdName>markomods-shared-scope1-4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-scope5</modelName>
+			<txdName>markomods-shared-scope5-8</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-scope6</modelName>
+			<txdName>markomods-shared-scope5-8</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-scope7</modelName>
+			<txdName>markomods-shared-scope5-8</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-scope8</modelName>
+			<txdName>markomods-shared-scope5-8</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope1</modelName>
+			<txdName>markomods-shared-zoomscope1-2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope1-light</modelName>
+			<txdName>markomods-shared-zoomscope1-light</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope1fde</modelName>
+			<txdName>markomods-shared-zoomscope1-2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>		
+		<Item>
+			<modelName>markomods-shared-zoomscope2</modelName>
+			<txdName>markomods-shared-zoomscope1-2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope3</modelName>
+			<txdName>markomods-shared-zoomscope3-5and8-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope4</modelName>
+			<txdName>markomods-shared-zoomscope3-5and8-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope5</modelName>
+			<txdName>markomods-shared-zoomscope3-5and8-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>		
+		<Item>
+			<modelName>markomods-shared-zoomscope8</modelName>
+			<txdName>markomods-shared-zoomscope3-5and8-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope9</modelName>
+			<txdName>markomods-shared-zoomscope3-5and8-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope3-light</modelName>
+			<txdName>markomods-shared-zoomscope3-5and8-10-light</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope6-light</modelName>
+			<txdName>markomods-shared-zoomscope6-light</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>			
+		<Item>
+			<modelName>markomods-shared-zoomscope4-light</modelName>
+			<txdName>markomods-shared-zoomscope3-5and8-10-light</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope5-light</modelName>
+			<txdName>markomods-shared-zoomscope3-5and8-10-light</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope10</modelName>
+			<txdName>markomods-shared-zoomscope3-5and8-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope6</modelName>
+			<txdName>markomods-shared-zoomscope6-7and11-12</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope7</modelName>
+			<txdName>markomods-shared-zoomscope6-7and11-12</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope11</modelName>
+			<txdName>markomods-shared-zoomscope6-7and11-12</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-zoomscope12</modelName>
+			<txdName>markomods-shared-zoomscope6-7and11-12</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-bipod1</modelName>
+			<txdName>markomods-shared-bipod1</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>		
+		<Item>
+			<modelName>markomods-shared-mlokgrip1</modelName>
+			<txdName>markomods-shared-mlokgrip1-4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-mlokgrip2</modelName>
+			<txdName>markomods-shared-mlokgrip1-4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-mlokgrip3</modelName>
+			<txdName>markomods-shared-mlokgrip1-4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-mlokgrip4</modelName>
+			<txdName>markomods-shared-mlokgrip1-4</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>		
+		<Item>
+			<modelName>markomods-shared-grip1</modelName>
+			<txdName>markomods-shared-grip1-6</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip2</modelName>
+			<txdName>markomods-shared-grip1-6</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip3</modelName>
+			<txdName>markomods-shared-grip1-6</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip4</modelName>
+			<txdName>markomods-shared-grip1-6</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip5</modelName>
+			<txdName>markomods-shared-grip1-6</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip6</modelName>
+			<txdName>markomods-shared-grip1-6</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>		
+		<Item>
+			<modelName>markomods-shared-grip7</modelName>
+			<txdName>markomods-shared-grip7-11</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip8</modelName>
+			<txdName>markomods-shared-grip7-11</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip9</modelName>
+			<txdName>markomods-shared-grip7-11</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip10</modelName>
+			<txdName>markomods-shared-grip7-11</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip11</modelName>
+			<txdName>markomods-shared-grip7-11</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip12</modelName>
+			<txdName>markomods-shared-grip12-18</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip13</modelName>
+			<txdName>markomods-shared-grip12-18</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip14</modelName>
+			<txdName>markomods-shared-grip12-18</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip15</modelName>
+			<txdName>markomods-shared-grip12-18</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip16</modelName>
+			<txdName>markomods-shared-grip12-18</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip17</modelName>
+			<txdName>markomods-shared-grip12-18</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip18</modelName>
+			<txdName>markomods-shared-grip12-18</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-grip19</modelName>
+			<txdName>markomods-shared-grip19-24</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-laser1</modelName>
+			<txdName>markomods-shared-laser1-3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-laser2</modelName>
+			<txdName>markomods-shared-laser1-3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-laser3</modelName>
+			<txdName>markomods-shared-laser1-3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-laser4</modelName>
+			<txdName>markomods-shared-laser4-6</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-laser5</modelName>
+			<txdName>markomods-shared-laser4-6</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>	
+		<Item>
+			<modelName>markomods-shared-laser6</modelName>
+			<txdName>markomods-shared-laser4-6</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>		
+		<Item>
+			<modelName>markomods-shared-laser7</modelName>
+			<txdName>markomods-shared-laser7-9</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-laser8</modelName>
+			<txdName>markomods-shared-laser7-9</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-laser9</modelName>
+			<txdName>markomods-shared-laser7-9</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-muzzle1</modelName>
+			<txdName>markomods-shared-muzzle1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-muzzle2</modelName>
+			<txdName>markomods-shared-muzzle1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-muzzle3</modelName>
+			<txdName>markomods-shared-muzzle1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-muzzle4</modelName>
+			<txdName>markomods-shared-muzzle1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-muzzle5</modelName>
+			<txdName>markomods-shared-muzzle1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-muzzle6</modelName>
+			<txdName>markomods-shared-muzzle6-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-muzzle7</modelName>
+			<txdName>markomods-shared-muzzle6-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-muzzle8</modelName>
+			<txdName>markomods-shared-muzzle6-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-muzzle9</modelName>
+			<txdName>markomods-shared-muzzle6-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp1</modelName>
+			<txdName>markomods-shared-supp1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp2</modelName>
+			<txdName>markomods-shared-supp1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp3</modelName>
+			<txdName>markomods-shared-supp1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp4</modelName>
+			<txdName>markomods-shared-supp1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp5</modelName>
+			<txdName>markomods-shared-supp1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp6</modelName>
+			<txdName>markomods-shared-supp6-11</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp7</modelName>
+			<txdName>markomods-shared-supp6-11</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp8</modelName>
+			<txdName>markomods-shared-supp6-11</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp9</modelName>
+			<txdName>markomods-shared-supp6-11</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp10</modelName>
+			<txdName>markomods-shared-supp6-11</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp11</modelName>
+			<txdName>markomods-shared-supp6-11</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp12</modelName>
+			<txdName>markomods-shared-supp12-17</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp13</modelName>
+			<txdName>markomods-shared-supp12-17</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp14</modelName>
+			<txdName>markomods-shared-supp12-17</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp15</modelName>
+			<txdName>markomods-shared-supp12-17</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp16</modelName>
+			<txdName>markomods-shared-supp12-17</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp17</modelName>
+			<txdName>markomods-shared-supp12-17</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp18</modelName>
+			<txdName>markomods-shared-muzzle6-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp19</modelName>
+			<txdName>markomods-shared-supp18-22</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp20</modelName>
+			<txdName>markomods-shared-supp18-22</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp21</modelName>
+			<txdName>markomods-shared-supp18-22</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-supp22</modelName>
+			<txdName>markomods-shared-supp18-22</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-flash1</modelName>
+			<txdName>markomods-shared-flash1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-flash2</modelName>
+			<txdName>markomods-shared-flash1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-flash7</modelName>
+			<txdName>markomods-shared-flash6-9</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-flash7a</modelName>
+			<txdName>markomods-shared-flash6-9</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-pflash1</modelName>
+			<txdName>markomods-shared-pflash1</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-pflash2</modelName>
+			<txdName>markomods-shared-pflash1</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-pflash3</modelName>
+			<txdName>markomods-shared-pflash1</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-pflash4</modelName>
+			<txdName>markomods-shared-pflash1</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-pflash5</modelName>
+			<txdName>markomods-shared-pflash2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-pflash6</modelName>
+			<txdName>markomods-shared-pflash2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-pflash7</modelName>
+			<txdName>markomods-shared-pflash2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-pflash8</modelName>
+			<txdName>markomods-shared-pflash2</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock1</modelName>
+			<txdName>markomods-shared-stock1-7</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock2</modelName>
+			<txdName>markomods-shared-stock1-7</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock3</modelName>
+			<txdName>markomods-shared-stock1-7</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock4</modelName>
+			<txdName>markomods-shared-stock1-7</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock5</modelName>
+			<txdName>markomods-shared-stock1-7</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock6</modelName>
+			<txdName>markomods-shared-stock1-7</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock7</modelName>
+			<txdName>markomods-shared-stock1-7</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock8</modelName>
+			<txdName>markomods-shared-stock8-13</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock9</modelName>
+			<txdName>markomods-shared-stock8-13</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock10</modelName>
+			<txdName>markomods-shared-stock8-13</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock11</modelName>
+			<txdName>markomods-shared-stock8-13</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock12</modelName>
+			<txdName>markomods-shared-stock8-13</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock13</modelName>
+			<txdName>markomods-shared-stock8-13</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock14</modelName>
+			<txdName>markomods-shared-stock14-19</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock15</modelName>
+			<txdName>markomods-shared-stock14-19</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock16</modelName>
+			<txdName>markomods-shared-stock14-19</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock17</modelName>
+			<txdName>markomods-shared-stock14-19</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock18</modelName>
+			<txdName>markomods-shared-stock14-19</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-stock19</modelName>
+			<txdName>markomods-shared-stock14-19</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag556-1</modelName>
+			<txdName>markomods-shared-mag556-1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag556-2</modelName>
+			<txdName>markomods-shared-mag556-1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag556-3</modelName>
+			<txdName>markomods-shared-mag556-1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag556-4</modelName>
+			<txdName>markomods-shared-mag556-1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag556-5</modelName>
+			<txdName>markomods-shared-mag556-1-5</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag556-6</modelName>
+			<txdName>markomods-shared-mag556-6-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag556-7</modelName>
+			<txdName>markomods-shared-mag556-6-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag556-8</modelName>
+			<txdName>markomods-shared-mag556-6-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag556-9</modelName>
+			<txdName>markomods-shared-mag556-6-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag556-10</modelName>
+			<txdName>markomods-shared-mag556-6-10</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag556-11</modelName>
+			<txdName>markomods-shared-mag556-11-13</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag556-12</modelName>
+			<txdName>markomods-shared-mag556-11-13</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag556-13</modelName>
+			<txdName>markomods-shared-mag556-11-13</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag762-1</modelName>
+			<txdName>markomods-shared-mag762-1-3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag762-2</modelName>
+			<txdName>markomods-shared-mag762-1-3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag762-3</modelName>
+			<txdName>markomods-shared-mag762-1-3</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag762-4</modelName>
+			<txdName>markomods-shared-mag762-4-6</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag762-5</modelName>
+			<txdName>markomods-shared-mag762-4-6</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>markomods-shared-mag762-6</modelName>
+			<txdName>markomods-shared-mag762-4-6</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

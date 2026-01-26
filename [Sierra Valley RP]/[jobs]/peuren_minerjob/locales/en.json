@@ -1,0 +1,131 @@
+{
+    "interact_with_job_npc": "Talk with the job manager",
+    "successfully_started_job": "You have started a new job!",
+    "job_successfully_finished": "The job has been finished!",
+    "incorrect_group_pass": "Incorrect group password",
+    "left_group_job": "You successfully left the group",
+    "entered_group_job": "You have successfully joined the group",
+    "cant_start_job_no_space": "There is no available space to take out a job vehicle!",
+    "no_space_in_truck": "The truck is full of cargo!",
+
+    "interaction_use_hammer": "Use hammer",
+    "interaction_use_pickaxe": "Use pickaxe",
+    "interaction_use_drill": "Use drill",
+    "interaction_use_laser_drill": "Use laser drill",
+
+    "progress_mining": "Mining...",
+
+    "interaction_process_rock": "Process rocks",
+
+    "textui_carry_place": "[X] - Place",
+
+    "interaction_pickup_object": "Pick up",
+    "interaction_take_rock": "Take rocks",
+    "interaction_place_rock": "Place rocks",
+
+    "interaction_cutting_drill": "Ore processing drill",
+    "menu_cut_crystal_title": "Process: %s",
+    "menu_cut_crystal_description": "Process the ores into shape so that it would look nicer",
+    "menu_crystal_cutting_header": "Valuable ore processing",
+    "cutting_menu_amount": "Amount",
+    "input_invalid_input": "Invalid input, try again",
+    "you_dont_have_crystals": "You don't have the inputed amount of crystals on you to start cutting!",
+    "rock_busy": "This rock is being minered by someone else!",
+    "job_vehicle_not_finished_loading": "The job vehicle is still loading. Go near the vehicle till you get the keys from it!",
+    "successfuly_purchased_tool": "You have successfully purchased a new tool!",
+    "you_cant_afford_this_tool": "You can't afford this tool!",
+
+    "progress_cutting_crystal": "Processing ore...",
+
+    "ui": {
+        "header": {
+            "job_tab_title": "Job",
+            "job_rank_title": "Rank"
+        },
+
+        "home": {
+            "groups_header_title": "Groups",
+            "group_job_description": "Start a new job and invite others to work together",
+            "groups_description": "Join existing groups and work as a team",
+            "job_header_title": "Mining",
+            "job_header_descriptions": "Looking for a stable, rewarding job? Join Los Santos Mining Company! As a miner, you'll play a crucial role in extracting valuable resources from the earth. Enjoy competitive pay, excellent benefits, and the satisfaction of working with heavy machinery every day. Work with a dedicated team, operate mining equipment, and experience the rugged terrain around Los Santos while making a difference. No prior experience required; we provide all necessary training.",
+            "start_job": "Start a new job",
+            "join_group": "Join a group",
+            "start_solo_job": "Create new group",
+            "join_group_title": "Join a Group",
+            "features": {
+                "competitive_pay": {
+                    "title": "Competitive Pay",
+                    "description": "Earn great wages with performance bonuses"
+                },
+                "flexible_hours": {
+                    "title": "Flexible Hours",
+                    "description": "Work when it suits you best"
+                },
+                "career_growth": {
+                    "title": "Career Growth",
+                    "description": "Advance through skill levels and unlock new abilities"
+                },
+                "team_environment": {
+                    "title": "Team Environment",
+                    "description": "Work solo or join forces with other operators"
+                }
+            }
+        },
+
+        "jobStart": {
+            "group_information": "INFORMATION",
+            "group_members_title": "GROUP MEMBERS",
+            "prompt_not": "No",
+            "prompt_yes": "Yes",
+            "group_owner_tag": "OWNER",
+            "group_member_tag": "MEMBER",
+            "group_id": "Group ID: ",
+            "group_password": "Password: ",
+            "group_kick_player_confirm": "Are you sure you want to kick this member?",
+            "group_kick_player_confirm_yes": "Yes",
+            "group_kick_player_confirm_no": "No",
+            "want_to_start_job": "Would you like to start this job?",
+            "group_your_profile": "YOUR PROFILE",
+            "group_start_job": "Start job",
+            "group_leave_job": "Leave job",
+            "job_controls": "Job Controls",
+            "job_statistics": "Job Statistics",
+            "group_end_job": "End Job",
+            "completed_jobs": "Completed Jobs",
+            "total_earnings": "Total Earnings"
+        },
+        
+        "groups": {
+            "groups_header_title": "Available Groups",
+            "group_title": "Group",
+            "group_password": "Password",
+            "search_groups": "Search groups by ID...",
+            "join_group": "Join Group",
+            "active_status": "Active",
+            "members_count": "Members",
+            "enter_password": "Enter Group Password",
+            "cancel": "Cancel",
+            "join": "Join Group",
+            "subtitle": "Find and join available towing groups",
+            "no_groups_title": "No Groups Available",
+            "no_groups_description": "There are currently no groups available to join. Try creating a new group instead."
+        },
+        
+        "rank": {
+            "level": "Level",
+            "unlockables": "Unlockable jobs",
+            "required_level": "Required Level:",
+            "want_to_purchase": "Do you want to purchase this tool?",
+            "prompt_not": "No",
+            "prompt_yes": "Yes",
+            "unlockables_header": "UNLOCKABLE JOB TOOLS",
+            "profile_title": "Profile",
+            "progress_title": "Level Progress",
+            "purchase_button": "Purchase",
+            "stats_header": "Profile Statistics",
+            "total_xp": "Total XP",
+            "current_level": "Current Level"
+        }
+    }
+}

@@ -1,0 +1,190 @@
+{
+    "job_menu_header": "Gruppe 6",
+    "interact_with_job_npc": "Kalbėkite su darbo vadovu",
+
+    "left_group_job": "Sėkmingai palikote grupę",
+    "entered_group_job": "Sėkmingai prisijungėte prie grupės",
+
+    "incorrect_group_pass" : "Neteisingas grupės slaptažodis!",
+
+    "you_have_job": "Negalite prisijungti arba pradėti naujo darbo, nes jau turite darbą",
+    "max_players_reached_for_this_job": "Šiuo metu negalite atlikti šio darbo, nes per daug žaidėjų jį atlieka!",
+    "successfully_started_job": "Sėkmingai pradėjote naują darbą! Naudokite /tablet, kad peržiūrėtumėte sutarčių darbus",
+    "job_successfully_finished": "Darbas sėkmingai baigtas!",
+    "finished_go_next_place": "Baigta! Eikite į kitą tašką!",
+
+    "interaction_take_bag": "Paimti pinigų maišą",
+    "interaction_place_bag": "Padėti pinigų maišą",
+    "interaction_take_money": "Paimti pinigus",
+    "interaction_deliver_money": "Pristatyti pinigus",
+    "interaction_open_container": "Atidaryti konteinerį",
+    "interaction_close_container": "Uždaryti konteinerį",
+    "interaction_rob_vehicle": "Apiplėšti transporto priemonę",
+
+    "interaction_pickup": "Paimti",
+
+    "successfully_finished_order": "Sėkmingai baigėte sutartį, grąžinkite transporto priemonę į Gruppe 6 būstinę",
+    "prompt_return_vehicle": "[E] - Grąžinti darbo transporto priemonę",
+
+    "you_do_not_have_job": "Šiuo metu neturite prieigos prie sutarčių planšetės!", 
+    "not_in_gruppe_6_territory": "Turite būti Gruppe sechs darbo centro teritorijoje, kad galėtumėte imtis naujos sutarties!",
+    "not_group_owner_tablet": "Planšetė prieinama tik grupės lyderiui!",
+
+    "contract_is_active": "Pradėjote sutartį!",
+    "group_is_full": "Negalite prisijungti prie šios grupės, nes ji neturi laisvų vietų!",
+
+    "not_job_vehicle": "Tai ne pateikta darbo transporto priemonė!",
+
+    "robbery_context_header": "Ar leidžiate šiam žaidėjui apiplėšti jūsų transporto priemonę?",
+    "robbery_confirm_yes_title": "Leisti apiplėšimą",
+    "robbery_confirm_yes_description": "Jei patvirtinsite, žaidėjas galės apiplėšti jūsų transporto priemonę",
+    "robbery_confirm_no_title": "Atmesti apiplėšimą",
+    "robbery_confirm_no_description": "Jei atmešite, žaidėjas negalės apiplėšti jūsų transporto priemonės",
+
+    "robbery_confirmed_yes": "Grupės lyderis patvirtino jūsų apiplėšimo prašymą!",
+    "robbery_confirmed_no": "Grupės lyderis atmetė jūsų apiplėšimo prašymą!",
+    "robbery_confirm_sent": "Jūsų patvirtinimo atsakymas išsiųstas!",
+    "robbery_taking_money_progress": "Plėšiama transporto priemonė...",
+
+    "robbery_vehicle_empty": "Ši transporto priemonė tuščia!",
+    "robbery_successfully_robbed": "Sėkmingai apiplėšėte transporto priemonę!",
+    "robbery_already_robbed": "Ši transporto priemonė jau plėšiama!",
+    "robbery_request_sent": "Išsiuntėte apiplėšimo prašymą grupės lyderiui!",
+
+    "task_use_table_to_start": "Naudokite duotą planšetės daiktą arba komandą /tablet",
+    "task_pickup_bags": "Surinkti pinigus",
+    "task_deliver_bags": "Pristatyti pinigus į banką",
+    "task_return_job_vehicle": "Grąžinti darbo transporto priemonę į Gruppe 6 būstinę",
+
+    "job_vehicle_not_finished_loading": "Darbo transporto priemonė vis dar kraunama. Eikite prie transporto priemonės, kol gausite iš jos raktus!",
+
+    "ui": {
+        "header": {
+            "job_tab_title": "Darbas",
+            "rank_tab_title": "Rangas"
+        },
+
+        "home": {
+            "groups_header_title": "Grupės",
+            "group_job_description": "Pradėkite naują darbą ir pakvieskite kitus dirbti kartu",
+            "groups_description": "Prisijunkite prie esamų grupių ir dirbkite komandoje",
+            "job_header_title": "Gruppe sechs",
+            "job_header_descriptions": "Ieškote stabilaus, pelningai darbo? Prisijunkite prie Los Santos sanitarijos departamento! Kaip šiukšlių rinkėjas, atliksite svarbų vaidmenį palaikant mūsų miestą švarų ir gyvybingą. Mėgaukitės konkurencingu atlyginimu, puikiomis išmokomis ir pasitenkinimu, kad kasdien darote skirtumą. Dirbkite su atsidavusia komanda, valdykite pažangiausią įrangą ir pažinkite Los Santos gatves iš unikalios perspektyvos. Ankstesnės patirties nereikia; mes suteikiame visą reikalingą mokymą.",
+            "start_job": "Pradėti naują darbą",
+            "join_group": "Prisijungti prie grupės",
+            "start_solo_job": "Sukurti naują grupę",
+            "join_group_title": "Prisijungti prie grupės",
+            "features": {
+                "competitive_pay": {
+                    "title": "Konkurencingas atlyginimas",
+                    "description": "Uždirbkite puikų atlyginimą su veiklos premijomis"
+                },
+                "flexible_hours": {
+                    "title": "Lankstus darbo laikas",
+                    "description": "Dirbkite tada, kai jums patogiausia"
+                },
+                "career_growth": {
+                    "title": "Karjeros augimas",
+                    "description": "Kilkite per įgūdžių lygius ir atrakinkite naujus gebėjimus"
+                },
+                "team_environment": {
+                    "title": "Komandos aplinka",
+                    "description": "Dirbkite vieni arba suvienykite jėgas su kitais operatoriais"
+                }
+            }
+        },
+
+        "jobStart": {
+            "group_information": "INFORMACIJA",
+            "group_members_title": "GRUPĖS NARIAI",
+            "prompt_not": "Ne",
+            "prompt_yes": "Taip",
+            "group_owner_tag": "SAVININKAS",
+            "group_member_tag": "NARYS",
+            "group_id": "Grupės ID: ",
+            "group_password": "Slaptažodis: ",
+            "group_kick_player_confirm": "Ar tikrai norite išmesti šį narį?",
+            "group_kick_player_confirm_yes": "Taip",
+            "group_kick_player_confirm_no": "Ne",
+            "want_to_start_job": "Ar norite pradėti šį darbą?",
+            "group_your_profile": "JŪSŲ PROFILIS",
+            "group_start_job": "Pradėti darbą",
+            "group_leave_job": "Palikti darbą",
+            "job_controls": "Darbo valdymas",
+            "job_statistics": "Darbo statistika",
+            "group_end_job": "Baigti darbą",
+            "completed_jobs": "Baigti darbai",
+            "total_earnings": "Bendras uždarbis",
+            "vehicle_warning_title": "Transporto priemonė negrąžinta",
+            "vehicle_warning_message": "Ar norite baigti darbą negrąžinę transporto priemonės? Negausite atlyginimo negrąžinę transporto priemonės.",
+            "end_without_return": "Baigti negrąžinant",
+            "return_to_job": "Grįžti į darbą"
+        },
+        
+        "groups": {
+            "groups_header_title": "Prieinamos grupės",
+            "group_title": "Grupė",
+            "group_password": "Slaptažodis",
+            "search_groups": "Ieškoti grupių pagal ID...",
+            "join_group": "Prisijungti prie grupės",
+            "active_status": "Aktyvi",
+            "members_count": "Nariai",
+            "enter_password": "Įveskite grupės slaptažodį",
+            "cancel": "Atšaukti",
+            "join": "Prisijungti prie grupės",
+            "subtitle": "Raskite ir prisijunkite prie prieinamų vilkimo grupių",
+            "no_groups_title": "Nėra prieinamų grupių",
+            "no_groups_description": "Šiuo metu nėra prieinamų grupių prisijungimui. Pabandykite sukurti naują grupę."
+        },
+
+        "tablet": {
+            "active_calls": "Aktyvūs skambučiai",
+            "no_active_calls": "Šiuo metu nėra aktyvių skambučių",
+            "accept_call": "Priimti skambutį",
+            "accept_call_confirm": "Ar tikrai norite priimti šį skambutį?",
+            "yes": "Taip",
+            "no": "Ne",
+            "clipboard_success": "Nukopijuota į iškarpinę",
+            "waypoint_confirm_title": "Nustatyti kelio tašką",
+            "waypoint_set": "Kelio taškas nustatytas",
+            "waypoint_set_description": "Kelio taškas nustatytas jūsų žemėlapyje",
+            "current_job": "Dabartinis darbas",
+            "arrived": "Atvyko",
+            "loaded": "Pakrauta",
+            "finished": "Baigta",
+            "next_step": "Kitas žingsnis",
+            "cancel_job": "Atšaukti darbą",
+            "cancel_job_confirm": "Ar tikrai norite atšaukti šį darbą?",
+            "password_copied": "Slaptažodis nukopijuotas į iškarpinę",
+            "player_stats": "Žaidėjo statistika",
+            "level": "Lygis",
+            "completed_jobs": "Baigti darbai",
+            "total_earnings": "Bendras uždarbis",
+            "available_contracts": "Peržiūrėti ir valdyti prieinamas Gruppe sechs sutartis",
+            "contract_type": "Sutarties tipas",
+            "contract_bags": "Reikalingi maišai",
+            "contract_payout": "Sutarties išmoka",
+            "contract_take": "Imtis sutarties",
+            "take_contract_confirm": "Ar tikrai norite imtis šios sutarties?"
+        },
+
+        "rank": {
+            "level": "Lygis",
+            "unlockables": "Atrakinami darbai",
+            "required_level": "Reikalingas lygis:",
+            "rank_unlockable_jobs_header": "Atrakinami darbai",
+            "want_to_start_job": "Ar norite pradėti šį darbą?",
+            "profile_level": "Dabartinis lygis",
+            "profile_xp": "Patirtis",
+            "profile_next_level": "Kitas lygis",
+            "job_locked": "Darbas užrakintas",
+            "job_unlocked": "Darbas atrakintas"
+        },
+
+        "task": {
+            "header": "Dabartinė užduotis",
+            "subtitle": "Užbaikite užduotį, kad galėtumėte tęsti",
+            "progress": "Progresas"
+        }
+    }
+}

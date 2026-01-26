@@ -1,0 +1,194 @@
+{
+    "job_menu_header": "Gruppe 6",
+    "interact_with_job_npc": "Talk with the job manager",
+
+    "left_group_job": "You successfully left the group",
+    "entered_group_job": "You have successfully joined the group",
+
+    "incorrect_group_pass" : "Incorrect group password!",
+
+    "you_have_job": "You can't join or start a new job, because you already have a job",
+    "max_players_reached_for_this_job": "You can't do this job right now, because there are too many players doing it!",
+    "successfully_started_job": "You have started a new job! Use /tablet to view contract jobs",
+    "job_successfully_finished": "The job has been finished!",
+    "finished_go_next_place": "Finished! Go to the next point!",
+
+    "interaction_take_bag": "Take money bag",
+    "interaction_place_bag": "Place money bag",
+    "interaction_take_money": "Take money",
+    "interaction_deliver_money": "Deliver money",
+    "interaction_open_container": "Open container",
+    "interaction_close_container": "Close container",
+    "interaction_rob_vehicle": "Rob vehicle",
+
+    "job_vehicle_trunk_busy": "The job vehicle trunk is being used by another player, please wait!",
+    "no_cargo_in_vehicle": "There is no cargo in the vehicle trunk!",
+    "cargo_not_found": "Cargo item could not be found or has been removed!",
+
+    "interaction_pickup": "Pickup",
+
+    "successfully_finished_order": "You have successfully finished contract, return the vehicle to gruppe 6 HQ",
+    "prompt_return_vehicle": "[E] - Return job vehicle",
+
+    "you_do_not_have_job": "You currently don't have access to the contract tablet!", 
+    "not_in_gruppe_6_territory": "You must be in gruppe sechs job center territory to take a new contract!",
+    "not_group_owner_tablet": "Tablet is only accessible to the group leader!",
+
+    "contract_is_active": "You have started a contract!",
+    "group_is_full": "You can't join this group as it doesn't have anymore space!",
+
+    "not_job_vehicle": "This isn't the provided job vehicle!",
+
+    "robbery_context_header": "Do you allow this player to rob your vehicle?",
+    "robbery_confirm_yes_title": "Allow robbery",
+    "robbery_confirm_yes_description": "If confirmed player will be able to rob your vehicle",
+    "robbery_confirm_no_title": "Decline robbery",
+    "robbery_confirm_no_description": "If declined player won't be able to rob your vehicle",
+
+    "robbery_confirmed_yes": "Group leader has confirmed your robbery request!",
+    "robbery_confirmed_no": "Group leader has declined your robbery request!",
+    "robbery_confirm_sent": "Your confirmation response was sent!",
+    "robbery_taking_money_progress": "Robbing vehicle...",
+
+    "robbery_vehicle_empty": "This vehicle is empty!",
+    "robbery_successfully_robbed": "You have successfully robbed the vehicle!",
+    "robbery_already_robbed": "This vehicle is being robbed!",
+    "robbery_request_sent": "You have sent a robbery request to the group leader!",
+
+    "task_use_table_to_start": "Use the given table item or command /tablet",
+    "task_pickup_bags": "Collect money",
+    "task_deliver_bags": "Deliver money to the bank",
+    "task_return_job_vehicle": "Return the job vehicle to the gruppe 6 headquarters",
+
+    "job_vehicle_not_finished_loading": "The job vehicle is still loading. Go near the vehicle till you get the keys from it!",
+
+    "ui": {
+        "header": {
+            "job_tab_title": "Job",
+            "rank_tab_title": "Rank"
+        },
+
+        "home": {
+            "groups_header_title": "Groups",
+            "group_job_description": "Start a new job and invite others to work together",
+            "groups_description": "Join existing groups and work as a team",
+            "job_header_title": "Gruppe sechs",
+            "job_header_descriptions": "Looking for a stable, rewarding job? Join Gruppe 6 Security Services! As a security professional, you'll play a crucial role in protecting valuable assets and ensuring safe transport operations. Enjoy competitive pay, excellent benefits, and the satisfaction of making a difference every day. Work with a dedicated team, operate armored vehicles, and experience the dynamic streets of Los Santos from a unique perspective. No prior experience required; we provide all necessary training.",
+            "start_job": "Start a new job",
+            "join_group": "Join a group",
+            "start_solo_job": "Create new group",
+            "join_group_title": "Join a Group",
+            "features": {
+                "competitive_pay": {
+                    "title": "Competitive Pay",
+                    "description": "Earn great wages with performance bonuses"
+                },
+                "flexible_hours": {
+                    "title": "Flexible Hours",
+                    "description": "Work when it suits you best"
+                },
+                "career_growth": {
+                    "title": "Career Growth",
+                    "description": "Advance through skill levels and unlock new abilities"
+                },
+                "team_environment": {
+                    "title": "Team Environment",
+                    "description": "Work solo or join forces with other operators"
+                }
+            }
+        },
+
+        "jobStart": {
+            "group_information": "INFORMATION",
+            "group_members_title": "GROUP MEMBERS",
+            "prompt_not": "No",
+            "prompt_yes": "Yes",
+            "group_owner_tag": "OWNER",
+            "group_member_tag": "MEMBER",
+            "group_id": "Group ID: ",
+            "group_password": "Password: ",
+            "group_kick_player_confirm": "Are you sure you want to kick this member?",
+            "group_kick_player_confirm_yes": "Yes",
+            "group_kick_player_confirm_no": "No",
+            "want_to_start_job": "Would you like to start this job?",
+            "group_your_profile": "YOUR PROFILE",
+            "group_start_job": "Start job",
+            "group_leave_job": "Leave job",
+            "job_controls": "Job Controls",
+            "job_statistics": "Job Statistics",
+            "group_end_job": "End Job",
+            "completed_jobs": "Completed Jobs",
+            "total_earnings": "Total Earnings",
+            "vehicle_warning_title": "Vehicle Not Returned",
+            "vehicle_warning_message": "Do you want to end the job without returning the vehicle? You won't get paid without returning the vehicle.",
+            "end_without_return": "End Without Return",
+            "return_to_job": "Return to Job"
+        },
+        
+        "groups": {
+            "groups_header_title": "Available Groups",
+            "group_title": "Group",
+            "group_password": "Password",
+            "search_groups": "Search groups by ID...",
+            "join_group": "Join Group",
+            "active_status": "Active",
+            "members_count": "Members",
+            "enter_password": "Enter Group Password",
+            "cancel": "Cancel",
+            "join": "Join Group",
+            "subtitle": "Find and join available security groups",
+            "no_groups_title": "No Groups Available",
+            "no_groups_description": "There are currently no groups available to join. Try creating a new group instead."
+        },
+
+        "tablet": {
+            "active_calls": "Active Calls",
+            "no_active_calls": "No active calls at the moment",
+            "accept_call": "Accept Call",
+            "accept_call_confirm": "Are you sure you want to accept this call?",
+            "yes": "Yes",
+            "no": "No",
+            "clipboard_success": "Copied to clipboard",
+            "waypoint_confirm_title": "Set Waypoint",
+            "waypoint_set": "Waypoint Set",
+            "waypoint_set_description": "The waypoint has been set on your map",
+            "current_job": "Current Job",
+            "arrived": "Arrived",
+            "loaded": "Loaded",
+            "finished": "Finished",
+            "next_step": "Next Step",
+            "cancel_job": "Cancel Job",
+            "cancel_job_confirm": "Are you sure you want to cancel this job?",
+            "password_copied": "Password copied to clipboard",
+            "player_stats": "Player Stats",
+            "level": "Level",
+            "completed_jobs": "Completed Jobs",
+            "total_earnings": "Total Earnings",
+            "available_contracts": "View and manage available gruppe sechs contracts",
+            "contract_type": "Contract Type",
+            "contract_bags": "Required Bags",
+            "contract_payout": "Contract Payout",
+            "contract_take": "Take Contract",
+            "take_contract_confirm": "Are you sure you want to take this contract?"
+        },
+
+        "rank": {
+            "level": "Level",
+            "unlockables": "Unlockable jobs",
+            "required_level": "Required Level:",
+            "rank_unlockable_jobs_header": "Unlockable Jobs",
+            "want_to_start_job": "Would you like to start this job?",
+            "profile_level": "Current Level",
+            "profile_xp": "Experience",
+            "profile_next_level": "Next Level",
+            "job_locked": "Job Locked",
+            "job_unlocked": "Job Unlocked"
+        },
+
+        "task": {
+            "header": "Current Task",
+            "subtitle": "Complete the task to proceed",
+            "progress": "Progress"
+        }
+    }
+}

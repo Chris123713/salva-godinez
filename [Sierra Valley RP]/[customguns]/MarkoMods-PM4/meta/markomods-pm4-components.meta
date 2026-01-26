@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<CWeaponComponentInfoBlob>
+    <Infos>
+		<Item type='CWeaponComponentClipInfo'>
+		  <Name>COMPONENT_MARKOMODS_PM4_MAG_1</Name>
+		  <Model>markomods-pm4-mag1</Model>
+		  <LocName>MAG</LocName>
+		  <LocDesc>MAG</LocDesc>
+		  <AttachBone>AAPClip</AttachBone>
+		  <WeaponAttachBone>WAPClip</WeaponAttachBone>
+		  <AccuracyModifier type='NULL' />
+		  <DamageModifier type='NULL' />
+		  <bShownOnWheel value='false' />
+		  <CreateObject value='true' />
+		  <HudDamage value='0' />
+		  <HudSpeed value='0' />
+		  <HudCapacity value='0' />
+		  <HudAccuracy value='0' />
+		  <HudRange value='0' />
+		  <ClipSize value='30' />
+		  <ReloadData ref='RELOAD_DEFAULT' />
+        </Item>
+		<Item type='CWeaponComponentInfo'>
+		  <Name>COMPONENT_MARKOMODS_PM4_MUZZLE_1</Name>
+		  <Model>markomods-pm4-muzzle1</Model>
+		  <LocName>MAG</LocName>
+		  <LocDesc>MAG</LocDesc>
+		  <AttachBone>AAPSupp</AttachBone>
+		  <WeaponAttachBone>WAPSupp</WeaponAttachBone>
+		  <AccuracyModifier type='NULL' />
+		  <DamageModifier type='NULL' />
+		  <bShownOnWheel value='false' />
+		  <CreateObject value='true' />
+		  <HudDamage value='0' />
+		  <HudSpeed value='0' />
+		  <HudCapacity value='0' />
+		  <HudAccuracy value='0' />
+		  <HudRange value='0' />
+        </Item>
+		<Item type='CWeaponComponentInfo'>
+		  <Name>COMPONENT_MARKOMODS_PM4_STOCK_1</Name>
+		  <Model>markomods-pm4-stock1</Model>
+		  <LocName>STOCK</LocName>
+		  <LocDesc>STOCK</LocDesc>
+		  <AttachBone>AAPStock</AttachBone>
+		  <WeaponAttachBone>WAPGrip_2</WeaponAttachBone>
+		  <AccuracyModifier type='NULL' />
+		  <DamageModifier type='NULL' />
+		  <bShownOnWheel value='false' />
+		  <CreateObject value='true' />
+		  <HudDamage value='0' />
+		  <HudSpeed value='0' />
+		  <HudCapacity value='0' />
+		  <HudAccuracy value='0' />
+		  <HudRange value='0' />
+        </Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_PM4_SCOPE_1</Name>
+			<Model>markomods-pm4-scope1</Model>
+			<LocName>WCT_SCOPE_MED</LocName>
+			<LocDesc>WCD_SCOPE_MED</LocDesc>
+			<AttachBone>AAPScop</AttachBone>
+			<WeaponAttachBone>WAPScop</WeaponAttachBone>
+			<AccuracyModifier type="NULL"/>
+			<DamageModifier type="NULL"/>
+			<bShownOnWheel value="true"/>
+			<CreateObject value="true"/>
+			<HudDamage value="0"/>
+			<HudSpeed value="0"/>
+			<HudCapacity value="0"/>
+			<HudAccuracy value="5"/>
+			<HudRange value="0"/>
+			<CameraHash/>
+			<RecoilShakeAmplitude value="0.280000"/>
+			<Reticule value="0"/>
+			<ReticuleHash/>
+		</Item>
+    </Infos>
+    <InfoBlobName></InfoBlobName>
+</CWeaponComponentInfoBlob>

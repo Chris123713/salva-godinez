@@ -1,0 +1,129 @@
+{
+    "interact_with_job_npc": "Mit dem Jobmanager sprechen",
+    "successfully_started_job": "Du hast einen neuen Job begonnen!",
+    "job_successfully_finished": "Der Job wurde beendet!",
+    "incorrect_group_pass": "Falsches Gruppenpasswort",
+    "left_group_job": "Du hast die Gruppe erfolgreich verlassen",
+    "entered_group_job": "Du bist der Gruppe erfolgreich beigetreten",
+    "cant_start_job_no_space": "Es ist kein Platz verfügbar, um ein Arbeitsfahrzeug herauszuholen!",
+    "no_space_in_truck": "Der LKW ist voll mit Ladung!",
+
+    "interaction_use_hammer": "Hammer benutzen",
+    "interaction_use_pickaxe": "Spitzhacke benutzen",
+    "interaction_use_drill": "Bohrer benutzen",
+    "interaction_use_laser_drill": "Laserbohrer benutzen",
+
+    "progress_mining": "Abbau läuft...",
+
+    "interaction_process_rock": "Steine verarbeiten",
+
+    "textui_carry_place": "[X] - Ablegen",
+
+    "interaction_pickup_object": "Aufheben",
+    "interaction_take_rock": "Steine nehmen",
+    "interaction_place_rock": "Steine ablegen",
+
+    "interaction_cutting_drill": "Erzverarbeitungsbohrer",
+    "menu_cut_crystal_title": "Verarbeiten: %s",
+    "menu_cut_crystal_description": "Verarbeite die Erze in eine Form, damit sie besser aussehen",
+    "menu_crystal_cutting_header": "Wertvolle Erzverarbeitung",
+    "cutting_menu_amount": "Menge",
+    "input_invalid_input": "Ungültige Eingabe, versuche es erneut",
+    "you_dont_have_crystals": "Du hast nicht genügend Kristalle bei dir, um mit dem Schneiden zu beginnen!",
+    "rock_busy": "Dieser Felsen wird bereits von jemand anderem abgebaut!",
+    "job_vehicle_not_finished_loading": "Das Arbeitsfahrzeug wird noch geladen. Gehen Sie näher an das Fahrzeug heran, bis Sie die Schlüssel erhalten!",
+    "successfuly_purchased_tool": "Du hast erfolgreich ein neues Werkzeug gekauft!",
+    "you_cant_afford_this_tool": "Du kannst dir dieses Werkzeug nicht leisten!",
+
+    "ui": {
+        "header": {
+            "job_tab_title": "Job",
+            "job_rank_title": "Rang"
+        },
+
+        "home": {
+            "groups_header_title": "Gruppen",
+            "group_job_description": "Starte einen neuen Job und lade andere zur Zusammenarbeit ein",
+            "groups_description": "Trete bestehenden Gruppen bei und arbeite im Team",
+            "job_header_title": "Bergbau",
+            "job_header_descriptions": "Suchst du einen stabilen, lohnenden Job? Tritt dem Los Santos Bergbau bei! Als Bergarbeiter spielst du eine wichtige Rolle bei der Rohstoffgewinnung. Genieße wettbewerbsfähige Bezahlung, exzellente Vorteile und die Zufriedenheit, jeden Tag etwas zu bewirken. Arbeite mit einem engagierten Team, bediene modernste Ausrüstung und erlebe die dynamische Unterwelt von Los Santos aus einer einzigartigen Perspektive. Keine Vorerfahrung erforderlich; wir bieten alle notwendigen Schulungen.",
+            "start_job": "Neuen Job starten",
+            "join_group": "Gruppe beitreten",
+            "start_solo_job": "Neue Gruppe erstellen",
+            "join_group_title": "Gruppe beitreten",
+            "features": {
+                "competitive_pay": {
+                    "title": "Wettbewerbsfähige Bezahlung",
+                    "description": "Verdiene gute Löhne mit Leistungsprämien"
+                },
+                "flexible_hours": {
+                    "title": "Flexible Arbeitszeiten",
+                    "description": "Arbeite, wann es dir am besten passt"
+                },
+                "career_growth": {
+                    "title": "Karrierewachstum",
+                    "description": "Steige durch Fähigkeitslevel auf und schalte neue Fähigkeiten frei"
+                },
+                "team_environment": {
+                    "title": "Teamumgebung",
+                    "description": "Arbeite alleine oder schließe dich mit anderen Bergleuten zusammen"
+                }
+            }
+        },
+
+        "jobStart": {
+            "group_information": "INFORMATION",
+            "group_members_title": "GRUPPENMITGLIEDER",
+            "prompt_not": "Nein",
+            "prompt_yes": "Ja",
+            "group_owner_tag": "BESITZER",
+            "group_member_tag": "MITGLIED",
+            "group_id": "Gruppen-ID: ",
+            "group_password": "Passwort: ",
+            "group_kick_player_confirm": "Bist du sicher, dass du dieses Mitglied kicken möchtest?",
+            "group_kick_player_confirm_yes": "Ja",
+            "group_kick_player_confirm_no": "Nein",
+            "want_to_start_job": "Möchtest du diesen Job beginnen?",
+            "group_your_profile": "DEIN PROFIL",
+            "group_start_job": "Job starten",
+            "group_leave_job": "Job verlassen",
+            "job_controls": "Job-Steuerung",
+            "job_statistics": "Job-Statistiken",
+            "group_end_job": "Job beenden",
+            "completed_jobs": "Abgeschlossene Jobs",
+            "total_earnings": "Gesamtverdienst"
+        },
+        
+        "groups": {
+            "groups_header_title": "Verfügbare Gruppen",
+            "group_title": "Gruppe",
+            "group_password": "Passwort",
+            "search_groups": "Gruppen nach ID suchen...",
+            "join_group": "Gruppe beitreten",
+            "active_status": "Aktiv",
+            "members_count": "Mitglieder",
+            "enter_password": "Gruppenpasswort eingeben",
+            "cancel": "Abbrechen",
+            "join": "Beitreten",
+            "subtitle": "Finde und tritt verfügbaren Bergbaugruppen bei",
+            "no_groups_title": "Keine Gruppen verfügbar",
+            "no_groups_description": "Derzeit sind keine Gruppen verfügbar. Versuche stattdessen, eine neue Gruppe zu erstellen."
+        },
+        
+        "rank": {
+            "level": "Level",
+            "unlockables": "Freischaltbare Jobs",
+            "required_level": "Erforderliches Level:",
+            "want_to_purchase": "Möchtest du dieses Werkzeug kaufen?",
+            "prompt_not": "Nein",
+            "prompt_yes": "Ja",
+            "unlockables_header": "FREISCHALTBARE ARBEITSWERKZEUGE",
+            "profile_title": "Profil",
+            "progress_title": "Level-Fortschritt",
+            "purchase_button": "Kaufen",
+            "stats_header": "Profilstatistiken",
+            "total_xp": "Gesamt-EP",
+            "current_level": "Aktuelles Level"
+        }
+    }
+}

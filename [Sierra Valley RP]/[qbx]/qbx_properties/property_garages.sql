@@ -1,0 +1,2 @@
+-- This file is loaded by server code which checks if column exists first
+-- The actual ALTER TABLE is handled in server/property.lua

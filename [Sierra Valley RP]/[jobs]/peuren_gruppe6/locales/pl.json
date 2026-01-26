@@ -1,0 +1,190 @@
+{
+    "job_menu_header": "Gruppe 6",
+    "interact_with_job_npc": "Porozmawiaj z kierownikiem pracy",
+
+    "left_group_job": "Pomyślnie opuściłeś grupę",
+    "entered_group_job": "Pomyślnie dołączyłeś do grupy",
+
+    "incorrect_group_pass" : "Nieprawidłowe hasło grupy!",
+
+    "you_have_job": "Nie możesz dołączyć lub rozpocząć nowej pracy, ponieważ już masz przypisaną pracę",
+    "max_players_reached_for_this_job": "Nie możesz wykonywać tej pracy w tej chwili, ponieważ zbyt wielu graczy ją wykonuje!",
+    "successfully_started_job": "Pomyślnie rozpocząłeś nową pracę! Użyj /tablet, aby wyświetlić prace kontraktowe",
+    "job_successfully_finished": "Praca została zakończona!",
+    "finished_go_next_place": "Zakończone! Idź do następnego punktu!",
+
+    "interaction_take_bag": "Weź torbę z pieniędzmi",
+    "interaction_place_bag": "Połóż torbę z pieniędzmi",
+    "interaction_take_money": "Weź pieniądze",
+    "interaction_deliver_money": "Dostarcz pieniądze",
+    "interaction_open_container": "Otwórz kontener",
+    "interaction_close_container": "Zamknij kontener",
+    "interaction_rob_vehicle": "Obrabuj pojazd",
+
+    "interaction_pickup": "Podnieś",
+
+    "successfully_finished_order": "Pomyślnie zakończyłeś kontrakt, zwróć pojazd do siedziby Gruppe 6",
+    "prompt_return_vehicle": "[E] - Zwróć pojazd służbowy",
+
+    "you_do_not_have_job": "Obecnie nie masz dostępu do tabletu kontraktowego!", 
+    "not_in_gruppe_6_territory": "Musisz być na terenie centrum pracy Gruppe sechs, aby przyjąć nowy kontrakt!",
+    "not_group_owner_tablet": "Tablet jest dostępny tylko dla lidera grupy!",
+
+    "contract_is_active": "Rozpocząłeś kontrakt!",
+    "group_is_full": "Nie możesz dołączyć do tej grupy, ponieważ nie ma więcej miejsca!",
+
+    "not_job_vehicle": "To nie jest dostarczony pojazd służbowy!",
+
+    "robbery_context_header": "Czy pozwalasz temu graczowi obrabować twój pojazd?",
+    "robbery_confirm_yes_title": "Pozwól na rabunek",
+    "robbery_confirm_yes_description": "Jeśli potwierdzisz, gracz będzie mógł obrabować twój pojazd",
+    "robbery_confirm_no_title": "Odmów rabunku",
+    "robbery_confirm_no_description": "Jeśli odmówisz, gracz nie będzie mógł obrabować twojego pojazdu",
+
+    "robbery_confirmed_yes": "Lider grupy potwierdził twoje żądanie rabunku!",
+    "robbery_confirmed_no": "Lider grupy odrzucił twoje żądanie rabunku!",
+    "robbery_confirm_sent": "Twoja odpowiedź potwierdzenia została wysłana!",
+    "robbery_taking_money_progress": "Rabowanie pojazdu...",
+
+    "robbery_vehicle_empty": "Ten pojazd jest pusty!",
+    "robbery_successfully_robbed": "Pomyślnie obrabowałeś pojazd!",
+    "robbery_already_robbed": "Ten pojazd jest już rabowany!",
+    "robbery_request_sent": "Wysłałeś żądanie rabunku do lidera grupy!",
+
+    "task_use_table_to_start": "Użyj danego przedmiotu tabletu lub komendy /tablet",
+    "task_pickup_bags": "Zbierz pieniądze",
+    "task_deliver_bags": "Dostarcz pieniądze do banku",
+    "task_return_job_vehicle": "Zwróć pojazd służbowy do siedziby Gruppe 6",
+
+    "job_vehicle_not_finished_loading": "Pojazd służbowy wciąż się ładuje. Idź w pobliże pojazdu, aż otrzymasz od niego klucze!",
+
+    "ui": {
+        "header": {
+            "job_tab_title": "Praca",
+            "rank_tab_title": "Ranga"
+        },
+
+        "home": {
+            "groups_header_title": "Grupy",
+            "group_job_description": "Rozpocznij nową pracę i zaproś innych do wspólnej pracy",
+            "groups_description": "Dołącz do istniejących grup i pracuj jako zespół",
+            "job_header_title": "Gruppe sechs",
+            "job_header_descriptions": "Szukasz stabilnej, satysfakcjonującej pracy? Dołącz do Wydziału Sanitarnego Los Santos! Jako śmieciarz odegrasz kluczową rolę w utrzymaniu naszego miasta czystego i tętniącego życiem. Ciesz się konkurencyjnym wynagrodzeniem, doskonałymi świadczeniami i satysfakcją ze zmieniania świata każdego dnia. Pracuj z oddanym zespołem, obsługuj najnowocześniejszy sprzęt i poznaj ulice Los Santos z wyjątkowej perspektywy. Poprzednie doświadczenie nie jest wymagane; zapewniamy wszystkie niezbędne szkolenia.",
+            "start_job": "Rozpocznij nową pracę",
+            "join_group": "Dołącz do grupy",
+            "start_solo_job": "Utwórz nową grupę",
+            "join_group_title": "Dołącz do grupy",
+            "features": {
+                "competitive_pay": {
+                    "title": "Konkurencyjne wynagrodzenie",
+                    "description": "Zarabiaj świetne wynagrodzenie z premiami za wyniki"
+                },
+                "flexible_hours": {
+                    "title": "Elastyczne godziny",
+                    "description": "Pracuj wtedy, gdy najbardziej ci odpowiada"
+                },
+                "career_growth": {
+                    "title": "Rozwój kariery",
+                    "description": "Awansuj przez poziomy umiejętności i odblokuj nowe zdolności"
+                },
+                "team_environment": {
+                    "title": "Środowisko zespołowe",
+                    "description": "Pracuj solo lub połącz siły z innymi operatorami"
+                }
+            }
+        },
+
+        "jobStart": {
+            "group_information": "INFORMACJE",
+            "group_members_title": "CZŁONKOWIE GRUPY",
+            "prompt_not": "Nie",
+            "prompt_yes": "Tak",
+            "group_owner_tag": "WŁAŚCICIEL",
+            "group_member_tag": "CZŁONEK",
+            "group_id": "ID Grupy: ",
+            "group_password": "Hasło: ",
+            "group_kick_player_confirm": "Czy na pewno chcesz wykopać tego członka?",
+            "group_kick_player_confirm_yes": "Tak",
+            "group_kick_player_confirm_no": "Nie",
+            "want_to_start_job": "Czy chcesz rozpocząć tę pracę?",
+            "group_your_profile": "TWÓJ PROFIL",
+            "group_start_job": "Rozpocznij pracę",
+            "group_leave_job": "Opuść pracę",
+            "job_controls": "Kontrola pracy",
+            "job_statistics": "Statystyki pracy",
+            "group_end_job": "Zakończ pracę",
+            "completed_jobs": "Ukończone prace",
+            "total_earnings": "Całkowite zarobki",
+            "vehicle_warning_title": "Pojazd nie został zwrócony",
+            "vehicle_warning_message": "Czy chcesz zakończyć pracę bez zwrócenia pojazdu? Nie otrzymasz wynagrodzenia bez zwrócenia pojazdu.",
+            "end_without_return": "Zakończ bez zwrotu",
+            "return_to_job": "Wróć do pracy"
+        },
+        
+        "groups": {
+            "groups_header_title": "Dostępne grupy",
+            "group_title": "Grupa",
+            "group_password": "Hasło",
+            "search_groups": "Szukaj grup po ID...",
+            "join_group": "Dołącz do grupy",
+            "active_status": "Aktywna",
+            "members_count": "Członkowie",
+            "enter_password": "Wprowadź hasło grupy",
+            "cancel": "Anuluj",
+            "join": "Dołącz do grupy",
+            "subtitle": "Znajdź i dołącz do dostępnych grup holowniczych",
+            "no_groups_title": "Brak dostępnych grup",
+            "no_groups_description": "Obecnie nie ma dostępnych grup do dołączenia. Spróbuj utworzyć nową grupę."
+        },
+
+        "tablet": {
+            "active_calls": "Aktywne połączenia",
+            "no_active_calls": "Obecnie brak aktywnych połączeń",
+            "accept_call": "Przyjmij połączenie",
+            "accept_call_confirm": "Czy na pewno chcesz przyjąć to połączenie?",
+            "yes": "Tak",
+            "no": "Nie",
+            "clipboard_success": "Skopiowano do schowka",
+            "waypoint_confirm_title": "Ustaw punkt trasy",
+            "waypoint_set": "Punkt trasy ustawiony",
+            "waypoint_set_description": "Punkt trasy został ustawiony na twojej mapie",
+            "current_job": "Bieżąca praca",
+            "arrived": "Przyjechał",
+            "loaded": "Załadowano",
+            "finished": "Ukończone",
+            "next_step": "Następny krok",
+            "cancel_job": "Anuluj pracę",
+            "cancel_job_confirm": "Czy na pewno chcesz anulować tę pracę?",
+            "password_copied": "Hasło skopiowane do schowka",
+            "player_stats": "Statystyki gracza",
+            "level": "Poziom",
+            "completed_jobs": "Ukończone prace",
+            "total_earnings": "Całkowite zarobki",
+            "available_contracts": "Wyświetl i zarządzaj dostępnymi kontraktami Gruppe sechs",
+            "contract_type": "Typ kontraktu",
+            "contract_bags": "Wymagane torby",
+            "contract_payout": "Wypłata kontraktu",
+            "contract_take": "Weź kontrakt",
+            "take_contract_confirm": "Czy na pewno chcesz wziąć ten kontrakt?"
+        },
+
+        "rank": {
+            "level": "Poziom",
+            "unlockables": "Odblokowywalne prace",
+            "required_level": "Wymagany poziom:",
+            "rank_unlockable_jobs_header": "Odblokowywalne prace",
+            "want_to_start_job": "Czy chcesz rozpocząć tę pracę?",
+            "profile_level": "Bieżący poziom",
+            "profile_xp": "Doświadczenie",
+            "profile_next_level": "Następny poziom",
+            "job_locked": "Praca zablokowana",
+            "job_unlocked": "Praca odblokowana"
+        },
+
+        "task": {
+            "header": "Bieżące zadanie",
+            "subtitle": "Ukończ zadanie, aby kontynuować",
+            "progress": "Postęp"
+        }
+    }
+}

@@ -1,0 +1,7 @@
+1. Add these to qb-core/shared/items.lua:
+
+	["money_bag"] 				 = {["name"] = "money_bag", 			  	  			["label"] = "Money bag", 					["decay"] = nil,		["weight"] = 500, 		["type"] = "item", 		["image"] = "money_bag.png", 				["unique"] = true,	 	["useable"] = true,		["created"] = nil,		["decay"] = nil, 	["shouldClose"] = false, ["combinable"] = nil,   ["description"] = "Gruppe 6 money bag"},
+	["money_crate"] 				 = {["name"] = "money_crate", 			  	  			["label"] = "Money crate", 					["decay"] = nil,		["weight"] = 500, 		["type"] = "item", 		["image"] = "money_crate.png", 				["unique"] = true,	 	["useable"] = true,		["created"] = nil,		["decay"] = nil, 	["shouldClose"] = false, ["combinable"] = nil,   ["description"] = "Gruppe 6 money crate"},
+	["black_money"] 				 = {["name"] = "black_money", 			  	  			["label"] = "Black money", 					["decay"] = nil,		["weight"] = 10, 		["type"] = "item", 		["image"] = "black_money.png", 				["unique"] = true,	 	["useable"] = true,		["created"] = nil,		["decay"] = nil, 	["shouldClose"] = false, ["combinable"] = nil,   ["description"] = "Gruppe 6 money crate"},
+	["gruppe6_tablet"] 				 = {["name"] = "gruppe6_tablet", 			  	  			["label"] = "Gruppe 6 tablet", 					["decay"] = nil,		["weight"] = 500, 		["type"] = "item", 		["image"] = "gruppe6_tablet.png", 				["unique"] = true,	 	["useable"] = true,		["created"] = nil,		["decay"] = nil, 	["shouldClose"] = false, ["combinable"] = nil,   ["description"] = ""},
+

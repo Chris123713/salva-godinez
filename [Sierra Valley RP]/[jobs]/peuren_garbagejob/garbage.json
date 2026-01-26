@@ -1,0 +1,12 @@
+{
+    "depot": {
+        "amount": 0,
+        "max": 200,
+        "type": "depot"
+    },
+    "recycling": {
+        "amount": 52,
+        "max": 200,
+        "type": "recycling"
+    }
+}

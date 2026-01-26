@@ -1,0 +1,1231 @@
+<?xml version="1.0" encoding="UTF - 8"?>
+
+<CWeaponComponentInfoBlob>
+	<Infos>
+		<Item type='CWeaponComponentClipInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_MAGAZINE_01</Name>
+			<Model>markomods-x17m-magazine1</Model>
+			<LocName>MAG</LocName>
+			<LocDesc>MAG</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+			<ClipSize value='17' />
+			<ReloadData ref='RELOAD_DEFAULT' />
+		</Item>
+		<Item type='CWeaponComponentClipInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_MAGAZINE_02</Name>
+			<Model>markomods-x17m-magazine2</Model>
+			<LocName>MAG</LocName>
+			<LocDesc>MAG</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+			<ClipSize value='21' />
+			<ReloadData ref='RELOAD_DEFAULT' />
+		</Item>
+		<Item type='CWeaponComponentClipInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_MAGAZINE_03</Name>
+			<Model>markomods-x17m-magazine3</Model>
+			<LocName>MAG</LocName>
+			<LocDesc>MAG</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+			<ClipSize value='21' />
+			<ReloadData ref='RELOAD_DEFAULT' />
+		</Item>
+		<Item type='CWeaponComponentClipInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_MAGAZINE_04</Name>
+			<Model>markomods-x17m-magazine4</Model>
+			<LocName>MAG</LocName>
+			<LocDesc>MAG</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+			<ClipSize value='21' />
+			<ReloadData ref='RELOAD_DEFAULT' />
+		</Item>
+		<Item type='CWeaponComponentClipInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_MAGAZINE_05</Name>
+			<Model>markomods-x17m-magazine5</Model>
+			<LocName>MAG</LocName>
+			<LocDesc>MAG</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+			<ClipSize value='21' />
+			<ReloadData ref='RELOAD_DEFAULT' />
+		</Item>
+		<Item type='CWeaponComponentClipInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_MAGAZINE_06</Name>
+			<Model>markomods-x17m-magazine6</Model>
+			<LocName>MAG</LocName>
+			<LocDesc>MAG</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+			<ClipSize value='50' />
+			<ReloadData ref='RELOAD_DEFAULT' />
+		</Item>
+		<Item type='CWeaponComponentClipInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_MAGAZINE_07</Name>
+			<Model>markomods-x17m-magazine7</Model>
+			<LocName>MAG</LocName>
+			<LocDesc>MAG</LocDesc>
+			<AttachBone>AAPClip</AttachBone>
+			<WeaponAttachBone>WAPClip</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+			<ClipSize value='50' />
+			<ReloadData ref='RELOAD_DEFAULT' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_FRAME_01</Name>
+			<Model>markomods-x17m-frame1</Model>
+			<LocName>FRAME</LocName>
+			<LocDesc>FRAME</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPStock</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_FRAME_02</Name>
+			<Model>markomods-x17m-frame2</Model>
+			<LocName>FRAME</LocName>
+			<LocDesc>FRAME</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPStock</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_FRAME_03</Name>
+			<Model>markomods-x17m-frame3</Model>
+			<LocName>FRAME</LocName>
+			<LocDesc>FRAME</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPStock</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_FRAME_04</Name>
+			<Model>markomods-x17m-frame4</Model>
+			<LocName>FRAME</LocName>
+			<LocDesc>FRAME</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPStock</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_FRAME_05</Name>
+			<Model>markomods-x17m-frame5</Model>
+			<LocName>FRAME</LocName>
+			<LocDesc>FRAME</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPStock</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_FRAME_06</Name>
+			<Model>markomods-x17m-frame6</Model>
+			<LocName>FRAME</LocName>
+			<LocDesc>FRAME</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPStock</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_FRAME_07</Name>
+			<Model>markomods-x17m-frame7</Model>
+			<LocName>FRAME</LocName>
+			<LocDesc>FRAME</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPStock</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_FRAME_08</Name>
+			<Model>markomods-x17m-frame8</Model>
+			<LocName>FRAME</LocName>
+			<LocDesc>FRAME</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPStock</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_FRAME_09</Name>
+			<Model>markomods-x17m-frame9</Model>
+			<LocName>FRAME</LocName>
+			<LocDesc>FRAME</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPStock</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_FRAME_10</Name>
+			<Model>markomods-x17m-frame10</Model>
+			<LocName>FRAME</LocName>
+			<LocDesc>FRAME</LocDesc>
+			<AttachBone>AAPStock</AttachBone>
+			<WeaponAttachBone>WAPStock</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_BARREL_01</Name>
+			<Model>markomods-x17m-barrel1</Model>
+			<LocName>BARREL</LocName>
+			<LocDesc>BARREL</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>WAPBarrel</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_BARREL_02</Name>
+			<Model>markomods-x17m-barrel2</Model>
+			<LocName>BARREL</LocName>
+			<LocDesc>BARREL</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>WAPBarrel</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_BARREL_03</Name>
+			<Model>markomods-x17m-barrel3</Model>
+			<LocName>BARREL</LocName>
+			<LocDesc>BARREL</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>WAPBarrel</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_BARREL_04</Name>
+			<Model>markomods-x17m-barrel4</Model>
+			<LocName>BARREL</LocName>
+			<LocDesc>BARREL</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>WAPBarrel</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_BARREL_05</Name>
+			<Model>markomods-x17m-barrel5</Model>
+			<LocName>BARREL</LocName>
+			<LocDesc>BARREL</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>WAPBarrel</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_BARREL_06</Name>
+			<Model>markomods-x17m-barrel6</Model>
+			<LocName>BARREL</LocName>
+			<LocDesc>BARREL</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>WAPBarrel</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_BARREL_07</Name>
+			<Model>markomods-x17m-barrel7</Model>
+			<LocName>BARREL</LocName>
+			<LocDesc>BARREL</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>WAPBarrel</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_BARREL_08</Name>
+			<Model>markomods-x17m-barrel8</Model>
+			<LocName>BARREL</LocName>
+			<LocDesc>BARREL</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>WAPBarrel</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type='CWeaponComponentInfo'>
+			<Name>COMPONENT_MARKOMODS_X17M_BARREL_09</Name>
+			<Model>markomods-x17m-barrel9</Model>
+			<LocName>BARREL</LocName>
+			<LocDesc>BARREL</LocDesc>
+			<AttachBone>AAPBarrel</AttachBone>
+			<WeaponAttachBone>WAPBarrel</WeaponAttachBone>
+			<AccuracyModifier type='NULL' />
+			<DamageModifier type='NULL' />
+			<bShownOnWheel value='false' />
+			<CreateObject value='true' />
+			<HudDamage value='0' />
+			<HudSpeed value='0' />
+			<HudCapacity value='0' />
+			<HudAccuracy value='0' />
+			<HudRange value='0' />
+		</Item>
+		<Item type="CWeaponComponentSuppressorInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_MUZZLE_01</Name>
+			<Model>markomods-x17m-muzzle1</Model>
+			<LocName>MUZZLE</LocName>
+			<LocDesc>MUZZLE</LocDesc>
+			<AttachBone>AAPSupp</AttachBone>
+			<WeaponAttachBone>WAPSupp</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="-5" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="-5" />
+			<MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+			<FlashFx>muz_assault_rifle</FlashFx>
+			<ShouldSilence value="false" />
+		</Item>
+		<Item type="CWeaponComponentSuppressorInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_MUZZLE_02</Name>
+			<Model>markomods-x17m-muzzle2</Model>
+			<LocName>MUZZLE</LocName>
+			<LocDesc>MUZZLE</LocDesc>
+			<AttachBone>AAPSupp</AttachBone>
+			<WeaponAttachBone>WAPSupp</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="-5" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="-5" />
+			<MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+			<FlashFx>muz_assault_rifle</FlashFx>
+			<ShouldSilence value="false" />
+		</Item>
+		<Item type="CWeaponComponentSuppressorInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SUPPRESSOR_01</Name>
+			<Model>markomods-x17m-suppressor1</Model>
+			<LocName>SUPPRESSOR</LocName>
+			<LocDesc>SUPPRESSOR</LocDesc>
+			<AttachBone>AAPSupp</AttachBone>
+			<WeaponAttachBone>WAPSupp</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="-5" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="-5" />
+			<MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+			<FlashFx>muz_assault_rifle</FlashFx>
+			<ShouldSilence value="true" />
+		</Item>
+		<Item type="CWeaponComponentSuppressorInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SUPPRESSOR_02</Name>
+			<Model>markomods-x17m-suppressor2</Model>
+			<LocName>SUPPRESSOR</LocName>
+			<LocDesc>SUPPRESSOR</LocDesc>
+			<AttachBone>AAPSupp</AttachBone>
+			<WeaponAttachBone>WAPSupp</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="-5" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="-5" />
+			<MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+			<FlashFx>muz_assault_rifle</FlashFx>
+			<ShouldSilence value="true" />
+		</Item>
+		<Item type="CWeaponComponentSuppressorInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SUPPRESSOR_03</Name>
+			<Model>markomods-x17m-suppressor3</Model>
+			<LocName>SUPPRESSOR</LocName>
+			<LocDesc>SUPPRESSOR</LocDesc>
+			<AttachBone>AAPSupp</AttachBone>
+			<WeaponAttachBone>WAPSupp</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="-5" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="-5" />
+			<MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+			<FlashFx>muz_assault_rifle</FlashFx>
+			<ShouldSilence value="true" />
+		</Item>
+		<Item type="CWeaponComponentSuppressorInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SUPPRESSOR_04</Name>
+			<Model>markomods-x17m-suppressor4</Model>
+			<LocName>SUPPRESSOR</LocName>
+			<LocDesc>SUPPRESSOR</LocDesc>
+			<AttachBone>AAPSupp</AttachBone>
+			<WeaponAttachBone>WAPSupp</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="-5" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="-5" />
+			<MuzzleBone>Gun_SuMuzzle</MuzzleBone>
+			<FlashFx>muz_assault_rifle</FlashFx>
+			<ShouldSilence value="true" />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SLIDE_01</Name>
+			<Model>markomods-x17m-slide1</Model>
+			<LocName>SLIDE</LocName>
+			<LocDesc>SLIDE</LocDesc>
+			<AttachBone>AAPScop</AttachBone>
+			<WeaponAttachBone>WAPScop</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SWITCHSLIDE_01</Name>
+			<Model>markomods-x17m-switchslide1</Model>
+			<LocName>SLIDE</LocName>
+			<LocDesc>SLIDE</LocDesc>
+			<AttachBone>AAPScop</AttachBone>
+			<WeaponAttachBone>WAPScop</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SLIDE_02</Name>
+			<Model>markomods-x17m-slide2</Model>
+			<LocName>SLIDE</LocName>
+			<LocDesc>SLIDE</LocDesc>
+			<AttachBone>AAPScop</AttachBone>
+			<WeaponAttachBone>WAPScop</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SWITCHSLIDE_02</Name>
+			<Model>markomods-x17m-switchslide2</Model>
+			<LocName>SLIDE</LocName>
+			<LocDesc>SLIDE</LocDesc>
+			<AttachBone>AAPScop</AttachBone>
+			<WeaponAttachBone>WAPScop</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_COVER_01</Name>
+			<Model>markomods-x17m-cover1</Model>
+			<LocName>COVER</LocName>
+			<LocDesc>COVER</LocDesc>
+			<AttachBone>AAPScop_2</AttachBone>
+			<WeaponAttachBone>WAPScop_2</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SLIDE_03</Name>
+			<Model>markomods-x17m-slide3</Model>
+			<LocName>SLIDE</LocName>
+			<LocDesc>SLIDE</LocDesc>
+			<AttachBone>AAPScop</AttachBone>
+			<WeaponAttachBone>WAPScop</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SWITCHSLIDE_03</Name>
+			<Model>markomods-x17m-switchslide3</Model>
+			<LocName>SLIDE</LocName>
+			<LocDesc>SLIDE</LocDesc>
+			<AttachBone>AAPScop</AttachBone>
+			<WeaponAttachBone>WAPScop</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_COVER_02</Name>
+			<Model>markomods-x17m-cover2</Model>
+			<LocName>COVER</LocName>
+			<LocDesc>COVER</LocDesc>
+			<AttachBone>AAPScop_2</AttachBone>
+			<WeaponAttachBone>WAPScop_2</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SLIDE_04</Name>
+			<Model>markomods-x17m-slide4</Model>
+			<LocName>SLIDE</LocName>
+			<LocDesc>SLIDE</LocDesc>
+			<AttachBone>AAPScop</AttachBone>
+			<WeaponAttachBone>WAPScop</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SWITCHSLIDE_04</Name>
+			<Model>markomods-x17m-switchslide4</Model>
+			<LocName>SLIDE</LocName>
+			<LocDesc>SLIDE</LocDesc>
+			<AttachBone>AAPScop</AttachBone>
+			<WeaponAttachBone>WAPScop</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_COVER_03</Name>
+			<Model>markomods-x17m-cover3</Model>
+			<LocName>COVER</LocName>
+			<LocDesc>COVER</LocDesc>
+			<AttachBone>AAPScop_2</AttachBone>
+			<WeaponAttachBone>WAPScop_2</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SLIDE_05</Name>
+			<Model>markomods-x17m-slide5</Model>
+			<LocName>SLIDE</LocName>
+			<LocDesc>SLIDE</LocDesc>
+			<AttachBone>AAPScop</AttachBone>
+			<WeaponAttachBone>WAPScop</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SWITCHSLIDE_05</Name>
+			<Model>markomods-x17m-switchslide5</Model>
+			<LocName>SLIDE</LocName>
+			<LocDesc>SLIDE</LocDesc>
+			<AttachBone>AAPScop</AttachBone>
+			<WeaponAttachBone>WAPScop</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_COVER_04</Name>
+			<Model>markomods-x17m-cover4</Model>
+			<LocName>COVER</LocName>
+			<LocDesc>COVER</LocDesc>
+			<AttachBone>AAPScop_2</AttachBone>
+			<WeaponAttachBone>WAPScop_2</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SCOPE_01</Name>
+			<Model>markomods-x17m-scope1</Model>
+			<LocName>SCOPE</LocName>
+			<LocDesc>SCOPE</LocDesc>
+			<AttachBone>AAPScop_2</AttachBone>
+			<WeaponAttachBone>WAPScop_2</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SCOPE_02</Name>
+			<Model>markomods-x17m-scope2</Model>
+			<LocName>SCOPE</LocName>
+			<LocDesc>SCOPE</LocDesc>
+			<AttachBone>AAPScop_2</AttachBone>
+			<WeaponAttachBone>WAPScop_2</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SCOPE_03</Name>
+			<Model>markomods-x17m-scope3</Model>
+			<LocName>SCOPE</LocName>
+			<LocDesc>SCOPE</LocDesc>
+			<AttachBone>AAPScop_2</AttachBone>
+			<WeaponAttachBone>WAPScop_2</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentScopeInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_SCOPE_04</Name>
+			<Model>markomods-x17m-scope4</Model>
+			<LocName>SCOPE</LocName>
+			<LocDesc>SCOPE</LocDesc>
+			<AttachBone>AAPScop_2</AttachBone>
+			<WeaponAttachBone>WAPScop_2</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="5" />
+			<HudRange value="0" />
+			<CameraHash />
+			<RecoilShakeAmplitude value="0.280000" />
+			<Reticule value="0" />
+			<ReticuleHash />
+		</Item>
+		<Item type="CWeaponComponentFlashLightInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_FLASHLIGHT_01</Name>
+			<Model>markomods-x17m-flashlight1</Model>
+			<LocName>WCT_FLASH</LocName>
+			<LocDesc>WCD_FLASH</LocDesc>
+			<AttachBone>AAPFlsh</AttachBone>
+			<WeaponAttachBone>WAPFlshLasr</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<MainLightIntensity value="6.000000" />
+			<MainLightColor value="0xFFC9C9FF" />
+			<MainLightRange value="30.000000" />
+			<MainLightFalloffExponent value="32.000000" />
+			<MainLightInnerAngle value="0.000000" />
+			<MainLightOuterAngle value="20.000000" />
+			<MainLightCoronaIntensity value="3.000000" />
+			<MainLightCoronaSize value="0.200000" />
+			<MainLightVolumeIntensity value="0.300000" />
+			<MainLightVolumeSize value="0.100000" />
+			<MainLightVolumeExponent value="70.000000" />
+			<MainLightVolumeOuterColor value="0xFF050E3B" />
+			<MainLightShadowFadeDistance value="10.000000" />
+			<MainLightSpecularFadeDistance value="10.000000" />
+			<SecondaryLightIntensity value="4.000000" />
+			<SecondaryLightColor value="0xFFFFFFFF" />
+			<SecondaryLightRange value="6.000000" />
+			<SecondaryLightFalloffExponent value="64.000000" />
+			<SecondaryLightInnerAngle value="0.000000" />
+			<SecondaryLightOuterAngle value="40.000000" />
+			<SecondaryLightVolumeIntensity value="0.300000" />
+			<SecondaryLightVolumeSize value="0.400000" />
+			<SecondaryLightVolumeExponent value="24.000000" />
+			<SecondaryLightVolumeOuterColor value="0xFF000F85" />
+			<SecondaryLightFadeDistance value="10.000000" />
+			<fTargetDistalongAimCamera value="8.000000" />
+			<FlashLightBone>Gun_FLMuzzle</FlashLightBone>
+			<FlashLightBoneBulbOn>Bulb_On</FlashLightBoneBulbOn>
+			<FlashLightBoneBulbOff>Bulb_Off</FlashLightBoneBulbOff>
+		</Item>
+		<Item type="CWeaponComponentFlashLightInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_FLASHLIGHT_02</Name>
+			<Model>markomods-x17m-flashlight2</Model>
+			<LocName>WCT_FLASH</LocName>
+			<LocDesc>WCD_FLASH</LocDesc>
+			<AttachBone>AAPFlsh</AttachBone>
+			<WeaponAttachBone>WAPFlshLasr</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<MainLightIntensity value="6.000000" />
+			<MainLightColor value="0xFFC9C9FF" />
+			<MainLightRange value="30.000000" />
+			<MainLightFalloffExponent value="32.000000" />
+			<MainLightInnerAngle value="0.000000" />
+			<MainLightOuterAngle value="20.000000" />
+			<MainLightCoronaIntensity value="3.000000" />
+			<MainLightCoronaSize value="0.200000" />
+			<MainLightVolumeIntensity value="0.300000" />
+			<MainLightVolumeSize value="0.100000" />
+			<MainLightVolumeExponent value="70.000000" />
+			<MainLightVolumeOuterColor value="0xFF050E3B" />
+			<MainLightShadowFadeDistance value="10.000000" />
+			<MainLightSpecularFadeDistance value="10.000000" />
+			<SecondaryLightIntensity value="4.000000" />
+			<SecondaryLightColor value="0xFFFFFFFF" />
+			<SecondaryLightRange value="6.000000" />
+			<SecondaryLightFalloffExponent value="64.000000" />
+			<SecondaryLightInnerAngle value="0.000000" />
+			<SecondaryLightOuterAngle value="40.000000" />
+			<SecondaryLightVolumeIntensity value="0.300000" />
+			<SecondaryLightVolumeSize value="0.400000" />
+			<SecondaryLightVolumeExponent value="24.000000" />
+			<SecondaryLightVolumeOuterColor value="0xFF000F85" />
+			<SecondaryLightFadeDistance value="10.000000" />
+			<fTargetDistalongAimCamera value="8.000000" />
+			<FlashLightBone>Gun_FLMuzzle</FlashLightBone>
+			<FlashLightBoneBulbOn>Bulb_On</FlashLightBoneBulbOn>
+			<FlashLightBoneBulbOff>Bulb_Off</FlashLightBoneBulbOff>
+		</Item>
+		<Item type="CWeaponComponentFlashLightInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_FLASHLIGHT_03</Name>
+			<Model>markomods-x17m-flashlight3</Model>
+			<LocName>WCT_FLASH</LocName>
+			<LocDesc>WCD_FLASH</LocDesc>
+			<AttachBone>AAPFlsh</AttachBone>
+			<WeaponAttachBone>WAPFlshLasr</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<MainLightIntensity value="6.000000" />
+			<MainLightColor value="0xFFC9C9FF" />
+			<MainLightRange value="30.000000" />
+			<MainLightFalloffExponent value="32.000000" />
+			<MainLightInnerAngle value="0.000000" />
+			<MainLightOuterAngle value="20.000000" />
+			<MainLightCoronaIntensity value="3.000000" />
+			<MainLightCoronaSize value="0.200000" />
+			<MainLightVolumeIntensity value="0.300000" />
+			<MainLightVolumeSize value="0.100000" />
+			<MainLightVolumeExponent value="70.000000" />
+			<MainLightVolumeOuterColor value="0xFF050E3B" />
+			<MainLightShadowFadeDistance value="10.000000" />
+			<MainLightSpecularFadeDistance value="10.000000" />
+			<SecondaryLightIntensity value="4.000000" />
+			<SecondaryLightColor value="0xFFFFFFFF" />
+			<SecondaryLightRange value="6.000000" />
+			<SecondaryLightFalloffExponent value="64.000000" />
+			<SecondaryLightInnerAngle value="0.000000" />
+			<SecondaryLightOuterAngle value="40.000000" />
+			<SecondaryLightVolumeIntensity value="0.300000" />
+			<SecondaryLightVolumeSize value="0.400000" />
+			<SecondaryLightVolumeExponent value="24.000000" />
+			<SecondaryLightVolumeOuterColor value="0xFF000F85" />
+			<SecondaryLightFadeDistance value="10.000000" />
+			<fTargetDistalongAimCamera value="8.000000" />
+			<FlashLightBone>Gun_FLMuzzle</FlashLightBone>
+			<FlashLightBoneBulbOn>Bulb_On</FlashLightBoneBulbOn>
+			<FlashLightBoneBulbOff>Bulb_Off</FlashLightBoneBulbOff>
+		</Item>
+		<Item type="CWeaponComponentFlashLightInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_FLASHLIGHT_04</Name>
+			<Model>markomods-x17m-flashlight4</Model>
+			<LocName>WCT_FLASH</LocName>
+			<LocDesc>WCD_FLASH</LocDesc>
+			<AttachBone>AAPFlsh</AttachBone>
+			<WeaponAttachBone>WAPFlshLasr</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<MainLightIntensity value="6.000000" />
+			<MainLightColor value="0xFFC9C9FF" />
+			<MainLightRange value="30.000000" />
+			<MainLightFalloffExponent value="32.000000" />
+			<MainLightInnerAngle value="0.000000" />
+			<MainLightOuterAngle value="20.000000" />
+			<MainLightCoronaIntensity value="3.000000" />
+			<MainLightCoronaSize value="0.200000" />
+			<MainLightVolumeIntensity value="0.300000" />
+			<MainLightVolumeSize value="0.100000" />
+			<MainLightVolumeExponent value="70.000000" />
+			<MainLightVolumeOuterColor value="0xFF050E3B" />
+			<MainLightShadowFadeDistance value="10.000000" />
+			<MainLightSpecularFadeDistance value="10.000000" />
+			<SecondaryLightIntensity value="4.000000" />
+			<SecondaryLightColor value="0xFFFFFFFF" />
+			<SecondaryLightRange value="6.000000" />
+			<SecondaryLightFalloffExponent value="64.000000" />
+			<SecondaryLightInnerAngle value="0.000000" />
+			<SecondaryLightOuterAngle value="40.000000" />
+			<SecondaryLightVolumeIntensity value="0.300000" />
+			<SecondaryLightVolumeSize value="0.400000" />
+			<SecondaryLightVolumeExponent value="24.000000" />
+			<SecondaryLightVolumeOuterColor value="0xFF000F85" />
+			<SecondaryLightFadeDistance value="10.000000" />
+			<fTargetDistalongAimCamera value="8.000000" />
+			<FlashLightBone>Gun_FLMuzzle</FlashLightBone>
+			<FlashLightBoneBulbOn>Bulb_On</FlashLightBoneBulbOn>
+			<FlashLightBoneBulbOff>Bulb_Off</FlashLightBoneBulbOff>
+		</Item>
+		<Item type="CWeaponComponentFlashLightInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_FLASHLIGHT_05</Name>
+			<Model>markomods-x17m-flashlight5</Model>
+			<LocName>WCT_FLASH</LocName>
+			<LocDesc>WCD_FLASH</LocDesc>
+			<AttachBone>AAPFlsh</AttachBone>
+			<WeaponAttachBone>WAPFlshLasr</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<MainLightIntensity value="6.000000" />
+			<MainLightColor value="0xFFC9C9FF" />
+			<MainLightRange value="30.000000" />
+			<MainLightFalloffExponent value="32.000000" />
+			<MainLightInnerAngle value="0.000000" />
+			<MainLightOuterAngle value="20.000000" />
+			<MainLightCoronaIntensity value="3.000000" />
+			<MainLightCoronaSize value="0.200000" />
+			<MainLightVolumeIntensity value="0.300000" />
+			<MainLightVolumeSize value="0.100000" />
+			<MainLightVolumeExponent value="70.000000" />
+			<MainLightVolumeOuterColor value="0xFF050E3B" />
+			<MainLightShadowFadeDistance value="10.000000" />
+			<MainLightSpecularFadeDistance value="10.000000" />
+			<SecondaryLightIntensity value="4.000000" />
+			<SecondaryLightColor value="0xFFFFFFFF" />
+			<SecondaryLightRange value="6.000000" />
+			<SecondaryLightFalloffExponent value="64.000000" />
+			<SecondaryLightInnerAngle value="0.000000" />
+			<SecondaryLightOuterAngle value="40.000000" />
+			<SecondaryLightVolumeIntensity value="0.300000" />
+			<SecondaryLightVolumeSize value="0.400000" />
+			<SecondaryLightVolumeExponent value="24.000000" />
+			<SecondaryLightVolumeOuterColor value="0xFF000F85" />
+			<SecondaryLightFadeDistance value="10.000000" />
+			<fTargetDistalongAimCamera value="8.000000" />
+			<FlashLightBone>Gun_FLMuzzle</FlashLightBone>
+			<FlashLightBoneBulbOn>Bulb_On</FlashLightBoneBulbOn>
+			<FlashLightBoneBulbOff>Bulb_Off</FlashLightBoneBulbOff>
+		</Item>
+		<Item type="CWeaponComponentFlashLightInfo">
+			<Name>COMPONENT_MARKOMODS_X17M_FLASHLIGHT_06</Name>
+			<Model>markomods-x17m-flashlight6</Model>
+			<LocName>WCT_FLASH</LocName>
+			<LocDesc>WCD_FLASH</LocDesc>
+			<AttachBone>AAPFlsh</AttachBone>
+			<WeaponAttachBone>WAPFlshLasr</WeaponAttachBone>
+			<AccuracyModifier type="NULL" />
+			<DamageModifier type="NULL" />
+			<bShownOnWheel value="true" />
+			<CreateObject value="true" />
+			<HudDamage value="0" />
+			<HudSpeed value="0" />
+			<HudCapacity value="0" />
+			<HudAccuracy value="0" />
+			<HudRange value="0" />
+			<MainLightIntensity value="6.000000" />
+			<MainLightColor value="0xFFC9C9FF" />
+			<MainLightRange value="30.000000" />
+			<MainLightFalloffExponent value="32.000000" />
+			<MainLightInnerAngle value="0.000000" />
+			<MainLightOuterAngle value="20.000000" />
+			<MainLightCoronaIntensity value="3.000000" />
+			<MainLightCoronaSize value="0.200000" />
+			<MainLightVolumeIntensity value="0.300000" />
+			<MainLightVolumeSize value="0.100000" />
+			<MainLightVolumeExponent value="70.000000" />
+			<MainLightVolumeOuterColor value="0xFF050E3B" />
+			<MainLightShadowFadeDistance value="10.000000" />
+			<MainLightSpecularFadeDistance value="10.000000" />
+			<SecondaryLightIntensity value="4.000000" />
+			<SecondaryLightColor value="0xFFFFFFFF" />
+			<SecondaryLightRange value="6.000000" />
+			<SecondaryLightFalloffExponent value="64.000000" />
+			<SecondaryLightInnerAngle value="0.000000" />
+			<SecondaryLightOuterAngle value="40.000000" />
+			<SecondaryLightVolumeIntensity value="0.300000" />
+			<SecondaryLightVolumeSize value="0.400000" />
+			<SecondaryLightVolumeExponent value="24.000000" />
+			<SecondaryLightVolumeOuterColor value="0xFF000F85" />
+			<SecondaryLightFadeDistance value="10.000000" />
+			<fTargetDistalongAimCamera value="8.000000" />
+			<FlashLightBone>Gun_FLMuzzle</FlashLightBone>
+			<FlashLightBoneBulbOn>Bulb_On</FlashLightBoneBulbOn>
+			<FlashLightBoneBulbOff>Bulb_Off</FlashLightBoneBulbOff>
+		</Item>
+	</Infos>
+	<InfoBlobName />
+</CWeaponComponentInfoBlob>

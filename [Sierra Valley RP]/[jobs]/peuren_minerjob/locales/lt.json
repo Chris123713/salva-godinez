@@ -1,0 +1,131 @@
+{
+    "interact_with_job_npc": "Kalbėti su darbo vadovu",
+    "successfully_started_job": "Pradėjote naują darbą!",
+    "job_successfully_finished": "Darbas baigtas!",
+    "incorrect_group_pass": "Neteisingas grupės slaptažodis",
+    "left_group_job": "Sėkmingai palikote grupę",
+    "entered_group_job": "Sėkmingai prisijungėte prie grupės",
+    "cant_start_job_no_space": "Nėra vietos darbo transporto priemonei išvažiuoti!",
+    "no_space_in_truck": "Sunkvežimis pilnas krovinių!",
+
+    "interaction_use_hammer": "Naudoti plaktuką",
+    "interaction_use_pickaxe": "Naudoti kirtiklį",
+    "interaction_use_drill": "Naudoti grąžtą",
+    "interaction_use_laser_drill": "Naudoti lazerinį grąžtą",
+
+    "progress_mining": "Kasama...",
+
+    "interaction_process_rock": "Apdoroti akmenis",
+
+    "textui_carry_place": "[X] - Padėti",
+
+    "interaction_pickup_object": "Pakelti",
+    "interaction_take_rock": "Paimti akmenis",
+    "interaction_place_rock": "Padėti akmenis",
+
+    "interaction_cutting_drill": "Rūdos apdorojimo grąžtas",
+    "menu_cut_crystal_title": "Apdoroti: %s",
+    "menu_cut_crystal_description": "Apdorokite rūdą, kad ji atrodytų geriau",
+    "menu_crystal_cutting_header": "Vertingos rūdos apdorojimas",
+    "cutting_menu_amount": "Kiekis",
+    "input_invalid_input": "Neteisingas įvestis, bandykite dar kartą",
+    "you_dont_have_crystals": "Neturite pakankamai kristalų, kad pradėtumėte pjaustyti!",
+    "rock_busy": "Šį akmenį jau kasa kitas asmuo!",
+    "job_vehicle_not_finished_loading": "Darbo transporto priemonė vis dar kraunasi. Prieikite arčiau transporto priemonės, kol gausite raktus!",
+    "successfuly_purchased_tool": "Sėkmingai įsigijote naują įrankį!",
+    "you_cant_afford_this_tool": "Negalite sau leisti šio įrankio!",
+
+    "progress_cutting_crystal": "Apdorojama rūda...",
+
+    "ui": {
+        "header": {
+            "job_tab_title": "Darbas",
+            "job_rank_title": "Rangas"
+        },
+
+        "home": {
+            "groups_header_title": "Grupės",
+            "group_job_description": "Pradėkite naują darbą ir pakvieskite kitus dirbti kartu",
+            "groups_description": "Prisijunkite prie esamų grupių ir dirbkite komandoje",
+            "job_header_title": "Kasyba",
+            "job_header_descriptions": "Ieškote stabilaus, pelno nešančio darbo? Prisijunkite prie Los Santos kasybos! Kaip kalnakasys, atliksite svarbų vaidmenį išgaunant žaliavas. Mėgaukitės konkurencingu atlyginimu, puikiais privalumais ir pasitenkinimu kasdien. Dirbkite su atsidavusia komanda, valdykite modernią įrangą ir patirkite dinamišką Los Santos požemį iš unikalios perspektyvos. Ankstesnė patirtis nereikalinga; mes suteikiame visus reikalingus mokymus.",
+            "start_job": "Pradėti naują darbą",
+            "join_group": "Prisijungti prie grupės",
+            "start_solo_job": "Sukurti naują grupę",
+            "join_group_title": "Prisijungti prie grupės",
+            "features": {
+                "competitive_pay": {
+                    "title": "Konkurencingas Atlyginimas",
+                    "description": "Uždirbkite puikų atlyginimą su veiklos premijomis"
+                },
+                "flexible_hours": {
+                    "title": "Lankstus Grafikas",
+                    "description": "Dirbkite kada jums patogiausia"
+                },
+                "career_growth": {
+                    "title": "Karjeros Augimas",
+                    "description": "Kilkite per įgūdžių lygius ir atrakinkite naujas galimybes"
+                },
+                "team_environment": {
+                    "title": "Komandinė Aplinka",
+                    "description": "Dirbkite vieni arba susijunkite su kitais kalnakasiais"
+                }
+            }
+        },
+
+        "jobStart": {
+            "group_information": "INFORMACIJA",
+            "group_members_title": "GRUPĖS NARIAI",
+            "prompt_not": "Ne",
+            "prompt_yes": "Taip",
+            "group_owner_tag": "SAVININKAS",
+            "group_member_tag": "NARYS",
+            "group_id": "Grupės ID: ",
+            "group_password": "Slaptažodis: ",
+            "group_kick_player_confirm": "Ar tikrai norite pašalinti šį narį?",
+            "group_kick_player_confirm_yes": "Taip",
+            "group_kick_player_confirm_no": "Ne",
+            "want_to_start_job": "Ar norite pradėti šį darbą?",
+            "group_your_profile": "JŪSŲ PROFILIS",
+            "group_start_job": "Pradėti darbą",
+            "group_leave_job": "Palikti darbą",
+            "job_controls": "Darbo Valdymas",
+            "job_statistics": "Darbo Statistika",
+            "group_end_job": "Baigti Darbą",
+            "completed_jobs": "Baigti Darbai",
+            "total_earnings": "Bendri Uždarbiai"
+        },
+        
+        "groups": {
+            "groups_header_title": "Galimos Grupės",
+            "group_title": "Grupė",
+            "group_password": "Slaptažodis",
+            "search_groups": "Ieškoti grupių pagal ID...",
+            "join_group": "Prisijungti prie Grupės",
+            "active_status": "Aktyvi",
+            "members_count": "Nariai",
+            "enter_password": "Įveskite Grupės Slaptažodį",
+            "cancel": "Atšaukti",
+            "join": "Prisijungti",
+            "subtitle": "Raskite ir prisijunkite prie galimų kasybos grupių",
+            "no_groups_title": "Nėra Galimų Grupių",
+            "no_groups_description": "Šiuo metu nėra galimų grupių. Pabandykite sukurti naują grupę."
+        },
+
+        "rank": {
+            "level": "Lygis",
+            "unlockables": "Atrakinami darbai",
+            "required_level": "Reikalingas lygis:",
+            "want_to_purchase": "Ar norite įsigyti šį įrankį?",
+            "prompt_not": "Ne",
+            "prompt_yes": "Taip",
+            "unlockables_header": "ATRAKINAMI DARBO ĮRANKIAI",
+            "profile_title": "Profilis",
+            "progress_title": "Lygio Progresas",
+            "purchase_button": "Pirkti",
+            "stats_header": "Profilio Statistika",
+            "total_xp": "Viso XP",
+            "current_level": "Dabartinis Lygis"
+        }
+    }
+}

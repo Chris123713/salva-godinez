@@ -1,0 +1,1 @@
+    AddTextEntry('WEAPON_PM4', 'Police M4')

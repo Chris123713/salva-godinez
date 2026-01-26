@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CWeaponModelInfo__InitDataList>
+    <InitDatas>
+        <Item>
+            <modelName>markomods-pm4</modelName>
+            <txdName>markomods-pm4</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='500'/>
+        </Item>
+        <Item>
+            <modelName>markomods-pm4-mag1</modelName>
+            <txdName>markomods-pm4-mags</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='500'/>
+        </Item>
+        <Item>
+            <modelName>markomods-pm4-muzzle1</modelName>
+            <txdName>markomods-pm4-muzzles</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='500'/>
+        </Item>
+        <Item>
+            <modelName>markomods-pm4-scope1</modelName>
+            <txdName>markomods-pm4-scopes</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='500'/>
+        </Item>
+        <Item>
+            <modelName>markomods-pm4-stock1</modelName>
+            <txdName>markomods-pm4-stocks</txdName>
+            <ptfxAssetName>NULL</ptfxAssetName>
+            <lodDist value='500'/>
+        </Item>
+    </InitDatas>
+</CWeaponModelInfo__InitDataList>
