@@ -1,0 +1,70 @@
+========================================
+  ADVANCED ELEVATOR BUILDER - INSTALLED
+========================================
+
+🎉 NEW FEATURES:
+
+✅ Modern Dark UI Theme
+   - Sleek, professional design
+   - Real-time stats and updates
+   - Smooth animations
+
+✅ Free Movement
+   - NO cursor lock!
+   - Walk/run while UI is open
+   - No freezing or getting stuck
+
+✅ Advanced Controls
+   - Keyboard shortcuts (F5, E, Z)
+   - Click floors to teleport
+   - Edit/remove individual floors
+   - Visual markers show positions
+
+✅ Management Tools
+   - View all elevators
+   - Delete elevators easily
+   - Get coordinates instantly
+   - Built-in help system
+
+========================================
+  QUICK START
+========================================
+
+1. Type: /eb
+2. Click: "Start New Elevator"
+3. Walk to each floor and press E
+4. Click: "Save Elevator"
+5. Done!
+
+========================================
+  CONTROLS
+========================================
+
+/eb       - Toggle builder
+F5        - Toggle UI visibility
+E         - Add floor at position
+Z         - Remove last floor
+Click     - Teleport to floor
+
+========================================
+  WHY IT'S BETTER
+========================================
+
+OLD SYSTEM:
+❌ Menu froze the game
+❌ Couldn't move around
+❌ Had to close menu to test
+❌ JSON parsing errors
+
+NEW SYSTEM:
+✅ Move freely at all times
+✅ Modern, beautiful UI
+✅ Real-time visual feedback
+✅ No freezing or errors
+✅ Click to teleport
+✅ Easy to manage elevators
+
+========================================
+
+Read ADVANCED_BUILDER.md for full guide!
+

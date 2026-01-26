@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematic Camera</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="camera-ui" class="camera-ui hidden">
+        <div class="ui-container">
+            <div class="ui-header">
+                <h2>🎬 Cinematic Camera</h2>
+                <button class="close-btn" id="closeBtn">×</button>
+            </div>
+            
+            <div class="ui-content">
+                <!-- Camera Controls -->
+                <div class="control-section">
+                    <h3>Camera Controls</h3>
+                    <div class="button-group">
+                        <button class="control-btn primary" id="toggleCameraBtn">
+                            <span class="btn-icon">📹</span>
+                            <span class="btn-text">Start Camera</span>
+                        </button>
+                        <button class="control-btn" id="exitCameraBtn" disabled>
+                            <span class="btn-icon">⏹️</span>
+                            <span class="btn-text">Exit Camera</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- UI Controls -->
+                <div class="control-section">
+                    <h3>UI Controls</h3>
+                    <div class="button-group">
+                        <button class="control-btn" id="toggleUIBtn">
+                            <span class="btn-icon">👁️</span>
+                            <span class="btn-text">Clear UI</span>
+                            <span class="btn-status" id="uiStatus">OFF</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Zoom Controls -->
+                <div class="control-section">
+                    <h3>Zoom</h3>
+                    <div class="slider-group">
+                        <label for="zoomSlider">FOV: <span id="zoomValue">50</span>°</label>
+                        <input type="range" id="zoomSlider" min="1" max="70" value="50" step="1">
+                        <div class="zoom-buttons">
+                            <button class="zoom-btn" id="zoomInBtn">+</button>
+                            <button class="zoom-btn" id="zoomOutBtn">-</button>
+                            <button class="zoom-btn" id="zoomResetBtn">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speed Presets -->
+                <div class="control-section">
+                    <h3>Movement Speed</h3>
+                    <div class="speed-buttons">
+                        <button class="speed-btn" data-speed="slow">🐌 Slow</button>
+                        <button class="speed-btn active" data-speed="normal">🚶 Normal</button>
+                        <button class="speed-btn" data-speed="fast">🏃 Fast</button>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="control-section">
+                    <h3>Quick Actions</h3>
+                    <div class="quick-actions">
+                        <button class="action-btn" id="resetViewBtn">
+                            <span class="btn-icon">🔄</span>
+                            Reset View
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Info Panel -->
+                <div class="info-panel">
+                    <h4>Controls</h4>
+                    <div class="controls-list">
+                        <div class="control-item">
+                            <span class="key">WASD</span>
+                            <span class="desc">Move Camera</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">Mouse</span>
+                            <span class="desc">Rotate</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">Scroll</span>
+                            <span class="desc">Zoom</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">Q/E</span>
+                            <span class="desc">Up/Down</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">Shift/Ctrl</span>
+                            <span class="desc">Speed Modifier</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

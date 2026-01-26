@@ -1,0 +1,34 @@
+.input {
+  border: solid 1px rgba(255, 255, 255, 0.1);
+  background-color: #141414;
+}
+
+.dropdown {
+  background-color: rgba(20, 20, 20, 0.98);
+  backdrop-filter: blur(10px);
+}
+
+.icon {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.image {
+  position: absolute;
+  z-index: 2;
+}
+
+.blurred {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0;
+  filter: blur(10px);
+  opacity: 0.1;
+}

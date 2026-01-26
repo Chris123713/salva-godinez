@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PD Boss Menu - Test Harness</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="lib/chart.min.js"></script>
+    <script src="lib/xlsx.min.js"></script>
+    <style>
+        /* Test harness controls */
+        #testControls {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #1a1a2e;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            padding: 15px;
+            z-index: 99999;
+            color: white;
+            font-family: monospace;
+            font-size: 12px;
+            max-width: 300px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        #testControls h3 {
+            margin: 0 0 10px 0;
+            color: #4CAF50;
+            font-size: 14px;
+        }
+        #testControls button {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+            padding: 8px;
+            background: #333;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        #testControls button:hover {
+            background: #444;
+            border-color: #4CAF50;
+        }
+        #testControls .status {
+            margin-top: 10px;
+            padding: 8px;
+            background: #222;
+            border-radius: 4px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        #testControls .log-entry {
+            margin: 2px 0;
+            padding: 2px 4px;
+            border-left: 2px solid #4CAF50;
+        }
+        #testControls .log-entry.error {
+            border-left-color: #f44336;
+            color: #ff6b6b;
+        }
+        #testControls .log-entry.warn {
+            border-left-color: #ff9800;
+            color: #ffb74d;
+        }
+        /* Make container visible for testing */
+        #container {
+            display: block !important;
+        }
+        #container.hidden {
+            display: block !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Test Controls Panel -->
+    <div id="testControls">
+        <h3>NUI Test Harness</h3>
+        <button onclick="simulateOpenMenu()">Open Menu</button>
+        <button onclick="simulateUpdateData()">Send Test Data</button>
+        <button onclick="simulateTransactions()">Send Transactions</button>
+        <button onclick="simulatePermissions()">Send Permissions</button>
+        <button onclick="simulateClose()">Close Menu</button>
+        <button onclick="clearLogs()">Clear Logs</button>
+        <div class="status" id="testLogs">
+            <div class="log-entry">Ready for testing...</div>
+        </div>
+    </div>
+
+    <!-- Original Menu Content (copied from index.html) -->
+    <div id="container">
+        <div class="dashboard-wrapper">
+            <!-- Header Bar -->
+            <div class="header-bar">
+                <div class="header-left">
+                    <div class="shield-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,16.6 15.6,17 15,17H9C8.4,17 8,16.6 8,16V13C8,12.4 8.4,11.5 9,11.5V10C9,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.2,9.2 10.2,10V11.5H13.8V10C13.8,9.2 12.8,8.2 12,8.2Z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="header-center">
+                    <h1>Law Enforcement - Dashboard</h1>
+                    <p>Managing <span id="totalEmployees">0</span> employees</p>
+                </div>
+                <div class="header-right">
+                    <span class="fivem-version">TEST MODE</span>
+                    <button id="closeBtn" class="close-btn">×</button>
+                </div>
+            </div>
+
+            <div class="dashboard-container">
+                <!-- Enhanced Sidebar -->
+                <div class="sidebar">
+                    <div class="sidebar-section">
+                        <div class="quick-stats">
+                            <div class="quick-stat">
+                                <div class="stat-icon">👮</div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="quickOnlineCount">0</div>
+                                    <div class="stat-label">Online</div>
+                                </div>
+                            </div>
+                            <div class="quick-stat">
+                                <div class="stat-icon">💰</div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="quickFunds">$0</div>
+                                    <div class="stat-label">Funds</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="nav-icons">
+                            <div class="nav-icon active" data-tab="dashboard" title="Dashboard">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,16.6 15.6,17 15,17H9C8.4,17 8,16.6 8,16V13C8,12.4 8.4,11.5 9,11.5V10C9,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.2,9.2 10.2,10V11.5H13.8V10C13.8,9.2 12.8,8.2 12,8.2Z"/>
+                                </svg>
+                                <span class="nav-label">Dashboard</span>
+                            </div>
+                            <div class="nav-icon" data-tab="analytics" title="Analytics">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22,21H2V3H4V19H6V10H10V19H12V6H16V19H18V14H22V21Z"/>
+                                </svg>
+                                <span class="nav-label">Analytics</span>
+                            </div>
+                            <div class="nav-icon" data-tab="employees" title="Employees">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M16,4C18.21,4 20,5.79 20,8C20,10.21 18.21,12 16,12C13.79,12 12,10.21 12,8C12,5.79 13.79,4 16,4M16,14C20.42,14 24,15.79 24,18V20H8V18C8,15.79 11.58,14 16,14M8,4C10.21,4 12,5.79 12,8C12,10.21 10.21,12 8,12C5.79,12 4,10.21 4,8C4,5.79 5.79,4 8,4M8,14C12.42,14 16,15.79 16,18V20H0V18C0,15.79 3.58,14 8,14Z"/>
+                                </svg>
+                                <span class="nav-label">Disciplinary</span>
+                            </div>
+                            <div class="nav-icon" data-tab="hire" title="Hire Officers">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                                </svg>
+                                <span class="nav-label">Hire</span>
+                            </div>
+                            <div class="nav-icon" data-tab="funds" title="Funds">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+                                </svg>
+                                <span class="nav-label">Funds</span>
+                            </div>
+                            <div class="nav-icon" data-tab="settings" title="Settings">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+                                </svg>
+                                <span class="nav-label">Settings</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content Area -->
+                <div class="main-content">
+                    <!-- Dashboard Tab -->
+                    <div id="dashboard" class="tab-pane active">
+                        <div class="cards-row">
+                            <div class="stat-card">
+                                <div class="card-header">
+                                    <h3>Total Employees</h3>
+                                    <div class="card-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M16,4C18.21,4 20,5.79 20,8C20,10.21 18.21,12 16,12C13.79,12 12,10.21 12,8C12,5.79 13.79,4 16,4M16,14C20.42,14 24,15.79 24,18V20H8V18C8,15.79 11.58,14 16,14M8,4C10.21,4 12,5.79 12,8C12,10.21 10.21,12 8,12C5.79,12 4,10.21 4,8C4,5.79 5.79,4 8,4M8,14C12.42,14 16,15.79 16,18V20H0V18C0,15.79 3.58,14 8,14Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="card-value" id="totalEmployeesValue">0</div>
+                                <div class="card-subtitle">
+                                    <span class="status-dot online"></span>
+                                    <span id="onlineEmployees">0</span> currently online
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="card-header">
+                                    <h3>Total Weekly Hours</h3>
+                                    <div class="card-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.9L16.2,16.2Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="card-value" id="avgWorkHours">0h 0m</div>
+                                <div class="card-subtitle">all officers this week</div>
+                            </div>
+                        </div>
+
+                        <div class="online-employees-section">
+                            <div class="online-employees">
+                                <div class="panel-header">
+                                    <h3>Online Employees</h3>
+                                </div>
+                                <div class="online-list" id="onlineEmployeesList">
+                                    <div class="no-data">No employees online</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="employee-table-section">
+                            <h3>Employee List</h3>
+                            <div class="search-container">
+                                <input type="text" id="employeeSearch" placeholder="Search employees..." class="search-input">
+                                <span class="search-icon">🔍</span>
+                            </div>
+                            <div class="table-container">
+                                <table class="employee-table">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+                                            <th>RANK</th>
+                                            <th>STATUS</th>
+                                            <th>LOCATION</th>
+                                            <th>PLAY TIME</th>
+                                            <th>ACTIONS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="employeeTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="analytics" class="tab-pane">
+                        <div class="page-header">
+                            <h2>Analytics</h2>
+                            <p>Department performance metrics</p>
+                        </div>
+                    </div>
+
+                    <div id="employees" class="tab-pane">
+                        <div class="page-header">
+                            <h2>Disciplinary Actions</h2>
+                            <p>Manage officer disciplinary records</p>
+                        </div>
+                        <div class="officers-grid" id="officersGrid"></div>
+                    </div>
+
+                    <div id="hire" class="tab-pane">
+                        <div class="page-header">
+                            <h2>Recruitment Center</h2>
+                            <p>Find and hire new officers</p>
+                        </div>
+                        <div class="character-search-section">
+                            <h3>Search Characters</h3>
+                            <div class="search-container character-search">
+                                <input type="text" id="characterSearchInput" placeholder="Search by name..." class="search-input">
+                                <button id="characterSearchBtn" class="btn-search">Search</button>
+                            </div>
+                            <div class="search-results" id="characterSearchResults">
+                                <p class="search-hint">Type a name and click search</p>
+                            </div>
+                        </div>
+                        <div class="citizens-section">
+                            <h3>Nearby Citizens</h3>
+                            <div class="citizens-list" id="playerList"></div>
+                        </div>
+                    </div>
+
+                    <div id="funds" class="tab-pane">
+                        <div class="page-header">
+                            <h2>Funds Management</h2>
+                            <p>Manage department finances</p>
+                        </div>
+
+                        <div class="funds-overview-compact">
+                            <div class="funds-main-card">
+                                <div class="funds-balance">
+                                    <div class="balance-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="balance-info">
+                                        <div id="currentFunds" class="balance-amount">$0</div>
+                                        <div class="balance-label">Department Funds</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="transaction-controls-compact">
+                            <div class="transaction-row">
+                                <div class="transaction-input">
+                                    <label>Deposit Amount</label>
+                                    <div class="input-group-inline">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="depositAmount" placeholder="0.00" min="1">
+                                        <select id="depositReason">
+                                            <option value="budget_allocation">Budget Allocation</option>
+                                            <option value="revenue_collection">Revenue Collection</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <button id="depositBtn" class="btn-deposit-compact">Deposit</button>
+                                    </div>
+                                </div>
+
+                                <div class="transaction-input">
+                                    <label>Withdraw Amount</label>
+                                    <div class="input-group-inline">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="withdrawAmount" placeholder="0.00" min="1">
+                                        <select id="withdrawReason">
+                                            <option value="equipment_purchase">Equipment Purchase</option>
+                                            <option value="maintenance">Maintenance</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <button id="withdrawBtn" class="btn-withdraw-compact">Withdraw</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="transaction-history-compact">
+                            <div class="history-header">
+                                <h3>Recent Transactions</h3>
+                            </div>
+                            <div class="transaction-list" id="transactionHistory">
+                                <div class="no-transactions">No transactions yet</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="settings" class="tab-pane">
+                        <div class="page-header">
+                            <h2>Settings</h2>
+                            <p>Configure department settings</p>
+                        </div>
+                        <div class="settings-grid">
+                            <div class="settings-card" onclick="openRankModal()">
+                                <h3>Rank Management</h3>
+                                <p>Manage rank permissions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals (simplified) -->
+    <div id="employeeEditModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Employee</h2>
+                <button class="modal-close" onclick="closeEmployeeEditModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p>Employee edit modal content</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="rankManagementModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Rank Management</h2>
+                <button class="modal-close" onclick="closeRankModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p>Rank management content</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mock FiveM NUI Environment -->
+    <script>
+        // Test harness logging
+        function testLog(message, type = 'info') {
+            const logs = document.getElementById('testLogs');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry' + (type !== 'info' ? ' ' + type : '');
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logs.insertBefore(entry, logs.firstChild);
+            if (logs.children.length > 50) logs.removeChild(logs.lastChild);
+        }
+
+        function clearLogs() {
+            document.getElementById('testLogs').innerHTML = '<div class="log-entry">Logs cleared</div>';
+        }
+
+        // Mock fetch to intercept NUI callbacks
+        const originalFetch = window.fetch;
+        window.fetch = function(url, options) {
+            if (typeof url === 'string' && url.startsWith('https://pd_boss_menu/')) {
+                const endpoint = url.replace('https://pd_boss_menu/', '');
+                testLog(`NUI Callback: ${endpoint}`, 'info');
+
+                // Return mock response
+                return Promise.resolve({
+                    ok: true,
+                    status: 200,
+                    text: () => Promise.resolve('ok'),
+                    json: () => Promise.resolve({ status: 'ok' })
+                });
+            }
+            return originalFetch.apply(this, arguments);
+        };
+
+        // Mock XMLHttpRequest
+        const OriginalXHR = window.XMLHttpRequest;
+        window.XMLHttpRequest = function() {
+            const xhr = new OriginalXHR();
+            const originalOpen = xhr.open;
+            const originalSend = xhr.send;
+
+            xhr.open = function(method, url) {
+                this._mockUrl = url;
+                if (url && url.startsWith('https://pd_boss_menu/')) {
+                    const endpoint = url.replace('https://pd_boss_menu/', '');
+                    testLog(`XHR: ${endpoint}`, 'info');
+                    this._isMocked = true;
+                }
+                return originalOpen.apply(this, arguments);
+            };
+
+            xhr.send = function(data) {
+                if (this._isMocked) {
+                    // Simulate async response
+                    setTimeout(() => {
+                        Object.defineProperty(this, 'readyState', { value: 4 });
+                        Object.defineProperty(this, 'status', { value: 200 });
+                        Object.defineProperty(this, 'responseText', { value: 'ok' });
+                        if (this.onreadystatechange) this.onreadystatechange();
+                    }, 50);
+                    return;
+                }
+                return originalSend.apply(this, arguments);
+            };
+
+            return xhr;
+        };
+
+        // Test data
+        const testEmployees = [
+            { id: 1, citizenid: 'ABC123', name: 'John Smith', rank: 'chief', grade: 14, online: true, location: 'MRPD', playTime: '2h 30m' },
+            { id: 2, citizenid: 'DEF456', name: 'Jane Doe', rank: 'sergeant', grade: 6, online: true, location: 'Patrol', playTime: '1h 15m' },
+            { id: 3, citizenid: 'GHI789', name: 'Bob Wilson', rank: 'officer', grade: 3, online: false, location: 'N/A', playTime: 'Offline' },
+            { id: 4, citizenid: 'JKL012', name: 'Alice Brown', rank: 'cadet', grade: 1, online: true, location: 'Training', playTime: '45m' },
+        ];
+
+        const testRanks = [
+            { name: 'cadet', label: 'Cadet', grade: 1 },
+            { name: 'officer', label: 'Officer', grade: 3 },
+            { name: 'sergeant', label: 'Sergeant', grade: 6 },
+            { name: 'lieutenant', label: 'Lieutenant', grade: 8 },
+            { name: 'captain', label: 'Captain', grade: 9 },
+            { name: 'chief', label: 'Chief', grade: 14 },
+        ];
+
+        const testTransactions = [
+            { id: 1, transaction_type: 'deposit', amount: 5000, officer_name: 'John Smith', reason: 'budget_allocation', balance_after: 55000, timestamp: new Date().toISOString() },
+            { id: 2, transaction_type: 'withdraw', amount: 1500, officer_name: 'Jane Doe', reason: 'equipment_purchase', balance_after: 53500, timestamp: new Date(Date.now() - 86400000).toISOString() },
+            { id: 3, transaction_type: 'deposit', amount: 2000, officer_name: 'John Smith', reason: 'grant_funding', balance_after: 55500, timestamp: new Date(Date.now() - 172800000).toISOString() },
+        ];
+
+        const testPermissions = {
+            viewEmployees: true,
+            viewBanking: true,
+            viewDisciplinary: true,
+            hireEmployees: true,
+            fireEmployees: true,
+            changeRanks: true,
+            viewReports: true,
+            accessSettings: true,
+            payBonuses: true
+        };
+
+        // Simulate NUI messages
+        function simulateMessage(data) {
+            testLog(`Sending message: ${data.action || data.type}`, 'info');
+            window.postMessage(data, '*');
+        }
+
+        function simulateOpenMenu() {
+            testLog('Opening menu...', 'info');
+            simulateMessage({ action: 'openMenu' });
+        }
+
+        function simulateUpdateData() {
+            testLog('Sending employee/funds data...', 'info');
+            simulateMessage({
+                action: 'updateData',
+                funds: 54000,
+                employees: testEmployees,
+                players: [],
+                ranks: testRanks,
+                department: 'police'
+            });
+        }
+
+        function simulateTransactions() {
+            testLog('Sending transaction data...', 'info');
+            simulateMessage({
+                type: 'receiveTransactions',
+                transactions: testTransactions
+            });
+        }
+
+        function simulatePermissions() {
+            testLog('Sending permissions...', 'info');
+            simulateMessage({
+                action: 'updateUserPermissions',
+                permissions: testPermissions
+            });
+        }
+
+        function simulateClose() {
+            testLog('Closing menu...', 'info');
+            simulateMessage({ action: 'forceClose' });
+        }
+
+        // Capture console errors
+        const originalError = console.error;
+        console.error = function() {
+            testLog(Array.from(arguments).join(' '), 'error');
+            originalError.apply(console, arguments);
+        };
+
+        const originalWarn = console.warn;
+        console.warn = function() {
+            testLog(Array.from(arguments).join(' '), 'warn');
+            originalWarn.apply(console, arguments);
+        };
+
+        // Auto-open menu on load
+        window.addEventListener('load', function() {
+            testLog('Test harness loaded!', 'info');
+            testLog('Click buttons to simulate FiveM events', 'info');
+        });
+    </script>
+
+    <!-- Load the actual scripts -->
+    <script src="animations.js"></script>
+    <script src="time_tracking.js"></script>
+    <script src="transaction_display.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

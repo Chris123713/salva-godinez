@@ -1,0 +1,22 @@
+.card {
+  background-color: #1c1c1e;
+  height: 535px;
+}
+
+.option {
+  background-color: #36363a;
+  border-radius: 6px;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.25);
+  height: 70px;
+}
+
+.input {
+  background-color: rgba(10, 10, 16, 0.45);
+}
+
+.track {
+  background-color: rgba(10, 10, 16, 0.45);
+  &::before {
+    background-color: #1c1c1e;
+  }
+}

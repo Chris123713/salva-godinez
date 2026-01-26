@@ -1,0 +1,24 @@
+# Interactive Elevator Builder Guide
+
+## How to Use
+
+### Starting the Builder
+Type `/eb` or `/elevatorbuilder` in chat
+
+### Controls (When Building)
+- **E** - Add floor at current position (or start new elevator)
+- **Z** - Remove the last floor added
+- **ENTER** - Save the elevator (requires 2+ floors)
+- **X** - Cancel current build
+- **T** - Teleport to any floor you've added
+
+### Workflow
+1. /eb (activate builder)
+2. Walk to first floor location
+3. Press E (start new elevator, give it a name)
+4. Press E (add floor, give it a name)
+5. Walk to next floor
+6. Press E (add another floor)
+7. Repeat for all floors
+8. Press ENTER (save elevator)
+9. /eb (deactivate builder)

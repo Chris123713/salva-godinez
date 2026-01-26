@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Elevator Builder</title>
+    <link rel="stylesheet" href="builder_advanced.css">
+</head>
+<body>
+    <!-- Main Builder UI -->
+    <div id="builder-ui" class="hidden">
+        <!-- Side Panel -->
+        <div class="side-panel">
+            <div class="panel-header">
+                <div class="header-title">
+                    <span class="icon">🏢</span>
+                    <span>Elevator Builder</span>
+                </div>
+                <button class="close-btn" onclick="toggleBuilder()">✕</button>
+            </div>
+
+            <!-- Current Elevator Info -->
+            <div class="current-elevator">
+                <div id="no-elevator" class="no-elevator-state">
+                    <div class="placeholder-icon">🎯</div>
+                    <p>No elevator in progress</p>
+                    <button class="btn btn-primary" onclick="startNewElevator()">
+                        <span>➕</span> Start New Elevator
+                    </button>
+                </div>
+
+                <div id="elevator-info" class="elevator-state hidden">
+                    <div class="elevator-name-display">
+                        <div class="label">Current Elevator</div>
+                        <div class="name" id="current-name">—</div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-value" id="floor-count">0</div>
+                            <div class="stat-label">Floors</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="last-floor">—</div>
+                            <div class="stat-label">Last Added</div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-success" onclick="addFloorAtPosition()" title="Add floor at current position">
+                            <span>📍</span> Add Floor Here
+                        </button>
+                        <button class="btn btn-warning" onclick="saveElevator()" title="Save elevator">
+                            <span>💾</span> Save Elevator
+                        </button>
+                        <button class="btn btn-danger" onclick="cancelBuild()" title="Cancel and reset">
+                            <span>🗑️</span> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floors List -->
+            <div class="floors-section">
+                <div class="section-header">
+                    <span>Floors</span>
+                    <span class="floor-counter" id="floor-counter-badge">0</span>
+                </div>
+                <div id="floors-list" class="floors-list">
+                    <div class="empty-state">No floors added yet</div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="section-header">Quick Actions</div>
+                <button class="action-btn" onclick="getCurrentCoords()">
+                    <span>📐</span> Get Coordinates
+                </button>
+                <button class="action-btn" onclick="showManageMenu()">
+                    <span>⚙️</span> Manage Elevators
+                </button>
+                <button class="action-btn" onclick="toggleHelp()">
+                    <span>❓</span> Help
+                </button>
+            </div>
+        </div>
+
+        <!-- Minimap Controls -->
+        <div class="minimap-controls">
+            <div class="control-item" title="Toggle Builder">
+                <kbd>F5</kbd>
+                <span>Toggle UI</span>
+            </div>
+            <div class="control-item" title="Add Floor">
+                <kbd>E</kbd>
+                <span>Add Floor</span>
+            </div>
+            <div class="control-item" title="Remove Last">
+                <kbd>Z</kbd>
+                <span>Undo</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manage Elevators Modal -->
+    <div id="manage-modal" class="modal hidden">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>Manage Elevators</h2>
+                <button class="close-btn" onclick="closeManageMenu()">✕</button>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-primary mb-3" onclick="loadAllElevators()">
+                    <span>🔄</span> Refresh List
+                </button>
+                <div id="elevators-grid" class="elevators-grid">
+                    <!-- Elevators will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="help-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Builder Help</h2>
+                <button class="close-btn" onclick="toggleHelp()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="help-section">
+                    <h3>Getting Started</h3>
+                    <ol>
+                        <li>Click "Start New Elevator" or press <kbd>E</kbd></li>
+                        <li>Enter a name for your elevator</li>
+                        <li>Walk to each floor location</li>
+                        <li>Press <kbd>E</kbd> or click "Add Floor Here" at each spot</li>
+                        <li>Click "Save Elevator" when done (min. 2 floors)</li>
+                    </ol>
+                </div>
+                <div class="help-section">
+                    <h3>Keyboard Shortcuts</h3>
+                    <ul>
+                        <li><kbd>F5</kbd> - Toggle Builder UI</li>
+                        <li><kbd>E</kbd> - Add floor at current position</li>
+                        <li><kbd>Z</kbd> - Remove last floor</li>
+                    </ul>
+                </div>
+                <div class="help-section">
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>Visual markers show where floors are placed</li>
+                        <li>You can move around freely while the UI is open</li>
+                        <li>Click on floors in the list to teleport or edit them</li>
+                        <li>Elevators need at least 2 floors to be saved</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Container -->
+    <div id="notifications" class="notifications"></div>
+
+    <script src="builder_advanced.js"></script>
+</body>
+</html>

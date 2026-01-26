@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Law Enforcement - Dashboard</title>
+    <link rel="stylesheet" href="style.css?v=10">
+    <!-- Local scripts for better performance and reliability -->
+    <script src="lib/chart.min.js?v=10"></script>
+    <script src="lib/xlsx.min.js?v=10"></script>
+</head>
+<body>
+    <!-- Keyboard proxy input - captures keyboard when in proxy mode -->
+    <!-- Hidden by default, shown when entering keyboard proxy mode -->
+    <!-- pointer-events: none so it doesn't block our custom mouse raycast system -->
+    <input type="text" id="keyboardProxyInput" class="hidden"
+           style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; opacity: 0; background: transparent; border: none; outline: none; cursor: default; z-index: -1; color: transparent; caret-color: transparent; pointer-events: none;"
+           autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <div id="container" class="hidden">
+        <div class="dashboard-wrapper">
+            <!-- Header Bar -->
+            <div class="header-bar">
+                <div class="header-left">
+                    <div class="shield-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,16.6 15.6,17 15,17H9C8.4,17 8,16.6 8,16V13C8,12.4 8.4,11.5 9,11.5V10C9,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.2,9.2 10.2,10V11.5H13.8V10C13.8,9.2 12.8,8.2 12,8.2Z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="header-center">
+                    <h1>Law Enforcement - Dashboard</h1>
+                    <p>Managing <span id="totalEmployees">1</span> employees</p>
+                </div>
+                <div class="header-right">
+                <button id="closeBtn" class="close-btn">×</button>
+                </div>
+            </div>
+            
+        <div class="dashboard-container">
+            <!-- Enhanced Sidebar -->
+            <div class="sidebar">
+                <!-- Quick Stats Section -->
+                <div class="sidebar-section">
+                    <div class="quick-stats">
+                        <div class="quick-stat">
+                            <div class="stat-icon">👮</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="quickOnlineCount">1</div>
+                                <div class="stat-label">Online</div>
+                            </div>
+                        </div>
+                        <div class="quick-stat">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="quickFunds">$54K</div>
+                                <div class="stat-label">Funds</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Icons -->
+                <div class="sidebar-section">
+                    <div class="nav-icons">
+                        <!-- 1. Shield Icon (Dashboard) - Active -->
+                        <div class="nav-icon active" data-tab="dashboard" title="Dashboard">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,16.6 15.6,17 15,17H9C8.4,17 8,16.6 8,16V13C8,12.4 8.4,11.5 9,11.5V10C9,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.2,9.2 10.2,10V11.5H13.8V10C13.8,9.2 12.8,8.2 12,8.2Z"/>
+                            </svg>
+                            <span class="nav-label">Dashboard</span>
+                        </div>
+                        <!-- 2. Line Graph Icon (Analytics) -->
+                        <div class="nav-icon" data-tab="analytics" title="Analytics">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M22,21H2V3H4V19H6V10H10V19H12V6H16V19H18V14H22V21Z"/>
+                            </svg>
+                            <span class="nav-label">Analytics</span>
+                        </div>
+                        <!-- 3. Group of People Icon (Employees) -->
+                        <div class="nav-icon" data-tab="employees" title="Employees">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16,4C18.21,4 20,5.79 20,8C20,10.21 18.21,12 16,12C13.79,12 12,10.21 12,8C12,5.79 13.79,4 16,4M16,14C20.42,14 24,15.79 24,18V20H8V18C8,15.79 11.58,14 16,14M8,4C10.21,4 12,5.79 12,8C12,10.21 10.21,12 8,12C5.79,12 4,10.21 4,8C4,5.79 5.79,4 8,4M8,14C12.42,14 16,15.79 16,18V20H0V18C0,15.79 3.58,14 8,14Z"/>
+                            </svg>
+                            <span class="nav-label">Disciplinary</span>
+                        </div>
+                        <!-- 4. Person with Plus Icon (Hire) -->
+                        <div class="nav-icon" data-tab="hire" title="Hire Officers">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                            </svg>
+                            <span class="nav-label">Hire</span>
+                        </div>
+                        <!-- 5. Dollar Sign Icon (Funds) -->
+                        <div class="nav-icon" data-tab="funds" title="Funds">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+                            </svg>
+                            <span class="nav-label">Funds</span>
+                        </div>
+                        <!-- 6. Gear/Settings Icon (Settings) -->
+                        <div class="nav-icon" data-tab="settings" title="Settings">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+                            </svg>
+                            <span class="nav-label">Settings</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Dashboard Tab -->
+                <div id="dashboard" class="tab-pane active">
+                    <!-- Top Row Cards -->
+                    <div class="cards-row">
+                        <div class="stat-card">
+                            <div class="card-header">
+                                <h3>Total Employees</h3>
+                                <div class="card-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M16,4C18.21,4 20,5.79 20,8C20,10.21 18.21,12 16,12C13.79,12 12,10.21 12,8C12,5.79 13.79,4 16,4M16,14C20.42,14 24,15.79 24,18V20H8V18C8,15.79 11.58,14 16,14M8,4C10.21,4 12,5.79 12,8C12,10.21 10.21,12 8,12C5.79,12 4,10.21 4,8C4,5.79 5.79,4 8,4M8,14C12.42,14 16,15.79 16,18V20H0V18C0,15.79 3.58,14 8,14Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="card-value" id="totalEmployeesValue">1</div>
+                            <div class="card-subtitle">
+                                <span class="status-dot online"></span>
+                                <span id="onlineEmployees">1</span> currently online
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="card-header">
+                                <h3>Total Weekly Hours</h3>
+                                <div class="card-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.9L16.2,16.2Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="card-value" id="avgWorkHours">0h 0m</div>
+                            <div class="card-subtitle">all officers this week</div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Online Employees Section -->
+                    <div class="online-employees-section">
+                        <div class="online-employees">
+                            <div class="panel-header">
+                                <h3>Online Employees</h3>
+                            </div>
+                            <div class="online-list" id="onlineEmployeesList">
+                                <div class="online-employee">
+                                    <div class="employee-avatar">T</div>
+                                    <div class="employee-info">
+                                        <div class="employee-name">Theodore Wallis (Chief)</div>
+                                    </div>
+                                    <div class="status-badge">Online</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Employee List Table -->
+                    <div class="employee-table-section">
+                        <h3>Employee List</h3>
+                        <div class="search-container">
+                            <input type="text" id="employeeSearch" placeholder="Search employees..." class="search-input">
+                            <span class="search-icon">🔍</span>
+                        </div>
+                        <div class="table-container">
+                            <table class="employee-table">
+                                <thead>
+                                    <tr>
+                                        <th>NAME</th>
+                                        <th>RANK</th>
+                                        <th>STATUS</th>
+                                        <th>LOCATION</th>
+                                        <th>PLAY TIME</th>
+                                        <th>ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="employeeTableBody">
+                                    <!-- Employee rows will be populated dynamically by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other tabs (hidden by default) -->
+                <div id="analytics" class="tab-pane">
+                    <div class="page-header">
+                        <h2>Analytics</h2>
+                        <p>Department performance metrics and statistics</p>
+                    </div>
+                    
+                    <!-- Analytics Cards Row -->
+                    <div class="analytics-cards-row">
+                        <div class="analytics-card">
+                            <div class="analytics-header">
+                                <h3>Officers On Duty</h3>
+                                <div class="analytics-icon">👮</div>
+                            </div>
+                            <div class="analytics-value" id="officersOnDuty">0</div>
+                            <div class="analytics-subtitle">Currently active</div>
+                        </div>
+                        
+                        <div class="analytics-card">
+                            <div class="analytics-header">
+                                <h3>Total Duty Hours</h3>
+                                <div class="analytics-icon">⏰</div>
+                            </div>
+                            <div class="analytics-value" id="totalDutyHours">0h</div>
+                            <div class="analytics-subtitle">Today's total hours</div>
+                        </div>
+                        
+                        <div class="analytics-card">
+                            <div class="analytics-header">
+                                <h3>Weekly Hours</h3>
+                                <div class="analytics-icon">📅</div>
+                            </div>
+                            <div class="analytics-value" id="weeklyHours">0h</div>
+                            <div class="analytics-subtitle">This week's total</div>
+                        </div>
+                        
+                        <div class="analytics-card">
+                            <div class="analytics-header">
+                                <h3>Average Duty Time</h3>
+                                <div class="analytics-icon">📊</div>
+                            </div>
+                            <div class="analytics-value" id="avgDutyTime">0h</div>
+                            <div class="analytics-subtitle">Per officer today</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Officers On Duty Section -->
+                    <div class="officers-section">
+                        <div class="chart-panel">
+                            <div class="chart-header">
+                                <h3>👮 Officers On Duty</h3>
+                                <div class="officer-count" id="officerCount">0 officers</div>
+                            </div>
+                            <div class="duty-officers-list" id="dutyOfficersList">
+                                <div class="no-data">No officers currently on duty</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="employees" class="tab-pane">
+                    <div class="page-header">
+                        <h2>Disciplinary Actions</h2>
+                        <p>Manage officer disciplinary records and actions</p>
+                    </div>
+                    
+                    <!-- Search and Filter Section -->
+                    <div class="disciplinary-search-section">
+                        <div class="search-container">
+                            <input type="text" id="officerSearch" placeholder="Search officers by name..." class="search-input">
+                            <span class="search-icon">🔍</span>
+                        </div>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">All Officers</button>
+                            <button class="filter-btn" data-filter="clean">Clean Record</button>
+                            <button class="filter-btn" data-filter="strikes">With Strikes</button>
+                            <button class="filter-btn" data-filter="suspended">Suspended</button>
+                        </div>
+                    </div>
+
+                    <!-- Disciplinary Actions Content -->
+                    <div class="disciplinary-content">
+                        <!-- Officers List - Always Visible -->
+                        <div class="officers-list-section">
+                            <h3>Officers</h3>
+                            <div class="officers-grid" id="officersGrid">
+                                <!-- Officers will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <div id="hire" class="tab-pane">
+                    <div class="page-header">
+                        <h2>Recruitment Center</h2>
+                        <p>Find and hire new officers from nearby citizens</p>
+                    </div>
+                    
+                    <!-- Recruitment Stats -->
+                    <div class="recruitment-stats">
+                        <div class="recruitment-stat">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="nearbyCitizens">0</div>
+                                <div class="stat-label">Nearby Citizens</div>
+                            </div>
+                        </div>
+                        <div class="recruitment-stat">
+                            <div class="stat-icon">📋</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="pendingApplications">0</div>
+                                <div class="stat-label">Applications</div>
+                            </div>
+                        </div>
+                        <div class="recruitment-stat">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="hiredThisWeek">0</div>
+                                <div class="stat-label">Hired This Week</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Character Search Section -->
+                    <div class="character-search-section">
+                        <h3>Search Characters</h3>
+                        <p class="search-description">Search for any character by name to hire them directly</p>
+                        <div class="search-container character-search">
+                            <input type="text" id="characterSearchInput" placeholder="Search by first or last name..." class="search-input">
+                            <button id="characterSearchBtn" class="btn-search">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                    <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/>
+                                </svg>
+                                Search
+                            </button>
+                        </div>
+                        <div class="search-results" id="characterSearchResults">
+                            <p class="search-hint">Type a name and click search to find characters</p>
+                        </div>
+                    </div>
+
+                    <!-- Citizens List -->
+                    <div class="citizens-section">
+                        <h3>Nearby Citizens</h3>
+                        <div class="citizens-list" id="playerList">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="funds" class="tab-pane">
+                    <div class="page-header">
+                        <h2>Funds Management</h2>
+                        <p>Manage department finances</p>
+                    </div>
+                    
+                    <!-- Compact Financial Overview -->
+                    <div class="funds-overview-compact">
+                        <div class="funds-main-card">
+                            <div class="funds-balance">
+                                <div class="balance-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+                                    </svg>
+                                </div>
+                                <div class="balance-info">
+                                    <div id="currentFunds" class="balance-amount">$54,000</div>
+                                    <div class="balance-label">Department Funds</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="funds-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Monthly Budget</span>
+                                <span class="stat-value">$25,000</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">This Month</span>
+                                <span class="stat-value positive">+$2,500</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Compact Transaction Controls -->
+                    <div class="transaction-controls-compact">
+                        <div class="transaction-row">
+                            <div class="transaction-input">
+                                <label>Deposit Amount</label>
+                                <div class="input-group-inline">
+                                    <input type="number" id="depositAmount" placeholder="0.00" min="1" step="0.01">
+                                    <select id="depositReason">
+                                        <option value="budget_allocation">Budget Allocation</option>
+                                        <option value="revenue_collection">Revenue Collection</option>
+                                        <option value="grant_funding">Grant Funding</option>
+                                        <option value="donation">Donation</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <button id="depositBtn" class="btn-deposit-compact">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                                        </svg>
+                                        Deposit
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="transaction-input">
+                                <label>Withdraw Amount</label>
+                                <div class="input-group-inline">
+                                    <input type="number" id="withdrawAmount" placeholder="0.00" min="1" step="0.01">
+                                    <select id="withdrawReason">
+                                        <option value="equipment_purchase">Equipment Purchase</option>
+                                        <option value="maintenance">Maintenance</option>
+                                        <option value="training">Training</option>
+                                        <option value="operational_expenses">Operational Expenses</option>
+                                        <option value="emergency_fund">Emergency Fund</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <button id="withdrawBtn" class="btn-withdraw-compact">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                                        </svg>
+                                        Withdraw
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Compact Transaction History -->
+                    <div class="transaction-history-compact">
+                        <div class="history-header">
+                            <h3>Recent Transactions</h3>
+                            <div class="history-controls">
+                                <button id="exportTransactions" class="btn-small">Export</button>
+                            </div>
+                        </div>
+                        
+                        <div class="transaction-list" id="transactionHistory">
+                            <!-- Transaction history will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export Transactions Modal -->
+                <div id="exportModal" class="modal hidden">
+                    <div class="modal-content large-modal">
+                        <div class="modal-header">
+                            <h2>Export Transactions</h2>
+                            <button class="modal-close" onclick="closeExportModal()">×</button>
+                        </div>
+                        <div class="modal-body" style="overflow-y: auto;">
+                            <!-- Filters -->
+                            <div class="export-filters">
+                                <div class="filter-row">
+                                    <div class="filter-group">
+                                        <label>Date Range</label>
+                                        <div class="date-range-inputs">
+                                            <input type="date" id="exportStartDate" placeholder="Start Date" onchange="applyExportFilters()">
+                                            <span>to</span>
+                                            <input type="date" id="exportEndDate" placeholder="End Date" onchange="applyExportFilters()">
+                                            <button class="btn-small" onclick="setTodayFilter()">Today</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter-row">
+                                    <div class="filter-group">
+                                        <label>Officer Name</label>
+                                        <input type="text" id="exportOfficerName" placeholder="Search by officer name" oninput="debouncedApplyFilters()">
+                                    </div>
+                                    <div class="filter-group">
+                                        <label>Type</label>
+                                        <select id="exportType" onchange="applyExportFilters()">
+                                            <option value="all">All</option>
+                                            <option value="deposit">Deposit</option>
+                                            <option value="withdraw">Withdraw</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Preview Table -->
+                            <div class="export-preview">
+                                <div class="export-preview-header">
+                                    <h4>Transactions (<span id="exportCount">0</span> records)</h4>
+                                </div>
+                                <div class="export-table-container">
+                                    <table class="export-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Date/Time</th>
+                                                <th>Officer</th>
+                                                <th>Type</th>
+                                                <th>Reason</th>
+                                                <th>Amount</th>
+                                                <th>Balance After</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="exportTableBody">
+                                            <tr><td colspan="6" class="no-data">Loading transactions...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div id="settings" class="tab-pane">
+                    <div class="page-header">
+                        <h2>Settings</h2>
+                        <p>Configure department settings and rank management</p>
+                    </div>
+                    <div class="settings-grid">
+                        <div class="settings-card" onclick="openRankModal()">
+                            <h3>Rank Management</h3>
+                            <p>Manage rank structure and permissions</p>
+                        </div>
+                        <div class="settings-card" onclick="openThemeModal()">
+                            <h3>Theme / Appearance</h3>
+                            <p>Customize menu colors and appearance</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Employee Edit Modal -->
+    <div id="employeeEditModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Employee</h2>
+                <button class="modal-close" onclick="closeEmployeeEditModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="employee-edit-form">
+                    <div class="employee-info-section">
+                        <div class="employee-avatar-large" id="editEmployeeAvatar">T</div>
+                        <div class="employee-details">
+                            <h3 id="editEmployeeName">Theodore Wallis</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label>Current Rank:</label>
+                        <div class="current-rank-display">
+                            <div class="rank-badge-large" id="currentRankBadge">Chief</div>
+                            <div class="rank-grade" id="currentRankGrade">Grade 4</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label>Select New Rank:</label>
+                        <div class="rank-selection-grid" id="rankSelectionGrid">
+                            <!-- Rank cards will be populated by JavaScript -->
+                        </div>
+                        <div class="rank-change-preview" id="rankChangePreview" style="display: none;">
+                            <span class="preview-label">Selected Rank:</span>
+                            <span class="preview-rank" id="previewRank"></span>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="modal-actions">
+                        <button class="btn btn-save" onclick="saveEmployeeChanges()">Save Changes</button>
+                        <button class="btn btn-fire" onclick="fireEmployeeFromModal()">Fire Employee</button>
+                        <button class="btn btn-cancel" onclick="closeEmployeeEditModal()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rank Management Modal -->
+    <div id="rankManagementModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Rank Management</h2>
+                <button class="modal-close" onclick="closeRankModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-actions" style="margin-bottom: 20px; text-align: right;">
+                    <button class="btn btn-primary" onclick="saveRankPermissions()" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px;">
+                        Save Changes
+                    </button>
+                </div>
+                <div class="ranks-grid">
+                    <div class="rank-card" data-grade="1">
+                        <div class="rank-header">
+                            <h3>Cadet</h3>
+                            <span class="grade-badge">Grade 1</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                    <div class="rank-card" data-grade="2">
+                        <div class="rank-header">
+                            <h3>Probationary Officer</h3>
+                            <span class="grade-badge">Grade 2</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                    <div class="rank-card" data-grade="3">
+                        <div class="rank-header">
+                            <h3>Officer</h3>
+                            <span class="grade-badge">Grade 3</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                    <div class="rank-card" data-grade="4">
+                        <div class="rank-header">
+                            <h3>Senior Officer</h3>
+                            <span class="grade-badge">Grade 4</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                    <div class="rank-card" data-grade="5">
+                        <div class="rank-header">
+                            <h3>Corporal</h3>
+                            <span class="grade-badge">Grade 5</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                    <div class="rank-card" data-grade="6">
+                        <div class="rank-header">
+                            <h3>Sergeant</h3>
+                            <span class="grade-badge">Grade 6</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                    <div class="rank-card" data-grade="7">
+                        <div class="rank-header">
+                            <h3>Staff Sergeant</h3>
+                            <span class="grade-badge">Grade 7</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                    <div class="rank-card" data-grade="8">
+                        <div class="rank-header">
+                            <h3>Lieutenant</h3>
+                            <span class="grade-badge">Grade 8</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                    <div class="rank-card" data-grade="9">
+                        <div class="rank-header">
+                            <h3>Captain</h3>
+                            <span class="grade-badge">Grade 9</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                    <div class="rank-card" data-grade="10">
+                        <div class="rank-header">
+                            <h3>Major</h3>
+                            <span class="grade-badge">Grade 10</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                    <div class="rank-card" data-grade="11">
+                        <div class="rank-header">
+                            <h3>Commander</h3>
+                            <span class="grade-badge">Grade 11 (Boss)</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                    <div class="rank-card" data-grade="12">
+                        <div class="rank-header">
+                            <h3>Deputy Chief</h3>
+                            <span class="grade-badge">Grade 12 (Boss)</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                    <div class="rank-card" data-grade="13">
+                        <div class="rank-header">
+                            <h3>Assistant Chief</h3>
+                            <span class="grade-badge">Grade 13 (Boss)</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                    <div class="rank-card" data-grade="14">
+                        <div class="rank-header">
+                            <h3>Chief</h3>
+                            <span class="grade-badge">Grade 14 (Boss)</span>
+                        </div>
+                        <div class="permissions">
+                            <label><input type="checkbox"> View Banking Information</label>
+                            <label><input type="checkbox"> View Disciplinary Tab</label>
+                            <label><input type="checkbox"> Hire Employees</label>
+                            <label><input type="checkbox"> Fire Employees</label>
+                            <label><input type="checkbox"> Change Ranks</label>
+                            <label><input type="checkbox"> Access Settings</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Individual Officer Hours Modal -->
+    <div id="officerHoursModal" class="modal hidden">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h2 id="officerHoursName">Officer Hours</h2>
+                <button class="modal-close" onclick="closeOfficerHoursModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <!-- Officer Info Header -->
+                <div class="officer-hours-header">
+                    <div class="officer-avatar-large" id="officerHoursAvatar">T</div>
+                    <div class="officer-details">
+                        <h3 id="officerHoursNameFull">Officer Name</h3>
+                        <p id="officerHoursRank">Rank</p>
+                        <div class="officer-stats">
+                            <div class="stat-card">
+                                <span class="stat-label">This Week</span>
+                                <span class="stat-value" id="weeklyHours">0h 0m</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">Today</span>
+                                <span class="stat-value" id="dailyHours">0h 0m</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">Current Shift</span>
+                                <span class="stat-value" id="currentShift">0h 0m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Individual Officer Activity Chart -->
+                <div class="officer-chart-section">
+                    <div class="chart-header">
+                        <h4>📊 Individual Activity Chart</h4>
+                        <div class="officer-live-indicator">
+                            <span class="live-dot"></span>
+                            <span>LIVE</span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="officerActivityChart" width="400" height="250"></canvas>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #6366F1;"></span>
+                            <span>⏰ Duty Hours</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #10B981;"></span>
+                            <span>🕐 Clock In/Out</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #F59E0B;"></span>
+                            <span>📈 Activity Level</span>
+                        </div>
+                    </div>
+                    <div class="officer-activity-stats">
+                        <div class="activity-stat">
+                            <span class="stat-label">Today's Activity:</span>
+                            <span class="stat-value" id="todayActivity">0h 0m</span>
+                        </div>
+                        <div class="activity-stat">
+                            <span class="stat-label">Peak Hour:</span>
+                            <span class="stat-value" id="peakHour">N/A</span>
+                        </div>
+                        <div class="activity-stat">
+                            <span class="stat-label">Total Shifts:</span>
+                            <span class="stat-value" id="totalShifts">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar Navigation -->
+                <div class="calendar-navigation">
+                    <h4>📅 Daily Breakdown</h4>
+                    <div class="calendar-controls">
+                        <button id="prevWeekBtn" class="calendar-btn">← Previous Week</button>
+                        <input type="date" id="datePicker" class="date-picker">
+                        <button id="nextWeekBtn" class="calendar-btn">Next Week →</button>
+                        <button id="todayBtn" class="calendar-btn today-btn">Today</button>
+                    </div>
+                </div>
+
+                <!-- Daily Breakdown -->
+                <div class="daily-breakdown">
+                    <div class="days-list" id="dailyBreakdownList">
+                        <!-- Daily entries will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Shift History -->
+                <div class="shift-history">
+                    <h4>🕐 Recent Shifts</h4>
+                    <div class="shifts-list" id="shiftsList">
+                        <!-- Shift entries will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Officer Disciplinary Actions Modal -->
+    <div id="officerDisciplinaryModal" class="modal hidden">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h2 id="modalOfficerName">Officer Disciplinary Actions</h2>
+                <button class="modal-close" onclick="closeOfficerDisciplinaryModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <!-- Officer Info -->
+                <div class="modal-officer-info">
+                    <div class="modal-officer-avatar" id="modalOfficerAvatar">T</div>
+                    <div class="modal-officer-details">
+                        <h3 id="modalOfficerNameFull">Officer Name</h3>
+                        <p id="modalOfficerRank">Rank</p>
+                        <div class="modal-officer-status">
+                            <span class="status-badge" id="modalOfficerStatus">Clean</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Disciplinary Actions Tabs -->
+                <div class="modal-disciplinary-tabs">
+                    <div class="modal-tab-buttons">
+                        <button class="modal-tab-btn active" data-tab="actions" onclick="switchModalDisciplinaryTab('actions')">
+                            Actions
+                        </button>
+                        <button class="modal-tab-btn" data-tab="history" onclick="switchModalDisciplinaryTab('history')">
+                            History
+                        </button>
+                    </div>
+                    
+                    <!-- Actions Tab -->
+                    <div class="modal-tab-content active" id="modalActionsTab">
+                        <div class="modal-actions-header">
+                            <h4>Current Disciplinary Actions</h4>
+                            <button class="btn-add-action" onclick="openAddDisciplinaryModal()">
+                                <span>+</span> Add Action
+                            </button>
+                        </div>
+                        <div class="modal-actions-list" id="modalDisciplinaryActionsList">
+                            <div class="no-data">No disciplinary actions on record</div>
+                        </div>
+                    </div>
+                    
+                    <!-- History Tab -->
+                    <div class="modal-tab-content" id="modalHistoryTab">
+                        <div class="modal-history-header">
+                            <h4>Disciplinary History</h4>
+                        </div>
+                        <div class="modal-history-list" id="modalDisciplinaryHistoryList">
+                            <div class="no-data">No disciplinary history on record</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Disciplinary Action Modal -->
+    <div id="addDisciplinaryModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Disciplinary Action</h2>
+                <button class="modal-close" onclick="closeAddDisciplinaryModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="disciplinary-form">
+                    <div class="form-section">
+                        <label for="disciplinaryOfficerSelect">Select Officer:</label>
+                        <select id="disciplinaryOfficerSelect" class="officer-select">
+                            <option value="">Choose an officer...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label for="disciplinaryType">Action Type:</label>
+                        <select id="disciplinaryType" class="action-type-select">
+                            <option value="verbal_warning">Verbal Warning</option>
+                            <option value="written_warning">Written Warning</option>
+                            <option value="strike_1">Strike 1</option>
+                            <option value="strike_2">Strike 2</option>
+                            <option value="strike_3">Strike 3</option>
+                            <option value="suspension">Suspension</option>
+                            <option value="termination">Termination</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label for="disciplinaryReason">Reason:</label>
+                        <textarea id="disciplinaryReason" placeholder="Enter the reason for this disciplinary action..." rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label for="disciplinaryIssuedBy">Issued By:</label>
+                        <input type="text" id="disciplinaryIssuedBy" placeholder="Your name" readonly>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label for="disciplinaryDate">Date:</label>
+                        <input type="date" id="disciplinaryDate">
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="btn btn-save" onclick="saveDisciplinaryAction();">Add Action</button>
+                        <button class="btn btn-cancel" onclick="closeAddDisciplinaryModal()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Customization Modal -->
+    <div id="themeModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Theme Customization</h2>
+                <button class="modal-close" onclick="closeThemeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="theme-form">
+                    <h3 style="margin-bottom: 15px; color: var(--text-primary);">Accent Colors</h3>
+
+                    <div class="form-section">
+                        <label>Primary Accent Color:</label>
+                        <div class="color-picker-row">
+                            <input type="color" id="primaryColorPicker" value="#5078F2">
+                            <span id="primaryColorValue">#5078F2</span>
+                            <button class="btn btn-save" onclick="saveTheme()" style="margin-left: 10px; padding: 8px 16px; font-size: 13px;">Apply</button>
+                        </div>
+                        <p style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">Used for buttons, highlights, and active states</p>
+                    </div>
+
+                    <h3 style="margin: 20px 0 15px 0; color: var(--text-primary);">Background Colors</h3>
+
+                    <div class="form-section">
+                        <label>Primary Background:</label>
+                        <div class="color-picker-row">
+                            <input type="color" id="primaryBgPicker" value="#1a1a2e">
+                            <span id="primaryBgValue">#1a1a2e</span>
+                            <button class="btn btn-save" onclick="saveTheme()" style="margin-left: 10px; padding: 8px 16px; font-size: 13px;">Apply</button>
+                        </div>
+                        <p style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">Main background color for cards and panels</p>
+                    </div>
+
+                    <div class="form-section">
+                        <label>Secondary Background:</label>
+                        <div class="color-picker-row">
+                            <input type="color" id="secondaryBgPicker" value="#16213e">
+                            <span id="secondaryBgValue">#16213e</span>
+                            <button class="btn btn-save" onclick="saveTheme()" style="margin-left: 10px; padding: 8px 16px; font-size: 13px;">Apply</button>
+                        </div>
+                        <p style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">Secondary background for sidebar and headers</p>
+                    </div>
+
+                    <div class="form-section">
+                        <label>Tertiary Background:</label>
+                        <div class="color-picker-row">
+                            <input type="color" id="tertiaryBgPicker" value="#0f0f23">
+                            <span id="tertiaryBgValue">#0f0f23</span>
+                            <button class="btn btn-save" onclick="saveTheme()" style="margin-left: 10px; padding: 8px 16px; font-size: 13px;">Apply</button>
+                        </div>
+                        <p style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">Darkest background for depth and contrast</p>
+                    </div>
+
+                    <div class="form-section">
+                        <label>Sidebar Background:</label>
+                        <div class="color-picker-row">
+                            <input type="color" id="sidebarBgPicker" value="#0f172a">
+                            <span id="sidebarBgValue">#0f172a</span>
+                            <button class="btn btn-save" onclick="saveTheme()" style="margin-left: 10px; padding: 8px 16px; font-size: 13px;">Apply</button>
+                        </div>
+                        <p style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">Sidebar and navigation panel background</p>
+                    </div>
+
+                    <div class="theme-preview">
+                        <h4>Live Preview</h4>
+                        <div class="preview-container" style="background: var(--tertiary-bg); padding: 15px; border-radius: 8px; margin-top: 10px;">
+                            <!-- Mini Sidebar Preview -->
+                            <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                                <div class="preview-sidebar" style="background: var(--sidebar-bg, var(--tertiary-bg)); padding: 15px; border-radius: 6px; width: 120px;">
+                                    <div style="text-align: center; margin-bottom: 10px;">
+                                        <div style="width: 30px; height: 30px; background: var(--accent-primary); border-radius: 50%; margin: 0 auto 5px;"></div>
+                                        <div style="font-size: 11px; color: var(--text-muted);">ONLINE</div>
+                                    </div>
+                                    <div style="background: var(--primary-bg); padding: 8px; border-radius: 4px; margin-bottom: 8px; font-size: 11px;">Dashboard</div>
+                                    <div style="background: var(--accent-primary); padding: 8px; border-radius: 4px; margin-bottom: 8px; font-size: 11px; color: white;">Settings</div>
+                                    <div style="background: var(--primary-bg); padding: 8px; border-radius: 4px; font-size: 11px;">Funds</div>
+                                </div>
+
+                                <!-- Main Content Preview -->
+                                <div style="flex: 1;">
+                                    <div class="preview-header" style="background: var(--secondary-bg); padding: 10px; border-radius: 6px; margin-bottom: 10px;">
+                                        <div style="font-size: 12px; font-weight: bold;">Dashboard Header</div>
+                                    </div>
+                                    <div class="preview-card" style="background: var(--primary-bg); padding: 15px; border-radius: 6px; border: 1px solid var(--accent-primary);">
+                                        <div style="font-size: 11px; margin-bottom: 8px;">Sample Card Content</div>
+                                        <button class="preview-btn" style="background: var(--accent-primary); color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 11px; cursor: pointer;">Action Button</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button class="btn btn-secondary" onclick="resetTheme()">Reset to Default</button>
+                        <button class="btn btn-cancel" onclick="closeThemeModal()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="animations.js?v=10"></script>
+    <script src="time_tracking.js?v=10"></script>
+    <script src="transaction_display.js?v=10"></script>
+    <script src="script.js?v=13"></script>
+</body>
+</html>

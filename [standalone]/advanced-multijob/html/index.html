@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiJob Menu</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="multijob-container" class="hidden">
+        <div class="menu-overlay">
+            <div class="menu-header">
+                <div class="header-left">
+                    <span class="header-icon">💼</span>
+                    <span class="header-title">MultiJob</span>
+                </div>
+                <button class="close-btn" id="closeBtn">✕</button>
+            </div>
+
+            <div class="menu-content">
+                <!-- Current Job Section -->
+                <div class="section current-job-section">
+                    <div class="section-header">
+                        <span class="section-icon">👤</span>
+                        <span class="section-title">Current Job</span>
+                    </div>
+                    <div class="job-card current-job-card">
+                        <div class="job-info">
+                            <div class="job-name" id="currentJobName">-</div>
+                            <button class="advanced-btn" id="advancedBtn">Advanced</button>
+                        </div>
+                        <div class="job-status">
+                            <span class="status-icon" id="statusIcon">⚡</span>
+                            <span class="status-text" id="statusText">On Duty</span>
+                        </div>
+                        <button class="duty-btn" id="dutyBtn">
+                            <span class="duty-icon">👁</span>
+                            <span>Go Off Duty</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Your Jobs Section -->
+                <div class="section your-jobs-section">
+                    <div class="section-header">
+                        <span class="section-icon">📋</span>
+                        <span class="section-title">Your Jobs</span>
+                        <span class="job-count" id="jobCount">0 jobs</span>
+                    </div>
+                    <div class="jobs-list" id="jobsList">
+                        <!-- Jobs will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quit Job Confirmation Modal -->
+    <div id="quitConfirmModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quit Job</h3>
+            </div>
+            <div class="modal-body">
+                <p id="quitConfirmText">Are you sure you want to quit/resign from this job?</p>
+                <p class="modal-warning">This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-cancel" id="quitCancelBtn">Cancel</button>
+                <button class="modal-btn modal-btn-confirm" id="quitConfirmBtn">Quit Job</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

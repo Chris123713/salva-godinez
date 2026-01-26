@@ -1,0 +1,6 @@
+<timecycle_modifier_data version="1.000000">
+    <modifier name="av_timecycle" numMods="2" userFlags="0">
+        <fog_start>73.000 0.000</fog_start>
+        <fog_density>1.000 0.000</fog_density>
+    </modifier>
+</timecycle_modifier_data>

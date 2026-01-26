@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paintball System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Lobby UI -->
+    <div id="lobby-container" class="hidden">
+        <div class="lobby-header">
+            <div class="lobby-gamemode-container">
+                <div class="lobby-gamemode" id="lobby-gamemode">Team Deathmatch</div>
+            </div>
+            <div id="lobby-wager-badge" class="lobby-wager-badge hidden" style="display: none;"></div>
+            <button class="close-btn" id="close-lobby">✕</button>
+        </div>
+        
+        <div class="lobby-content">
+            <!-- Player Info -->
+            <div class="player-info">
+                <div class="prestige-info">
+                    <span class="prestige-icon" id="lobby-prestige-icon">🛡️</span>
+                    <span id="lobby-prestige-level">Prestige 0 • Lv. 1</span>
+                </div>
+                <div class="xp-info">
+                    <span id="lobby-xp-text">XP this level: 0 / 1000 (Total: 0)</span>
+                    <div class="xp-bar">
+                        <div class="xp-progress" id="lobby-xp-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lobby Actions -->
+            <div class="lobby-actions">
+                <button class="action-btn start-btn" id="start-match" style="display: none;">
+                    <span class="icon">🏁</span>
+                    <span>Start Match</span>
+                    <span class="check">✓</span>
+                </button>
+                
+                <button class="action-btn leave-btn" id="leave-lobby">
+                    <span class="icon">🚪</span>
+                    <span>Leave Lobby</span>
+                    <p>Exit this lobby and return to the lobby browser.</p>
+                </button>
+            </div>
+            
+            <!-- Teams -->
+            <div class="teams-section">
+                <div class="team-panel red-team" id="red-team">
+                    <div class="team-header">
+                        <span class="team-icon">👥</span>
+                        <span class="team-name">Leave Red Team</span>
+                        <span class="team-count" id="red-count">1/12</span>
+                    </div>
+                    <div class="team-players" id="red-players"></div>
+                </div>
+                
+                <div class="team-panel blue-team" id="blue-team">
+                    <div class="team-header">
+                        <span class="team-icon">👥</span>
+                        <span class="team-name">Join Blue Team</span>
+                        <span class="team-count" id="blue-count">0/12</span>
+                    </div>
+                    <div class="team-players" id="blue-players"></div>
+                </div>
+            </div>
+            
+            <!-- Match Settings -->
+            <div class="match-settings">
+                <div class="setting-item" id="kill-count-setting">
+                    <span class="setting-icon">🎯</span>
+                    <div class="setting-content">
+                        <span class="setting-label">Kills to Win</span>
+                        <span class="setting-value" id="kill-count-value">3 kills</span>
+                    </div>
+                    <span class="setting-arrow">→</span>
+                </div>
+                
+                <div class="setting-item" id="wager-setting">
+                    <span class="setting-icon">💰</span>
+                    <div class="setting-content">
+                        <span class="setting-label">Wager Amount</span>
+                        <span class="setting-value" id="wager-value">$0</span>
+                    </div>
+                    <span class="setting-arrow">→</span>
+                </div>
+                
+                <div class="setting-item" id="weapon-setting">
+                    <span class="setting-icon">🔫</span>
+                    <div class="setting-content">
+                        <span class="setting-label">Weapon</span>
+                        <span class="setting-value" id="weapon-value">Revolver</span>
+                    </div>
+                    <span class="setting-arrow">→</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Match Scoreboard -->
+    <div id="scoreboard-container" class="hidden">
+        <div class="scoreboard-header">
+            <h2 id="match-mode">Team Deathmatch</h2>
+        </div>
+        <div class="scoreboard-content">
+            <div class="team-scores">
+                <div class="team-score red-score">
+                    <div class="score-number" id="red-score">0</div>
+                    <div class="score-team">RED TEAM</div>
+                    <div class="score-dot red-dot"></div>
+                </div>
+                <div class="team-score blue-score">
+                    <div class="score-number" id="blue-score">0</div>
+                    <div class="score-team">BLUE TEAM</div>
+                    <div class="score-dot blue-dot"></div>
+                </div>
+            </div>
+            <div class="player-stats">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PLAYER</th>
+                            <th>K</th>
+                            <th>D</th>
+                            <th>KD</th>
+                            <th>POINTS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="player-stats-body"></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="scoreboard-footer">
+            <span>Paintball</span>
+            <div class="scoreboard-actions">
+                <button id="leave-practice-btn" class="leave-practice-btn hidden" style="display: none;">
+                    <span class="icon">🚪</span>
+                    <span>Leave Practice</span>
+                </button>
+                <div id="vote-end-match-container" class="vote-end-match-container hidden" style="display: none;">
+                    <button id="vote-yes-btn" class="vote-btn vote-yes-btn">
+                        <span class="icon">✓</span>
+                        <span>Yes</span>
+                    </button>
+                    <button id="vote-no-btn" class="vote-btn vote-no-btn">
+                        <span class="icon">✗</span>
+                        <span>No</span>
+                    </button>
+                    <div id="vote-status" class="vote-status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Menu -->
+    <div id="main-menu-container" class="hidden">
+        <div class="main-menu-header">
+            <div class="main-menu-title">
+                <span class="menu-icon">🎯</span>
+                <span>Paintball Arena</span>
+            </div>
+            <button class="close-btn" id="close-main-menu">✕</button>
+        </div>
+        <div class="main-menu-content">
+            <!-- Player Stats & Progression Display -->
+            <div class="player-progression-card">
+                <div class="progression-header">
+                    <div class="prestige-badge" id="prestige-badge">
+                        <span class="prestige-icon" id="prestige-icon">⭐</span>
+                        <span class="prestige-level" id="prestige-level">Prestige 0</span>
+                    </div>
+                    <div class="rank-display" id="rank-display">
+                        <span class="rank-insignia" id="rank-insignia">🎖️</span>
+                        <span class="rank-name" id="rank-name">Rookie</span>
+                    </div>
+                </div>
+                <div class="progression-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Level</span>
+                        <span class="stat-value" id="player-level">1</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">XP</span>
+                        <span class="stat-value" id="player-xp">0 / 1000</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Ranked Rating</span>
+                        <span class="stat-value" id="ranked-rating">Unranked</span>
+                    </div>
+                </div>
+                <div class="xp-progress-bar">
+                    <div class="xp-progress-fill" id="xp-progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <div class="menu-option" id="menu-ranked-pvp">
+                <div class="menu-option-icon">⚔️</div>
+                <div class="menu-option-content">
+                    <div class="menu-option-title">Ranked PvP</div>
+                    <div class="menu-option-desc">Competitive matches with ranking system</div>
+                </div>
+                <div class="menu-option-badge" id="ranked-badge">Coming Soon</div>
+                <div class="menu-option-arrow">→</div>
+            </div>
+            
+            <!-- Active Lobbies Section -->
+            <div class="lobbies-section">
+                <div class="lobbies-header">
+                    <span class="lobbies-title">Active Lobbies</span>
+                </div>
+                <div class="lobbies-list" id="lobbies-list">
+                    <div class="no-lobbies-message">Loading lobbies...</div>
+                </div>
+            </div>
+            
+            <div class="menu-option" id="menu-create-match">
+                <div class="menu-option-icon">👥</div>
+                <div class="menu-option-content">
+                    <div class="menu-option-title">Create Match</div>
+                    <div class="menu-option-desc">Create a new paintball match lobby</div>
+                </div>
+                <div class="menu-option-arrow">→</div>
+            </div>
+            <div class="menu-option" id="menu-practice-mode">
+                <div class="menu-option-icon">🤖</div>
+                <div class="menu-option-content">
+                    <div class="menu-option-title">Practice Mode (AI)</div>
+                    <div class="menu-option-desc">Train against AI opponents</div>
+                </div>
+                <div class="menu-option-arrow">→</div>
+            </div>
+            <div class="menu-option" id="menu-leaderboard">
+                <div class="menu-option-icon">🏆</div>
+                <div class="menu-option-content">
+                    <div class="menu-option-title">View Leaderboard</div>
+                    <div class="menu-option-desc">View paintball statistics and rankings</div>
+                </div>
+                <div class="menu-option-arrow">→</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Mode Selection Menu -->
+    <div id="gamemode-menu-container" class="hidden">
+        <div class="main-menu-header">
+            <div class="main-menu-title">
+                <span class="menu-icon">🎮</span>
+                <span>Select Game Mode</span>
+            </div>
+            <button class="close-btn" id="close-gamemode-menu">✕</button>
+        </div>
+        <div class="main-menu-content" id="gamemode-options">
+            <!-- Game modes will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- AI Practice Mode Settings Menu -->
+    <div id="practice-settings-container" class="hidden">
+        <div class="main-menu-header">
+            <div class="main-menu-title">
+                <span class="menu-icon">🤖</span>
+                <span>Practice Mode</span>
+                <span style="font-size: 14px; font-weight: 400; color: rgba(255, 170, 68, 0.7); margin-left: 8px;">Training Arena</span>
+            </div>
+            <div class="main-menu-header-actions">
+                <button class="back-btn" id="back-practice-settings">
+                    <span class="back-icon">←</span>
+                    <span class="back-text">Back</span>
+                </button>
+                <button class="close-btn" id="close-practice-settings">✕</button>
+            </div>
+        </div>
+        <div class="main-menu-content practice-settings-scrollable">
+            <!-- Progression Rewards Display (for future XP/rank gains) -->
+            <div class="practice-progression-notice" id="practice-progression-notice" style="display: none;">
+                <div class="progression-notice-icon">📈</div>
+                <div class="progression-notice-content">
+                    <div class="progression-notice-title">Training Rewards</div>
+                    <div class="progression-notice-desc">Earn XP and progress your rank</div>
+                </div>
+            </div>
+            
+            <!-- General Settings Section -->
+            <div class="practice-settings-section">
+                <div class="practice-section-title">General Settings</div>
+                
+                <!-- Weapon Selection -->
+                <div class="practice-setting-item" id="practice-weapon-setting">
+                    <div class="practice-setting-icon">🔫</div>
+                    <div class="practice-setting-content">
+                        <div class="practice-setting-label">Weapon</div>
+                        <div class="practice-setting-desc">Choose your paintball weapon for practice</div>
+                        <div class="practice-setting-value" id="practice-weapon-value">Pistol</div>
+                    </div>
+                    <div class="practice-setting-arrow">→</div>
+                </div>
+                
+                <!-- Health System -->
+                <div class="practice-setting-item" id="practice-health-setting">
+                    <div class="practice-setting-icon">❤️</div>
+                    <div class="practice-setting-content">
+                        <div class="practice-setting-label">Health System</div>
+                        <div class="practice-setting-desc">Restore health or armor when killing AI bots</div>
+                        <div class="practice-toggle-wrapper">
+                            <label class="practice-toggle">
+                                <input type="checkbox" id="practice-health-toggle" />
+                                <span class="practice-toggle-slider"></span>
+                            </label>
+                            <div class="practice-health-wrapper" id="practice-health-wrapper" style="display: none;">
+                                <!-- Health System Type Selection -->
+                                <div class="practice-health-type-menu" id="practice-health-type-menu">
+                                    <div class="practice-health-type-option" data-type="health">
+                                        <div class="practice-health-type-content">
+                                            <div class="practice-health-type-label">Health</div>
+                                            <div class="practice-health-type-desc">Restore health points per kill</div>
+                                        </div>
+                                        <div class="practice-setting-arrow">→</div>
+                                    </div>
+                                    <div class="practice-health-type-option" data-type="armor">
+                                        <div class="practice-health-type-content">
+                                            <div class="practice-health-type-label">Armor</div>
+                                            <div class="practice-health-type-desc">Restore armor points per kill</div>
+                                        </div>
+                                        <div class="practice-setting-arrow">→</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Health Settings Submenu -->
+                                <div class="practice-health-submenu" id="practice-health-submenu" style="display: none;">
+                                    <div class="practice-health-submenu-header">
+                                        <div class="practice-health-back-btn" id="practice-health-back-btn">← Back</div>
+                                        <div class="practice-health-submenu-title">Health Settings</div>
+                                    </div>
+                                    <div class="practice-health-submenu-content">
+                                        <div class="practice-health-submenu-item" id="practice-healthperkill-setting">
+                                            <div class="practice-health-submenu-item-content">
+                                                <div class="practice-health-label-small">Health per Kill</div>
+                                                <div class="practice-health-submenu-desc">Amount of health restored when you kill an AI bot</div>
+                                            </div>
+                                            <div class="practice-setting-value" id="practice-healthperkill-value">0</div>
+                                            <div class="practice-setting-arrow">→</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Armor Settings Submenu -->
+                                <div class="practice-health-submenu" id="practice-armor-submenu" style="display: none;">
+                                    <div class="practice-health-submenu-header">
+                                        <div class="practice-health-back-btn" id="practice-armor-back-btn">← Back</div>
+                                        <div class="practice-health-submenu-title">Armor Settings</div>
+                                    </div>
+                                    <div class="practice-health-submenu-content">
+                                        <div class="practice-health-submenu-item" id="practice-armorperkill-setting">
+                                            <div class="practice-health-submenu-item-content">
+                                                <div class="practice-health-label-small">Armor per Kill</div>
+                                                <div class="practice-health-submenu-desc">Amount of armor restored when you kill an AI bot</div>
+                                            </div>
+                                            <div class="practice-setting-value" id="practice-armorperkill-value">0</div>
+                                            <div class="practice-setting-arrow">→</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="practice-setting-arrow" id="practice-health-main-arrow">→</div>
+                </div>
+            </div>
+            
+            <!-- AI Settings Section -->
+            <div class="practice-settings-section">
+                <div class="practice-section-title">AI Settings</div>
+            </div>
+            
+            <!-- AI Mode Selection Section -->
+            <div class="practice-settings-section">
+                <div class="practice-section-title">AI Mode Selection</div>
+                <div class="practice-mode-selector">
+                    <!-- Mode Options -->
+                    <div class="practice-mode-option active" data-mode="none">
+                        <div class="practice-mode-icon">🎮</div>
+                        <div class="practice-mode-content">
+                            <div class="practice-mode-label">Free Play</div>
+                            <div class="practice-mode-desc">No objectives, just practice</div>
+                        </div>
+                        <div class="practice-mode-check">✓</div>
+                    </div>
+                </div>
+                <div class="practice-coming-soon">
+                    <div class="practice-coming-soon-icon">🚧</div>
+                    <div class="practice-coming-soon-text">More game modes coming soon!</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Start Button (Outside scrollable area) -->
+        <div class="practice-start-btn-wrapper">
+            <button class="practice-start-btn" id="start-practice-btn">
+                <span class="practice-start-icon">▶</span>
+                <span>Start Practice Mode</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Weapon Selection Menu -->
+    <div id="weapon-menu-container" class="hidden">
+        <div class="main-menu-header">
+            <div class="main-menu-title">
+                <span class="menu-icon">🔫</span>
+                <span>Select Weapon</span>
+            </div>
+            <button class="close-btn" id="close-weapon-menu">✕</button>
+        </div>
+        <div class="main-menu-content" id="weapon-categories">
+            <!-- Weapon categories will be dynamically inserted here -->
+        </div>
+        <div class="main-menu-content hidden" id="weapon-list">
+            <!-- Weapons in selected category will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Interaction Prompt -->
+    <!-- Active Lobby Indicator -->
+    <div id="active-lobby-indicator" class="hidden">
+        <div class="lobby-indicator-container">
+            <div class="lobby-indicator-icon">🎯</div>
+            <div class="lobby-indicator-content">
+                <div class="lobby-indicator-title">In Active Lobby</div>
+                <div class="lobby-indicator-desc">Press <span class="key-hint">E</span> to return to lobby</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="interaction-prompt" class="hidden">
+        <div class="interaction-prompt-container">
+            <div class="interaction-key">
+                <span>E</span>
+            </div>
+            <div class="interaction-text">
+                <div class="interaction-title">Open Paintball Arena</div>
+                <div class="interaction-subtitle">Press to access</div>
+            </div>
+            <div class="interaction-icon">🎯</div>
+        </div>
+    </div>
+
+    <!-- Respawn Countdown -->
+    <div id="respawn-countdown-container" class="hidden">
+        <div class="respawn-countdown-content">
+            <div class="respawn-countdown-title">RESPAWNING IN</div>
+            <div class="respawn-countdown-number" id="respawn-countdown-number">5</div>
+            <div class="respawn-countdown-seconds">seconds</div>
+        </div>
+    </div>
+
+    <!-- Round Reset (for 1v1 matches) -->
+    <div id="round-reset-container" class="hidden">
+        <div class="round-reset-content">
+            <div class="round-reset-title">ROUND OVER</div>
+            <div class="round-reset-countdown" id="round-reset-countdown">5</div>
+            <div class="round-reset-subtitle">Next round starting in...</div>
+            <!-- Scoreboard will be shown here -->
+            <div id="round-reset-scoreboard" class="round-reset-scoreboard"></div>
+        </div>
+    </div>
+
+    <!-- Practice Mode HUD -->
+    <div id="practice-hud-container" class="hidden">
+        <div class="practice-hud-panel">
+            <div class="practice-hud-row">
+                <div class="practice-hud-item">
+                    <span class="practice-hud-icon-small">💀</span>
+                    <span class="practice-hud-label-small">Kills</span>
+                    <span class="practice-hud-value-small" id="practice-hud-kills">0</span>
+                </div>
+                <div class="practice-hud-item">
+                    <span class="practice-hud-icon-small">👥</span>
+                    <span class="practice-hud-label-small">Remaining</span>
+                    <span class="practice-hud-value-small" id="practice-hud-remaining">0</span>
+                </div>
+                <div class="practice-hud-item">
+                    <span class="practice-hud-icon-small">⏱️</span>
+                    <span class="practice-hud-label-small">Time</span>
+                    <span class="practice-hud-value-small" id="practice-hud-time">00:00</span>
+                </div>
+            </div>
+            <div class="practice-hud-row">
+                <div class="practice-hud-item">
+                    <span class="practice-hud-icon-small">🎯</span>
+                    <span class="practice-hud-label-small">Accuracy</span>
+                    <span class="practice-hud-value-small" id="practice-hud-accuracy">0%</span>
+                </div>
+                <div class="practice-hud-item">
+                    <span class="practice-hud-icon-small">🔥</span>
+                    <span class="practice-hud-label-small">Streak</span>
+                    <span class="practice-hud-value-small" id="practice-hud-streak">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kill Feed -->
+    <div id="kill-feed-container" class="hidden">
+        <div id="kill-feed-list"></div>
+    </div>
+
+    <!-- Hit Marker (Visual Feedback) -->
+    <div id="hit-marker" class="hidden">
+        <div class="hit-marker-cross"></div>
+        <div class="hit-marker-dot"></div>
+    </div>
+    
+    <!-- Kill Confirmation -->
+    <div id="kill-confirmation" class="hidden">
+        <div class="kill-confirmation-bg"></div>
+        <div class="kill-confirmation-content">
+            <div class="kill-confirmation-text">ELIMINATION</div>
+            <div class="kill-confirmation-subtext" id="kill-confirmation-weapon"></div>
+        </div>
+    </div>
+    
+    <!-- Damage Indicator -->
+    <div id="damage-indicator" class="hidden">
+        <div class="damage-indicator-content" id="damage-amount">-0</div>
+    </div>
+    
+    <!-- Paint Splatter Effect -->
+    <div id="paint-splatter" class="hidden">
+        <div class="splatter-1"></div>
+        <div class="splatter-2"></div>
+        <div class="splatter-3"></div>
+    </div>
+    
+    <!-- Practice Summary Screen -->
+    <div id="practice-summary-container" class="hidden">
+        <div class="practice-summary-content">
+            <div class="practice-summary-header">
+                <div class="practice-summary-title">Practice Session Complete</div>
+                <button class="practice-summary-close" id="close-practice-summary">✕</button>
+            </div>
+            <div class="practice-summary-stats">
+                <div class="practice-summary-stat-row">
+                    <div class="practice-summary-stat">
+                        <div class="practice-summary-stat-icon">💀</div>
+                        <div class="practice-summary-stat-content">
+                            <div class="practice-summary-stat-label">Total Kills</div>
+                            <div class="practice-summary-stat-value" id="summary-kills">0</div>
+                        </div>
+                    </div>
+                    <div class="practice-summary-stat">
+                        <div class="practice-summary-stat-icon">⏱️</div>
+                        <div class="practice-summary-stat-content">
+                            <div class="practice-summary-stat-label">Time Played</div>
+                            <div class="practice-summary-stat-value" id="summary-time">0:00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-summary-stat-row">
+                    <div class="practice-summary-stat">
+                        <div class="practice-summary-stat-icon">🎯</div>
+                        <div class="practice-summary-stat-content">
+                            <div class="practice-summary-stat-label">Accuracy</div>
+                            <div class="practice-summary-stat-value" id="summary-accuracy">0%</div>
+                        </div>
+                    </div>
+                    <div class="practice-summary-stat">
+                        <div class="practice-summary-stat-icon">🔥</div>
+                        <div class="practice-summary-stat-content">
+                            <div class="practice-summary-stat-label">Best Streak</div>
+                            <div class="practice-summary-stat-value" id="summary-streak">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-summary-stat-row">
+                    <div class="practice-summary-stat">
+                        <div class="practice-summary-stat-icon">💥</div>
+                        <div class="practice-summary-stat-content">
+                            <div class="practice-summary-stat-label">Headshots</div>
+                            <div class="practice-summary-stat-value" id="summary-headshots">0</div>
+                        </div>
+                    </div>
+                    <div class="practice-summary-stat">
+                        <div class="practice-summary-stat-icon">⚡</div>
+                        <div class="practice-summary-stat-content">
+                            <div class="practice-summary-stat-label">Kills/Min</div>
+                            <div class="practice-summary-stat-value" id="summary-kpm">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="practice-summary-actions">
+                <button class="practice-summary-btn" id="practice-summary-restart">Play Again</button>
+                <button class="practice-summary-btn secondary" id="practice-summary-exit">Exit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard -->
+    <div id="leaderboard-container" class="hidden">
+        <div class="leaderboard-header">
+            <div class="leaderboard-title">
+                <span class="leaderboard-icon">🏆</span>
+                <h2>PAINTBALL LEADERBOARD</h2>
+            </div>
+            <div class="leaderboard-header-actions">
+                <button class="back-btn" id="back-leaderboard">
+                    <span class="back-icon">←</span>
+                    <span class="back-text">Back</span>
+                </button>
+                <button class="close-btn" id="close-leaderboard">✕</button>
+            </div>
+        </div>
+        <div class="leaderboard-tabs">
+            <div class="leaderboard-tab active" data-tab="overall">
+                <span class="tab-icon">📊</span>
+                <span class="tab-label">Overall Stats</span>
+            </div>
+            <div class="leaderboard-tab" data-tab="ranked">
+                <span class="tab-icon">⚔️</span>
+                <span class="tab-label">Ranked PvP</span>
+            </div>
+        </div>
+        <div class="leaderboard-content" id="leaderboard-overall-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player</th>
+                        <th>Prestige</th>
+                        <th>Level</th>
+                        <th>Kills</th>
+                        <th>Deaths</th>
+                        <th>K/D</th>
+                        <th>Wins</th>
+                        <th>Losses</th>
+                        <th>Win Rate</th>
+                        <th>Matches</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body"></tbody>
+            </table>
+            <div id="leaderboard-empty-state" class="leaderboard-empty-state hidden">
+                <div class="empty-state-icon">🏆</div>
+                <div class="empty-state-title">No Rankings Yet</div>
+                <div class="empty-state-message">Start playing paintball matches to climb the leaderboard and compete for the top spot!</div>
+                <div class="empty-state-action">
+                    <span class="action-icon">🎯</span>
+                    <span class="action-text">Join a match to get started</span>
+                </div>
+            </div>
+        </div>
+        <div class="leaderboard-content hidden" id="leaderboard-ranked-content">
+            <div class="leaderboard-coming-soon">
+                <div class="coming-soon-icon">🚧</div>
+                <div class="coming-soon-title">Ranked PvP Leaderboard</div>
+                <div class="coming-soon-desc">Competitive ranked matches with rating-based matchmaking coming soon!</div>
+                <div class="coming-soon-features">
+                    <div class="coming-soon-feature">
+                        <span class="feature-icon">⚔️</span>
+                        <span class="feature-text">Ranked Matchmaking</span>
+                    </div>
+                    <div class="coming-soon-feature">
+                        <span class="feature-icon">📈</span>
+                        <span class="feature-text">Rating System</span>
+                    </div>
+                    <div class="coming-soon-feature">
+                        <span class="feature-icon">🏅</span>
+                        <span class="feature-text">Seasonal Rewards</span>
+                    </div>
+                    <div class="coming-soon-feature">
+                        <span class="feature-icon">👑</span>
+                        <span class="feature-text">Rank Tiers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Prestige Menu -->
+    <div id="prestige-menu-container" class="hidden">
+        <div class="prestige-menu-header">
+            <div class="prestige-menu-title">
+                <span class="menu-icon">🏆</span>
+                <span>Prestige Ranks</span>
+            </div>
+            <button class="close-btn" id="close-prestige-menu">✕</button>
+        </div>
+        <div class="prestige-menu-content">
+            <div class="prestige-menu-grid" id="prestige-menu-grid">
+                <!-- Prestige icons will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Kills to Win Menu -->
+    <div id="kills-menu-container" class="hidden">
+        <div class="setting-menu-header">
+            <div class="setting-menu-title">
+                <span class="menu-icon">🎯</span>
+                <span>Kills to Win</span>
+            </div>
+            <button class="close-btn" id="close-kills-menu">✕</button>
+        </div>
+        <div class="setting-menu-content">
+            <div class="setting-options-grid" id="kills-options-grid">
+                <!-- Options will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Wager Amount Menu -->
+    <div id="wager-menu-container" class="hidden">
+        <div class="setting-menu-header">
+            <div class="setting-menu-title">
+                <span class="menu-icon">💰</span>
+                <span>Wager Amount</span>
+            </div>
+            <button class="close-btn" id="close-wager-menu">✕</button>
+        </div>
+        <div class="setting-menu-content">
+            <div class="wager-input-section">
+                <div class="wager-preset-grid" id="wager-preset-grid">
+                    <!-- Preset amounts will be dynamically inserted here -->
+                </div>
+                <div class="wager-custom-section">
+                    <div class="wager-input-label">Custom Amount</div>
+                    <div class="wager-input-wrapper">
+                        <span class="wager-currency">$</span>
+                        <input type="number" id="wager-custom-input" class="wager-custom-input" placeholder="0" min="0" max="999999">
+                    </div>
+                    <button class="wager-apply-btn" id="wager-apply-btn">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+
