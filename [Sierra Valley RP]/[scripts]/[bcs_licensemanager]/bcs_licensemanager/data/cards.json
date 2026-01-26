@@ -1,0 +1,60 @@
+{
+    "default": {
+        "textStyle": {
+            "fontWeight": 400,
+            "color": "#000000",
+            "fontSize": "16px"
+        },
+        "fields": {
+            "cardid": {
+                "y": 62,
+                "x": 204
+            },
+            "nationality": {
+                "y": 226,
+                "x": 204
+            },
+            "dateofbirth": {
+                "y": 163,
+                "x": 204
+            },
+            "expiry": {
+                "y": 180,
+                "x": 350
+            },
+            "sex": {
+                "y": 178,
+                "x": 204
+            },
+            "mugshot": {
+                "y": 65,
+                "x": 10
+            },
+            "lastName": {
+                "y": 125,
+                "x": 204
+            },
+            "date": {
+                "y": 162,
+                "x": 350
+            },
+            "signature": {
+                "y": 240,
+                "x": 20
+            },
+            "firstName": {
+                "y": 102,
+                "x": 204
+            },
+            "height": {
+                "y": 200,
+                "x": 204
+            }
+        },
+        "mugshotStyle": {
+            "borderRadius": "10px",
+            "height": "160px",
+            "width": "130px"
+        }
+    }
+}

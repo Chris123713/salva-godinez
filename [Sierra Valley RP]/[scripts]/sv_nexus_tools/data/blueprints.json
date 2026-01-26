@@ -1,0 +1,73 @@
+{
+    "blueprints": [
+        {
+            "id": "bp_dock_heist_01",
+            "type": "criminal",
+            "brief": "Late night cargo theft at the docks",
+            "area": {"x": 1234.5, "y": -567.8, "z": 32.1},
+            "elements": {
+                "npcs": [
+                    {
+                        "model": "s_m_m_dockwork_01",
+                        "coords": [1230.0, -560.0, 32.0, 90.0],
+                        "dialog": "dock_informant",
+                        "npcName": "Dock Worker"
+                    }
+                ],
+                "vehicles": [
+                    {
+                        "model": "boxville",
+                        "coords": [1240.0, -570.0, 32.0, 180.0],
+                        "locked": true
+                    }
+                ],
+                "props": []
+            },
+            "objectives": {
+                "criminal": ["talk_to_informant", "steal_vehicle", "escape_area"],
+                "police": ["investigate_docks", "prevent_theft", "arrest_suspect"]
+            },
+            "rewards": {
+                "money": {"type": "cash", "amount": 5000},
+                "items": []
+            }
+        },
+        {
+            "id": "bp_warehouse_robbery_01",
+            "type": "criminal",
+            "brief": "Hit the warehouse before security arrives",
+            "area": {"x": 897.2, "y": -2156.8, "z": 32.4},
+            "elements": {
+                "npcs": [
+                    {
+                        "model": "s_m_m_security_01",
+                        "coords": [900.0, -2150.0, 32.0, 45.0],
+                        "behavior": "guard"
+                    }
+                ],
+                "vehicles": [
+                    {
+                        "model": "speedo",
+                        "coords": [890.0, -2160.0, 32.0, 270.0],
+                        "locked": false
+                    }
+                ],
+                "props": [
+                    {
+                        "model": "prop_box_wood02a",
+                        "coords": [895.0, -2155.0, 32.0, 0.0],
+                        "interactive": true
+                    }
+                ]
+            },
+            "objectives": {
+                "criminal": ["enter_warehouse", "collect_goods", "escape_area"],
+                "police": ["respond_to_alarm", "secure_perimeter", "apprehend_suspects"]
+            },
+            "rewards": {
+                "money": {"type": "cash", "amount": 7500},
+                "items": [{"name": "contraband", "count": 5}]
+            }
+        }
+    ]
+}

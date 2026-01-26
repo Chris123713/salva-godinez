@@ -1,0 +1,34 @@
+1. Go to stream/ydr and remove all the following files:
+    - kiiya_diner_prop_deep_fry.ydr
+    - kiiya_diner_prop_fry_basket.ydr
+    - kiiya_diner_prop_fries_scattered.ydr
+    - kiiya_diner_prop_fries_basket.ydr
+    - kiiya_diner_prop_kitch_shelf.ydr
+    - kiiya_diner_prop_oil.ydr
+    - kiiya_diner_shadow_kitchen.ydr
+    - kiiya_diner_prop_pan.ydr
+    - kiiya_diner_prop_pan_02.ydr
+    - kiiya_diner_prop_small_pan.ydr
+    - kiiya_diner_prop_pan.ydr
+    - kiiya_diner_prop_pan_02.ydr
+    - kiiya_diner_prop_small_pan.ydr
+    - kiiya_diner_prop_small_flag.ydr
+    - kiiya_diner_prop_notes_2.ydr
+    - kiiya_diner_prop_notes_1.ydr
+    - kiiya_diner_prop_sauce_01.ydr
+    - kiiya_diner_prop_sauce_02.ydr
+    - kiiya_diner_prop_sauce_03.ydr
+    - kiiya_diner_prop_metal_tub.ydr
+    - kiiya_diner_prop_plate_01.ydr
+    - kiiya_diner_prop_plate_02.ydr
+    - kiiya_diner_prop_plate_03.ydr
+    - kiiya_diner_prop_plate_04.ydr
+    - kiiya_diner_prop_cardboard_box.ydr.ydr
+    - kiiya_diner_prop_cardboard_box_02.ydr
+    - kiiya_diner_prop_cardboard_box_03.ydr
+    - kiiya_diner_prop_cardboard_box_04.ydr
+    - kiiya_diner_prop_tub.ydr
+    - kiiya_diner_prop_tub_2.ydr
+
+2. Go to stream/ytyp and replace the following file
+    - Replace kiiya_diner_interior.ytyp with the file in this folder

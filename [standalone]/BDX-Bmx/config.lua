@@ -10,7 +10,7 @@ Config = {}
 
 Config.Debug = true -- Enable Prints to check if you getting an error.
 Config.ItemName = 'bmx' -- Name of the Item.
-Config.Framework = "qbox" -- Write your Framework: "qb" or "esx" or "vrp" or "custom".
+Config.Framework = "qb" -- Write your Framework: "qb" or "esx" or "vrp" or "custom".
 Config.Target = "ox" -- Write your Target System: "qb" or "ox" or "none".
 Config.FrameworkResourceName = nil -- Fill only in case that your Framework resource folder isnt located in the Default directory.
 Config.minimumSpeed = 1.0 -- Minimum km/h to perform a Trick.

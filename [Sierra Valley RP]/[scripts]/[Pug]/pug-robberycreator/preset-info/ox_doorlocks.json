@@ -1,0 +1,142 @@
+[
+    {
+        "id": 1000,
+        "name": "fleeca legion bank vault",
+        "data": {"heading":250,"model":2121050683,"coords":{"x":148.026611328125,"y":-1044.3638916015626,"z":29.50693130493164},"doors":false,"state":1,"maxDistance":2}
+    },
+    {
+        "id": 1001,
+        "name": "fleeca legion gate",
+        "data": {"heading":160,"model":-1591004109,"coords":{"x":150.29132080078126,"y":-1047.6290283203126,"z":29.66629791259765},"doors":false,"state":1,"maxDistance":2,"groups":{"police":1}}
+    },
+    {
+        "id": 1004,
+        "name": "bank fleeca above pillbox vault",
+        "data": {"state":1,"coords":{"x":312.3580017089844,"y":-282.7301330566406,"z":54.30364608764648},"model":2121050683,"groups":{"police":1},"maxDistance":2,"heading":250,"doors":false}
+    },
+    {
+        "id": 1005,
+        "name": "bank fleeca gate above pillbox",
+        "data": {"state":1,"coords":{"x":314.6238708496094,"y":-285.9944763183594,"z":54.46300888061523},"model":-1591004109,"maxDistance":2,"heading":160,"doors":false}
+    },
+    {
+        "id": 1006,
+        "name": "bank fleeca vault ls customs",
+        "data": {"state":1,"coords":{"x":-352.73651123046877,"y":-53.57247924804687,"z":49.17543411254883},"model":2121050683,"groups":{"police":1},"maxDistance":2,"heading":251,"doors":false}
+    },
+    {
+        "id": 1007,
+        "name": "bank fleeca gate ls customs",
+        "data": {"state":1,"coords":{"x":-350.41436767578127,"y":-56.79705429077148,"z":49.33479690551758},"model":-1591004109,"groups":{"police":1},"maxDistance":2,"heading":161,"doors":false}
+    },
+    {
+        "id": 1008,
+        "name": "bank fleeca vault life invader",
+        "data": {"state":1,"coords":{"x":-1211.260986328125,"y":-334.5596008300781,"z":37.91989135742187},"model":2121050683,"maxDistance":2,"heading":297,"doors":false}
+    },
+    {
+        "id": 1009,
+        "name": "bank fleeca gate life invader",
+        "data": {"state":1,"coords":{"x":-1207.3282470703126,"y":-335.1289367675781,"z":38.07925415039062},"model":-1591004109,"groups":{"police":1},"maxDistance":2,"heading":207,"doors":false}
+    },
+    {
+        "id": 1010,
+        "name": "bank fleeca vault ocean",
+        "data": {"state":1,"coords":{"x":-2958.53857421875,"y":482.27056884765627,"z":15.83594417572021},"model":-63539571,"groups":{"police ":1},"maxDistance":2,"heading":358,"doors":false}
+    },
+    {
+        "id": 1011,
+        "name": "bank fleeca gate ocean",
+        "data": {"state":1,"coords":{"x":-2956.1162109375,"y":485.42059326171877,"z":15.99530887603759},"model":-1591004109,"groups":{"police":1},"maxDistance":2,"heading":268,"doors":false}
+    },
+    {
+        "id": 1013,
+        "name": "bank paleto vault",
+        "data": {"state":1,"coords":{"x":-104.60489654541016,"y":6473.44384765625,"z":31.79532432556152},"model":-1185205679,"groups":{"police":1},"maxDistance":2,"heading":45,"doors":false}
+    },
+    {
+        "id": 1014,
+        "name": "bank paleto gate",
+        "data": {"state":1,"coords":{"x":-106.47130584716797,"y":6476.15771484375,"z":31.95479965209961},"model":1309269072,"groups":{"police":1},"maxDistance":2,"heading":315,"doors":false}
+    },
+    {
+        "id": 1015,
+        "name": "bank fleeca harmony vault",
+        "data": {"groups":{"police":1},"maxDistance":2,"coords":{"x":1175.5421142578126,"y":2710.861328125,"z":38.22689056396484},"doors":false,"heading":90,"model":2121050683,"state":1}
+    },
+    {
+        "id": 1016,
+        "name": "bank fleeca harmony gate",
+        "data": {"groups":{"police":1},"maxDistance":2,"coords":{"x":1172.2911376953126,"y":2713.146240234375,"z":38.38625335693359},"doors":false,"heading":0,"model":-1591004109,"state":1}
+    },
+    {
+        "id": 1017,
+        "name": "Vangelico Jewelry Store Double Front Doors",
+        "data": {"groups":{"police":1},"maxDistance":2,"coords":{"x":-631.19091796875,"y":-237.38540649414063,"z":38.2065315246582},"doors":[{"model":1425919976,"heading":306,"coords":{"x":-631.9553833007813,"y":-236.33326721191407,"z":38.2065315246582}},{"model":9467943,"heading":306,"coords":{"x":-630.426513671875,"y":-238.4375457763672,"z":38.2065315246582}}],"state":1}
+    },
+    {
+        "id": 1018,
+        "name": "Vangelico Jewelry Store Inside Single Door",
+        "data": {"groups":{"police":1},"maxDistance":2,"coords":{"x":-629.1338500976563,"y":-230.15170288085938,"z":38.20658493041992},"doors":false,"heading":36,"model":1335309163,"state":1}
+    },
+    {
+        "id": 1019,
+        "name": "humane labs door 1",
+        "data": {"maxDistance":2,"state":1,"model":19193616,"doors":false,"heading":170,"coords":{"x":3526.0205078125,"y":3702.24267578125,"z":21.34196090698242}}
+    },
+    {
+        "id": 1020,
+        "name": "Humane Double Door 2",
+        "data": {"maxDistance":2,"auto":true,"state":1,"doors":[{"model":-1572101598,"heading":170,"coords":{"x":3533.093017578125,"y":3670.61279296875,"z":27.12124252319336}},{"model":161378502,"heading":170,"coords":{"x":3530.5322265625,"y":3671.064453125,"z":27.12123870849609}}],"groups":{"police":1},"coords":{"x":3531.8125,"y":3670.838623046875,"z":27.12124061584472}}
+    },
+    {
+        "id": 1021,
+        "name": "Humane Double Door 1",
+        "data": {"maxDistance":2,"auto":true,"state":1,"doors":[{"model":1878909644,"heading":350,"coords":{"x":3538.99951171875,"y":3673.658935546875,"z":19.99173545837402}},{"model":1709395619,"heading":350,"coords":{"x":3541.56005859375,"y":3673.20751953125,"z":19.99173545837402}}],"groups":{"police":1},"coords":{"x":3540.27978515625,"y":3673.43310546875,"z":19.99173545837402}}
+    },
+    {
+        "id": 1022,
+        "name": "Humane labs double slide door 3",
+        "data": {"maxDistance":2,"auto":true,"state":1,"doors":[{"model":161378502,"heading":350,"coords":{"x":3555.43505859375,"y":3664.80224609375,"z":27.12139701843261}},{"model":-1572101598,"heading":350,"coords":{"x":3552.874267578125,"y":3665.253662109375,"z":27.12139701843261}}],"groups":{"police":1},"coords":{"x":3554.15478515625,"y":3665.02783203125,"z":27.12139701843261}}
+    },
+    {
+        "id": 1023,
+        "name": "Big Bank Main Door",
+        "data": {"maxDistance":2,"state":1,"model":-222270721,"doors":false,"groups":{"police":1},"heading":340,"coords":{"x":256.3115539550781,"y":220.65785217285157,"z":106.42955780029297}}
+    },
+    {
+        "id": 1024,
+        "name": "Big Bank Door 2",
+        "data": {"maxDistance":2,"state":1,"model":746855201,"doors":false,"groups":{"police":1},"heading":250,"coords":{"x":262.1980895996094,"y":222.518798828125,"z":106.42955780029297}}
+    },
+    {
+        "id": 1025,
+        "name": "Big Bank Lower Vault",
+        "data": {"maxDistance":2,"state":1,"model":961976194,"doors":false,"groups":{"police":1},"heading":160,"coords":{"x":255.22825622558595,"y":223.97601318359376,"z":102.39321899414063}}
+    },
+    {
+        "id": 1026,
+        "name": "Big Bank Lower Gate",
+        "data": {"maxDistance":2,"state":1,"model":-1508355822,"doors":false,"heading":160,"coords":{"x":251.85757446289063,"y":221.0654754638672,"z":101.83240509033203}}
+    },
+    {
+        "id": 1027,
+        "name": "Big Bank Lower Gate 2",
+        "data": {"maxDistance":2,"state":1,"model":-1508355822,"doors":false,"heading":250,"coords":{"x":261.3004150390625,"y":214.50514221191407,"z":101.83240509033203}}
+    },
+    {
+        "id": 1028,
+        "name": "Big Bank Door Side",
+        "data": {"maxDistance":2,"state":1,"model":1956494919,"doors":false,"heading":340,"coords":{"x":237.77035522460938,"y":227.8700408935547,"z":106.42604064941406}}
+    },
+    {
+        "id": 1029,
+        "name": "Big Bank Door Top",
+        "data": {"maxDistance":2,"state":1,"model":1956494919,"doors":false,"heading":250,"coords":{"x":256.61724853515627,"y":206.15223693847657,"z":110.43282318115235}}
+    },
+    {
+        "id": 1030,
+        "name": "Big Bank Door Top 2",
+        "data": {"maxDistance":2,"state":1,"model":1956494919,"doors":false,"heading":340,"coords":{"x":266.36236572265627,"y":217.5697479248047,"z":110.43282318115235}}
+    }
+]

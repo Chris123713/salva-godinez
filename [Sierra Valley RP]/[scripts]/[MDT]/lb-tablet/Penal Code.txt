@@ -1,0 +1,543 @@
+TRAFFIC — 100 SERIES
+101 — Reckless Driving
+Description: Operating a vehicle with willful disregard for safety.
+Fine: $1,500
+Jail Time: 10 minutes
+102 — Driving Without a License
+Description: Operating a vehicle without a valid driver’s license.
+Fine: $750
+Jail Time: 5 minutes
+103 — Driving Without Headlights/Tail Lights
+Description: Failing to use required lighting during hours of darkness.
+Fine: $150
+Jail Time: No jail
+104 — Excessive Vehicle Noise
+Description: Creating unlawful exhaust or engine noise.
+Fine: $200
+Jail Time: No jail
+105 — Failure to Obey Traffic Control Device
+Description: Ignoring stop signs, red lights, or posted traffic devices.
+Fine: $250
+Jail Time: No jail
+106 — Failure to Maintain Lanes
+Description: Unsafe or improper lane deviation.
+Fine: $500
+Jail Time: No jail
+107 — Failure to Yield to Pedestrian
+Description: Not yielding to pedestrians in crosswalks.
+Fine: $250
+Jail Time: 5 minutes
+108 — Failure to Yield to Emergency Vehicle
+Description: Not yielding to lights-and-siren emergency vehicles.
+Fine: $500
+Jail Time: 5 minutes
+109 — Illegal U-Turn
+Description: Making a prohibited turning maneuver.
+Fine: $200
+Jail Time: No jail
+110 — Illegal Parking
+Description: Parking in a prohibited or restricted area.
+Fine: $250
+Jail Time: No jail
+111 — Impeding Flow of Traffic
+Description: Driving or stopping in a manner that disrupts traffic.
+Fine: $400
+Jail Time: No jail
+112 — Driving Without Insurance
+Description: Operating a vehicle without required financial responsibility.
+Fine: $450
+Jail Time: 5 minutes
+113 — Speeding 10–19
+Description: Exceeding posted speed by 10–19 mph.
+Fine: $150
+Jail Time: No jail
+114 — Speeding 20–29
+Description: Exceeding posted speed by 20–29 mph.
+Fine: $250
+Jail Time: No jail
+115 — Speeding 30+
+Description: Exceeding posted speed by 30 mph or more.
+Fine: $500
+Jail Time: 5 minutes
+116 — Unlawful Vehicle Modification
+Description: Operating a vehicle with illegal or unsafe mods including window tint, oversized exhaust, or neon underglow.
+Fine: $500
+Jail Time: 5 minutes
+117 — Unroadworthy Vehicle
+Description: Vehicle in condition unsafe for roadway use.
+Fine: $350
+Jail Time: 5 minutes
+118 — Improper Use of Motor Vehicle
+Description: Using a vehicle in a manner not intended or unsafe.
+Fine: $400
+Jail Time: 5 minutes
+119 — Driving Under the Influence (1st Offense)
+Description: Operating a vehicle under the influence of drugs or alcohol.
+Fine: $2,500
+Jail Time: 10 minutes
+120 — Driving Under the Influence (2nd Offense)
+Description: Second DUI conviction within 5 years.
+Fine: $3,500
+Jail Time: 15 minutes
+121 — Driving Under the Influence (3rd Offense, Felony)
+Description: Third DUI conviction within 5 years.
+Fine: $5,000
+Jail Time: 20 minutes
+122 — Driving While Suspended / Revoked / Canceled (1st Offense)
+Description: Operating a vehicle while license is suspended, canceled, or revoked.
+Fine: $1,500
+Jail Time: 5 minutes
+123 — Driving While Suspended / Revoked / Canceled (2nd Offense)
+Description: Second conviction within 5 years.
+Fine: $2,500
+Jail Time: 10 minutes
+124 — Driving While Suspended / Revoked / Canceled (3rd Offense, Felony)
+Description: Third conviction within 5 years.
+Fine: $5,000
+Jail Time: 20 minutes
+125 — Abandoned Vehicle
+Description: Leaving a vehicle unattended on public property for extended periods.
+Fine: $250
+Jail Time: 5 minutes
+126 — Illegally Parked Vehicle
+Description: Parking in areas violating municipal codes or restrictions.
+Fine: $150
+Jail Time: 5 minutes
+
+MISDEMEANORS — 200 SERIES
+201 — Possession of Burglary Tools
+Description: Possession of tools commonly used for burglary with unlawful intent.
+Fine: $1,000
+Jail Time: 5 minutes
+202 — Disorderly Conduct
+Description: Causing a public disturbance or engaging in disruptive behavior.
+Fine: $500
+Jail Time: 5 minutes
+203 — Disturbing the Peace
+Description: Loud or disruptive behavior affecting public order.
+Fine: $400
+Jail Time: 5 minutes
+204 — Public Intoxication
+Description: Appearing in public while intoxicated to the degree of being a danger.
+Fine: $300
+Jail Time: 5 minutes
+205 — Loitering
+Description: Remaining in an area without lawful purpose.
+Fine: $150
+Jail Time: 5 minutes
+206 — Jaywalking
+Description: Improperly crossing a roadway.
+Fine: $100
+Jail Time: 5 minutes
+207 — Assault
+Description: Unlawfully placing another in fear of imminent bodily harm.
+Fine: $750
+Jail Time: 5 minutes
+208 — Aiding & Abetting
+Description: Assisting another in committing a crime.
+Fine: $1,000
+Jail Time: 5 minutes
+209 — Battery
+Description: Unlawful physical force against another person.
+Fine: $900
+Jail Time: 5 minutes
+210 — Breaking & Entering
+Description: Entering property unlawfully without force.
+Fine: $1,200
+Jail Time: 10 minutes
+211 — Brandishing a Firearm
+Description: Displaying a firearm in a threatening manner.
+Fine: $1,500
+Jail Time: 10 minutes
+212 — Bribery
+Description: Attempting to influence an official through unlawful payment.
+Fine: $2,000
+Jail Time: 10 minutes
+213 — Contempt of Court
+Description: Disrupting or disobeying court authority.
+Fine: $1,000
+Jail Time: 5 minutes
+214 — Destruction of Property
+Description: Damaging property not belonging to you.
+Fine: $800
+Jail Time: 5 minutes
+215 — Drug Possession Class C
+Description: Possession of low-level illegal substances.
+Fine: $600
+Jail Time: 5 minutes
+216 — Drug Possession Class B
+Description: Possession of moderate illegal substances.
+Fine: $1,000
+Jail Time: 5 minutes
+217 — Drug Possession Class A
+Description: Possession of high-level illegal substances.
+Fine: $2,000
+Jail Time: 5 minutes
+218 — DUI / DWI (See Traffic 119–121 for escalating convictions)
+219 — Failure to Identify
+Description: Refusal to provide lawful identification.
+Fine: $400
+Jail Time: 5 minutes
+220 — Failure to Comply
+Description: Refusing lawful orders from law enforcement.
+Fine: $600
+Jail Time: 5 minutes
+221 — False Reporting
+Description: Knowingly providing false information to emergency services.
+Fine: $1,000
+Jail Time: 5 minutes
+222 — Filing a False Complaint
+Description: Making a knowingly false complaint against another.
+Fine: $750
+Jail Time: 5 minutes
+223 — Indecent Exposure
+Description: Exposing intimate body parts in public.
+Fine: $900
+Jail Time: 5 minutes
+224 — Illegal Street Racing
+Description: Participating in unlawful vehicle racing.
+Fine: $2,000
+Jail Time: 10 minutes
+225 — Accessory to Street Racing
+Description: Assisting or enabling unlawful racing.
+Fine: $1,000
+Jail Time: 5 minutes
+226 — Providing False Information
+Description: Giving false or misleading information to law enforcement.
+Fine: $500
+Jail Time: 5 minutes
+227 — Public Endangerment
+Description: Reckless behavior placing others at risk.
+Fine: $1,200
+Jail Time: 5 minutes
+228 — Trespassing
+Description: Entering or remaining on property without permission.
+Fine: $300
+Jail Time: 5 minutes
+229 — Vandalism
+Description: Damaging or graffitiing property.
+Fine: $700
+Jail Time: 5 minutes
+230 — Withholding Information
+Description: Refusing to share critical information in an investigation.
+Fine: $400
+Jail Time: 5 minutes
+231 — Failure to Stop for Police Vehicle
+Description: Not pulling over when signaled by police.
+Fine: $800
+Jail Time: 5 minutes
+232 — Wasting Police Time
+Description: Misusing emergency or police resources.
+Fine: $500
+Jail Time: 5 minutes
+233 — Perjury
+Description: Lying under oath.
+Fine: $1,500
+Jail Time: 5 minutes
+234 — Prostitution
+Description: Engaging in sexual acts for compensation.
+Fine: $1,000
+Jail Time: 5 minutes
+235 — Possession of Illegal Knife
+Description: Possessing outlawed or oversized bladed weapons.
+Fine: $600
+Jail Time: 5 minutes
+236 — Wildlife Misdemeanor — Hunting Without License
+Description: Hunting protected wildlife without proper permits.
+Fine: $500
+Jail Time: 5 minutes
+237 — Wildlife Misdemeanor — Illegal Trapping
+Description: Trapping wildlife in prohibited areas or methods.
+Fine: $500
+Jail Time: 5 minutes
+238 — Wildlife Misdemeanor — Minor Habitat Disturbance
+Description: Causing limited damage to wildlife habitats.
+Fine: $400
+Jail Time: 5 minutes
+239 — Conspiracy (General)
+Description: Whenever two or more persons conspire to commit any crime other than serious felonies (such as murder, robbery, sexual assault, kidnapping, arson, involuntary servitude, trafficking in persons, or sex trafficking), or to falsely procure arrest, institute proceedings, cheat or defraud, prevent lawful trade, commit acts injurious to public health/morals/commerce/justice, or accomplish any criminal/unlawful purpose by criminal/unlawful means.
+Fine: $1,000
+Jail Time: 5 minutes
+240 — Harassment
+Description: Engaging in a course of conduct that alarms or seriously annoys another person and serves no legitimate purpose.
+Fine: $500
+Jail Time: 5 minutes
+241 — Stalking
+Description: Willfully and maliciously engaging in a course of conduct that causes substantial emotional distress or fear of bodily harm.
+Fine: $1,000
+Jail Time: 10 minutes
+242 — Domestic Battery
+Description: Battery committed against a spouse, domestic partner, or family member.
+Fine: $1,000
+Jail Time: 10 minutes
+
+FELONIES — 300 SERIES
+301 — Armed Robbery
+Description: Taking property by force while armed.
+Fine: $5,000
+Jail Time: 30 minutes
+302 — Accessory to Armed Robbery
+Description: Assisting an armed robbery.
+Fine: $3,000
+Jail Time: 20 minutes
+303 — Arson
+Description: Willfully setting fire to property.
+Fine: $4,000
+Jail Time: 25 minutes
+304 — Assault with Deadly Weapon
+Description: Assault using weapon capable of lethal force.
+Fine: $4,500
+Jail Time: 30 minutes
+305 — Accessory to ADW
+Description: Assisting ADW offense.
+Fine: $3,000
+Jail Time: 25 minutes
+306 — Assault on LEO
+Description: Assaulting peace officer performing duties.
+Fine: $5,000
+Jail Time: 30 minutes
+307 — Attempted Murder
+Description: Attempt to kill another.
+Fine: $5,000
+Jail Time: 30 minutes
+308 — Accessory to Attempted Murder
+Description: Assisting attempted murder.
+Fine: $4,000
+Jail Time: 25 minutes
+309 — Attempted Murder of LEO
+Description: Attempt to kill law enforcement officer.
+Fine: $6,000
+Jail Time: 35 minutes
+310 — Accessory to Attempted LEO Murder
+Description: Assisting attempted LEO murder.
+Fine: $5,000
+Jail Time: 30 minutes
+311 — Corruption of Government Position
+Description: Using public office for unlawful gain.
+Fine: $3,500
+Jail Time: 25 minutes
+312 — Dissuading a Witness
+Description: Preventing person from reporting or testifying.
+Fine: $3,500
+Jail Time: 25 minutes
+313 — Distribution of Illegal Firearms
+Description: Supplying unlawful weapons.
+Fine: $5,000
+Jail Time: 30 minutes
+314 — Extortion
+Description: Obtaining property through threats.
+Fine: $4,000
+Jail Time: 30 minutes
+315 — Escape
+Description: Unlawfully fleeing lawful custody.
+Fine: $3,500
+Jail Time: 30 minutes
+316 — Accessory to Escape
+Description: Assisting escape from custody.
+Fine: $3,000
+Jail Time: 25 minutes
+317 — Felony Drug Possession Class C
+Description: Higher‑quantity possession.
+Fine: $2,000
+Jail Time: 15 minutes
+318 — Felony Drug Possession Class B
+Description: Higher‑quantity possession.
+Fine: $3,000
+Jail Time: 20 minutes
+319 — Felony Drug Possession Class A
+Description: Highest‑quantity possession.
+Fine: $4,000
+Jail Time: 25 minutes
+320 — Fleeing & Eluding (Felony)
+Description: Evading police with danger to public.
+Fine: $4,000
+Jail Time: 30 minutes
+321 — Hit & Run (With Injury)
+Description: Leaving scene of accident with injury/damage.
+Fine: $3,000
+Jail Time: 25 minutes
+322 — Grand Theft Auto
+Description: Stealing a motor vehicle.
+Fine: $4,000
+Jail Time: 25 minutes
+323 — Police Impersonation
+Description: Wearing law enforcement clothing or driving law enforcement vehicle to impersonate an officer.
+Fine: $3,500
+Jail Time: 25 minutes
+324 — Misuse of CAD/MDT System
+Description: Unauthorized access, misuse, or dissemination of police CAD/MDT information.
+Fine: $3,500
+Jail Time: 25 minutes
+325 — Wildlife Felony — Poaching Protected Species
+Description: Killing or capturing protected wildlife in a prohibited manner.
+Fine: $2,500
+Jail Time: 15 minutes
+326 — Wildlife Felony — Illegal Commercial Sale of Wildlife
+Description: Selling, trading, or transporting protected species for profit.
+Fine: $3,000
+Jail Time: 20 minutes
+327 — Wildlife Felony — Habitat Destruction
+Description: Significant damage to wildlife habitats resulting in species harm.
+Fine: $2,500
+Jail Time: 15 minutes
+328 — Felony Theft
+Description: Stealing property valued above misdemeanor threshold.
+Fine: $3,500
+Jail Time: 25 minutes
+329 — Felony Vandalism
+Description: Property destruction exceeding misdemeanor limits or causing major financial loss.
+Fine: $3,000
+Jail Time: 25 minutes
+330 — Felony Bribery
+Description: Attempting to influence government or law enforcement with large-scale payments or schemes.
+Fine: $5,000
+Jail Time: 30 minutes
+331 — Conspiracy to Commit Serious Crime
+Description: Whenever two or more persons conspire to commit murder, robbery, sexual assault, kidnapping in the first or second degree, arson in the first or second degree, involuntary servitude, trafficking in persons, sex trafficking, facilitating sex trafficking, or racketeering violations.
+Fine: $5,000
+Jail Time: 30 minutes
+332 — Kidnapping Second Degree
+Description: Willfully and without authority of law seizing, inveigling, taking, carrying away, or kidnapping another person with intent to keep the person secretly imprisoned within the jurisdiction, or to convey the person out of the jurisdiction without authority, or in any manner held to service or detained against the person’s will.
+Fine: $4,000
+Jail Time: 25 minutes
+333 — Kidnapping First Degree
+Description: Willfully seizing, confining, inveigling, enticing, decoying, abducting, concealing, kidnapping, or carrying away a person by any means with the intent to hold or detain the person for ransom, reward, to commit sexual assault, extortion, or robbery upon or from the person; or to kill the person or inflict substantial bodily harm; or to exact money or valuable things from relatives, friends, or others for the return or disposition of the kidnapped person. Also includes leading, taking, enticing, or carrying away or detaining any minor with intent to keep, imprison, or confine from parents, guardians, or persons with lawful custody; or to hold to unlawful service; or to perpetrate any unlawful act upon the minor.
+Fine: $6,000
+Jail Time: 35 minutes
+334 — Accessory to Kidnapping
+Description: Aiding or abetting kidnapping in the first or second degree.
+Fine: $4,000
+Jail Time: 25 minutes
+335 — Murder First Degree
+Description: Willful, deliberate, and premeditated killing, or killing in the perpetration or attempted perpetration of kidnapping, sexual assault, robbery, burglary, invasion of the home, or arson.
+Fine: $10,000
+Jail Time: 40 minutes
+336 — Murder Second Degree
+Description: All other kinds of willful, deliberate, and premeditated killings not enumerated in first degree murder.
+Fine: $8,000
+Jail Time: 35 minutes
+337 — Manslaughter
+Description: Unlawful killing of a human being without malice, either voluntary upon a sudden quarrel or heat of passion, or involuntary in the commission of an unlawful act.
+Fine: $5,000
+Jail Time: 25 minutes
+338 — Sexual Assault
+Description: Subjecting another person to sexual penetration against the victim's will or under conditions in which the perpetrator knows or should know that the victim is mentally or physically incapable of resisting or understanding the nature of the conduct.
+Fine: $6,000
+Jail Time: 35 minutes
+339 — Robbery
+Description: Unlawful taking of personal property from another by means of force or violence or fear of injury, without the use of a deadly weapon.
+Fine: $4,000
+Jail Time: 25 minutes
+340 — Burglary
+Description: Entering any house, room, apartment, tenement, shop, warehouse, store, mill, barn, stable, outhouse or other building, tent, vessel, vehicle, vehicle trailer, semitrailer or house trailer, airplane, glider, boat or railroad car, with the intent to commit grand or petit larceny, assault or battery on any person or any felony, or to obtain money or property by false pretenses.
+Fine: $3,500
+Jail Time: 25 minutes
+341 — Drug Trafficking Class C
+Description: Trafficking in low-level quantities of controlled substances.
+Fine: $3,000
+Jail Time: 20 minutes
+342 — Drug Trafficking Class B
+Description: Trafficking in moderate quantities of controlled substances.
+Fine: $4,000
+Jail Time: 25 minutes
+343 — Drug Trafficking Class A
+Description: Trafficking in high quantities of controlled substances.
+Fine: $5,000
+Jail Time: 30 minutes
+344 — Possession of Firearm by Prohibited Person
+Description: Possession of a firearm by a person prohibited due to prior felony conviction or other disqualifying factor.
+Fine: $3,000
+Jail Time: 20 minutes
+345 — Forgery
+Description: Falsely making, altering, or forging any document with intent to defraud.
+Fine: $3,500
+Jail Time: 25 minutes
+346 — Identity Theft
+Description: Willfully using identifying information of another person to avoid prosecution, obtain credit, or for other fraudulent purposes.
+Fine: $4,000
+Jail Time: 25 minutes
+
+WILDLIFE — 400 SERIES
+Wildlife Misdemeanors — 401–450
+401 — Hunting Without License
+Description: Hunting protected wildlife without proper permits.
+Fine: $500
+Jail Time: 5 minutes
+402 — Illegal Trapping
+Description: Trapping wildlife in prohibited areas or with banned methods.
+Fine: $500
+Jail Time: 5 minutes
+403 — Minor Habitat Disturbance
+Description: Causing limited damage to wildlife habitats.
+Fine: $400
+Jail Time: 5 minutes
+404 — Possession of Wildlife without Permit
+Description: Having animals or parts of animals that require a license or permit.
+Fine: $500
+Jail Time: 5 minutes
+405 — Fishing Without License
+Description: Catching fish without a valid fishing license.
+Fine: $400
+Jail Time: 5 minutes
+406 — Trespassing in Wildlife Preserve
+Description: Entering protected wildlife areas without permission.
+Fine: $300
+Jail Time: 5 minutes
+407 — Feeding Prohibited Wildlife
+Description: Feeding wildlife in ways that endanger them or humans.
+Fine: $250
+Jail Time: 5 minutes
+408 — Possession of Illegal Hunting Equipment
+Description: Owning traps, snares, or weapons banned for wildlife use.
+Fine: $400
+Jail Time: 5 minutes
+409 — Disturbing Nesting or Denning Sites
+Description: Interfering with breeding or sheltering areas of wildlife.
+Fine: $400
+Jail Time: 5 minutes
+410 — Minor Wildlife Theft
+Description: Taking wildlife or eggs without causing serious harm.
+Fine: $500
+Jail Time: 5 minutes
+
+Wildlife Felonies — 450–499
+450 — Poaching Protected Species
+Description: Killing or capturing protected wildlife in a prohibited manner.
+Fine: $2,500
+Jail Time: 15 minutes
+451 — Illegal Commercial Sale of Wildlife
+Description: Selling, trading, or transporting protected species for profit.
+Fine: $3,000
+Jail Time: 20 minutes
+452 — Habitat Destruction
+Description: Significant damage to wildlife habitats resulting in species harm.
+Fine: $2,500
+Jail Time: 15 minutes
+453 — Possession of Protected Wildlife for Commercial Use
+Description: Holding wildlife or products from protected species with intent to sell.
+Fine: $3,000
+Jail Time: 20 minutes
+454 — Hunting Endangered Species
+Description: Hunting species designated as endangered or critically endangered.
+Fine: $3,500
+Jail Time: 20 minutes
+455 — Large-Scale Illegal Capture
+Description: Capturing large numbers of protected wildlife or rare species.
+Fine: $3,000
+Jail Time: 20 minutes
+456 — Wildlife Smuggling
+Description: Transporting protected wildlife or parts across borders illegally.
+Fine: $5,000
+Jail Time: 25 minutes
+457 — Intentional Mass Habitat Destruction
+Description: Deliberate destruction of ecosystems causing widespread harm to wildlife.
+Fine: $3,500
+Jail Time: 20 minutes
+458 — Killing of Wildlife LEOs (Law Enforcement Wildlife Officers)
+Description: Assaulting or killing officers while enforcing wildlife laws.
+Fine: $5,000
+Jail Time: 30 minutes
+459 — Conspiracy / Organized Wildlife Crime
+Description: Participating in organized schemes targeting protected wildlife.
+Fine: $5,000
+Jail Time: 30 minutes

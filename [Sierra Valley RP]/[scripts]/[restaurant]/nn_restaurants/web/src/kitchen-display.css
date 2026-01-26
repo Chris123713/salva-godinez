@@ -1,0 +1,429 @@
+.kitchen-display-realistic {
+  min-height: 100vh;
+  background: #000000;
+  color: #00ff00;
+  font-family: "Courier New", monospace;
+  display: flex;
+  flex-direction: column;
+}
+
+.display-header {
+  background: #1a1a1a;
+  border-bottom: 3px solid #333333;
+  padding: 12px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left .restaurant-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+.header-left .system-info {
+  font-size: 12px;
+  color: #888888;
+  margin-top: 3px;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.header-right .current-time {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00ff00;
+}
+
+.header-right .terminal-info {
+  font-size: 12px;
+  color: #888888;
+  margin-top: 3px;
+}
+
+.orders-grid {
+  flex: 1;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+  overflow-y: auto;
+}
+
+.order-ticket {
+  background: #0a0a0a;
+  border: 2px solid #333333;
+  border-radius: 0;
+  overflow: hidden;
+  min-height: 200px;
+}
+
+.order-ticket.overdue {
+  border-color: #ff0000;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    background: #0a0a0a;
+    border-color: #ff0000;
+  }
+  51%,
+  100% {
+    background: #330000;
+    border-color: #ff4444;
+  }
+}
+
+.ticket-header {
+  background: #333333;
+  color: #ffffff;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #555555;
+  position: relative;
+}
+
+.order-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.order-meta {
+  text-align: right;
+}
+
+.order-time {
+  font-size: 14px;
+  color: #08b908;
+  font-family: "Courier New", monospace;
+  margin-bottom: 3px;
+}
+
+.elapsed-time {
+  font-size: 18px;
+  color: #ffff00;
+  font-weight: bold;
+  font-family: "Courier New", monospace;
+}
+
+.elapsed-time.overdue-time {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+/* TV Display Status Badges - Separate from POS styling */
+.tv-order-status {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid;
+  font-family: "Courier New", monospace;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tv-order-status.pending {
+  background: #1a1a1a;
+  color: #ffaa00;
+  border-color: #ffaa00;
+  text-shadow: 0 0 8px #ffaa00;
+}
+
+.tv-order-status.cooking {
+  background: #1a1a1a;
+  color: #0088ff;
+  border-color: #0088ff;
+  text-shadow: 0 0 8px #0088ff;
+}
+
+.tv-order-status.ready {
+  background: #1a1a1a;
+  color: #00aa00;
+  border-color: #00aa00;
+  text-shadow: 0 0 8px #00aa00;
+}
+
+.order-type-bar {
+  padding: 8px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  border-bottom: 2px solid #333333;
+}
+
+.order-type-bar.dine-in {
+  background: #004400;
+  color: #00ff00;
+}
+
+.order-type-bar.takeout {
+  background: #444400;
+  color: #ffff00;
+}
+
+.order-type-bar.delivery {
+  background: #440000;
+  color: #ff4444;
+}
+
+.order-type-text {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.table-number {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 3px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.order-items-kitchen {
+  padding: 12px;
+  background: #0a0a0a;
+}
+
+.order-item-kitchen {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #333333;
+}
+
+.order-item-kitchen:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.item-qty {
+  background: #004400;
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 0;
+  border: 2px solid #00ff00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-name-kitchen {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 3px;
+  letter-spacing: 0.5px;
+}
+
+.item-notes {
+  font-size: 12px;
+  color: #ff8800;
+  font-style: italic;
+  background: #221100;
+  padding: 3px 6px;
+  border-left: 2px solid #ff8800;
+  margin-top: 4px;
+}
+
+.display-footer {
+  background: #1a1a1a;
+  border-top: 3px solid #333333;
+  padding: 10px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-info {
+  color: #00ff00;
+  font-size: 14px;
+}
+
+.status-label {
+  color: #888888;
+}
+
+.status-value {
+  color: #ffffff;
+  font-weight: bold;
+  margin-left: 6px;
+  margin-right: 12px;
+  font-size: 16px;
+}
+
+.status-value.overdue-count {
+  color: #ff0000;
+}
+
+.status-separator {
+  color: #666666;
+  margin: 0 12px;
+}
+
+.legend {
+  display: flex;
+  gap: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #888888;
+  font-size: 12px;
+}
+
+.legend-color {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #666666;
+}
+
+.legend-color.dine-in {
+  background: #004400;
+}
+
+.legend-color.takeout {
+  background: #444400;
+}
+
+.legend-color.delivery {
+  background: #440000;
+}
+
+.legend-color.overdue {
+  background: #ff0000;
+}
+
+/* Large screen adjustments for TV displays */
+@media (min-width: 1200px) {
+  .display-header {
+    padding: 15px 30px;
+  }
+
+  .header-left .restaurant-name {
+    font-size: 28px;
+  }
+
+  .header-right .current-time {
+    font-size: 32px;
+  }
+
+  .orders-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 18px;
+    padding: 20px;
+  }
+
+  .order-number {
+    font-size: 28px;
+  }
+
+  .order-time {
+    font-size: 16px;
+  }
+
+  .elapsed-time {
+    font-size: 22px;
+  }
+
+  .order-type-text {
+    font-size: 16px;
+  }
+
+  .table-number {
+    font-size: 14px;
+    padding: 4px 12px;
+  }
+
+  .item-qty {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    margin-right: 15px;
+  }
+
+  .item-name {
+    font-size: 18px;
+  }
+
+  .item-notes {
+    font-size: 14px;
+  }
+}
+
+/* Extra large screens (4K displays) */
+@media (min-width: 1600px) {
+  .header-left .restaurant-name {
+    font-size: 36px;
+  }
+
+  .header-right .current-time {
+    font-size: 42px;
+  }
+
+  .orders-grid {
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 25px;
+    padding: 25px;
+  }
+
+  .order-number {
+    font-size: 32px;
+  }
+
+  .order-time {
+    font-size: 18px;
+  }
+
+  .elapsed-time {
+    font-size: 26px;
+  }
+
+  .order-type-text {
+    font-size: 18px;
+  }
+
+  .table-number {
+    font-size: 16px;
+  }
+
+  .item-qty {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .item-name {
+    font-size: 20px;
+  }
+
+  .item-notes {
+    font-size: 16px;
+  }
+}

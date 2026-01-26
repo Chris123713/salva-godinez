@@ -1,0 +1,78 @@
+if Config.Framework ~= "qbox" then
+    return
+end
+
+while not QB do
+    Wait(0)
+end
+
+---@alias QboxPlayerJob { name: string, onduty: boolean }
+
+---@type { [number]: QboxPlayerJob }
+local playerJobs = {}
+---@type { [string]: number }
+local jobCounts = {}
+---@type { [string]: number }
+local jobDutyCounts = {}
+
+function RefreshCompanies()
+    if Config.QBOldJobMethod then
+        debugprint("using old method to refresh companies")
+
+        local openJobs = {}
+        local players = QB.Functions.GetQBPlayers()
+
+        for _, qPlayer in pairs(players) do
+            if not qPlayer?.PlayerData.job.onduty then
+                goto continue
+            end
+
+            local job = qPlayer.PlayerData.job.name
+
+            if not openJobs[job] then
+                openJobs[job] = true
+            end
+
+            ::continue::
+        end
+
+        for i = 1, #Config.Services.Companies do
+            local jobData = Config.Services.Companies[i]
+
+            jobData.open = openJobs[jobData.job] or false
+        end
+
+        return
+    end
+
+    for i = 1, #Config.Services.Companies do
+        local jobData = Config.Services.Companies[i]
+
+        jobData.open = (jobDutyCounts[jobData.job] or 0) > 0
+    end
+end
+
+CreateThread(function()
+    local players = QB.Functions.GetQBPlayers()
+
+    for _, player in pairs(players) do
+        if type(player) == "table" and player.PlayerData and player.PlayerData.job then
+            local playerData = player.PlayerData
+            local job = playerData.job
+            local jobName = job.name
+            local onDuty = job.onduty
+
+            playerJobs[playerData.source] = {
+                name = jobName,
+                onduty = onDuty
+            }
+
+            jobCounts[jobName] = (jobCounts[jobName] or 0) + 1
+            jobDutyCounts[jobName] = (jobDutyCounts[jobName] or 0) + (onDuty and 1 or 0)
+        else
+            debugprint("Invalid player data found in GetQBPlayers():", player)
+        end
+    end
+
+    debugprint("qb jobs: initial data", playerJobs, jobCounts, jobDutyCounts)
+end)

@@ -1,0 +1,681 @@
+.restaurant-management {
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #00000059;
+}
+
+.management-container {
+  width: 86rem;
+  height: 48rem;
+  background: #000000b8;
+  /* 
+  border-radius: 12px;
+  border: 1px solid rgba(67, 255, 205, 0.2);
+  box-shadow: 0 0 30px rgba(67, 255, 205, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; */
+}
+
+.management-header {
+  background: rgba(11, 60, 45, 0.3);
+  padding: 20px 30px;
+  border-radius: 4px;
+}
+
+.tab-navigation {
+  display: flex;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.tab-button {
+  flex: 1;
+  padding: 15px 20px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-right: 1px solid rgba(67, 255, 205, 0.1);
+}
+
+.tab-button:last-child {
+  border-right: none;
+}
+
+.tab-button:hover {
+  background: rgba(67, 255, 205, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tab-button.active {
+  background: rgba(11, 60, 45, 0.5);
+  color: white;
+  box-shadow: inset 0 -3px 0 #43ffcd;
+}
+
+.content-area {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Scrollbar styling */
+.content-area::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content-area::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.content-area::-webkit-scrollbar-thumb {
+  background: rgba(67, 255, 205, 0.3);
+  border-radius: 4px;
+}
+
+.content-area::-webkit-scrollbar-thumb:hover {
+  background: rgba(67, 255, 205, 0.5);
+}
+
+/* Card styles */
+.employee-card,
+.recipe-card,
+.category-card,
+.menu-item-card,
+.tv-card {
+  background: rgba(217, 217, 217, 0.1);
+  border-radius: 4px;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+
+.employee-card:hover,
+.recipe-card:hover,
+.category-card:hover,
+.tv-card:hover {
+  box-shadow: 0 0 15px rgba(128, 128, 128, 0.1);
+  transform: translateY(-2px);
+}
+
+.employee-card-compact {
+  background: rgba(217, 217, 217, 0.1);
+  border-radius: 4px;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+
+.employee-card-compact:hover {
+  transform: translateY(-2px);
+}
+
+.tv-card {
+  cursor: pointer;
+}
+
+.menu-item-card {
+  background: rgba(217, 217, 217, 0.05);
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+/* Status badges */
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.active {
+  background: rgba(67, 255, 205, 0.2);
+  color: #43ffcd;
+}
+
+.tv-type-badge {
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.tv-type-badge.kitchen {
+  background: rgba(255, 165, 0, 0.2);
+  color: #ffa500;
+}
+
+.tv-type-badge.order_queue {
+  background: rgba(0, 123, 255, 0.2);
+  color: #007bff;
+}
+
+.tv-type-badge.custom {
+  background: rgba(128, 0, 128, 0.2);
+  color: #800080;
+}
+
+/* Ingredient tags */
+.ingredient-tag {
+  background: rgba(67, 255, 205, 0.2);
+  color: #43ffcd;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 30px;
+  width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border: 1px solid rgb(30, 30, 30);
+}
+
+.modal-content.large {
+  width: 700px;
+  max-height: 90vh;
+}
+
+.tv-type-selector {
+  background: rgba(217, 217, 217, 0.1);
+  border: 1px solid rgba(67, 255, 205, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+}
+
+.tv-type-selector:hover {
+  border-color: rgba(67, 255, 205, 0.4);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.tv-type-selector.active {
+  background: rgba(11, 60, 45, 0.5);
+  border-color: #43ffcd;
+  color: #43ffcd;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1280px) {
+  .management-container {
+    width: 95vw;
+    height: calc(95vw * 9 / 16);
+  }
+}
+
+@media (max-width: 768px) {
+  .management-container {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .tab-navigation {
+    flex-wrap: wrap;
+  }
+
+  .tab-button {
+    flex: 1 1 50%;
+    min-width: 120px;
+  }
+
+  .content-area {
+    padding: 20px;
+  }
+}
+
+.grade-badge {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.grade-aplus {
+  background: rgba(67, 255, 205, 0.2);
+  color: #43ffcd;
+}
+.grade-a {
+  background: rgba(76, 154, 255, 0.2);
+  color: #4c9aff;
+}
+.grade-aminus {
+  background: rgba(52, 152, 219, 0.2);
+  color: #3498db;
+}
+.grade-bplus {
+  background: rgba(243, 156, 18, 0.2);
+  color: #f39c12;
+}
+.grade-b {
+  background: rgba(230, 126, 34, 0.2);
+  color: #e67e22;
+}
+.grade-bminus {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+}
+
+.cook-time-badge {
+  background: rgba(76, 154, 255, 0.2);
+  color: #4c9aff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.difficulty-badge {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.difficulty-easy {
+  background: rgba(67, 255, 205, 0.2);
+  color: #43ffcd;
+}
+.difficulty-medium {
+  background: rgba(243, 156, 18, 0.2);
+  color: #f39c12;
+}
+.difficulty-hard {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+}
+
+/* Bill Component Styles */
+.bill-overlay {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.bill-container {
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid rgba(67, 255, 205, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  width: 400px;
+  max-width: 90vw;
+  overflow: hidden;
+  animation: billSlideUp 0.3s ease-out;
+}
+
+@keyframes billSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bill-header {
+  background: rgba(11, 60, 45, 0.8);
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(67, 255, 205, 0.2);
+}
+
+.bill-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bill-icon {
+  color: #43ffcd;
+  display: flex;
+  align-items: center;
+}
+
+.bill-title {
+  flex: 1;
+}
+
+.bill-restaurant-name {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.bill-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  margin: 0;
+  margin-top: 2px;
+}
+
+.bill-time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+}
+
+.bill-content {
+  padding: 16px 20px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.bill-server-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bill-items {
+  margin-bottom: 16px;
+}
+
+.bill-items-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bill-items-list {
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.bill-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 13px;
+}
+
+.bill-item:last-child {
+  border-bottom: none;
+}
+
+.item-name-bill {
+  color: white;
+  font-weight: 500;
+}
+
+.item-quantity-bill {
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.item-price-bill {
+  color: rgba(255, 255, 255, 0.7);
+  text-align: right;
+}
+
+.item-total-bill {
+  color: #43ffcd;
+  font-weight: 600;
+  text-align: right;
+}
+
+.bill-summary {
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bill-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  font-size: 13px;
+}
+
+.bill-summary-row-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bill-summary-row-value {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.bill-summary-row.total {
+  border-top: 1px solid rgba(67, 255, 205, 0.3);
+  padding-top: 8px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.bill-summary-row-label {
+  color: white;
+}
+
+.bill-summary-row-value {
+  color: #43ffcd;
+  font-size: 16px;
+}
+
+.bill-payment-method {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bill-payment-method-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+}
+
+.bill-actions {
+  display: flex;
+  gap: 8px;
+  padding: 16px 20px;
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(67, 255, 205, 0.2);
+}
+
+.bill-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bill-button.decline {
+  background: rgba(220, 53, 69, 0.2);
+  color: #dc3545;
+  border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.bill-button.decline:hover {
+  background: rgba(220, 53, 69, 0.3);
+  border-color: rgba(220, 53, 69, 0.5);
+  transform: translateY(-1px);
+}
+
+.bill-button.accept {
+  background: rgba(67, 255, 205, 0.2);
+  color: #43ffcd;
+  border: 1px solid rgba(67, 255, 205, 0.3);
+}
+
+.bill-button.accept:hover {
+  background: rgba(67, 255, 205, 0.3);
+  border-color: rgba(67, 255, 205, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Scrollbar for bill items */
+.bill-items-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.bill-items-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.bill-items-list::-webkit-scrollbar-thumb {
+  background: rgba(67, 255, 205, 0.3);
+  border-radius: 2px;
+}
+
+.bill-items-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(67, 255, 205, 0.5);
+}
+
+.css-1c4328r-control {
+  height: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .bill-container {
+    width: 95vw;
+    margin: 0 10px;
+  }
+  
+  .bill-header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .bill-time {
+    align-self: flex-end;
+  }
+  
+  .bill-actions {
+    flex-direction: column;
+  }
+  
+  .bill-button {
+    width: 100%;
+  }
+}
+
+/* Payment Method Selection Styles */
+.bill-payment-selection {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.payment-method-title {
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.payment-method-options {
+  display: flex;
+  gap: 8px;
+}
+
+.payment-method-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payment-method-option:hover {
+  background: rgba(67, 255, 205, 0.1);
+  border-color: rgba(67, 255, 205, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+}
+
+.payment-method-option.active {
+  background: rgba(67, 255, 205, 0.2);
+  border-color: rgba(67, 255, 205, 0.5);
+  color: #43ffcd;
+  box-shadow: 0 0 10px rgba(67, 255, 205, 0.2);
+}
+
+.payment-method-option svg {
+  transition: all 0.2s ease;
+}
+
+.payment-method-option.active svg {
+  color: #43ffcd;
+}

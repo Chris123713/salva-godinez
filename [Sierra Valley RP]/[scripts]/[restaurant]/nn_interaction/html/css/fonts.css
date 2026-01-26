@@ -1,0 +1,29 @@
+@font-face {
+    font-family: "Gilroy-Medium";
+    src: url("https://db.onlinewebfonts.com/t/040a78b437acd0433612f92e61d04a1b.eot");
+    src: url("https://db.onlinewebfonts.com/t/040a78b437acd0433612f92e61d04a1b.eot?#iefix")
+        format("embedded-opentype"),
+      url("https://db.onlinewebfonts.com/t/040a78b437acd0433612f92e61d04a1b.woff2")
+        format("woff2"),
+      url("https://db.onlinewebfonts.com/t/040a78b437acd0433612f92e61d04a1b.woff")
+        format("woff"),
+      url("https://db.onlinewebfonts.com/t/040a78b437acd0433612f92e61d04a1b.ttf")
+        format("truetype"),
+      url("https://db.onlinewebfonts.com/t/040a78b437acd0433612f92e61d04a1b.svg#Gilroy-Medium")
+        format("svg");
+  }
+  
+  @font-face {
+    font-family: "Gilroy-SemiBold";
+    src: url("https://db.onlinewebfonts.com/t/040a78b437acd0433612f92e61d04a1b.eot");
+    src: url("https://db.onlinewebfonts.com/t/040a78b437acd0433612f92e61d04a1b.eot?#iefix")
+        format("embedded-opentype"),
+      url("https://db.onlinewebfonts.com/t/040a78b437acd0433612f92e61d04a1b.woff2")
+        format("woff2"),
+      url("https://db.onlinewebfonts.com/t/040a78b437acd0433612f92e61d04a1b.woff")
+        format("woff"),
+      url("https://db.onlinewebfonts.com/t/040a78b437acd0433612f92e61d04a1b.ttf")
+        format("truetype"),
+      url("https://db.onlinewebfonts.com/t/040a78b437acd0433612f92e61d04a1b.svg#Gilroy-SemiBold")
+        format("svg");
+  }

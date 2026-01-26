@@ -1,0 +1,92 @@
+.timer-container {
+  position: absolute;
+  z-index: 1000;
+}
+
+.timer-circle {
+  width: 90px;
+  height: 90px;
+  position: relative;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.timer-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.timer-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.timer-time {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  user-select: none;
+}
+
+/* DUI Timer Styles */
+.timer-dui-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.timer-circle-simple {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+}
+
+.timer-progress {
+  transition: stroke-dashoffset 0.2s ease, stroke 0.2s ease;
+}
+
+.timer-main-text {
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  margin-bottom: 2px;
+  line-height: 1;
+}
+
+.timer-progress-text {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.9;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.timer-station-simple {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.5px;
+} 

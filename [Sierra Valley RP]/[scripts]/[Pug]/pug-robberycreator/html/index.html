@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <script type="module" crossorigin src="./robbery.js"></script>
+
+        <title>Heist Creator</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap');
+
+            :root {
+                --primary-color: #25262b; /* Primary Color */
+                --secondary-color: #1d1f22; /* Secondary Color */
+                --tertiary-color: #00000080; /* Tertiary Color */
+                --background-color: #373a40; /* Background Color */
+                --accent-color: #be7c00; /* Sccent Color */
+                --light-secondary-color: #000000cc; /* Light Secondary Color */
+                --text-color: #ffffff; /* Text Color */
+                --icon-color: #4f555e; /* Icon Color */
+                --tex-area-color: #666b72; /* Tex Area Color */
+                --icon-color-hover: #373a41; /* Icon Color Hover */
+                --placeholder-text-color: #aaaaaa; /* Placeholder Text Color */
+
+                /* New Step Colors */
+                --robabble_object-color: #be7c00; /* Dodger Blue */
+                --guards-color: #003e85; /* Dark Slate Gray */
+                --hackable_door-color: #00850b; /* Gold */
+                --lethal_gas-color: #858300; /* Lime Green */
+                --lasers-color: #be0000; /* Red */
+                --hidden_passcode-color: #cc62a9; /* Red */
+                --ending_robbery-color: #525252; /* Lime Green */
+            }
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+            }
+    
+            .overlay {
+                background-color: var(--tertiary-color);
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+                align-items: center;
+                justify-content: center;
+            }
+    
+            .container {
+                position: relative;
+                background-color: var(--primary-color);
+                width: 45.1vh;
+                padding: 1vh;
+                border-radius: 0vh;
+                box-shadow: 0 0 10px var(--tertiary-color);
+                color: var(--text-color);
+                overflow-y: auto;
+                max-height: 90.8vh;
+            }
+    
+            select,
+            button,
+            input,
+            textarea {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: none;
+                border-radius: 0px;
+                box-sizing: border-box;
+            }
+    
+            select {
+                background-color: var(--text-color);
+                color: #000000;
+            }
+    
+            button {
+                background-color: var(--background-color);
+                color: var(--text-color);
+                cursor: pointer;
+                height: 40px;
+            }
+    
+            button:hover {
+                background-color: var(--secondary-color);
+            }
+
+            input, textarea {
+                padding: 5px; 
+                margin-bottom: 5px; 
+                font-size: 12px; 
+                background-color: var(--tex-area-color); 
+                color: #ffffff; 
+                text-align: center;
+            }
+
+            select, button {
+                padding: 5px; 
+                margin-bottom: 5px; 
+                font-size: 12px;  
+                background-color: var(--background-color); 
+                color: #ffffff; 
+            }
+    
+            .close-button {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 30px;
+                height: 30px;
+                background: none;
+                border: none;
+                font-size: 20px;
+                cursor: pointer;
+                color: var(--text-color);
+                border-radius: 0%;
+                text-align: center;
+                line-height: 10px;
+            }
+    
+            .overlay .container {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        
+    
+            .heist-steps,
+            .heist-rewards {
+                display: flex;
+                flex-direction: column;
+            }
+    
+            .step,
+            .reward {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 10px;
+                border-bottom: 2px solid var(--accent-color);
+                padding-bottom: 10px;
+            }
+    
+            .step select,
+            .reward select {
+                width: 100%;
+                margin-right: 0;
+            }
+    
+            .step button,
+            .reward button {
+                width: 100%;
+            }
+    
+            .tab-container {
+                display: flex;
+                justify-content: space-around;
+                margin-bottom: 10px;
+            }
+    
+            .tab-container button {
+                width: 32%;
+                background-color: var(--primary-color);
+                border: 1px solid var(--background-color);
+                color: var(--text-color);
+                cursor: pointer;
+            }
+    
+            .tab-container button.active-tab {
+                background-color: var(--background-color);
+                color: var(--text-color);
+            }
+    
+            .tab-content {
+                display: none;
+            }
+    
+            .tab-content.active {
+                display: block;
+            }
+    
+            .stage-options {
+                display: flex;
+                flex-direction: column;
+            }
+    
+            .stage-options>* {
+                margin: 0px 0;
+            }
+    
+            .stage-options input[type="text"],
+            .stage-options input[type="number"],
+            .stage-options select,
+            .stage-options button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+    
+            .stage-options label {
+                width: 100%;
+                box-sizing: border-box;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+    
+            .step-header {
+                font-weight: bold;
+                text-align: center;
+                text-transform: uppercase;
+                margin-bottom: 10px; 
+                font-size: 1.2em; 
+                width: 80%; 
+                margin-left: auto;
+                margin-right: auto;
+                border-bottom: 2px solid var(--icon-color); 
+                padding-bottom: 5px; 
+            }
+
+            .stage-title {
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 5px;
+                font-size: 0.7em; 
+                text-transform: uppercase;
+            }
+
+
+    
+            .hidden {
+                display: none;
+            }
+    
+    
+            .item-options,
+            .reward-item-options,
+            .minigame-options,
+            .delay-reward,
+            .time-until-unlocks {
+                display: none;
+                flex-wrap: wrap;
+                width: 100%;
+                margin: 0px 0;
+            }
+    
+            .item-options>*,
+            .reward-item-options>*,
+            .minigame-options>*,
+            .delay-reward>*,
+            .time-until-unlocks>* {
+                flex: 1 1 45%;
+                margin: 0px;
+            }
+    
+    
+            .section {
+                border: 1.5px solid var(--icon-color);
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                text-align: center;
+            }
+    
+            .section label {
+                display: block;
+                margin-bottom: 5px;
+                text-align: center;
+            }
+
+            .section2 {
+                border: 2.5px solid #575e68;
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 7px;
+                text-align: center;
+            }
+    
+            .section2 label {
+                display: block;
+                margin-bottom: 5px;
+                text-align: center;
+            }
+
+            .section3 {
+                border: 2.5px solid var(--accent-color);
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 7px;
+                text-align: center;
+            }
+    
+            .section3 label {
+                display: block;
+                margin-bottom: 5px;
+                text-align: center;
+            }
+    
+            .stage-options .select-door-button, .get-closest-door-button {
+                height: 50px;
+
+            }
+    
+            .selected-door-label {
+                color: var(--text-color);
+                margin-top: 5px;
+            }
+    
+            .target-info {
+                margin-top: 1px;
+            }
+    
+            .target-info label {
+                display: block;
+                margin-bottom: 1px;
+            }
+    
+            .target-info input {
+                width: 100%;
+                padding: 1px;
+                margin-bottom: 1px;
+                box-sizing: border-box;
+            }
+
+            
+            .lasers-info {
+                margin-top: 5px;
+            }
+    
+            .lasers-info label {
+                display: block;
+                margin-bottom: 5px;
+            }
+    
+            .lasers-info input {
+                width: 100%;
+                padding: 5px;
+                margin-bottom: 5px;
+                box-sizing: border-box;
+            }
+
+    
+            .action-buttons {
+                display: flex;
+                justify-content: flex-start;
+                gap: 10px;
+                position: sticky;
+                bottom: 0;
+                left: 0;
+                background-color: var(--primary-color);
+                padding: 9px;
+                box-shadow: 0 -2px 5px var(--tertiary-color);
+                z-index: 2;
+                bottom: -2vh;
+            }
+    
+            .action-buttons button {
+                width: auto;
+                flex: 1;
+            }
+    
+            .small-dropdown {
+                width: 80px;
+                text-align: center;
+            }
+            .guard-difficulty-dropdown {
+                width: 80px;
+                text-align: center;
+            }
+            .penalty-type-dropdown {
+                width: 80px;
+                text-align: center;
+            }
+
+            .movement-direction {
+                width: 80px;
+                text-align: center;
+            }
+
+            
+            .keypad-container {
+                position: fixed; 
+                top: 38%;
+                left: 41%;
+                transform: translate(-50%, -50%);
+                background-color: transparent; 
+                padding: 0; 
+                z-index: 1000;
+                box-shadow: none; 
+                display: none; 
+            }
+
+            .keypad-container.active {
+                display: block;
+            }
+
+            .keypad-display {
+                font-size: 3vh; 
+                margin-bottom: 10px;
+                padding: 10px;
+                color: #00ff00; 
+                border: none;
+                text-align: left;
+                width: 250px;
+                box-sizing: border-box;
+                position: absolute;
+                top: -14.8vh; 
+                left: 9vh; 
+                
+                background: transparent; 
+                
+                text-shadow: 0 0 5px #00ff00, 
+                            0 0 10px #00ff00; 
+
+                
+                font-family: 'Orbitron', 'Courier New', Courier, monospace;
+                letter-spacing: 3px; 
+            }
+
+
+
+            .keypad-buttons {
+                position: relative;
+                display: grid; 
+                grid-template-columns: repeat(3, 3vh); 
+                gap: 1vh;
+                opacity: 0;
+            }
+
+            .keypad-buttons .keypad-button[data-value="1"] {
+                position: absolute; 
+                left: 6.5vh; 
+                top: 5.5vh; 
+            }
+            .keypad-buttons .keypad-button[data-value="2"] {
+                position: absolute; 
+                left: 14.8vh; 
+                top: 5.5vh; 
+            }
+            .keypad-buttons .keypad-button[data-value="3"] {
+                position: absolute; 
+                left: 22.8vh; 
+                top: 5.5vh;  
+            }
+
+
+
+            .keypad-buttons .keypad-button[data-value="4"] {
+                position: absolute; 
+                left: 6.5vh; 
+                top: 12.8vh; 
+            }
+            .keypad-buttons .keypad-button[data-value="5"] {
+                position: absolute; 
+                left: 14.8vh; 
+                top: 12.8vh; 
+            }
+            .keypad-buttons .keypad-button[data-value="6"] {
+                position: absolute; 
+                left: 22.8vh; 
+                top: 12.8vh; 
+            }
+
+
+
+            .keypad-buttons .keypad-button[data-value="7"] {
+                position: absolute; 
+                left: 6.5vh; 
+                top: 20.7vh; 
+            }
+            .keypad-buttons .keypad-button[data-value="8"] {
+                position: absolute; 
+                left: 14.8vh; 
+                top: 20.7vh; 
+            }
+            .keypad-buttons .keypad-button[data-value="9"] {
+                position: absolute; 
+                left: 22.8vh; 
+                top: 20.7vh; 
+            }
+
+
+            .keypad-buttons .keypad-button[data-value="0"] {
+                position: absolute; 
+                left: 11.5vh; 
+                top: 28.5vh; 
+            }
+
+
+            /* Keypad Buttons */
+            .keypad-button {
+                width: 5vh; 
+                height: 5vh; 
+                background-color: rgba(0, 0, 0, 0.8);
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 18px;
+                cursor: pointer;
+                transition: background-color 0.2s ease, transform 0.1s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .keypad-button:hover {
+                background-color: rgba(255, 255, 255, 0.5);
+            }
+
+            .keypad-button:active {
+                transform: scale(0.95);
+            }
+
+            .keypad-buttons .keypad-button[data-value="0"] {
+                grid-column: 1 / 4;
+                width: 160px; 
+            }
+
+            @media (max-width: 400px) {
+                .keypad-container {
+                    width: 90%;
+                    padding: 0;
+                }
+
+                .keypad-display {
+                    font-size: 20px;
+                    padding: 8px;
+                }
+
+                .keypad-button {
+                    width: 40px;
+                    height: 40px;
+                    font-size: 16px;
+                }
+            }
+
+            .keypad-instructions {
+                font-size: 3vh; 
+                color: #00ff00; 
+                text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; 
+                text-align: left;
+                margin-bottom: 10px;
+                position: absolute;
+                top: -18.2vh; 
+                left: 9.5vh; 
+                font-family: 'Orbitron', 'Courier New', Courier, monospace; 
+                
+                white-space: nowrap;
+                width: auto; 
+            }
+
+
+
+            .tooltip-container {
+                position: relative;
+                display: inline-block;
+            }
+
+            .tooltip-container .tooltip-text {
+                visibility: hidden;
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                border-radius: 5px;
+                padding: 5px;
+                position: absolute;
+                z-index: 1;
+                bottom: 100%; 
+                left: 60%;
+                transform: translateX(-50%);
+                opacity: 0;
+                transition: opacity 0.3s;
+                width: 300px;
+                white-space: normal; 
+                word-wrap: break-word; 
+                box-sizing: border-box; 
+            }
+
+            .tooltip-container .tooltip-text::after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                border-width: 5px;
+                border-style: solid;
+                border-color: #333 transparent transparent transparent;
+            }
+
+            .tooltip-container:hover .tooltip-text {
+                visibility: visible;
+                opacity: 1;
+            }
+
+
+            .selectHeading, .BankTruckHeader, .sellLocationHeader {
+                text-align: center; 
+                margin: 0 auto; 
+                padding: 10px 0;
+                font-weight: bold; 
+            }
+
+            .centered-dropdown {
+                text-align: center;
+                padding: 5px;
+            }
+
+            .sell-location-item-reward-money-type {
+                text-align: center;
+                padding: 5px;
+            }
+
+            .bank-truck-header-icon {
+                text-align: center;
+                margin: 0 auto;
+                padding: 5px 0;
+                font-weight: bold;
+                color: #00850b;
+                font-size: 21px;
+            }
+
+            .sell-items-header-icon {
+                text-align: center;
+                margin: 0 auto;
+                padding: 5px 0; 
+                font-weight: bold;
+                color: #e2c000;
+                font-size: 21px;
+            }
+
+            .atm-robbery-header-icon {
+                text-align: center;
+                margin: 0 auto;
+                padding: 5px 0;
+                font-weight: bold;
+                color: #00e2a9;
+                font-size: 21px;
+            }
+
+
+
+            .robbery-settings-header-icon {
+                text-align: center; 
+                margin: 0 auto;
+                padding: 5px 0; 
+                font-weight: bold; 
+                color: #006a85;
+                font-size: 24px;
+            }
+
+
+            .teleport-button-container {
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+            }
+
+            .teleport-button {
+                font-size: 24px;
+                color: var(--icon-color); 
+            }
+
+            .teleport-button:hover {
+                color: var(--icon-color-hover); 
+            }
+
+            .tooltip-text {
+                visibility: hidden;
+                width: 120px;
+                background-color: black;
+                color: #fff;
+                text-align: center;
+                padding: 5px;
+                border-radius: 6px;
+
+                position: absolute;
+                z-index: 1;
+                bottom: 125%; 
+                left: 50%;
+                margin-left: -60px;
+
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+
+            .teleport-button-container:hover .tooltip-text {
+                visibility: visible;
+                opacity: 1;
+                left: 5.3vh;
+            }
+
+
+            .sticky-container {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background-color: var(--primary-color);
+                padding: 10px;
+                top: -45px;
+            }
+
+            .save-banktruck-button {
+                position: sticky;
+                bottom: -20px; 
+                width: 100%; 
+                padding: 10px; 
+                background-color: #2a662d; 
+                color: white;
+                border: none;
+                border-radius: 5px;
+                text-align: center;
+                cursor: pointer;
+                z-index: 10; 
+            }
+
+
+            .save-banktruck-button:hover {
+                background-color: #2f7032;
+            }
+
+
+
+            .laser-separator {
+                border-bottom: 2px solid #0436da00;
+                margin: 10px 0;
+            }
+
+
+            .add-laser-button-container {
+                text-align: center; 
+            }
+
+            .add-laser-button {
+                margin-bottom: 0; 
+            }
+
+            .blue-line {
+                height: 2px; 
+                background-color: var(--icon-color); 
+                width: 100%; 
+                margin-top: 5px; 
+                margin-bottom: 15px; 
+            }
+
+            
+            .step .remove-step-button,
+            .step .duplicate-step-button {
+                display: inline-block;
+                margin: 5px 5px 5px 0;
+            }
+
+            .step .remove-step-button {
+                background-color: #f4433683; 
+                color: white;
+            }
+
+            .step .duplicate-step-button {
+                background-color: #4caf4f69; 
+                color: white;
+            }
+
+
+            .stage-tabs-container {
+                position: fixed;
+                left: 48.3vh; 
+                top: 3.6vh; 
+                width: 15vh; 
+                background-color: var(--primary-color);
+                padding: 1vh;
+                height: 90.8vh; 
+                border-right: 0.1vh solid var(--background-color);
+                overflow-y: auto; 
+                z-index: 1000; 
+            }
+
+            .stage-tab {
+                padding: 0.5vh;
+                margin-bottom: 0.5vh;
+                cursor: pointer;
+                background-color: var(--background-color);
+                border-radius: 0.1vh;
+                text-align: center;
+                color: white;
+            }
+
+            .stage-tab:hover {
+                background-color: var(--icon-color-hover);
+            }
+
+
+            .stage-tab.active {
+                background-color: var(--accent-color);
+                color: white; 
+            }
+
+
+            .stage-tab {
+                font-family: 'Roboto', sans-serif; 
+                font-size: 12px; 
+                font-weight: bold;
+                position: relative; 
+            }
+
+            .stage-tab .tooltip {
+                visibility: hidden;
+                width: auto;
+                color: #fff;
+                text-align: center;
+                padding: 1px;
+                border-radius: 0px;
+
+                position: absolute;
+                z-index: 1;
+                top: 0%;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-top: 0px; 
+
+                display: flex;
+                flex-direction: row;
+                justify-content: center; 
+                gap: 100px; 
+
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+
+            .stage-tab:hover .tooltip {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .stage-tab .tooltip button {
+                background-color: var(--icon-color);
+                height: 25px;
+                color: #fff;
+                border: none;
+                padding: 1px;
+                cursor: pointer;
+                font-size: 9px;
+                border-radius: 0px;
+                opacity: 0.8;
+                transition: opacity 0.3s;
+            }
+
+            .stage-tab .tooltip button:hover {
+                background-color: var(--icon-color-hover);
+            }
+
+            .stage-tab .rename-input {
+                width: 120px;
+                padding: 2px;
+                font-size: 12px;
+                position: absolute;
+                left: 0; 
+                top: 30px;
+                z-index: 10;
+            }
+
+
+            textarea::placeholder {
+                color: var(--placeholder-text-color);
+                opacity: 1;
+            }
+
+            input::placeholder {
+                color: var(--placeholder-text-color);
+                opacity: 1; 
+            }
+
+            .add-stage-dropdown {
+                text-align: center;
+                -webkit-appearance: none; 
+                -moz-appearance: none; 
+                appearance: none; 
+            }
+
+            .add-stage-dropdown option {
+                text-align: center; 
+            }
+
+            #settingsContent label {
+                display: block; 
+                text-align: center; 
+                margin: 10px 0 5px 0; 
+                font-weight: bold; 
+                font-size: 14px;
+            }
+
+            #settingsContent input,
+            #settingsContent select {
+                display: block;
+                margin: 0 auto 15px auto; 
+                width: 75%; 
+                max-width: 800px; 
+                padding: 4px; 
+                box-sizing: border-box; 
+                text-align: center; 
+            }
+
+            #settingsContent h3 {
+                text-align: center;
+                margin-top: 20px;
+                margin-bottom: 15px;
+                color: var(--accent-color);
+            }
+
+            .divider {
+                border: none;
+                border-top: 2px solid var(--accent-color);
+                margin: 20px auto;
+                width: 75%;
+                max-width: 800px;
+            }
+
+            .reward-money-type {
+                width: 50%; 
+                height: 100%;
+                padding: 6px;
+                font-size: 12px;
+                border-radius: 4px;
+                appearance: none; 
+                background-color: var(--icon-color);
+
+                position: relative;
+                transform: translateY(22px); 
+            }
+
+            .reward-money-min {
+                padding: 5px;
+                border-radius: 4px;
+            }
+            .reward-money-max {
+                padding: 5px;
+                border-radius: 4px;
+            }
+
+            #bankTruckItemSelectionOverlay, #itemSelectionOverlay {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1000;
+                padding: 20px;
+                background-color: rgba(0, 0, 0, 0.8); 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #bankTruckItemSelectionOverlay .container, #itemSelectionOverlay .container {
+                background-color: #2b2b2b; 
+                border-radius: 8px; 
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+                padding: 20px;
+                width: 500px; 
+                max-width: 90vw; 
+                color: white; 
+            }
+
+            #bankTruckItemSelectionOverlay h2, #itemSelectionOverlay h2 {
+                margin-bottom: 10px;
+            }
+
+            #mainRobberySettingsPage, #BankTruckMainPage, #sellLocationMainPageContainer, #atmRobberyMainPageContainer   {
+                padding: 15px;
+            }
+
+    
+            .stage-tab .tooltip .remove-tab-button {
+                background-color: #f44336d2; 
+                height: 25px;
+                color: #fff; 
+                border: none;
+                padding: 1px;
+                cursor: pointer;
+                font-size: 9px;
+                border-radius: 0px;
+                opacity: 0.8;
+                transition: opacity 0.3s;
+            }
+
+            .stage-tab .tooltip .rename-step-button {
+                background-color: #8a8a8ade; 
+                height: 25px;
+                color: #fff; 
+                border: none;
+                padding: 1px;
+                cursor: pointer;
+                font-size: 9px;
+                border-radius: 0px;
+                opacity: 0.8;
+                transition: opacity 0.3s;
+            }
+
+            .stage-tab .tooltip .remove-tab-button:hover {
+                opacity: 1; 
+            }
+
+
+            ::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: var(--secondary-color); 
+                border-radius: 10px; 
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: var(--accent-color); 
+                border-radius: 10px; 
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--background-color); 
+            }
+
+
+            .tooltip-container {
+                position: relative;
+                display: inline-block;
+            }
+
+            .tooltip-container .tooltip-text {
+                visibility: hidden;
+                width: 200px;
+                color: #fff;
+                text-align: center;
+                border-radius: 6px;
+                padding: 5px;
+                position: absolute;
+                z-index: 1;
+                bottom: 100%;
+                left: 60%;
+                margin-left: -70px; 
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+
+            .tooltip-container:hover .tooltip-text {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .select-door-button, .get-closest-door-button {
+                padding: 5px 10px;
+                background-color: #333;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .select-door-button:hover, .get-closest-door-button:hover {
+                background-color: #555;
+            }
+
+            .door-position-header {
+                display: flex;
+                align-items: center;
+            }
+
+            .door-position-input {
+                margin-top: 10px;
+                width: 100%;
+                padding: 8px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            .teleport-button-container {
+                margin-top: 10px;
+                cursor: pointer;
+            }
+
+            .step:hover .move-arrows {
+                display: block;
+            }
+
+            .move-arrows {
+                position: absolute;
+                right: 10px;
+                display: flex;
+                flex-direction: column;
+            }
+            .move-arrows button {
+                width: 30px; 
+                height: 30px; 
+                font-size: 18px; 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 5px;
+                cursor: pointer; 
+                transition: background-color 0.3s ease;
+            }
+
+            #editHeistContainer h2 {
+                text-align: center;
+            }
+
+            .item-divider {
+                border: none;
+                border-top: 1px solid var(--accent-color);
+                margin: 10px 0;
+            }
+
+
+
+        </style>
+    </head>
+<body>
+    <div class="overlay" id="overlay">
+        <div class="stage-tabs-container" id="stage-tabs-main">
+            <div id="stageTabs" class="stage-tabs">
+                <!-- Tabs will be dynamically added here -->
+            </div>
+        </div>
+        <div class="container" id="primaryContainer">
+            <button id="closeButton" class="close-button">X</button>
+            <div id="mainRobberySettingsPage">
+                <div class="section2">
+                    <!-- Icon above the ROBBERY SETTINGS header -->
+                    <div class="robbery-settings-header-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h2 id="selectHeading" class="selectHeading">ROBBERY SETTINGS</h2>
+                    
+                    <select id="heistSelect" class="centered-dropdown"></select>
+                    <button id="toggleEditModeButton" style="display: none;"><i class="fas fa-edit" style="color: var(--accent-color);"></i> Edit Robbery Features</button>
+
+                    <button id="createHeistButton"><i class="fas fa-plus-circle" style="color: var(--hackable_door-color);"></i> Add New Heist</button>
+                    
+                    <form id="createHeistForm" style="display: none;">
+                        <label for="heistName"><i class="fas fa-lock" style="color: var(--accent-color);"></i> Heist Name:</label>
+                        <input type="text" id="heistName" name="heistName">
+                        <button type="submit">Create</button>
+                        <button type="button" id="backToSelectionButton2">BACK</button>
+                    </form>
+                    
+                    <button id="deleteHeistButton" style="display: none;"><i class="fas fa-trash-alt" style="color: var(--lasers-color);"></i> Delete Robbery</button>
+                </div>
+            </div>
+            
+            <div id="BankTruckMainPage">
+                <div class="section2">
+                    <!-- Bank truck icon and header -->
+                    <div class="bank-truck-header-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 id="BankTruckHeader" class="BankTruckHeader">BANK TRUCK SETTINGS</h3>
+                    <button id="toggleEditBankTruckButton"><i class="fas fa-truck-ramp-box" style="color: var(--icon-color);"></i> Edit Bank Truck Robbery</button>
+                
+                    <!-- Bank truck options -->
+                    <div id="bankTruckOptions" style="display: none;">
+
+                        <div class="section2">
+                            <label class="tooltip-container">
+                                <i class="fas fa-gamepad"></i> Mini Game Options
+                                <span class="tooltip-text">This mini game will only be required when you are opening the back of a bank truck.</span>
+                            </label>
+                            <select id="bankTruckMiniGameSelect" >
+                                
+                            </select>
+                        </div>
+                        
+                        
+                
+                        <div class="section2">
+                            <label class="tooltip-container">
+                                <i class="fas fa-lock"></i> Lockdown Bank Truck Where Players Find It <input type="checkbox" id="lockBankTruck">
+                                <span class="tooltip-text">This feature locks any bank truck that players attempt to enter, ensuring that they must rob the truck at its current location. It prevents players from driving the truck elsewhere to rob it, adding a layer of challenge and realism to the robbery process.</span>
+                            </label>
+                        </div>
+                
+                        <div class="section2">
+                            <label class="tooltip-container">
+                                <i class="fas fa-shield-alt"></i> Guards Exit and Shoot <input type="checkbox" id="guardsShootOption">
+                                <span class="tooltip-text">Enable two guards to exit the truck and engage in combat after players how blown open the back of the bank truck</span>
+                            </label>
+                        </div>
+                
+                        <div class="section2">
+                            <label class="tooltip-container">
+                                <i class="fas fa-map-marker-alt"></i> Dynamic Spawn Locations <input type="checkbox" id="dynamicSpawnLocations">
+                                <span class="tooltip-text">By default, GTA 5 spawns bank trucks at three different locations at random times of the day. Adding new spawn locations will not remove the built-in locations. Instead, it will allow a bank truck to randomly spawn at one of your set locations every hour, unless the "Initiating Starting Point" option is checked, in which case a random spawn location will be selected for that setting. </span>
+                            </label>
+                            <div id="dynamicSpawnLocationOptions" class="hidden">
+                                <button id="addTruckSpawnButton" type="button">Add Truck Spawn</button>
+                                <div id="truckSpawnList" class="spawn-location-list"></div> 
+                            </div>
+                        </div>
+                
+                        <div class="section2">
+                            <label class="tooltip-container">
+                                <i class="fas fa-key"></i> Item Required to Rob Bank Truck <input type="checkbox" id="bankTruckRequiredItemCheckbox">
+                                <span class="tooltip-text">Set an item required to initiate the bank truck robbery</span>
+                            </label>
+                            <div id="bankTruckRequiredItemOptions" class="hidden required-item-options">
+                                <button class="add-banktruck-required-item-button" type="button">Add Required Item</button>
+                                <div class="banktruck-required-item-list"></div>
+                            </div>
+                        </div>
+
+                        <div class="section2">
+                            <label class="tooltip-container">
+                                <i class="fas fa-gift"></i> Reward Item <input type="checkbox" id="bankTruckRewardItemCheckbox">
+                                <span class="tooltip-text">Set an item as a reward</span>
+                            </label>
+                            <div id="bankTruckRewardItemOptions" class="hidden reward-item-options">
+                                <button class="add-banktruck-reward-item-button" type="button">Add Reward Item</button>
+                                <div class="banktruck-item-list"></div>
+                            </div>
+                        </div>
+                
+                        <div class="section2 starting-point-step">
+                            <label class="tooltip-container">
+                                <i class="fas fa-flag-checkered"></i> Initiating Starting Point <input type="checkbox" id="initiatingStartingPointCheckbox">
+                                <span class="tooltip-text">This option allows you to make the bank truck robbery like a traditional staged robbery where as without this, players will have to find spawned bank trucks. (You need to place Dynamic Spawn Locations for this to work | Bank trucks randomly found out in the world will not be robbable if this is checked)</span>
+                            </label>
+                            <div id="initiatingStartingPointOptions" class="hidden starting-point-options">
+                                <button id="setStartingPointButton" class="set-starting-point-button" type="button">Set Starting Point Position</button>
+                                <div>
+                                    <label>Select Mini Game:</label>
+                                    <select id="startingPointMiniGameSelect">
+                                        <option value="lockpick">Lockpick</option>
+                                        <option value="hacking">Hacking</option>
+                                       
+                                    </select>
+                                </div>
+                                <div class="section blip-option">
+                                    <label class="tooltip-container">
+                                        <i class="fas fa-map-marker-alt"></i> Create Blip Of Bank Truck For All Players 
+                                        <input type="checkbox" id="createBlipCheckbox">
+                                        <span class="tooltip-text">If checked, a blip of the bank truck will be visible on the map for all players. This will create a dynamic of other members in the server possibly fighting for the bank truck.</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="section2">
+                            <label class="tooltip-container">
+                                <i class="fas fa-exclamation-triangle"></i> Set All Other Robberies on Cooldown When Hit <input type="checkbox" id="otherRobberiesCooldownCheckbox">
+                                <span class="tooltip-text">When checked, sets all other robberies on cooldown when the bank truck is hit</span>
+                            </label>
+                            <div id="otherRobberiesCooldownOptions" class="hidden cooldown-options">
+                                <label>Cooldown Time (minutes):</label>
+                                <input type="number" id="otherRobberiesCooldownTime" class="small-input" min="1" placeholder="Minutes" value="1">
+                            </div>
+                        </div>
+                
+                
+                        <div class="section2">
+                            <label class="tooltip-container">
+                                <i class="fas fa-money-bill-wave"></i> Reward Money <input type="checkbox" id="bankTruckRewardMoneyCheckbox">
+                                <span class="tooltip-text">Set a reward amount in cash or bank</span>
+                            </label>
+                            <div id="bankTruckRewardMoneyOptions" class="hidden reward-money-options">
+                                <select id="bankTruckRewardMoneyType">
+                                    <option value="cash">Cash</option>
+                                    <option value="bank">Bank</option>
+                                </select>
+                                <div>
+                                    <label>Min Amount</label>
+                                    <input type="number" id="bankTruckRewardMoneyMin" class="small-input" placeholder="Min Amount" min="1" value="1">
+                                </div>
+                                <div>
+                                    <label>Max Amount</label>
+                                    <input type="number" id="bankTruckRewardMoneyMax" class="small-input" placeholder="Max Amount" min="1" value="1">
+                                </div>
+                            </div>
+                        </div>
+                
+                
+                        <div class="section2">
+                            <label class="tooltip-container">
+                                <i class="fas fa-stopwatch"></i> Bank Truck Cooldown Time (minutes):
+                                <span class="tooltip-text">Set cooldown time before bank truck can be hit again</span>
+                            </label>
+                            <input type="number" id="bankTruckCooldown" class="small-input" min="30" placeholder="Minutes" value="60">
+                        </div>
+                
+                        <div class="section2">
+                            <label class="tooltip-container">
+                                <i class="fas fa-clock"></i> Minutes Until Bank Truck Can Be Hit After Server Restart:
+                                <span class="tooltip-text">Set how many minutes after a server restart the bank truck can be hit</span>
+                            </label>
+                            <input type="number" id="bankTruckRestartCooldown" class="small-input" placeholder="Minutes" min="1" value="1">
+                        </div>
+                
+                        <div class="section2">
+                            <label class="tooltip-container">
+                                <i class="fas fa-hourglass-half"></i> Minutes Until Loot Can Be Grabbed After Successful Hit:
+                                <span class="tooltip-text">Set how long after a successful bank truck hit loot can be grabbed</span>
+                            </label>
+                            <input type="number" id="bankTruckLootCooldown" class="small-input" placeholder="Minutes" min="1" value="1">
+                        </div>
+                
+                        <div class="section2">
+                            <label class="tooltip-container">
+                                <i class="fas fa-user-shield"></i> Number of Police Required:
+                                <span class="tooltip-text">Set the number of police required to trigger the bank truck robbery (this checks for anyone with the job police, bcso, leo, ranger, trooper, or sasp)</span>
+                            </label>
+                            <input type="number" id="BankTruckpoliceRequired" class="small-input" min="1" placeholder="Number of Police" value="1">
+                        </div>
+                
+                        <button id="saveBankTruckDataButton" class="save-banktruck-button">SAVE SETTINGS</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="atmRobberyMainPageContainer">
+                <div class="section2">
+                    <div id="atm-robbery-header-icon" class="atm-robbery-header-icon">
+                        <i class="fa-solid fa-piggy-bank"></i>
+                    </div>
+                    <h3 id="atmRobberyHeader" class="atmRobberyHeader">ATM ROBBERY SETTINGS</h3>
+                    <button id="toggleAtmRobberyButton" class="menu-toggle-button">
+                        <i class="fas fa-lock"></i> Show ATM Robbery Settings
+                    </button>
+                    <div id="atmRobberyMainPage" style="display: none;">
+
+                        <div class="section">
+                            <label class="tooltip-container">
+                                Minigame Option:
+                                <span class="tooltip-text">Select the minigame players will need to complete during the ATM robbery.</span>
+                            </label>
+                            <select id="minigameOptionDropdown" class="centered-dropdown">
+                                <option value="none">None</option> 
+                            </select>
+                        </div>
+                        
+                        
+                        <div class="atm-settings">
+                            <div class="section">
+                                <label class="tooltip-container">
+                                    Robbery Method:
+                                    <span class="tooltip-text">USE ROPE TO PULL ATM: This will require players to use the "ropehook" item on an atm and then use the item on the boot/trunk of a car and then drive off with the atm. | DRILL ATM AND TAKE MONEY: This will make it more like a traditional atm robbery script that i have pre made.</span>
+                                </label>
+                                <select id="robberyMethod" class="centered-dropdown">
+                                    <option value="rope">Use Rope to Pull ATM</option>
+                                    <option value="drill">Drill ATM and Take Money</option>
+                                </select>
+                            </div>
+                            
+                            <div class="section">
+                                <label class="tooltip-container">
+                                    Can Only Be Robbed At Night:
+                                    <span class="tooltip-text">Can this ATM be robbed only at night?</span>
+                                </label>
+                                <input type="checkbox" id="nightOnlyCheckbox">
+                            </div>
+            
+                            <div class="section">
+                                <label class="tooltip-container">
+                                    Required Police Required:
+                                    <span class="tooltip-text">Minimum number of police required online.</span>
+                                </label>
+                                <input type="number" id="atmRobberyPoliceRequired" placeholder="Minimum number of police required online" min="0">
+                            </div>
+            
+                            <div class="section">
+                                <label class="tooltip-container">
+                                    Robbery Cooldown (minutes):
+                                    <span class="tooltip-text">Cooldown time before this ATM can be robbed again.</span>
+                                </label>
+                                <input type="number" id="atmCooldown" placeholder="Cooldown" min="0">
+                            </div>
+
+                            <div class="section">
+                                <label class="tooltip-container">
+                                    <i class="fas fa-unlock-alt"></i> Dont Require Drilling:
+                                    <span class="tooltip-text">
+                                        If checked, players won't need to do the drilling process. They can rob the ATM without drilling.
+                                    </span>
+                                </label>
+                                <input type="checkbox" id="dontRequireDrillingCheckbox">
+                            </div>
+            
+                        </div>
+
+                        <div class="section">
+                            <label class="tooltip-container">
+                                <i class="fas fa-tools"></i> Required Item
+                                <span class="tooltip-text">Select items that are required for this robbery and their removal chance after use.</span>
+                            </label>
+                            <input type="checkbox" id="atmRequiredItemCheckbox">
+                            <div id="atmRequiredItemOptions" class="atm-required-item-options hidden">
+                                <div id="atmRequiredItemList" class="atm-required-item-list"></div>
+                                <button id="addAtmRequiredItemButton" type="button">Add Required Item</button>
+                            </div>
+                        </div>
+
+            
+                        <div class="section">
+                            <label class="tooltip-container">
+                                <i class="fas fa-gift"></i> Reward Item
+                                <span class="tooltip-text">Select items that can be rewarded from this robbery.</span>
+                            </label>
+                            <input type="checkbox" id="atmRewardItemCheckbox">
+                            <div id="atmRewardItemOptions" class="atm-reward-item-options hidden">
+                                <div id="atmRewardItemList" class="atm-reward-item-list"></div>
+                                <button id="addAtmRewardItemButton" type="button">Add Reward Item</button>
+                            </div>
+                        </div>
+
+                        <div class="section">
+                            <label class="tooltip-container">
+                                <i class="fas fa-money-bill-wave"></i> Money Reward
+                                <span class="tooltip-text">Select if this robbery gives cash or bank money.</span>
+                            </label>
+                            <input type="checkbox" id="atmRewardMoneyCheckbox">
+                            <div id="atmRewardMoneyOptions" class="atm-reward-money-options hidden">
+                                <label>Reward Type:</label>
+                                <select id="rewardTypeDropdown" class="centered-dropdown">
+                                    <option value="cash">Cash</option>
+                                    <option value="bank">Bank</option>
+                                </select>
+                                <label>Min Amount:</label>
+                                <input type="number" id="atmRewardMinMoney" placeholder="Min Amount" min="1" value="1">
+                                <label>Max Amount:</label>
+                                <input type="number" id="atmRewardMaxMoney" placeholder="Max Amount" min="1" value="1">
+                            </div>
+                        </div>
+
+            
+                        <button id="saveAtmRobberyDataButton" class="save-atm-robbery-button">SAVE SETTINGS</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="sellLocationMainPageContainer">
+                <div class="section2">
+                    <div id="sell-items-header-icon" class="sell-items-header-icon">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <h3 id="sellLocationHeader" class="sellLocationHeader">SELL ITEM LOCATION SETTINGS</h3>
+                    <button id="toggleSellLocationButton" class="menu-toggle-button">
+                        <i class="fas fa-map-marker-alt"></i> Show Sell Location Settings
+                    </button>
+                    <div id="sellLocationMainPage" style="display: none;">
+                        <div class="section2">
+                            <button id="placeSellLocationTargetButton" class="sell-location-place-target-button tooltip-container">
+                                <i class="fas fa-map-marker-alt"></i> Place Target Location
+                                <span class="tooltip-text">Set a sell location target</span>
+                            </button>
+                        </div>
+            
+                        <div id="sellLocationTargetsContainer">
+                            <!-- Individual Target Entries Will Be Added Here -->
+                        </div>
+            
+                        <button id="saveSellLocationDataButton" class="save-sell-location-button">SAVE SETTINGS</button>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+        </div>
+        
+        <div class="container" id="editHeistContainer" style="display: none;">
+            <div class="sticky-container"> <!-- Sticky wrapper -->
+                <h2>Edit Heist Features</h2>
+                <div class="tab-container">
+                    <button id="stagesTab" class="active-tab"><i class="fas fa-cogs"></i> Stages</button>
+                    <button id="settingsTab"><i class="fas fa-sliders-h"></i> Settings</button>
+                </div>
+            </div>
+        
+            <div id="stagesContent" class="tab-content active">
+                <div class="heist-steps" id="heistStepsContainer">
+                    <!-- Steps will be dynamically added here -->
+                </div>
+                <select id="addStageSelect">
+                    <option value="" disabled selected>Add Stage</option>
+                    <option value="hidden_passcode">HIDDEN STICKY NOTE PASSCODE</option>
+                    <option value="ending_robbery">ENDING CINIMATIC SCENE</option>
+                    <option value="toxic_gas">TOXIC GAS BUBBLE</option>
+                    <option value="robabble_object">ROBBABLE OBJECT</option>
+                    <option value="hackable_door">HACKABLE DOOR</option>
+                    <option value="guards">GUARDS</option>
+                    <option value="lasers">LASERS</option>
+                    <option value="custom_door">CUSTOM DOOR</option>
+                </select>
+            </div>
+        
+            <div id="settingsContent" class="tab-content">
+
+                <h3>Base Robbery Settings</h3>
+                <div class="section2">
+                    <div class="section">
+                        <label for="cooldownHeists" class="tooltip-container">
+                            <i class="fas fa-hourglass-half"></i> Select Robberies To Put On Global Cooldown When This Is Robbed:
+                            <span class="tooltip-text">Choose other robberies that should go on cooldown when this robbery is completed.</span>
+                        </label>
+                        <select id="cooldownHeists" name="cooldownHeists" multiple>
+                            <!-- Heist options will be dynamically populated -->
+                        </select>
+                    </div>
+
+
+                    <div class="section">
+                        <label for="cooldownMinutes" class="tooltip-container">
+                            <i class="fas fa-clock"></i> Selected Robberies Cooldown Time If Any: (Minutes)
+                            <span class="tooltip-text">Set the cooldown time (in minutes) for the selected robberies.</span>
+                        </label>
+                        <input type="number" id="cooldownMinutes" name="cooldownMinutes" min="1" placeholder="Enter cooldown in minutes" value="1">
+                    </div>
+
+                    <div class="section">
+                        <label for="policeRequired" class="tooltip-container">
+                            <i class="fas fa-user-shield"></i> Number of Police Required:
+                            <span class="tooltip-text">Set the number of police required for this robbery to be available.</span>
+                        </label>
+                        <input type="number" id="policeRequired" name="policeRequired" min="0" placeholder="0" value="0">
+                    </div>
+
+                    <div class="section">
+                        <label for="robberyCooldown" class="tooltip-container">
+                            <i class="fas fa-clock"></i> This Robbery Cooldown Timer (minutes):
+                            <span class="tooltip-text">Set the cooldown time (in minutes) before this robbery can be attempted again.</span>
+                        </label>
+                        <input type="number" id="robberyCooldown" name="robberyCooldown" min="0.7" step="0.1" placeholder="1" value="1">
+                    </div>
+
+                    <div class="section">
+                        <label for="minutesUntilRobbery" class="tooltip-container">
+                            <i class="fas fa-stopwatch"></i> Minutes Until Robbery Can Be Hit When Server/Script Starts:
+                            <span class="tooltip-text">Specify how many minutes after the server starts this robbery becomes available.</span>
+                        </label>
+                        <input type="number" id="minutesUntilRobbery" name="minutesUntilRobbery" min="0.1" step="0.1" placeholder="0" value="0.1">
+                    </div>
+
+                </div>
+
+
+                <!-- New Police Alert Settings -->
+                <h3>Police Alert Settings</h3>
+
+                <div class="section2">
+                    <div class="section">
+                        <label for="policeAlertHeader" class="tooltip-container">
+                            <i class="fas fa-heading"></i> Police Alert Header:
+                            <span class="tooltip-text">Set the title or header of the alert sent to police. This is not used with ps-dispatch.</span>
+                        </label>
+                        <input type="text" id="policeAlertHeader" name="policeAlertHeader" placeholder="This is not used with ps-dispatch">
+                    </div>
+
+
+                    <div class="section">
+                        <label for="policeAlert" class="tooltip-container">
+                            <i class="fas fa-envelope-open-text"></i> Police Alert Message:
+                            <span class="tooltip-text">Write the detailed message sent to police when the robbery is triggered.</span>
+                        </label>
+                        <input id="policeAlert" name="policeAlert" placeholder="Enter police alert message here"></input>
+                    </div>
+
+                    <div class="section">
+                        <!-- Code -->
+                        <label for="alertCode" class="tooltip-container">
+                            <i class="fas fa-code"></i> Alert Code:
+                            <span class="tooltip-text">Set the code for the police alert, e.g., 10-90 for robbery in progress.</span>
+                        </label>
+                        <input type="text" id="alertCode" name="alertCode" placeholder="e.g., 10-90" value="10-80">
+                    </div>
+
+                    <div class="section">
+                        <!-- Cam ID -->
+                        <label for="alertCamId" class="tooltip-container">
+                            <i class="fas fa-camera"></i> Camera ID:
+                            <span class="tooltip-text">Enter the camera ID to be displayed with the alert (MDT only with ps-dispatch).</span>
+                        </label>
+                        <input type="text" id="alertCamId" name="alertCamId" placeholder="Enter Camera ID (With ps-dispatch, this only shows in the MDT)">
+                    </div>
+
+
+                    <div class="section">
+                        <!-- Icon -->
+                        <label for="alertIcon" class="tooltip-container">
+                            <i class="fas fa-icons"></i> Alert Icon:
+                            <span class="tooltip-text">Choose an icon to represent the police alert on the map or in the system.</span>
+                        </label>
+                        <select id="alertIcon" name="alertIcon">
+                            <option value="fas fa-question">Question Mark</option>
+                            <option value="fas fa-exclamation-triangle">Exclamation Triangle</option>
+                            <option value="fas fa-bell">Bell</option>
+                            <option value="fas fa-shield-alt">Shield</option>
+                        </select>
+                    </div>
+
+
+                    <div class="section">
+                        <!-- Priority -->
+                        <label for="alertPriority" class="tooltip-container">
+                            <i class="fas fa-sort-amount-up"></i> Alert Priority:
+                            <span class="tooltip-text">Set the priority of the alert: 1 is High, 2 is Medium, 3 is Low.</span>
+                        </label>
+                        <select id="alertPriority" name="alertPriority">
+                            <option value="1">1 - High</option>
+                            <option value="2" selected>2 - Medium</option>
+                            <option value="3">3 - Low</option>
+                        </select>
+                    </div>
+
+                    <div class="section">
+                        <!-- Blip Settings -->
+                        <label for="blipSprite" class="tooltip-container">
+                            <i class="fas fa-map-marker-alt"></i> Blip Sprite:
+                            <span class="tooltip-text">Set the blip sprite to represent the robbery location on the map. Website for all gta 5 blip icons here: https://docs.fivem.net/docs/game-references/blips/ </span>
+                        </label>
+                        <input type="number" id="blipSprite" name="blipSprite" min="1" value="1">
+                    </div>
+
+
+                    <div class="section">
+                        <!-- Blip Color -->
+                        <label for="blipColor" class="tooltip-container">
+                            <i class="fas fa-palette"></i> Blip Color:
+                            <span class="tooltip-text">Choose the color of the blip shown on the map for this robbery location.</span>
+                        </label>
+                        <select id="blipColor" name="blipColor">
+                            <option value="" disabled selected>Select a color</option>
+                            <option value="0">0: White</option>
+                            <option value="1">1: Red</option>
+                            <option value="2">2: Green</option>
+                            <option value="3">3: Blue</option>
+                            <option value="4">4: Red</option>
+                            <option value="5">5: Yellow</option>
+                            <option value="6">6: Light Red</option>
+                            <option value="7">7: Violet</option>
+                            <option value="8">8: Pink</option>
+                            <option value="9">9: Light Orange</option>
+                            <option value="10">10: Light Brown</option>
+                            <option value="11">11: Light Green</option>
+                            <option value="12">12: Light Blue</option>
+                            <option value="13">13: Light Purple</option>
+                            <option value="14">14: Dark Purple</option>
+                            <option value="15">15: Cyan</option>
+                            <option value="16">16: Light Yellow</option>
+                            <option value="17">17: Orange</option>
+                            <option value="18">18: Light Blue</option>
+                            <option value="19">19: Dark Pink</option>
+                            <option value="20">20: Dark Yellow</option>
+                            <option value="21">21: Dark Orange</option>
+                            <option value="22">22: Light Gray</option>
+                            <option value="23">23: Light Pink</option>
+                            <option value="24">24: Lemon Green</option>
+                            <option value="25">25: Forest Green</option>
+                            <option value="26">26: Electric Blue</option>
+                            <option value="27">27: Bright Purple</option>
+                            <option value="28">28: Dark Yellow</option>
+                            <option value="29">29: Dark Blue</option>
+                            <option value="30">30: Dark Cyan</option>
+                            <option value="31">31: Light Brown</option>
+                            <option value="32">32: Light Blue</option>
+                            <option value="33">33: Light Yellow</option>
+                            <option value="34">34: Light Pink</option>
+                            <option value="35">35: Light Red</option>
+                            <option value="36">36: Beige</option>
+                            <option value="37">37: White</option>
+                            <option value="38">38: Blue</option>
+                            <option value="39">39: Light Gray</option>
+                            <option value="40">40: Dark Gray</option>
+                            <option value="41">41: Pink Red</option>
+                            <option value="42">42: Blue</option>
+                            <option value="43">43: Light Green</option>
+                            <option value="44">44: Light Orange</option>
+                            <option value="45">45: White</option>
+                            <option value="46">46: Gold</option>
+                            <option value="47">47: Orange</option>
+                            <option value="48">48: Brilliant Rose</option>
+                            <option value="49">49: Red</option>
+                            <option value="50">50: Medium Purple</option>
+                            <option value="51">51: Salmon</option>
+                            <option value="52">52: Dark Green</option>
+                            <option value="53">53: Blizzard Blue</option>
+                            <option value="54">54: Oracle Blue</option>
+                            <option value="55">55: Silver</option>
+                            <option value="56">56: Brown</option>
+                            <option value="57">57: Blue</option>
+                            <option value="58">58: East Bay</option>
+                            <option value="59">59: Red</option>
+                            <option value="60">60: Yellow Orange</option>
+                            <option value="61">61: Mulberry Pink</option>
+                            <option value="62">62: Alto Gray</option>
+                            <option value="63">63: Jelly Bean Blue</option>
+                            <option value="64">64: Dark Orange</option>
+                            <option value="65">65: Mamba</option>
+                            <option value="66">66: Yellow Orange</option>
+                            <option value="67">67: Blue</option>
+                            <option value="68">68: Blue</option>
+                            <option value="69">69: Green</option>
+                            <option value="70">70: Yellow Orange</option>
+                            <option value="71">71: Yellow Orange</option>
+                            <option value="72">72: Transparent Black</option>
+                            <option value="73">73: Yellow Orange</option>
+                            <option value="74">74: Blue</option>
+                            <option value="75">75: Red</option>
+                            <option value="76">76: Deep Red</option>
+                            <option value="77">77: Blue</option>
+                            <option value="78">78: Oracle Blue</option>
+                            <option value="79">79: Transparent Red</option>
+                            <option value="80">80: Transparent Blue</option>
+                            <option value="81">81: Orange</option>
+                            <option value="82">82: Light Green</option>
+                            <option value="83">83: Purple</option>
+                            <option value="84">84: Blue</option>
+                            <option value="85">85: Transparent Black</option>
+                        </select>
+                    </div>
+
+                    <div class="section">
+                        <!-- Blip Scale -->
+                        <label for="blipScale" class="tooltip-container">
+                            <i class="fas fa-expand-arrows-alt"></i> Blip Scale:
+                            <span class="tooltip-text">Set the size of the blip on the map. Values between 1.0 and 2.0 are recommended.</span>
+                        </label>
+                        <input type="number" id="blipScale" name="blipScale" placeholder="1.0 - 2.0" min="0.1" step="0.1" value="1.0">
+                    </div>
+
+                    <div class="section">
+                        <!-- Alert Sounds -->
+                        <label for="alertSound1" class="tooltip-container">
+                            <i class="fas fa-volume-up"></i> Alert Sound:
+                            <span class="tooltip-text">Choose the sound that will play when the alert is triggered.</span>
+                        </label>
+                        <select id="alertSound1" name="alertSound1">
+                            <option value="Lose_1st">Lose 1st</option>
+                            <option value="robberysound">Robbery Sound</option>
+                            <option value="panicbutton">Panic Button</option>
+                            <option value="dispatch">Dispatch</option>
+                        </select>
+                    </div>
+
+                    <div class="section">
+                        <!-- Blip Flash -->
+                        <label for="blipFlash" class="tooltip-container">
+                            <i class="fas fa-flash"></i> Blip Flash:
+                            <span class="tooltip-text">Choose whether the blip will flash on the map when this robbery occurs.</span>
+                        </label>
+                        <select id="blipFlash" name="blipFlash">
+                            <option value="false" selected>False</option>
+                            <option value="true">True</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Police Jobs -->
+                <label for="policeJobs" class="tooltip-container">
+                    <i class="fas fa-briefcase"></i> Police Jobs/Jobs to be Alerted:
+                    <span class="tooltip-text">Specify the police jobs or any jobs that should receive an alert when this robbery occurs.</span>
+                </label>
+                <div id="policeJobsContainer">
+                    <div class="police-job">
+                        <input type="text" name="policeJob" placeholder="Enter police job name">
+                        <button type="button" class="removePoliceJobButton"><i class="fas fa-trash-alt"></i> Remove</button>
+                    </div>
+                </div>
+                <button type="button" id="addPoliceJobButton"><i class="fas fa-plus"></i> Add Police Job</button>
+            </div>
+
+            
+            <div class="action-buttons">
+                <button id="importSettingsButton"><i class="fas fa-file-import"></i> Import Settings</button>
+                <button id="importStagesButton"><i class="fas fa-upload"></i> Import Stages</button>
+                <button id="revertButton-stages" style="display: none;"><i class="fas fa-undo"></i> Revert Stages</button>
+                <button id="revertButton-settings" style="display: none;"><i class="fas fa-undo-alt"></i> Revert Settings</button>
+                <button id="saveButton"><i class="fas fa-save"></i> <span class="save-text">Save</span></button>
+    
+                <button id="backToSelectionButton"><i class="fas fa-arrow-left"></i> BACK</button>
+            </div>
+                
+        </div>
+        
+
+        <div class="overlay" id="copyModal" style="display: none;">
+            <div class="container">
+                <button class="close-button" id="closeCopyModal">X</button>
+                <h2>Select Heist to Copy To</h2>
+                <select id="heistCopySelect"></select>
+                <button id="confirmCopyButton">Confirm Copy</button>
+            </div>
+        </div>
+            
+        <div class="container" id="deleteHeistMenu" style="display: none;">
+            <button id="closeButtonDelete" class="close-button">X</button>
+            <h2 id="selectHeadingDelete" style="color: red;">ARE YOU SURE YOU WANT TO DELETE THIS HEIST?</h2>
+            <form id="deleteHeistForm">
+                <label id="deleteHeistNameLabel" style="display: block; margin-bottom: 20px;"></label>
+                <button type="submit">Yes</button>
+                <button id="cancelDeleteButton" type="button">No</button>
+            </form>
+            <h2 id="selectHeadingDelete2" style="color: red;">YOU CANNOT UNDO THIS</h2>
+        </div>
+    </div>
+    <div id="ShowImage">
+        <div id="Imgcontainer"></div>
+    </div>
+    <div class="overlay" id="doorSelectionOverlay" style="display: none;">
+        <div class="container">
+            <button id="closeDoorSelection" class="close-button">X</button>
+            <h2>Select a Door</h2>
+            <!-- Search input field -->
+            <input type="text" id="doorSearch" placeholder="Search door">
+            <!-- Door selection dropdown -->
+            <select id="doorSelect" size="10">
+                <!-- Options will be dynamically populated -->
+            </select>
+            <button id="confirmDoorSelection">Confirm</button>
+        </div>
+    </div>
+
+    <!-- Item Selection Modal for Sell Item -->
+    <div id="sellLocationItemSelectionOverlay" class="overlay" style="display: none;">
+        <div class="container">
+            <button id="closeSellLocationItemSelection" class="close-button">X</button>
+            <h2>Select an Item</h2>
+            <input type="text" id="sellLocationItemSearch" placeholder="Search item">
+            <select id="sellLocationItemSelect" size="10">
+                <!-- Options will be dynamically populated -->
+            </select>
+            <button id="confirmSellLocationItemSelection">Confirm</button>
+        </div>
+    </div>
+
+    <!-- Item Selection Modal for Atm Robbery -->
+    <div id="atmItemSelectionOverlay" class="overlay" style="display: none;">
+        <div class="container">
+            <button id="closeAtmItemSelection" class="close-button">X</button>
+            <h2>Select an Item</h2>
+            <input type="text" id="atmItemSearch" placeholder="Search item">
+            <select id="atmItemSelect" size="10">
+                <!-- Options will be dynamically populated -->
+            </select>
+            <button id="confirmAtmItemSelection">Confirm</button>
+        </div>
+    </div>
+        
+
+    <!-- Item Selection Modal for Bank Truck -->
+    <div class="overlay" id="bankTruckItemSelectionOverlay" style="display: none;">
+        <div class="container">
+            <button id="closeBankTruckItemSelection" class="close-button">X</button>
+            <h2>Select an Item for Bank Truck</h2>
+            <input type="text" id="bankTruckItemSearch" placeholder="Search item">
+            <select id="bankTruckItemSelect" size="10">
+                <!-- Options will be dynamically populated -->
+            </select>
+            <button id="confirmBankTruckItemSelection">Confirm</button>
+        </div>
+    </div>
+    
+    <div class="overlay" id="itemSelectionOverlay" style="display: none;">
+        <div class="container">
+            <button id="closeItemSelection" class="close-button">X</button>
+            <h2>Select an Item</h2>
+            <input type="text" id="itemSearch" placeholder="Search item">
+            <select id="itemSelect" size="10">
+                <!-- Options will be dynamically populated -->
+            </select>
+            <button id="confirmItemSelection">Confirm</button>
+        </div>
+    </div>
+
+    <!-- KEYPAD MINI GAME -->
+    <div class="keypad-container" id="keypadContainer" style="display: none;">
+        <div class="keypad-instructions">Enter code</div>
+        <input type="text" class="keypad-display" id="keypadDisplay" value="0" readonly />
+        <div class="keypad-buttons">
+            <button class="keypad-button" data-value="1">1</button>
+            <button class="keypad-button" data-value="2">2</button>
+            <button class="keypad-button" data-value="3">3</button>
+            <button class="keypad-button" data-value="4">4</button>
+            <button class="keypad-button" data-value="5">5</button>
+            <button class="keypad-button" data-value="6">6</button>
+            <button class="keypad-button" data-value="7">7</button>
+            <button class="keypad-button" data-value="8">8</button>
+            <button class="keypad-button" data-value="9">9</button>
+            <button class="keypad-button" data-value="0">0</button>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>

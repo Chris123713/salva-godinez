@@ -1,0 +1,271 @@
+.receipt-container-ticket {
+    display: flex;
+    scale: 1.2;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: "Courier New", monospace;
+  }
+  
+  .receipt-paper-ticket {
+    width: 300px;
+    background: #fefefe;
+    background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.05) 1px, transparent 0);
+    background-size: 20px 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 0, 0, 0.05), inset 0 0 120px rgba(0, 0, 0, 0.02);
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    padding: 15px;
+    position: relative;
+    transform: rotate(-0.5deg);
+  }
+  
+  .receipt-paper-ticket::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(90deg, transparent, transparent 8px, #ddd 8px, #ddd 10px);
+  }
+  
+  .receipt-paper-ticket::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(90deg, transparent, transparent 8px, #ddd 8px, #ddd 10px);
+  }
+  
+  .receipt-header-ticket {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .restaurant-name-ticket {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+  }
+  
+  .restaurant-address-ticket {
+    font-size: 10px;
+    line-height: 1.3;
+    color: #333;
+  }
+  
+  .receipt-divider-ticket {
+    font-size: 10px;
+    text-align: center;
+    margin: 8px 0;
+    color: #666;
+    letter-spacing: -1px;
+  }
+  
+  .receipt-info-ticket {
+    margin-bottom: 10px;
+  }
+  
+  .receipt-line-ticket {
+    font-size: 11px;
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .receipt-items-ticket  {
+    margin-bottom: 10px;
+  }
+  
+  .items-header-ticket {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  
+  .item-desc-ticket {
+    text-align: left;
+  }
+  
+  .item-qty-ticket {
+    text-align: center;
+  }
+  
+  .item-price-ticket {
+    text-align: center;
+  }
+  
+  .item-total-ticket {
+    text-align: right;
+    font-weight: bold;
+  }
+  
+  .receipt-item-ticket {
+    margin-bottom: 8px;
+  }
+  
+  .item-name-ticket {
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+  }
+  
+  .item-details-ticket {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    font-size: 10px;
+    text-align: center;
+  }
+  
+  .item-qty-val-ticket {
+    text-align: center;
+  }
+  
+  .item-price-val-ticket {
+    text-align: center;
+  }
+  
+  .item-total-val-ticket {
+    text-align: right;
+    font-weight: bold;
+  }
+  
+  .receipt-totals-ticket {
+    margin-bottom: 10px;
+  }
+  
+  .total-line-ticket {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+  
+  .total-final-ticket {
+    font-weight: bold;
+    font-size: 13px;
+    border-top: 1px dashed #666;
+    padding-top: 5px;
+    margin-top: 5px;
+  }
+  
+  .payment-info-ticket {
+    margin-bottom: 10px;
+  }
+  
+  .payment-line-ticket   {
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+  
+  .receipt-footer-ticket {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .thank-you-ticket {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  
+  .footer-message-ticket {
+    font-size: 9px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    color: #555;
+  }
+  
+  .receipt-bottom-ticket {
+    margin-top: 15px;
+  }
+  
+  .barcode-ticket {
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .receipt-id-ticket {
+    font-size: 9px;
+    color: #666;
+  }
+  
+  /* Realistic paper effects */
+  .receipt-paper-ticket {
+    background-color: #fefefe;
+    background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+      linear-gradient(#eee .1em, transparent .1em);
+    background-size: 100% 1.2em;
+    scale: 1.3;
+  }
+  
+  /* Slight aging effect */
+  .receipt-paper-ticket {
+    filter: sepia(5%) saturate(110%) brightness(98%);
+  }
+  
+  /* Print-like dots pattern */
+  .receipt-paper-ticket {
+    background-image: radial-gradient(circle, #000 0.5px, transparent 0.5px);
+    background-size: 8px 8px;
+    background-position: 0 0, 4px 4px;
+    opacity: 0.98;
+  }
+  
+  /* Thermal printer effect */
+  .receipt-paper-ticket  {
+    background: linear-gradient(
+        0deg,
+        transparent 24%,
+        rgba(255, 255, 255, 0.05) 25%,
+        rgba(255, 255, 255, 0.05) 26%,
+        transparent 27%,
+        transparent 74%,
+        rgba(255, 255, 255, 0.05) 75%,
+        rgba(255, 255, 255, 0.05) 76%,
+        transparent 77%,
+        transparent
+      ), #fefefe;
+  }
+  
+  /* Ticket Close Button */
+  .ticket-close-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .close-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .close-btn:hover {
+    background: #c0392b;
+  }
+  
+  .close-btn:active {
+    transform: translateY(1px);
+  }
+  
