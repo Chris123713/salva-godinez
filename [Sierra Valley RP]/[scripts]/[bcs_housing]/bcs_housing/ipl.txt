@@ -1,0 +1,6 @@
+{
+	label="Vibrant 1 Apartment",
+	name="apa_v_mp_h_03_a",
+	entry=vec3(-787.06, 315.65, 217.64),
+	heading=272.32,
+},
