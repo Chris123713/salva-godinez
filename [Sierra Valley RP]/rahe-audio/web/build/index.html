@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RAHE AUDIO</title>
+    <script>
+        let inited = false;
+        let ytReady = false;
+        let domReady = false;
+
+        const tryInit = () => {
+            if (inited || !ytReady || !domReady) {
+                return;
+            }
+
+            inited = true;
+
+            const slot = new URLSearchParams(window.location.search).get('slot');
+
+            fetch('https://rahe-audio/rahe-audio:duiReady', {method: 'POST', body: JSON.stringify({slotIndex: slot}), headers: {'Content-Type': 'application/json'}})
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            domReady = true;
+            tryInit();
+        })
+
+        window.onYouTubeIframeAPIReady = () => {
+            ytReady = true;
+            tryInit();
+        };
+    </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <style>
+        #app {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #app div {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script type="module" crossorigin src="./assets/index-7-L2ecPU.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>

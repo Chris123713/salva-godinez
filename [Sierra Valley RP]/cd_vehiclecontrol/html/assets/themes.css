@@ -1,0 +1,701 @@
+.theme-dark {
+    --theme-background-dark: rgba(26, 26, 26, 1);
+    --theme-background-semidark: rgba(34, 34, 34, 1);
+    --theme-background-shade: rgba(42, 42, 42, 1);
+    --theme-background-light: rgba(51, 51, 51, 1);
+    --theme-text: rgba(255, 255, 255, 1);
+    --theme-helper-text: rgba(255,255,255,0.3);
+    
+    --theme-active: rgba(255, 209, 71, 1);
+  
+    --theme-highlight: rgba(255, 93, 87,1);
+    --theme-highlight-active: rgba(253, 74, 68,1);
+  
+    --theme-closed: rgba(0,0,0,0.1);
+    --theme-occupied: rgba(255,191,0,0.1);
+    --theme-occupied-hover: rgba(255,0,0,0.1);
+    --theme-destroyed: rgba(199, 0, 57, 0.1);
+    --theme-open: rgba( 160, 224, 45 ,0.1);
+    --theme-open-hover: rgba(0,0,0,0.1);
+  
+    --theme-info-text: rgba(0,0,0,1);
+    --theme-info-background: rgba(255,255,255,0.5);
+  
+    --theme-start-stop-background: rgba(199, 0, 57,1);
+    --theme-start-stop-on: rgba(100, 142, 21,1);
+    --theme-start-stop-on-lighter: rgba(168, 226, 60,1);
+  
+    --theme-start-stop-on-shadow: rgba(168,226,60,0.9);
+  
+    --theme-start-stop-off: rgba(143, 0, 40, 1);
+    --theme-start-stop-off-lighter: rgba(255, 10, 80, 1);
+  
+    --theme-start-stop-off-shadow: rgba(255, 10, 80, 0.9);
+  
+    --theme-start-stop-broken: rgba(204, 153, 0, 1);
+    --theme-start-stop-broken-lighter:rgba(255, 209, 71, 1);
+  
+    --theme-start-stop-disabled-bg: rgba(102, 102, 102,1);
+    --theme-start-stop-disabled-dark: rgba(51, 51, 51,1);
+    --theme-start-stop-disabled-light: rgba(85, 85, 85,1);
+  
+    --theme-start-stop-text: rgba(255,255,255,0.5);
+    --theme-lock-background: rgba(199, 0, 57,1);
+    --theme-lock-fill: rgba(255,255,255, 0.5);
+  
+    --theme-locked: rgba(204, 153, 0, 1);
+    --theme-locked-light: rgba(255, 209, 71, 1);
+    --theme-locked-hover:rgba(255, 209, 71, 0.9);
+  
+    --theme-unlocked: rgba(128, 128, 128, 1);
+    --theme-unlocked-light: rgba(211, 211, 211, 1);
+    --theme-unlocked-hover: rgba(128,128,128,0.9);
+  
+    --theme-unusable: rgba(128, 128, 128, 1);
+    --theme-item-svg: rgba(255,255,255,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.1);
+    --theme-item-svg-hover: rgba(255,255,255,1);
+  
+    --theme-item-svg-destroyed: rgba(199, 0, 57,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.1);
+    --theme-item-svg-open: rgba(160, 224, 45 ,0.5);
+    --theme-item-svg-closed: rgba(255,255,255,0.1);
+    --theme-item-svg-occupied:rgba(255,191,0,0.9);
+  }
+  
+  .settings-dark {
+    background: #1a1a1a;
+    background: linear-gradient(45deg, #1a1a1a 50%, #333333 50%);
+  }
+  
+  .theme-light {
+    --theme-background-dark: rgba(119, 119, 126, 1);
+    --theme-background-semidark: rgba(161,161,170, 1);
+    --theme-background-shade: rgba(42, 42, 42, 1);
+    --theme-background-light: rgba(244,244,245, 1);
+    --theme-text: rgba(95, 95, 95, 1);
+    --theme-helper-text: rgba(0,0,0,0.3);
+    
+    --theme-active: rgba(255, 209, 71, 1);
+  
+    --theme-highlight: rgba(255, 93, 87,1);
+    --theme-highlight-active: rgba(253, 74, 68,1);
+  
+    --theme-closed: rgba(0,0,0,0.1);
+    --theme-occupied: rgba(255,191,0,0.1);
+    --theme-occupied-hover: rgba(255,0,0,0.1);
+    --theme-destroyed: rgba(199, 0, 57, 0.1);
+    --theme-open: rgba( 160, 224, 45 ,0.1);
+    --theme-open-hover: rgba(0,0,0,0.1);
+  
+    --theme-info-text: rgba(0,0,0, 0.7);
+    --theme-info-background: rgba(255,255,255,0.5);
+  
+    --theme-start-stop-background: rgba(199, 0, 57,1);
+    --theme-start-stop-on: rgba(100, 142, 21,1);
+    --theme-start-stop-on-lighter: rgba(168, 226, 60,1);
+  
+    --theme-start-stop-on-shadow: rgba(168,226,60,0.9);
+  
+    --theme-start-stop-off: rgba(143, 0, 40, 1);
+    --theme-start-stop-off-lighter: rgba(255, 10, 80, 1);
+  
+    --theme-start-stop-off-shadow: rgba(255, 10, 80, 0.9);
+  
+    --theme-start-stop-broken: rgba(204, 153, 0, 1);
+    --theme-start-stop-broken-lighter:rgba(255, 209, 71, 1);
+  
+    --theme-start-stop-disabled-bg: rgba(102, 102, 102,1);
+    --theme-start-stop-disabled-dark: rgba(51, 51, 51,1);
+    --theme-start-stop-disabled-light: rgba(85, 85, 85,1);
+  
+    --theme-start-stop-text: rgba(255,255,255,0.5);
+  
+    --theme-lock-background: rgba(199, 0, 57,1);
+    --theme-lock-fill: rgba(255,255,255, 0.5);
+  
+    --theme-locked: rgba(204, 153, 0, 1);
+    --theme-locked-light: rgba(255, 209, 71, 1);
+    --theme-locked-hover:rgba(255, 209, 71, 0.9);
+  
+    --theme-unlocked: rgba(128, 128, 128, 1);
+    --theme-unlocked-light: rgba(211, 211, 211, 1);
+    --theme-unlocked-hover: rgba(128,128,128,0.9);
+  
+    --theme-unusable: rgba(128, 128, 128, 1);
+    --theme-item-svg: rgba(0,0,0,0.5);
+    --theme-item-svg-disabled: rgba(0,0,0,0.1);
+    --theme-item-svg-hover: rgba(0,0,0,1);
+  
+    --theme-item-svg-destroyed: rgba(199, 0, 57,0.5);
+    --theme-item-svg-disabled: rgba(0,0,0,0.1);
+    --theme-item-svg-open: rgba(160, 224, 45 ,0.5);
+    --theme-item-svg-closed: rgba(0,0,0,0.1);
+    --theme-item-svg-occupied:rgba(255,191,0,0.9);
+  }
+  
+  .settings-light {
+    background: #a1a1aa;
+    background: linear-gradient(45deg, #a1a1aa 50%, #f4f4f5 50%);
+  }
+  
+  .theme-blue {
+    --theme-background-dark: rgba(7, 25, 41, 1);
+    --theme-background-semidark: rgb(10,34,57);
+    --theme-background-shade: rgba(42, 42, 42, 1);
+    --theme-background-light: rgba(37, 99, 235, 1);
+    --theme-text: rgba(255, 255, 255, 1);
+    --theme-helper-text: rgba(255,255,255,0.3);
+    
+    --theme-active: rgba(255, 209, 71, 1);
+  
+    --theme-highlight: rgba(255, 93, 87,1);
+    --theme-highlight-active: rgba(253, 74, 68,1);
+  
+    --theme-closed: rgba(0,0,0,0.1);
+    --theme-occupied: rgba(255,191,0,0.1);
+    --theme-occupied-hover: rgba(255,0,0,0.1);
+    --theme-destroyed: rgba(199, 0, 57, 0.1);
+    --theme-open: rgba( 160, 224, 45 ,0.1);
+    --theme-open-hover: rgba(0,0,0,0.1);
+  
+    --theme-info-text: rgba(37, 99, 235, 1);
+    --theme-info-background: rgba(255,255,255,0.5);
+  
+    --theme-start-stop-background: rgba(199, 0, 57,1);
+    --theme-start-stop-on: rgba(100, 142, 21,1);
+    --theme-start-stop-on-lighter: rgba(168, 226, 60,1);
+  
+    --theme-start-stop-on-shadow: rgba(168,226,60,0.9);
+  
+    --theme-start-stop-off: rgba(143, 0, 40, 1);
+    --theme-start-stop-off-lighter: rgba(255, 10, 80, 1);
+  
+    --theme-start-stop-off-shadow: rgba(255, 10, 80, 0.9);
+  
+    --theme-start-stop-broken: rgba(204, 153, 0, 1);
+    --theme-start-stop-broken-lighter:rgba(255, 209, 71, 1);
+  
+    --theme-start-stop-disabled-bg: rgba(102, 102, 102,1);
+    --theme-start-stop-disabled-dark: rgba(51, 51, 51,1);
+    --theme-start-stop-disabled-light: rgba(85, 85, 85,1);
+  
+    --theme-start-stop-text: rgba(255,255,255,0.5);
+    --theme-lock-background: rgba(199, 0, 57,1);
+    --theme-lock-fill: rgba(255,255,255, 0.5);
+  
+    --theme-locked: rgba(204, 153, 0, 1);
+    --theme-locked-light: rgba(255, 209, 71, 1);
+    --theme-locked-hover:rgba(255, 209, 71, 0.9);
+  
+    --theme-unlocked: rgba(128, 128, 128, 1);
+    --theme-unlocked-light: rgba(211, 211, 211, 1);
+    --theme-unlocked-hover: rgba(128,128,128,0.9);
+  
+    --theme-unusable: rgba(128, 128, 128, 1);
+    --theme-item-svg: rgba(255,255,255,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.1);
+    --theme-item-svg-hover: rgba(255,255,255,1);
+  
+    --theme-item-svg-destroyed: rgba(199, 0, 57,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.1);
+    --theme-item-svg-open: rgba(160, 224, 45 ,0.5);
+    --theme-item-svg-closed: rgba(255,255,255,0.1);
+    --theme-item-svg-occupied:rgba(255,191,0,0.9);
+  }
+  
+  .settings-blue {
+    background: #0a2239;
+    background: linear-gradient(45deg, #1E3A8A 50%, #2563EB 50%);
+  }
+  
+  .theme-green {
+    --theme-background-dark: rgba(0, 44, 22, 1);
+    --theme-background-semidark: rgb(0,62,31);
+    --theme-background-shade: rgba(42, 42, 42, 1);
+    --theme-background-light: rgba(34, 197, 94, 1);
+    --theme-text: rgba(255, 255, 255, 1);
+    --theme-helper-text: rgba(255,255,255,0.6);
+    
+    --theme-active: rgba(255, 209, 71, 1);
+  
+    --theme-highlight: rgba(255, 93, 87,1);
+    --theme-highlight-active: rgba(253, 74, 68,1);
+  
+    --theme-closed: rgba(0,0,0,0.1);
+    --theme-occupied: rgba(255,191,0,0.1);
+    --theme-occupied-hover: rgba(255,0,0,0.1);
+    --theme-destroyed: rgba(199, 0, 57, 0.1);
+    --theme-open: rgba( 160, 224, 45 ,0.1);
+    --theme-open-hover: rgba(0,0,0,0.1);
+  
+    --theme-info-text: rgba(34, 197, 94, 1);
+    --theme-info-background: rgba(255,255,255,0.5);
+  
+    --theme-start-stop-background: rgba(199, 0, 57,1);
+    --theme-start-stop-on: rgba(100, 142, 21,1);
+    --theme-start-stop-on-lighter: rgba(168, 226, 60,1);
+  
+    --theme-start-stop-on-shadow: rgba(168,226,60,0.9);
+  
+    --theme-start-stop-off: rgba(143, 0, 40, 1);
+    --theme-start-stop-off-lighter: rgba(255, 10, 80, 1);
+  
+    --theme-start-stop-off-shadow: rgba(255, 10, 80, 0.9);
+  
+    --theme-start-stop-broken: rgba(204, 153, 0, 1);
+    --theme-start-stop-broken-lighter:rgba(255, 209, 71, 1);
+  
+    --theme-start-stop-disabled-bg: rgba(102, 102, 102,1);
+    --theme-start-stop-disabled-dark: rgba(51, 51, 51,1);
+    --theme-start-stop-disabled-light: rgba(85, 85, 85,1);
+  
+    --theme-start-stop-text: rgba(255,255,255,0.5);
+    --theme-lock-background: rgba(199, 0, 57,1);
+    --theme-lock-fill: rgba(255,255,255, 0.5);
+  
+    --theme-locked: rgba(204, 153, 0, 1);
+    --theme-locked-light: rgba(255, 209, 71, 1);
+    --theme-locked-hover:rgba(255, 209, 71, 0.9);
+  
+    --theme-unlocked: rgba(128, 128, 128, 1);
+    --theme-unlocked-light: rgba(211, 211, 211, 1);
+    --theme-unlocked-hover: rgba(128,128,128,0.9);
+  
+    --theme-unusable: rgba(128, 128, 128, 1);
+    --theme-item-svg: rgba(255,255,255,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.1);
+    --theme-item-svg-hover: rgba(255,255,255,1);
+  
+    --theme-item-svg-destroyed: rgba(199, 0, 57,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.3);
+    --theme-item-svg-open: rgba(160, 224, 45 ,0.5);
+    --theme-item-svg-closed: rgba(255,255,255,0.3);
+    --theme-item-svg-occupied:rgba(255,191,0,0.9);
+  }
+  
+  .settings-green {
+    background: #003e1f;
+    background: linear-gradient(45deg, #14532D 50%, #22C55E 50%);
+  }
+  
+  .theme-purple {
+    --theme-background-dark: rgba(49, 29, 44, 1);
+    --theme-background-semidark: rgba(66,39,59,1);
+    --theme-background-shade: rgba(42, 42, 42, 1);
+    --theme-background-light: rgba(112,86,109,1);
+    --theme-text: rgba(255, 255, 255, 1);
+    --theme-helper-text: rgba(255,255,255,0.3);
+    
+    --theme-active: rgba(255, 209, 71, 1);
+  
+    --theme-highlight: rgba(255, 93, 87,1);
+    --theme-highlight-active: rgba(253, 74, 68,1);
+  
+    --theme-closed: rgba(0,0,0,0.1);
+    --theme-occupied: rgba(255,191,0,0.1);
+    --theme-occupied-hover: rgba(255,0,0,0.1);
+    --theme-destroyed: rgba(199, 0, 57, 0.1);
+    --theme-open: rgba( 160, 224, 45 ,0.1);
+    --theme-open-hover: rgba(0,0,0,0.1);
+  
+    --theme-info-text: rgba(66,39,59,1);
+    --theme-info-background: rgba(255,255,255,0.5);
+  
+    --theme-start-stop-background: rgba(199, 0, 57,1);
+    --theme-start-stop-on: rgba(100, 142, 21,1);
+    --theme-start-stop-on-lighter: rgba(168, 226, 60,1);
+  
+    --theme-start-stop-on-shadow: rgba(168,226,60,0.9);
+  
+    --theme-start-stop-off: rgba(143, 0, 40, 1);
+    --theme-start-stop-off-lighter: rgba(255, 10, 80, 1);
+  
+    --theme-start-stop-off-shadow: rgba(255, 10, 80, 0.9);
+  
+    --theme-start-stop-broken: rgba(204, 153, 0, 1);
+    --theme-start-stop-broken-lighter:rgba(255, 209, 71, 1);
+  
+    --theme-start-stop-disabled-bg: rgba(102, 102, 102,1);
+    --theme-start-stop-disabled-dark: rgba(51, 51, 51,1);
+    --theme-start-stop-disabled-light: rgba(85, 85, 85,1);
+  
+    --theme-start-stop-text: rgba(255,255,255,0.5);
+    --theme-lock-background: rgba(199, 0, 57,1);
+    --theme-lock-fill: rgba(255,255,255, 0.5);
+  
+    --theme-locked: rgba(204, 153, 0, 1);
+    --theme-locked-light: rgba(255, 209, 71, 1);
+    --theme-locked-hover:rgba(255, 209, 71, 0.9);
+  
+    --theme-unlocked: rgba(128, 128, 128, 1);
+    --theme-unlocked-light: rgba(211, 211, 211, 1);
+    --theme-unlocked-hover: rgba(128,128,128,0.9);
+  
+    --theme-unusable: rgba(128, 128, 128, 1);
+    --theme-item-svg: rgba(255,255,255,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.1);
+    --theme-item-svg-hover: rgba(255,255,255,1);
+  
+    --theme-item-svg-destroyed: rgba(199, 0, 57,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.1);
+    --theme-item-svg-open: rgba(160, 224, 45 ,0.5);
+    --theme-item-svg-closed: rgba(255,255,255,0.1);
+    --theme-item-svg-occupied:rgba(255,191,0,0.9);
+  }
+  
+  .settings-purple {
+    background: #42273b;
+    background: linear-gradient(45deg, #42273b 50%, #70566d 50%);
+  }
+  
+  .theme-pink {
+    --theme-background-dark: rgba(153, 7, 70, 1);
+    --theme-background-semidark: rgb(194,9,90);
+    --theme-background-shade: rgba(42, 42, 42, 1);
+    --theme-background-light: rgba(250,164,189,1);
+    --theme-text: rgba(255, 255, 255, 1);
+    --theme-helper-text: rgba(255,255,255,0.6);
+    
+    --theme-active: rgba(255, 209, 71, 1);
+  
+    --theme-highlight: rgba(255, 93, 87,1);
+    --theme-highlight-active: rgba(253, 74, 68,1);
+  
+    --theme-closed: rgba(0,0,0,0.1);
+    --theme-occupied: rgba(255,191,0,0.1);
+    --theme-occupied-hover: rgba(255,0,0,0.1);
+    --theme-destroyed: rgba(199, 0, 57, 0.1);
+    --theme-open: rgba( 160, 224, 45 ,0.1);
+    --theme-open-hover: rgba(0,0,0,0.1);
+  
+    --theme-info-text: rgb(194,9,90);
+    --theme-info-background: rgba(255,255,255,0.5);
+  
+    --theme-start-stop-background: rgba(199, 0, 57,1);
+    --theme-start-stop-on: rgba(100, 142, 21,1);
+    --theme-start-stop-on-lighter: rgba(168, 226, 60,1);
+  
+    --theme-start-stop-on-shadow: rgba(168,226,60,0.9);
+  
+    --theme-start-stop-off: rgba(143, 0, 40, 1);
+    --theme-start-stop-off-lighter: rgba(255, 10, 80, 1);
+  
+    --theme-start-stop-off-shadow: rgba(255, 10, 80, 0.9);
+  
+    --theme-start-stop-broken: rgba(204, 153, 0, 1);
+    --theme-start-stop-broken-lighter:rgba(255, 209, 71, 1);
+  
+    --theme-start-stop-disabled-bg: rgba(102, 102, 102,1);
+    --theme-start-stop-disabled-dark: rgba(51, 51, 51,1);
+    --theme-start-stop-disabled-light: rgba(85, 85, 85,1);
+  
+    --theme-start-stop-text: rgba(255,255,255,0.5);
+    --theme-lock-background: rgba(199, 0, 57,1);
+    --theme-lock-fill: rgba(255,255,255, 0.5);
+  
+    --theme-locked: rgba(204, 153, 0, 1);
+    --theme-locked-light: rgba(255, 209, 71, 1);
+    --theme-locked-hover:rgba(255, 209, 71, 0.9);
+  
+    --theme-unlocked: rgba(128, 128, 128, 1);
+    --theme-unlocked-light: rgba(211, 211, 211, 1);
+    --theme-unlocked-hover: rgba(128,128,128,0.9);
+  
+    --theme-unusable: rgba(128, 128, 128, 1);
+    --theme-item-svg: rgba(255,255,255,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.1);
+    --theme-item-svg-hover: rgba(255,255,255,1);
+  
+    --theme-item-svg-destroyed: rgba(199, 0, 57,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.3);
+    --theme-item-svg-open: rgba(160, 224, 45 ,0.5);
+    --theme-item-svg-closed: rgba(255,255,255,0.3);
+    --theme-item-svg-occupied:rgba(255,191,0,0.9);
+  }
+  
+  .settings-pink {
+    background: #c2095a;
+    background: linear-gradient(45deg, #c2095a 50%, #faa4bd 50%);
+  }
+  
+  .theme-police {
+    --theme-background-dark: rgba(30, 41, 71, 1);
+    --theme-background-semidark: rgb(43,58,103);
+    --theme-background-shade: rgba(42, 42, 42, 1);
+    --theme-background-light: rgba(232,72,85,1);
+    --theme-text: rgba(255, 255, 255, 1);
+    --theme-helper-text: rgba(255,255,255,0.3);
+    
+    --theme-active: rgba(255, 209, 71, 1);
+  
+    --theme-highlight: rgba(255, 93, 87,1);
+    --theme-highlight-active: rgba(253, 74, 68,1);
+  
+    --theme-closed: rgba(0,0,0,0.1);
+    --theme-occupied: rgba(255,191,0,0.1);
+    --theme-occupied-hover: rgba(255,0,0,0.1);
+    --theme-destroyed: rgba(199, 0, 57, 0.1);
+    --theme-open: rgba( 160, 224, 45 ,0.1);
+    --theme-open-hover: rgba(0,0,0,0.1);
+  
+    --theme-info-text: rgba(232,72,85,1);
+    --theme-info-background: rgba(255,255,255,0.5);
+  
+    --theme-start-stop-background: rgba(199, 0, 57,1);
+    --theme-start-stop-on: rgba(100, 142, 21,1);
+    --theme-start-stop-on-lighter: rgba(168, 226, 60,1);
+  
+    --theme-start-stop-on-shadow: rgba(168,226,60,0.9);
+  
+    --theme-start-stop-off: rgba(143, 0, 40, 1);
+    --theme-start-stop-off-lighter: rgba(255, 10, 80, 1);
+  
+    --theme-start-stop-off-shadow: rgba(255, 10, 80, 0.9);
+  
+    --theme-start-stop-broken: rgba(204, 153, 0, 1);
+    --theme-start-stop-broken-lighter:rgba(255, 209, 71, 1);
+  
+    --theme-start-stop-disabled-bg: rgba(102, 102, 102,1);
+    --theme-start-stop-disabled-dark: rgba(51, 51, 51,1);
+    --theme-start-stop-disabled-light: rgba(85, 85, 85,1);
+  
+    --theme-start-stop-text: rgba(255,255,255,0.5);
+    --theme-lock-background: rgba(199, 0, 57,1);
+    --theme-lock-fill: rgba(255,255,255, 0.5);
+  
+    --theme-locked: rgba(204, 153, 0, 1);
+    --theme-locked-light: rgba(255, 209, 71, 1);
+    --theme-locked-hover:rgba(255, 209, 71, 0.9);
+  
+    --theme-unlocked: rgba(128, 128, 128, 1);
+    --theme-unlocked-light: rgba(211, 211, 211, 1);
+    --theme-unlocked-hover: rgba(128,128,128,0.9);
+  
+    --theme-unusable: rgba(128, 128, 128, 1);
+    --theme-item-svg: rgba(255,255,255,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.1);
+    --theme-item-svg-hover: rgba(255,255,255,1);
+  
+    --theme-item-svg-destroyed: rgba(199, 0, 57,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.1);
+    --theme-item-svg-open: rgba(160, 224, 45 ,0.5);
+    --theme-item-svg-closed: rgba(255,255,255,0.1);
+    --theme-item-svg-occupied:rgba(255,191,0,0.9);
+  }
+  
+  .settings-police {
+    background: #2b3a67;
+    background: linear-gradient(45deg, #2b3a67 50%, #e84855 50%);
+  }
+  
+  .theme-orange {
+    --theme-background-dark: rgba(207, 97, 18, 1);
+    --theme-background-semidark: rgb(249,115,22);
+    --theme-background-shade: rgba(42, 42, 42, 1);
+    --theme-background-light: rgba(251,191,36, 1);
+    --theme-text: rgba(255, 255, 255, 1);
+    --theme-helper-text: rgba(255,255,255,0.9);
+    
+    --theme-active: rgba(255, 209, 71, 1);
+  
+    --theme-highlight: rgba(255, 93, 87,1);
+    --theme-highlight-active: rgba(253, 74, 68,1);
+  
+    --theme-closed: rgba(0,0,0,0.1);
+    --theme-occupied: rgba(199, 0, 57,0.5);
+    --theme-occupied-hover: rgba(255,0,0,0.5);
+    --theme-destroyed: rgba(199, 0, 57, 0.1);
+    --theme-open: rgba( 160, 224, 45 ,0.1);
+    --theme-open-hover: rgba(0,0,0,0.1);
+  
+    --theme-info-text: rgb(249,115,22);
+    --theme-info-background: rgba(255,255,255,0.5);
+  
+    --theme-start-stop-background: rgba(199, 0, 57,1);
+    --theme-start-stop-on: rgba(100, 142, 21,1);
+    --theme-start-stop-on-lighter: rgba(168, 226, 60,1);
+  
+    --theme-start-stop-on-shadow: rgba(168,226,60,0.9);
+  
+    --theme-start-stop-off: rgba(143, 0, 40, 1);
+    --theme-start-stop-off-lighter: rgba(255, 10, 80, 1);
+  
+    --theme-start-stop-off-shadow: rgba(255, 10, 80, 0.9);
+  
+    --theme-start-stop-broken: rgba(204, 153, 0, 1);
+    --theme-start-stop-broken-lighter:rgba(255, 209, 71, 1);
+  
+    --theme-start-stop-disabled-bg: rgba(102, 102, 102,1);
+    --theme-start-stop-disabled-dark: rgba(51, 51, 51,1);
+    --theme-start-stop-disabled-light: rgba(85, 85, 85,1);
+  
+    --theme-start-stop-text: rgba(255,255,255,0.5);
+    --theme-lock-background: rgba(199, 0, 57,1);
+    --theme-lock-fill: rgba(255,255,255, 0.5);
+  
+    --theme-locked: rgba(204, 153, 0, 1);
+    --theme-locked-light: rgba(255, 209, 71, 1);
+    --theme-locked-hover:rgba(255, 209, 71, 0.9);
+  
+    --theme-unlocked: rgba(128, 128, 128, 1);
+    --theme-unlocked-light: rgba(211, 211, 211, 1);
+    --theme-unlocked-hover: rgba(128,128,128,0.9);
+  
+    --theme-unusable: rgba(128, 128, 128, 1);
+    --theme-item-svg: rgba(255,255,255,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.1);
+    --theme-item-svg-hover: rgba(255,255,255,1);
+  
+    --theme-item-svg-destroyed: rgba(199, 0, 57,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.5);
+    --theme-item-svg-open: rgba(160, 224, 45 ,0.5);
+    --theme-item-svg-closed: rgba(255,255,255,0.5);
+    --theme-item-svg-occupied:rgba(255,191,0,0.9);
+  }
+  
+  .settings-orange {
+    background: #f97316;
+    background: linear-gradient(45deg, #f97316 50%, #fbbf24 50%);
+  }
+  
+  .theme-cream {
+    --theme-background-dark: rgba(223, 165, 103, 1);
+    --theme-background-semidark: rgb(253,186,116);
+    --theme-background-shade: rgba(42, 42, 42, 1);
+    --theme-background-light: rgba(254,215,170, 1);
+    --theme-text: rgba(51, 51, 51, 1);
+    --theme-helper-text: rgba(0,0,0,0.3);
+    
+    --theme-active: rgba(255, 209, 71, 1);
+  
+    --theme-highlight: rgba(255, 93, 87,1);
+    --theme-highlight-active: rgba(253, 74, 68,1);
+  
+    --theme-closed: rgba(0,0,0,0.1);
+    --theme-occupied: rgba(255,191,0,0.1);
+    --theme-occupied-hover: rgba(255,0,0,0.1);
+    --theme-destroyed: rgba(199, 0, 57, 0.1);
+    --theme-open: rgba( 160, 224, 45 ,0.1);
+    --theme-open-hover: rgba(0,0,0,0.1);
+    
+    --theme-info-text: rgba(223, 165, 103, 1);
+    --theme-info-background: rgba(255,255,255,0.5);
+  
+    --theme-start-stop-background: rgba(199, 0, 57,1);
+    --theme-start-stop-on: rgba(100, 142, 21,1);
+    --theme-start-stop-on-lighter: rgba(168, 226, 60,1);
+  
+    --theme-start-stop-on-shadow: rgba(168,226,60,0.9);
+  
+    --theme-start-stop-off: rgba(143, 0, 40, 1);
+    --theme-start-stop-off-lighter: rgba(255, 10, 80, 1);
+  
+    --theme-start-stop-off-shadow: rgba(255, 10, 80, 0.9);
+  
+    --theme-start-stop-broken: rgba(204, 153, 0, 1);
+    --theme-start-stop-broken-lighter:rgba(255, 209, 71, 1);
+  
+    --theme-start-stop-disabled-bg: rgba(102, 102, 102,1);
+    --theme-start-stop-disabled-dark: rgba(51, 51, 51,1);
+    --theme-start-stop-disabled-light: rgba(85, 85, 85,1);
+  
+    --theme-start-stop-text: rgba(255,255,255,0.5);
+    --theme-lock-background: rgba(199, 0, 57,1);
+    --theme-lock-fill: rgba(255,255,255, 0.5);
+  
+    --theme-locked: rgba(204, 153, 0, 1);
+    --theme-locked-light: rgba(255, 209, 71, 1);
+    --theme-locked-hover:rgba(255, 209, 71, 0.9);
+  
+    --theme-unlocked: rgba(128, 128, 128, 1);
+    --theme-unlocked-light: rgba(211, 211, 211, 1);
+    --theme-unlocked-hover: rgba(128,128,128,0.9);
+  
+    --theme-unusable: rgba(128, 128, 128, 1);
+    --theme-item-svg: rgba(255,255,255,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.5);
+    --theme-item-svg-hover: rgba(255,255,255,1);
+  
+    --theme-item-svg-destroyed: rgba(199, 0, 57,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.5);
+    --theme-item-svg-open: rgba(160, 224, 45 ,0.9);
+    --theme-item-svg-closed: rgba(255,255,255,0.5);
+    --theme-item-svg-occupied:rgba(0,0,0,0.3);
+  }
+  
+  .settings-cream {
+    background: #fdba74;
+    background: linear-gradient(45deg, #fdba74 50%, #fed7aa 50%);
+  }
+  
+  .theme-coffee {
+    --theme-background-dark: rgba(90, 50, 14, 1);
+    --theme-background-semidark: rgba(113, 63, 18, 1);
+    --theme-background-shade: rgba(42, 42, 42, 1);
+    --theme-background-light: rgba(253,186,116,1);
+    --theme-text: rgba(255, 255, 255, 1);
+    --theme-helper-text: rgba(255,255,255,0.9);
+    
+    --theme-active: rgba(255, 209, 71, 1);
+  
+    --theme-highlight: rgba(255, 93, 87,1);
+    --theme-highlight-active: rgba(253, 74, 68,1);
+  
+    --theme-closed: rgba(0,0,0,0.1);
+    --theme-occupied: rgba(113, 63, 18, 0.7);
+    --theme-occupied-hover: rgba(255,0,0,0.1);
+    --theme-destroyed: rgba(199, 0, 57, 0.1);
+    --theme-open: rgba( 160, 224, 45 ,0.1);
+    --theme-open-hover: rgba(0,0,0,0.1);
+  
+    --theme-info-text: rgba(113, 63, 18, 1);
+    --theme-info-background: rgba(255,255,255,0.5);
+  
+    --theme-start-stop-background: rgba(199, 0, 57,1);
+    --theme-start-stop-on: rgba(100, 142, 21,1);
+    --theme-start-stop-on-lighter: rgba(168, 226, 60,1);
+  
+    --theme-start-stop-on-shadow: rgba(168,226,60,0.9);
+  
+    --theme-start-stop-off: rgba(143, 0, 40, 1);
+    --theme-start-stop-off-lighter: rgba(255, 10, 80, 1);
+  
+    --theme-start-stop-off-shadow: rgba(255, 10, 80, 0.9);
+  
+    --theme-start-stop-broken: rgba(204, 153, 0, 1);
+    --theme-start-stop-broken-lighter:rgba(255, 209, 71, 1);
+  
+    --theme-start-stop-disabled-bg: rgba(102, 102, 102,1);
+    --theme-start-stop-disabled-dark: rgba(51, 51, 51,1);
+    --theme-start-stop-disabled-light: rgba(85, 85, 85,1);
+  
+    --theme-start-stop-text: rgba(255,255,255,0.5);
+    --theme-lock-background: rgba(199, 0, 57,1);
+    --theme-lock-fill: rgba(255,255,255, 0.5);
+  
+    --theme-locked: rgba(204, 153, 0, 1);
+    --theme-locked-light: rgba(255, 209, 71, 1);
+    --theme-locked-hover:rgba(255, 209, 71, 0.9);
+  
+    --theme-unlocked: rgba(128, 128, 128, 1);
+    --theme-unlocked-light: rgba(211, 211, 211, 1);
+    --theme-unlocked-hover: rgba(128,128,128,0.9);
+  
+    --theme-unusable: rgba(128, 128, 128, 1);
+    --theme-item-svg: rgba(255,255,255,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.1);
+    --theme-item-svg-hover: rgba(255,255,255,1);
+  
+    --theme-item-svg-destroyed: rgba(199, 0, 57,0.5);
+    --theme-item-svg-disabled: rgba(255,255,255,0.3);
+    --theme-item-svg-open: rgba(160, 224, 45 ,0.8);
+    --theme-item-svg-closed: rgba(255,255,255,0.3);
+    --theme-item-svg-occupied:rgba(255,255,255,0.5);
+  }
+  
+  .settings-coffee {
+    background: #713f12;
+    background: linear-gradient(45deg, #713f12 50%, #fdba74 50%);
+  }
+  /*# sourceMappingURL=themes.css.map */
