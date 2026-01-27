@@ -36,6 +36,89 @@ local function HandleStatus(req, res)
     }))
 end
 
+local function HandleMrXStatus(req, res)
+    -- Get Mr. X financial status
+    local balance = 0
+    local mood = 'unknown'
+
+    -- Try to get from banking module
+    local bankSuccess, bankBalance = pcall(function()
+        return exports['sv_mr_x']:GetMrXBalance()
+    end)
+    if bankSuccess and bankBalance then
+        balance = bankBalance
+    end
+
+    local moodSuccess, bankMood = pcall(function()
+        return exports['sv_mr_x']:GetMrXMood()
+    end)
+    if moodSuccess and bankMood then
+        mood = bankMood
+    end
+
+    -- Count active missions from database (with error handling for missing table)
+    local activeMissions = 0
+    local missionSuccess, missionResult = pcall(function()
+        return MySQL.single.await([[
+            SELECT COUNT(*) as count FROM mr_x_missions
+            WHERE status = 'active'
+        ]])
+    end)
+    if missionSuccess and missionResult then
+        activeMissions = missionResult.count or 0
+    end
+
+    -- Count pending bounties (with error handling for missing table)
+    local pendingBounties = 0
+    local bountySuccess, bountyResult = pcall(function()
+        return MySQL.single.await([[
+            SELECT COUNT(*) as count FROM mr_x_bounties
+            WHERE status = 'active'
+        ]])
+    end)
+    if bountySuccess and bountyResult then
+        pendingBounties = bountyResult.count or 0
+    end
+
+    -- Get last boardroom meeting time (with error handling)
+    local lastBoardroom = nil
+    local boardroomSuccess, boardroomResult = pcall(function()
+        return MySQL.single.await([[
+            SELECT created_at FROM mr_x_events
+            WHERE event_type = 'boardroom_complete'
+            ORDER BY created_at DESC LIMIT 1
+        ]])
+    end)
+    if boardroomSuccess and boardroomResult and boardroomResult.created_at then
+        lastBoardroom = boardroomResult.created_at
+    end
+
+    -- Count active network (players with profiles)
+    local networkSize = 0
+    local networkSuccess, networkResult = pcall(function()
+        return MySQL.single.await([[
+            SELECT COUNT(*) as count FROM mr_x_profiles
+            WHERE opted_out = 0 AND last_contact IS NOT NULL
+        ]])
+    end)
+    if networkSuccess and networkResult then
+        networkSize = networkResult.count or 0
+    end
+
+    res.writeHead(200, {['Content-Type'] = 'application/json'})
+    res.send(json.encode({
+        balance = balance,
+        mood = mood,
+        activeMissions = activeMissions,
+        pendingBounties = pendingBounties,
+        networkSize = networkSize,
+        lastBoardroom = lastBoardroom,
+        playerCount = #GetPlayers(),
+        fivemConnected = true,
+        timestamp = os.time()
+    }))
+end
+
 local function HandleProfile(req, res)
     local citizenid = req.headers['X-Citizenid'] or req.headers['x-citizenid']
 
@@ -220,6 +303,396 @@ local function HandleManual(req, res, bodyData)
 end
 
 -- ============================================
+-- TEST CONVERSATION ENDPOINTS
+-- For dashboard testing of AI workflow
+-- ============================================
+
+local function HandleTestConversation(req, res, bodyData)
+    local success, body = pcall(json.decode, bodyData or '{}')
+    if not success or not body or not body.citizenid then
+        res.writeHead(400, {['Content-Type'] = 'application/json'})
+        res.send(json.encode({error = 'Missing citizenid'}))
+        return
+    end
+
+    local citizenid = body.citizenid
+    local contactType = body.contactType
+    local context = body.context or {}
+    local customMessage = body.customMessage
+    local jobTarget = body.jobTarget
+
+    -- Find player source
+    local playerSource = exports['sv_mr_x']:FindPlayerSource(citizenid)
+    if not playerSource then
+        res.writeHead(404, {['Content-Type'] = 'application/json'})
+        res.send(json.encode({error = 'Player not online', citizenid = citizenid}))
+        return
+    end
+
+    -- Check exemption
+    local isExempt, exemptReason = exports['sv_mr_x']:IsExempt(playerSource)
+    if isExempt then
+        res.writeHead(403, {['Content-Type'] = 'application/json'})
+        res.send(json.encode({error = 'Player is exempt', reason = exemptReason}))
+        return
+    end
+
+    print('^3[MR_X:TEST]^7 Executing test conversation: ' .. contactType .. ' -> ' .. citizenid)
+
+    local sendSuccess = false
+    local message = nil
+    local channel = 'sms'
+
+    -- Handle different contact types
+    if contactType == 'mission_offer' then
+        -- Generate and offer a mission
+        local missionSuccess, missionResult = pcall(function()
+            return exports['sv_mr_x']:GenerateAndOfferMission(playerSource, 'test')
+        end)
+        if missionSuccess and missionResult then
+            sendSuccess = true
+            message = missionResult.message or 'Mission offered'
+        else
+            message = 'Mission generation failed: ' .. tostring(missionResult)
+        end
+
+    elseif contactType == 'check_in' then
+        message = exports['sv_mr_x']:GenerateCheckInMessage(citizenid) or 'I may have something for you soon...'
+        sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+
+    elseif contactType == 'warning' then
+        message = exports['sv_mr_x']:GenerateWarningMessage(citizenid) or 'I have eyes everywhere. Remember that.'
+        sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+
+    elseif contactType == 'tip' then
+        message = exports['sv_mr_x']:GenerateTipMessage(citizenid) or 'A little free intel: there are opportunities if you know where to look.'
+        sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+
+    elseif contactType == 'reputation_update' then
+        local rep = exports['sv_mr_x']:GetReputation(citizenid) or 0
+        message = string.format('Your standing with me is at %d. %s', rep,
+            rep > 50 and 'Keep up the good work.' or 'There is room for improvement.')
+        sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+
+    elseif contactType == 'prospect_welcome' then
+        sendSuccess = exports['sv_mr_x']:SendProspectWelcome(playerSource, false)
+        message = 'Welcome message sent'
+
+    elseif contactType == 'prospect_welcome_gift' then
+        sendSuccess = exports['sv_mr_x']:SendProspectWelcome(playerSource, true)
+        message = 'Welcome message with gift sent'
+
+    elseif contactType == 'prospect_job_nudge' then
+        sendSuccess = exports['sv_mr_x']:SendJobSuggestion(playerSource, jobTarget)
+        message = 'Job suggestion sent: ' .. (jobTarget or 'auto')
+
+    elseif contactType == 'prospect_checkin' then
+        sendSuccess = exports['sv_mr_x']:SendProspectCheckIn(playerSource)
+        message = 'Prospect check-in sent'
+
+    elseif contactType == 'prospect_tip' then
+        sendSuccess = exports['sv_mr_x']:SendProspectTip(playerSource)
+        message = 'Prospect tip sent'
+
+    elseif contactType == 'mission_success' then
+        message = exports['sv_mr_x']:GenerateMissionSuccessMessage(citizenid) or 'Well done. We will be in touch.'
+        sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+
+    elseif contactType == 'mission_failure' then
+        message = exports['sv_mr_x']:GenerateMissionFailureMessage(citizenid) or 'Disappointing. I expected more.'
+        sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+
+    elseif contactType == 'extortion' then
+        message = exports['sv_mr_x']:GenerateExtortionMessage(citizenid) or 'You owe me. Pay up, or there will be consequences.'
+        sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+
+    elseif contactType == 'threat' then
+        message = exports['sv_mr_x']:GenerateThreatMessage(citizenid) or 'I know where you are. Do not test me.'
+        sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+
+    elseif contactType == 'service_offer' then
+        message = 'I have services available for those I trust. Record clearing, intel, protection... for a price.'
+        sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+
+    elseif contactType == 'loan_offer' then
+        message = 'Need money? I can help. But understand - my interest rates are not negotiable.'
+        sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+
+    elseif contactType == 'loan_reminder' then
+        message = 'A reminder about what you owe me. Do not make me ask again.'
+        sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+
+    elseif contactType == 'bounty_notification' then
+        message = 'Someone has put a price on your head. Watch your back.'
+        sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+
+    elseif contactType == 'custom' then
+        -- Use AI to refactor custom message to Mr. X voice
+        if customMessage and customMessage ~= '' then
+            local refactored = exports['sv_mr_x']:RefactorToMrXVoice(customMessage, citizenid)
+            message = refactored or customMessage
+            sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+        else
+            res.writeHead(400, {['Content-Type'] = 'application/json'})
+            res.send(json.encode({error = 'Custom message required'}))
+            return
+        end
+
+    else
+        -- Unknown type - try to generate AI message with context
+        message = 'Contact type not fully implemented: ' .. tostring(contactType)
+        sendSuccess = exports['sv_mr_x']:SendMrXMessage(playerSource, message)
+    end
+
+    -- Log the test
+    if Config.LogEvents then
+        MySQL.insert([[
+            INSERT INTO mr_x_events (citizenid, event_type, data, source)
+            VALUES (?, ?, ?, ?)
+        ]], {
+            citizenid,
+            'test_conversation',
+            json.encode({contactType = contactType, message = message, success = sendSuccess}),
+            'dashboard_test'
+        })
+    end
+
+    -- Update last contact
+    if sendSuccess then
+        exports['sv_mr_x']:UpdateLastContact(citizenid)
+    end
+
+    res.writeHead(sendSuccess and 200 or 500, {['Content-Type'] = 'application/json'})
+    res.send(json.encode({
+        success = sendSuccess,
+        message = message,
+        channel = channel,
+        contactType = contactType,
+        citizenid = citizenid
+    }))
+end
+
+local function HandleAIStatus(req, res)
+    -- Check if sv_nexus_tools is available
+    local hasNexusTools = GetResourceState('sv_nexus_tools') == 'started'
+
+    local status = {
+        nexusTools = hasNexusTools,
+        testMode = Config.TestMode,
+        aiModel = Config.OpenAI and Config.OpenAI.Model or 'unknown'
+    }
+
+    -- Try a simple API check
+    if hasNexusTools then
+        local pingSuccess, pingResult = pcall(function()
+            return exports['sv_nexus_tools']:Ping()
+        end)
+        status.apiResponding = pingSuccess and pingResult
+    end
+
+    res.writeHead(200, {['Content-Type'] = 'application/json'})
+    res.send(json.encode(status))
+end
+
+local function HandlePlayerContext(req, res)
+    local citizenid = req.headers['X-Citizenid'] or req.headers['x-citizenid']
+
+    if not citizenid then
+        res.writeHead(400, {['Content-Type'] = 'application/json'})
+        res.send(json.encode({error = 'Missing X-Citizenid header'}))
+        return
+    end
+
+    -- Get profile
+    local profile = exports['sv_mr_x']:GetProfile(citizenid)
+
+    -- Get player data if online
+    local playerData = nil
+    local isOnline = false
+    local playerSource = exports['sv_mr_x']:FindPlayerSource(citizenid)
+    if playerSource then
+        isOnline = true
+        local player = exports.qbx_core:GetPlayer(playerSource)
+        if player then
+            local pd = player.PlayerData
+            playerData = {
+                name = (pd.charinfo.firstname or '') .. ' ' .. (pd.charinfo.lastname or ''),
+                job = pd.job and pd.job.name or 'unemployed',
+                jobGrade = pd.job and pd.job.grade and pd.job.grade.level or 0,
+                gang = pd.gang and pd.gang.name or 'none',
+                cash = pd.money and pd.money.cash or 0,
+                bank = pd.money and pd.money.bank or 0
+            }
+        end
+    end
+
+    -- Get personality context
+    local personalityContext = exports['sv_mr_x']:BuildPersonalityContext(citizenid, nil)
+
+    -- Check exemption
+    local isExempt, exemptReason = exports['sv_mr_x']:IsExemptByCitizenId(citizenid)
+
+    -- Check prospect status
+    local isProspect = false
+    if playerSource then
+        isProspect = exports['sv_mr_x']:IsProspect(playerSource)
+    end
+
+    res.writeHead(200, {['Content-Type'] = 'application/json'})
+    res.send(json.encode({
+        citizenid = citizenid,
+        isOnline = isOnline,
+        playerData = playerData,
+        profile = profile,
+        personalityContext = personalityContext,
+        isExempt = isExempt,
+        exemptReason = exemptReason,
+        isProspect = isProspect,
+        mrxMood = exports['sv_mr_x']:GetMrXMood(),
+        mrxBalance = exports['sv_mr_x']:GetMrXBalance()
+    }))
+end
+
+-- ============================================
+-- PROSPECT ENDPOINTS
+-- ============================================
+
+local function HandleProspects(req, res)
+    -- Get all current prospects
+    local prospects = {}
+
+    local success, allProspects = pcall(function()
+        return exports['sv_mr_x']:GetAllProspects()
+    end)
+
+    if success and allProspects then
+        for _, p in ipairs(allProspects) do
+            table.insert(prospects, {
+                citizenid = p.citizenid,
+                name = p.name,
+                totalMoney = p.totalMoney,
+                source = p.source
+            })
+        end
+    end
+
+    res.writeHead(200, {['Content-Type'] = 'application/json'})
+    res.send(json.encode({
+        success = true,
+        prospects = prospects,
+        count = #prospects
+    }))
+end
+
+local function HandleProspectNeeds(req, res)
+    -- Return current Mr. X needs from config
+    local needs = {
+        jobs = {},
+        criminal = {},
+        authority = {}
+    }
+
+    if Config.Prospect and Config.Prospect.CurrentNeeds then
+        local cn = Config.Prospect.CurrentNeeds
+
+        for _, job in ipairs(cn.JobPlacements or {}) do
+            table.insert(needs.jobs, {
+                target = job.job,
+                priority = job.priority,
+                reason = job.reason
+            })
+        end
+
+        for _, crim in ipairs(cn.CriminalRecruits or {}) do
+            table.insert(needs.criminal, {
+                target = crim.type,
+                priority = crim.priority,
+                reason = crim.reason
+            })
+        end
+
+        for _, auth in ipairs(cn.AuthorityPlacements or {}) do
+            table.insert(needs.authority, {
+                target = auth.job,
+                priority = auth.priority,
+                reason = auth.reason
+            })
+        end
+    end
+
+    res.writeHead(200, {['Content-Type'] = 'application/json'})
+    res.send(json.encode({
+        success = true,
+        needs = needs
+    }))
+end
+
+local function HandleProspectWelcome(req, res, bodyData)
+    local success, body = pcall(json.decode, bodyData or '{}')
+    if not success or not body or not body.citizenid then
+        res.writeHead(400, {['Content-Type'] = 'application/json'})
+        res.send(json.encode({error = 'Missing citizenid'}))
+        return
+    end
+
+    -- Find player source
+    local playerSource = exports['sv_mr_x']:FindPlayerSource(body.citizenid)
+    if not playerSource then
+        res.writeHead(404, {['Content-Type'] = 'application/json'})
+        res.send(json.encode({error = 'Player not online'}))
+        return
+    end
+
+    -- Send welcome
+    local welcomeSuccess = exports['sv_mr_x']:SendProspectWelcome(playerSource, body.withGift or false)
+
+    res.writeHead(welcomeSuccess and 200 or 500, {['Content-Type'] = 'application/json'})
+    res.send(json.encode({
+        success = welcomeSuccess,
+        citizenid = body.citizenid
+    }))
+end
+
+local function HandleProspectNudge(req, res, bodyData)
+    local success, body = pcall(json.decode, bodyData or '{}')
+    if not success or not body or not body.citizenid then
+        res.writeHead(400, {['Content-Type'] = 'application/json'})
+        res.send(json.encode({error = 'Missing citizenid'}))
+        return
+    end
+
+    -- Find player source
+    local playerSource = exports['sv_mr_x']:FindPlayerSource(body.citizenid)
+    if not playerSource then
+        res.writeHead(404, {['Content-Type'] = 'application/json'})
+        res.send(json.encode({error = 'Player not online'}))
+        return
+    end
+
+    -- Send nudge based on type
+    local nudgeSuccess = false
+    if body.type == 'job' then
+        nudgeSuccess = exports['sv_mr_x']:SendJobSuggestion(playerSource, body.target)
+    elseif body.type == 'checkin' then
+        nudgeSuccess = exports['sv_mr_x']:SendProspectCheckIn(playerSource)
+    elseif body.type == 'tip' then
+        nudgeSuccess = exports['sv_mr_x']:SendProspectTip(playerSource)
+    else
+        res.writeHead(400, {['Content-Type'] = 'application/json'})
+        res.send(json.encode({error = 'Invalid nudge type'}))
+        return
+    end
+
+    res.writeHead(nudgeSuccess and 200 or 500, {['Content-Type'] = 'application/json'})
+    res.send(json.encode({
+        success = nudgeSuccess,
+        citizenid = body.citizenid,
+        type = body.type,
+        target = body.target
+    }))
+end
+
+-- ============================================
 -- HTTP HANDLER REGISTRATION
 -- ============================================
 
@@ -229,7 +702,15 @@ SetHttpHandler(function(req, res)
 
     -- Only handle our endpoints
     -- FiveM strips resource name prefix, so /sv_mr_x/manual becomes /manual
-    if req.path ~= '/manual' and req.path ~= '/status' and req.path ~= '/profile' then
+    local validPaths = {'/manual', '/status', '/profile', '/mrx-status', '/prospects', '/prospect-needs', '/prospect-welcome', '/prospect-nudge', '/test-conversation', '/ai-status', '/player-context'}
+    local isValidPath = false
+    for _, path in ipairs(validPaths) do
+        if req.path == path then
+            isValidPath = true
+            break
+        end
+    end
+    if not isValidPath then
         res.send('')
         return
     end
@@ -248,9 +729,75 @@ SetHttpHandler(function(req, res)
         return
     end
 
+    -- MR. X STATUS ENDPOINT (balance, mood, active missions)
+    if req.path == '/mrx-status' then
+        HandleMrXStatus(req, res)
+        return
+    end
+
+    -- TEST CONVERSATION ENDPOINT
+    if req.path == '/test-conversation' and req.method == 'POST' then
+        local bodyChunks = {}
+        req.setDataHandler(function(data)
+            table.insert(bodyChunks, data)
+        end, 'text')
+        Citizen.SetTimeout(50, function()
+            local bodyData = table.concat(bodyChunks)
+            HandleTestConversation(req, res, bodyData)
+        end)
+        return
+    end
+
+    -- AI STATUS ENDPOINT
+    if req.path == '/ai-status' then
+        HandleAIStatus(req, res)
+        return
+    end
+
+    -- PLAYER CONTEXT ENDPOINT
+    if req.path == '/player-context' then
+        HandlePlayerContext(req, res)
+        return
+    end
+
     -- PROFILE ENDPOINT (no body needed, uses headers)
     if req.path == '/profile' then
         HandleProfile(req, res)
+        return
+    end
+
+    -- PROSPECT ENDPOINTS
+    if req.path == '/prospects' then
+        HandleProspects(req, res)
+        return
+    end
+
+    if req.path == '/prospect-needs' then
+        HandleProspectNeeds(req, res)
+        return
+    end
+
+    if req.path == '/prospect-welcome' and req.method == 'POST' then
+        local bodyChunks = {}
+        req.setDataHandler(function(data)
+            table.insert(bodyChunks, data)
+        end, 'text')
+        Citizen.SetTimeout(50, function()
+            local bodyData = table.concat(bodyChunks)
+            HandleProspectWelcome(req, res, bodyData)
+        end)
+        return
+    end
+
+    if req.path == '/prospect-nudge' and req.method == 'POST' then
+        local bodyChunks = {}
+        req.setDataHandler(function(data)
+            table.insert(bodyChunks, data)
+        end, 'text')
+        Citizen.SetTimeout(50, function()
+            local bodyData = table.concat(bodyChunks)
+            HandleProspectNudge(req, res, bodyData)
+        end)
         return
     end
 

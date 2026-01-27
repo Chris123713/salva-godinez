@@ -66,7 +66,10 @@ MrXConstants.Archetypes = {
     ENFORCER = 'enforcer',
 
     -- Default/new player (not yet classified)
-    UNCLASSIFIED = 'unclassified'
+    UNCLASSIFIED = 'unclassified',
+
+    -- NEW: Prospect (new player ripe for recruitment/shaping)
+    PROSPECT = 'prospect'
 }
 
 -- ============================================
@@ -175,7 +178,29 @@ MrXConstants.ArchetypeInfo = {
         typical_bucket = 'civilian',
         mission_types = {'simple', 'test'},
         exempt_default = false
+    },
+    prospect = {
+        label = 'Prospect',
+        description = 'New player with potential - ripe for recruitment and shaping',
+        mrx_approach = 'recruitment',
+        typical_bucket = 'civilian',
+        mission_types = {'recruitment', 'intro', 'test'},
+        exempt_default = false,
+        can_nudge = true  -- Mr. X can suggest career directions
     }
+}
+
+-- ============================================
+-- PROSPECT NUDGE TYPES
+-- Ways Mr. X can guide new players
+-- ============================================
+MrXConstants.NudgeTypes = {
+    JOB_SUGGESTION = 'job_suggestion',      -- Suggest a specific job
+    GANG_INTRODUCTION = 'gang_introduction', -- Point toward a gang
+    SKILL_DEVELOPMENT = 'skill_development', -- Suggest learning specific skills
+    LOCATION_HINT = 'location_hint',         -- Point to areas with opportunities
+    CONTACT_INTRODUCTION = 'contact_intro',  -- Introduce to another player/NPC
+    FIRST_MISSION = 'first_mission'          -- Offer a starter mission
 }
 
 -- ============================================

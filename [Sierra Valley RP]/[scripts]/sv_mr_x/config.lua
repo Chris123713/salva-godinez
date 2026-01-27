@@ -122,6 +122,15 @@ Config.ProactiveContact = {
         REPUTATION_UPDATE = 0.1, -- 10% - Comment on their recent activity
         WARNING = 0.1,          -- 10% - Subtle threat/reminder (low rep only)
         TIP = 0.1               -- 10% - Free intel tip (high rep only)
+    },
+
+    -- Special contact types for prospects (separate from normal contacts)
+    ProspectContactTypes = {
+        WELCOME = 0.25,         -- 25% - Welcome message + optional gift
+        JOB_SUGGESTION = 0.30,  -- 30% - Suggest a job Mr. X needs filled
+        CHECK_IN = 0.20,        -- 20% - Friendly check-in
+        TIP = 0.15,             -- 15% - Free helpful tip
+        FIRST_MISSION = 0.10    -- 10% - Offer first easy mission
     }
 }
 
@@ -341,7 +350,19 @@ Config.Personality = {
         dilemma_risk = { tone_shift = 'calculating', intensity = 0.3 },
         extortion = { tone_shift = 'threatening', intensity = 0.6 },
         reward = { tone_shift = 'magnanimous', intensity = 0.4 },
-        warning = { tone_shift = 'ominous', intensity = 0.5 }
+        warning = { tone_shift = 'ominous', intensity = 0.5 },
+        -- NEW: Prospect-specific context
+        prospect_contact = { tone_shift = 'mentoring', intensity = 0.8 },
+        prospect_nudge = { tone_shift = 'helpful', intensity = 0.7 },
+        prospect_gift = { tone_shift = 'generous', intensity = 0.6 }
+    },
+
+    -- Special tone for prospects (overrides normal reputation-based tone)
+    ProspectTone = {
+        description = 'Friendly mentor who wants to help new players succeed',
+        tone = 'welcoming',
+        avoid = {'threatening', 'cold', 'contemptuous'},
+        emphasize = {'helpful', 'patient', 'encouraging'}
     }
 }
 
@@ -619,6 +640,137 @@ Config.Archetypes = {
 }
 
 -- ============================================
+-- PROSPECT SYSTEM
+-- Identifies and nurtures new players, nudging them toward roles Mr. X needs
+-- ============================================
+Config.Prospect = {
+    Enabled = true,
+
+    -- Detection criteria for PROSPECT archetype
+    Detection = {
+        Job = 'unemployed',           -- Must be unemployed
+        MaxMoney = 20000,             -- Total cash + bank < $20k
+        MaxPlaytime = 7200,           -- Less than 2 hours playtime (seconds)
+        NoGang = true,                -- Must not be in a gang
+        MaxReputation = 10            -- Must have low/no Mr. X reputation
+    },
+
+    -- How often to scan for new prospects (milliseconds)
+    ScanIntervalMs = 300000,  -- 5 minutes
+
+    -- Cooldown before contacting same prospect again (seconds)
+    ContactCooldownSec = 1800,  -- 30 minutes
+
+    -- ==========================================
+    -- MR. X'S CURRENT NEEDS
+    -- These are the roles Mr. X is actively trying to fill
+    -- The AI will consider these when nudging prospects
+    -- ==========================================
+    CurrentNeeds = {
+        -- Job placements Mr. X wants insiders in
+        JobPlacements = {
+            { job = 'mechanic', priority = 3, reason = 'Need eyes on vehicle modifications' },
+            { job = 'taxi', priority = 2, reason = 'Mobile intel gatherers' },
+            { job = 'trucker', priority = 2, reason = 'Smuggling potential' },
+            { job = 'realestate', priority = 1, reason = 'Property access' }
+        },
+
+        -- Gang recruitment targets
+        GangRecruits = {
+            -- { gang = 'ballas', priority = 3, reason = 'Expanding south side influence' },
+            -- { gang = 'vagos', priority = 2, reason = 'Need connections in that territory' }
+        },
+
+        -- General criminal recruits (no specific gang)
+        CriminalRecruits = {
+            { type = 'driver', priority = 3, reason = 'Need getaway drivers' },
+            { type = 'lookout', priority = 2, reason = 'Surveillance for operations' },
+            { type = 'dealer', priority = 2, reason = 'Drug distribution network' }
+        },
+
+        -- Authority placements (rare, high value)
+        AuthorityPlacements = {
+            { job = 'police', priority = 1, reason = 'Inside information (high risk)' },
+            { job = 'ems', priority = 1, reason = 'Access to hospital/morgue' }
+        }
+    },
+
+    -- ==========================================
+    -- NUDGE MESSAGING
+    -- Mr. X approaches prospects as a FRIENDLY MENTOR
+    -- Goal: Be helpful, build loyalty, retain players, exploit later
+    -- ==========================================
+    Messaging = {
+        -- Initial contact - warm, welcoming, helpful
+        InitialContact = {
+            "Welcome to the city. It can be overwhelming at first. Consider me a friend who knows the ropes.",
+            "I noticed you're new in town. If you need guidance, I know how things work around here.",
+            "Everyone needs help starting out. I like to look after promising newcomers.",
+            "New to Sierra Valley? Let me know if you need anything. The city rewards those who know the right people."
+        },
+
+        -- When suggesting a job - helpful career advice
+        JobNudge = {
+            "Looking for work? I know %s is hiring and they treat their people well. Good way to get started.",
+            "A friend at %s mentioned they need help. Could be a solid opportunity for you.",
+            "If you want to make honest money, %s is a good place to start. Tell them I recommended you.",
+            "%s is always looking for reliable people. It's steady work and you'll learn the city."
+        },
+
+        -- Casual check-ins - build rapport
+        CheckIn = {
+            "How are you settling in? Let me know if you need anything.",
+            "Just checking in. Finding your way around okay?",
+            "Hope the city's treating you well. Remember, I'm here if you need guidance.",
+            "Still getting your bearings? Take your time. Opportunities will come."
+        },
+
+        -- Small helpful tips - free value, builds trust
+        FreeTips = {
+            "Pro tip: The mechanic shop on Strawberry pays better than you'd think.",
+            "If you need quick cash, taxi driving is flexible and you learn the streets.",
+            "The trucking depot near the docks always needs drivers. Easy way to make money.",
+            "Hint: The people at Benny's appreciate reliable workers. Worth checking out."
+        },
+
+        -- When they're ready - soft criminal introduction
+        CrimeNudge = {
+            "You've been working hard. If you ever want to make some real money, I know other ways.",
+            "Legitimate work is good, but there are faster paths to success. When you're ready, we'll talk.",
+            "Some of my best people started just like you. If you want more than a paycheck, let me know.",
+            "I like what I see. When you're ready for something bigger, I might have opportunities."
+        },
+
+        -- First mission offer - framed as opportunity, not demand
+        FirstMission = {
+            "I have a small job that could use someone fresh. Easy money, no strings. Interested?",
+            "Want to earn some quick cash? I have something simple. Consider it a favor between friends.",
+            "Here's an opportunity: easy task, good pay. A chance to show what you're capable of.",
+            "I'm offering you a chance to earn. Simple work, fair payment. What do you say?"
+        },
+
+        -- Money gift for brand new prospects (one-time)
+        WelcomeGift = {
+            "Consider this a welcome gift. The city can be tough on newcomers. $500 to help you get started.",
+            "Here's $500 - call it an investment in your future. No strings attached.",
+            "A little startup money for you. Use it wisely. We'll be in touch.",
+            "Take this $500. Consider it my way of saying welcome to Sierra Valley."
+        }
+    },
+
+    -- Welcome gift amount for brand new prospects
+    WelcomeGiftAmount = 500,
+    WelcomeGiftCooldown = 86400,  -- Only once per day across all prospects
+
+    -- Reputation bonus for prospects who follow suggestions
+    FollowThroughBonus = {
+        JobAccepted = 5,      -- Prospect took the suggested job
+        MissionComplete = 8,   -- Prospect completed first mission
+        GangJoined = 10        -- Prospect joined suggested gang
+    }
+}
+
+-- ============================================
 -- CAMERA-AWARE INTELLIGENCE
 -- Mr. X only gathers certain intel when players are in camera range
 -- ============================================
@@ -778,6 +930,40 @@ Config.PhoneHack = {
 
     -- Duration of the "hack" effect (milliseconds)
     HackDurationMs = 3000
+}
+
+-- ============================================
+-- AGENT TOOLS SYSTEM (MCP-Style Autonomous Behavior)
+-- Transforms Mr. X from "text generator" to "autonomous agent with tools"
+-- The AI decides WHAT to do, not just what to say
+-- ============================================
+Config.AgentTools = {
+    -- Master enable/disable for the agent tools system
+    Enabled = true,
+
+    -- Automatically trigger agent on player login
+    EnableLoginTrigger = true,
+
+    -- Automatically trigger agent on mission completion
+    EnableMissionTrigger = true,
+
+    -- Maximum iterations for agent loop (prevents infinite loops)
+    MaxIterations = 5,
+
+    -- OpenAI model for agent decisions (can use more capable model than regular comms)
+    Model = 'gpt-4o-mini',
+
+    -- Temperature for agent decisions (lower = more deterministic)
+    Temperature = 0.7,
+
+    -- Maximum tokens for agent response
+    MaxTokens = 1000,
+
+    -- Delay after player login before triggering agent (milliseconds)
+    LoginTriggerDelay = 5000,
+
+    -- Debug logging for agent tool execution
+    DebugLogging = true
 }
 
 -- ============================================

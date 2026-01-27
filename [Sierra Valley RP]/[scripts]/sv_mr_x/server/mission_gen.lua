@@ -201,8 +201,11 @@ function MissionGen.BuildPrompt(citizenid, profile)
 
     -- Personality context injection (scarcity/mood system)
     local personalityContext = ''
-    if exports['sv_mr_x'].BuildPersonalityContext then
-        personalityContext = exports['sv_mr_x']:BuildPersonalityContext(citizenid) or ''
+    local success, result = pcall(function()
+        return exports['sv_mr_x']:BuildPersonalityContext(citizenid)
+    end)
+    if success and result then
+        personalityContext = result
     end
     prompt = prompt:gsub('{{personality}}', personalityContext)
 
@@ -301,8 +304,11 @@ function MissionGen.Generate(source, forceType, callback)
 
                 -- Apply personality-based reward multiplier
                 local modifiers = nil
-                if exports['sv_mr_x'].GetMissionModifiers then
-                    modifiers = exports['sv_mr_x']:GetMissionModifiers(citizenid)
+                local modSuccess, modResult = pcall(function()
+                    return exports['sv_mr_x']:GetMissionModifiers(citizenid)
+                end)
+                if modSuccess then
+                    modifiers = modResult
                 end
                 if modifiers and modifiers.rewardMult then
                     mission.rewards.money.amount = math.floor(baseAmount * modifiers.rewardMult)
@@ -543,7 +549,7 @@ function MissionGen.HandleCompletion(citizenid, missionId, outcome, source)
         -- Process Mr. X's cut from the mission reward (scarcity system)
         -- Note: The actual reward was already paid to player by the mission system
         -- This deposits Mr. X's cut into his account
-        if exports['sv_mr_x'].ProcessMissionCut then
+        pcall(function()
             -- Estimate reward based on tier (we don't have the exact amount here)
             local profile = GetProfile(citizenid)
             local rep = profile and profile.reputation or 50
@@ -555,7 +561,7 @@ function MissionGen.HandleCompletion(citizenid, missionId, outcome, source)
             if Config.Debug and mrxCut > 0 then
                 print(string.format('^3[MR_X]^7 Took $%d cut from mission %s', mrxCut, missionId))
             end
-        end
+        end)
 
         Log(MrXConstants.EventTypes.MISSION_COMPLETED, citizenid, {
             missionId = missionId,

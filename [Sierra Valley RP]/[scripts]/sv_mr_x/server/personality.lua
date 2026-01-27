@@ -75,6 +75,12 @@ function Personality.BuildContext(citizenid, context)
         return ''
     end
 
+    -- Check if this is a PROSPECT first (special handling)
+    local profile = exports['sv_mr_x']:GetProfile(citizenid)
+    if profile and profile.archetype == 'prospect' then
+        return Personality.BuildProspectContext(citizenid, context)
+    end
+
     -- Get player reputation
     local rep = 50 -- Default
     local repExport = exports['sv_mr_x']
@@ -271,10 +277,95 @@ function Personality.GetToneDescription(citizenid, context)
 end
 
 -- ============================================
+-- PROSPECT PERSONALITY (SPECIAL CASE)
+-- Prospects get a completely different, friendlier tone
+-- ============================================
+
+---Build personality context for PROSPECT archetype
+---@param citizenid string
+---@param context? string
+---@return string Personality injection text
+function Personality.BuildProspectContext(citizenid, context)
+    local prospectTone = Config.Personality.ProspectTone or {
+        description = 'Friendly mentor who wants to help new players succeed',
+        tone = 'welcoming',
+        avoid = {'threatening', 'cold', 'contemptuous'},
+        emphasize = {'helpful', 'patient', 'encouraging'}
+    }
+
+    local lines = {
+        '---',
+        '',
+        '## SPECIAL: PROSPECT PERSONALITY MODE',
+        '',
+        '**IMPORTANT: This is a new player (PROSPECT archetype).**',
+        'You are NOT the intimidating crime boss. You are a FRIENDLY MENTOR.',
+        '',
+        '### Your Approach with Prospects',
+        string.format('- Tone: **%s**', prospectTone.tone:upper()),
+        string.format('- Role: %s', prospectTone.description),
+        '',
+        '### DO:',
+        '- Be welcoming and helpful',
+        '- Offer genuine advice about the city',
+        '- Show patience with their questions',
+        '- Make them feel valued and supported',
+        '- Suggest opportunities (jobs, activities) without pressure',
+        '- Give small gifts or tips to build rapport',
+        '',
+        '### DO NOT:',
+        '- Threaten or intimidate',
+        '- Be cold or dismissive',
+        '- Demand anything from them',
+        '- Mention debts, consequences, or punishments',
+        '- Use ominous or mysterious language',
+        '',
+        '### Your Goal',
+        'Build loyalty NOW. They are new, impressionable, and need guidance.',
+        'If you help them succeed, they will remember. And later, when you need something...',
+        'they will be happy to help someone who helped them first.',
+        '',
+        '### Example Tone',
+        '"Welcome to the city. Everyone starts somewhere, and I like to help promising newcomers."',
+        '"If you need work, I know some people. Just say the word."',
+        '"Take your time getting settled. When youre ready for more, we can talk."',
+        ''
+    }
+
+    -- Add context modifier if applicable
+    local contextMod = Personality.GetContextModifier(context)
+    if contextMod then
+        table.insert(lines, '### Current Context')
+        table.insert(lines, string.format('- Situation: %s', context:gsub('_', ' ')))
+
+        if context == 'prospect_contact' then
+            table.insert(lines, '- First contact: Extra warm and welcoming')
+        elseif context == 'prospect_nudge' then
+            table.insert(lines, '- Suggesting opportunity: Frame as helpful advice, not a request')
+        elseif context == 'prospect_gift' then
+            table.insert(lines, '- Giving gift: Generous and no-strings-attached')
+        end
+        table.insert(lines, '')
+    end
+
+    return table.concat(lines, '\n')
+end
+
+---Check if a citizen is a prospect
+---@param citizenid string
+---@return boolean
+function Personality.IsProspect(citizenid)
+    local profile = exports['sv_mr_x']:GetProfile(citizenid)
+    return profile and profile.archetype == 'prospect'
+end
+
+-- ============================================
 -- EXPORTS
 -- ============================================
 
 exports('BuildPersonalityContext', Personality.BuildContext)
+exports('BuildProspectContext', Personality.BuildProspectContext)
+exports('IsProspect', Personality.IsProspect)
 exports('GetPersonalityReputationTier', Personality.GetReputationTier)
 exports('GetMissionModifiers', Personality.GetMissionModifiers)
 exports('GetToneDescription', Personality.GetToneDescription)

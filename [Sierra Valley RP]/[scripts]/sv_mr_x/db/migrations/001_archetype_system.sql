@@ -1,26 +1,69 @@
 -- ============================================
 -- MIGRATION 001: Enhanced Archetype System
 -- Run this after the base mr_x_schema.sql
+-- This migration is IDEMPOTENT - safe to run multiple times
 -- ============================================
 
--- Add new columns to mr_x_profiles for archetype classification
-ALTER TABLE `mr_x_profiles`
-    -- Primary bucket (AUTHORITY, CIVILIAN, CRIMINAL)
-    ADD COLUMN `bucket` ENUM('authority', 'civilian', 'criminal') DEFAULT 'civilian' AFTER `archetype`,
+-- Drop and recreate stored procedure for safe column addition
+DROP PROCEDURE IF EXISTS AddColumnIfNotExists;
+DELIMITER //
+CREATE PROCEDURE AddColumnIfNotExists(
+    IN tableName VARCHAR(64),
+    IN colName VARCHAR(64),
+    IN colDef VARCHAR(255)
+)
+BEGIN
+    IF NOT EXISTS (
+        SELECT * FROM INFORMATION_SCHEMA.COLUMNS
+        WHERE TABLE_SCHEMA = DATABASE()
+          AND TABLE_NAME = tableName
+          AND COLUMN_NAME = colName
+    ) THEN
+        SET @sql = CONCAT('ALTER TABLE `', tableName, '` ADD COLUMN `', colName, '` ', colDef);
+        PREPARE stmt FROM @sql;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+    END IF;
+END//
+DELIMITER ;
 
-    -- Alignment axes (GTA-flavored D&D alignment)
-    ADD COLUMN `method_axis` ENUM('calculated', 'opportunistic', 'reckless') DEFAULT 'opportunistic' AFTER `bucket`,
-    ADD COLUMN `loyalty_axis` ENUM('civic', 'self', 'crew') DEFAULT 'self' AFTER `method_axis`,
+-- Add new columns to mr_x_profiles for archetype classification (if they don't exist)
+CALL AddColumnIfNotExists('mr_x_profiles', 'bucket', "ENUM('authority', 'civilian', 'criminal') DEFAULT 'civilian' AFTER `archetype`");
+CALL AddColumnIfNotExists('mr_x_profiles', 'method_axis', "ENUM('calculated', 'opportunistic', 'reckless') DEFAULT 'opportunistic' AFTER `bucket`");
+CALL AddColumnIfNotExists('mr_x_profiles', 'loyalty_axis', "ENUM('civic', 'self', 'crew') DEFAULT 'self' AFTER `method_axis`");
+CALL AddColumnIfNotExists('mr_x_profiles', 'behavior_metrics', "JSON DEFAULT NULL COMMENT 'Tracked behaviors for archetype calculation' AFTER `loyalty_axis`");
+CALL AddColumnIfNotExists('mr_x_profiles', 'archetype_updated_at', "TIMESTAMP NULL DEFAULT NULL AFTER `behavior_metrics`");
 
-    -- Behavioral metrics for classification (updated over time)
-    ADD COLUMN `behavior_metrics` JSON DEFAULT NULL COMMENT 'Tracked behaviors for archetype calculation' AFTER `loyalty_axis`,
+-- Add indexes if they don't exist (MySQL will error on duplicate, but we ignore it)
+-- Use a procedure to safely add indexes
+DROP PROCEDURE IF EXISTS AddIndexIfNotExists;
+DELIMITER //
+CREATE PROCEDURE AddIndexIfNotExists(
+    IN tableName VARCHAR(64),
+    IN indexName VARCHAR(64),
+    IN indexDef VARCHAR(255)
+)
+BEGIN
+    IF NOT EXISTS (
+        SELECT * FROM INFORMATION_SCHEMA.STATISTICS
+        WHERE TABLE_SCHEMA = DATABASE()
+          AND TABLE_NAME = tableName
+          AND INDEX_NAME = indexName
+    ) THEN
+        SET @sql = CONCAT('ALTER TABLE `', tableName, '` ADD INDEX `', indexName, '` ', indexDef);
+        PREPARE stmt FROM @sql;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+    END IF;
+END//
+DELIMITER ;
 
-    -- Last time archetype was recalculated
-    ADD COLUMN `archetype_updated_at` TIMESTAMP NULL DEFAULT NULL AFTER `behavior_metrics`,
+CALL AddIndexIfNotExists('mr_x_profiles', 'idx_bucket', '(`bucket`)');
+CALL AddIndexIfNotExists('mr_x_profiles', 'idx_archetype_combined', '(`bucket`, `archetype`)');
 
-    -- Add index for new columns
-    ADD INDEX `idx_bucket` (`bucket`),
-    ADD INDEX `idx_archetype_combined` (`bucket`, `archetype`);
+-- Cleanup helper procedures
+DROP PROCEDURE IF EXISTS AddColumnIfNotExists;
+DROP PROCEDURE IF EXISTS AddIndexIfNotExists;
 
 -- Create table for gang eligibility cache (synced from brutal_gangs)
 CREATE TABLE IF NOT EXISTS `mr_x_eligible_gangs` (

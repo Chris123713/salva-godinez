@@ -166,6 +166,42 @@ function Profile.Get(citizenid)
     return row
 end
 
+---Check if player data indicates a prospect (new player to be nurtured)
+---@param playerData? table Player data from qbx_core
+---@return boolean isProspect
+local function CheckIsProspect(playerData)
+    if not Config.Prospect or not Config.Prospect.Enabled then
+        return false
+    end
+
+    if not playerData then return false end
+
+    local detection = Config.Prospect.Detection
+
+    -- Check job
+    local job = playerData.job and playerData.job.name or 'unemployed'
+    if job ~= detection.Job then
+        return false
+    end
+
+    -- Check money
+    local cash = playerData.money and playerData.money.cash or 0
+    local bank = playerData.money and playerData.money.bank or 0
+    if (cash + bank) > detection.MaxMoney then
+        return false
+    end
+
+    -- Check gang
+    if detection.NoGang then
+        local gang = playerData.gang and playerData.gang.name
+        if gang and gang ~= '' and gang ~= 'none' then
+            return false
+        end
+    end
+
+    return true
+end
+
 ---Create a new Mr. X profile for a player
 ---@param citizenid string
 ---@param playerData? table Optional player data for archetype detection
@@ -175,11 +211,24 @@ function Profile.Create(citizenid, playerData)
         error('Profile.Create: citizenid is required')
     end
 
+    -- Check if this is a PROSPECT first
+    local isProspect = CheckIsProspect(playerData)
+
     -- Determine initial classification (using database for gang lookup)
     local bucket = Profile.DetermineBucket(playerData, citizenid)
     local methodAxis = MrXConstants.MethodAxis.OPPORTUNISTIC
     local loyaltyAxis = Profile.DetermineInitialLoyalty(playerData, bucket, citizenid)
-    local archetype = Profile.CalculateArchetype(methodAxis, loyaltyAxis)
+
+    -- Use PROSPECT archetype if they qualify, otherwise calculate normally
+    local archetype
+    if isProspect then
+        archetype = MrXConstants.Archetypes.PROSPECT
+        if Config.Debug then
+            print('^2[MR_X]^7 New player detected as PROSPECT: ' .. citizenid)
+        end
+    else
+        archetype = Profile.CalculateArchetype(methodAxis, loyaltyAxis)
+    end
 
     -- Initial profile data
     local history = {}
@@ -535,6 +584,24 @@ function Profile.ReevaluateArchetype(citizenid, source)
 
     local player = source and exports.qbx_core:GetPlayer(source)
     local playerData = player and player.PlayerData
+
+    -- Check if they're currently a PROSPECT
+    local wasProspect = profile.archetype == MrXConstants.Archetypes.PROSPECT
+
+    -- Check if they still qualify as a prospect
+    local stillProspect = CheckIsProspect(playerData)
+
+    -- If they were a prospect but no longer qualify (got a job, money, etc.)
+    -- transition them out of prospect status
+    if wasProspect and not stillProspect then
+        if Config.Debug then
+            print('^3[MR_X]^7 ' .. citizenid .. ' transitioning from PROSPECT to regular classification')
+        end
+        -- They're no longer a prospect - proceed with normal classification
+    elseif stillProspect then
+        -- Still a prospect, keep them that way
+        return MrXConstants.Archetypes.PROSPECT
+    end
 
     -- Recalculate bucket (job/gang can change) - uses DATABASE for gang lookup
     local bucket = Profile.DetermineBucket(playerData, citizenid)

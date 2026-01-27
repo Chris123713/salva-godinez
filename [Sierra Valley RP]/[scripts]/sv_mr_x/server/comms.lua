@@ -638,10 +638,168 @@ AddEventHandler('playerDropped', function(reason)
 end)
 
 -- ============================================
+-- MESSAGE GENERATION FUNCTIONS (for test console)
+-- These generate contextual messages based on player profile
+-- ============================================
+
+---Generate a check-in message
+---@param citizenid string
+---@return string message
+function Comms.GenerateCheckInMessage(citizenid)
+    local profile = exports['sv_mr_x']:GetProfile(citizenid)
+    local rep = profile and profile.reputation or 0
+    local archetype = profile and profile.archetype or 'unclassified'
+
+    -- Prospect check-in is friendlier
+    if archetype == 'prospect' then
+        return RandomMessage(Config.Prospect.Messaging.CheckIn) or 'How are you settling in? Let me know if you need anything.'
+    end
+
+    -- Reputation-based messages
+    if rep > 70 then
+        return RandomMessage({
+            "Just checking in on my most valuable asset.",
+            "I have something big coming up. Stay ready.",
+            "Your services may be required soon. Keep your schedule open."
+        })
+    elseif rep > 40 then
+        return RandomMessage({
+            "I may have something for you soon...",
+            "Keep your eyes open. Opportunities are coming.",
+            "I've been watching your progress. Interesting."
+        })
+    else
+        return RandomMessage({
+            "I haven't forgotten about you.",
+            "Prove yourself useful, and there will be rewards.",
+            "Patience. Your time will come."
+        })
+    end
+end
+
+---Generate a warning message
+---@param citizenid string
+---@return string message
+function Comms.GenerateWarningMessage(citizenid)
+    return RandomMessage(MrXConstants.Messages.Warnings) or "Your actions have consequences. Remember that."
+end
+
+---Generate a tip message
+---@param citizenid string
+---@return string message
+function Comms.GenerateTipMessage(citizenid)
+    local profile = exports['sv_mr_x']:GetProfile(citizenid)
+    local archetype = profile and profile.archetype or 'unclassified'
+
+    if archetype == 'prospect' then
+        return RandomMessage(Config.Prospect.Messaging.FreeTips) or 'Pro tip: The mechanic shop is always hiring.'
+    end
+
+    return RandomMessage({
+        "A little free intel: there are opportunities if you know where to look.",
+        "I heard something that might interest you. Keep your ears open near the docks.",
+        "Word on the street: something big is happening soon. Position yourself well.",
+        "A tip from a friend: avoid the south side tonight."
+    })
+end
+
+---Generate a mission success message
+---@param citizenid string
+---@return string message
+function Comms.GenerateMissionSuccessMessage(citizenid)
+    return RandomMessage(MrXConstants.Messages.Success) or "Well done. We'll be in touch."
+end
+
+---Generate a mission failure message
+---@param citizenid string
+---@return string message
+function Comms.GenerateMissionFailureMessage(citizenid)
+    return RandomMessage(MrXConstants.Messages.Failure) or "Disappointing. I expected more from you."
+end
+
+---Generate an extortion message
+---@param citizenid string
+---@return string message
+function Comms.GenerateExtortionMessage(citizenid)
+    return RandomMessage({
+        "You owe me. I'm calling in the debt. Pay up or face consequences.",
+        "Consider this your final notice. I want what you owe me.",
+        "You have 24 hours. After that, I take matters into my own hands.",
+        "I've been patient. That patience has run out. Pay. Now."
+    })
+end
+
+---Generate a threat message
+---@param citizenid string
+---@return string message
+function Comms.GenerateThreatMessage(citizenid)
+    return RandomMessage({
+        "I know where you are. I know who you care about. Do not test me.",
+        "Consider this your only warning. Cross me again and you will regret it.",
+        "Some people make the mistake of thinking I'm bluffing. Ask around about what happened to them.",
+        "I have eyes everywhere. You cannot hide from me."
+    })
+end
+
+---Refactor a custom message to Mr. X's voice using AI
+---@param message string Original message
+---@param citizenid string Target player
+---@return string Refactored message
+function Comms.RefactorToMrXVoice(message, citizenid)
+    -- Check if AI is available
+    local hasNexusTools = GetResourceState('sv_nexus_tools') == 'started'
+
+    if not hasNexusTools or Config.TestMode then
+        -- Fallback: just return the original with some Mr. X flavor
+        return message
+    end
+
+    -- Get personality context
+    local personalityContext = exports['sv_mr_x']:BuildPersonalityContext(citizenid, nil)
+
+    -- Build AI prompt
+    local prompt = [[You are rewriting a message in the voice of Mr. X, an omniscient crime lord.
+
+Original message to convey: "]] .. message .. [["
+
+]] .. personalityContext .. [[
+
+Rewrite this message in Mr. X's voice. Keep it brief (1-2 sentences). Be cryptic, confident, and menacing but not cartoonish.
+Output ONLY the rewritten message, nothing else.]]
+
+    -- Call AI
+    local success, response = pcall(function()
+        return exports['sv_nexus_tools']:CallOpenAI({
+            model = Config.OpenAI.Model or 'gpt-4o-mini',
+            temperature = 0.8,
+            max_tokens = 100,
+            messages = {
+                { role = 'user', content = prompt }
+            }
+        })
+    end)
+
+    if success and response and response.content then
+        return response.content
+    end
+
+    -- Fallback
+    return message
+end
+
+-- ============================================
 -- EXPORTS
 -- ============================================
 
 exports('SendMrXMessage', Comms.SendMessage)
+exports('GenerateCheckInMessage', Comms.GenerateCheckInMessage)
+exports('GenerateWarningMessage', Comms.GenerateWarningMessage)
+exports('GenerateTipMessage', Comms.GenerateTipMessage)
+exports('GenerateMissionSuccessMessage', Comms.GenerateMissionSuccessMessage)
+exports('GenerateMissionFailureMessage', Comms.GenerateMissionFailureMessage)
+exports('GenerateExtortionMessage', Comms.GenerateExtortionMessage)
+exports('GenerateThreatMessage', Comms.GenerateThreatMessage)
+exports('RefactorToMrXVoice', Comms.RefactorToMrXVoice)
 exports('SendMrXEmail', Comms.SendEmail)
 exports('SendMrXNotification', Comms.SendNotification)
 exports('CreateMrXCall', Comms.CreateCall)

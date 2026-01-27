@@ -33,6 +33,7 @@ server_scripts {
     'server/banking.lua',           -- Mr. X's personal finances (scarcity system)
     'server/personality.lua',       -- Dynamic personality context injection
     'server/profile.lua',
+    'server/prospect.lua',          -- New player recruitment and nudging system
     'server/reputation.lua',
     'server/fact_discovery.lua',    -- Automatic fact discovery from various sources
     'server/activity_tracking.lua', -- Session/idle tracking for proactive contact timing
@@ -49,12 +50,19 @@ server_scripts {
     'server/http_handler.lua',      -- HTTP endpoint for manual commands (load late, uses exports)
     'server/boardroom.lua',         -- AI strategic planning sessions
     'server/phone_hack.lua',        -- Phone hack selfie system
+    -- Agent Tools System (MCP-style autonomous behavior)
+    'server/tools_schema.lua',      -- OpenAI function calling schemas
+    'server/safety_rails.lua',      -- Rate limits and budget constraints (load before executor)
+    'server/action_queue.lua',      -- Delayed/scheduled actions
+    'server/tools_executor.lua',    -- Execute AI tool calls and agent loop
+    'server/tools_handlers.lua',    -- Map tools to existing exports
     'server/main.lua'
 }
 
 files {
     'data/MR_X_SYSTEM_PROMPT.md',
-    'data/MR_X_BOARDROOM_PROMPT.md'
+    'data/MR_X_BOARDROOM_PROMPT.md',
+    'data/MR_X_AGENT_PROMPT.md'
 }
 
 -- Database schema: run db/mr_x_schema.sql on your MySQL server
