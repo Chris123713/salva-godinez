@@ -495,6 +495,12 @@ end
 function Comms.CheckServiceRequest(source, citizenid, message)
     local lowerMsg = message:lower()
 
+    -- Snitch network - check first as it has its own conversation flow
+    local snitchHandled = exports['sv_mr_x']:HandleSnitchMessage(source, citizenid, message)
+    if snitchHandled then
+        return true
+    end
+
     -- Loan request patterns
     if lowerMsg:match('need money') or lowerMsg:match('loan') or lowerMsg:match('borrow') then
         TriggerEvent('sv_mr_x:server:requestLoan', source)
@@ -513,7 +519,7 @@ function Comms.CheckServiceRequest(source, citizenid, message)
         return true
     end
 
-    -- Target intel patterns
+    -- Target intel patterns (player asking for intel on someone)
     if lowerMsg:match('info on') or lowerMsg:match('intel on') or lowerMsg:match('find someone') then
         TriggerEvent('sv_mr_x:server:requestIntel', source, message)
         return true

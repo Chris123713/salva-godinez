@@ -551,6 +551,77 @@ lib.callback.register('mrx:admin:getPlayerEvents', function(source, targetCid, l
     return events
 end)
 
+-- ============================================
+-- SNITCH NETWORK ADMIN
+-- ============================================
+
+---Get snitch network stats
+lib.callback.register('mrx:admin:getSnitchStats', function(source)
+    if not IsAdmin(source) then return nil end
+
+    local stats = MySQL.single.await([[
+        SELECT
+            COUNT(*) as total,
+            COUNT(DISTINCT snitch_citizenid) as snitches,
+            COUNT(DISTINCT target_citizenid) as targets,
+            SUM(CASE WHEN verified = 1 THEN 1 ELSE 0 END) as verified
+        FROM mr_x_snitch_intel
+    ]])
+
+    return stats
+end)
+
+---Get recent intel reports
+lib.callback.register('mrx:admin:getRecentIntel', function(source, limit)
+    if not IsAdmin(source) then return nil end
+
+    limit = tonumber(limit) or 10
+
+    local intel = MySQL.query.await([[
+        SELECT snitch_citizenid as snitch, target_citizenid as target,
+               intel_type, verified, timestamp
+        FROM mr_x_snitch_intel
+        ORDER BY timestamp DESC
+        LIMIT ?
+    ]], {limit})
+
+    return intel or {}
+end)
+
+---Offer snitch service to self
+lib.callback.register('mrx:admin:offerSnitchService', function(source)
+    if not IsAdmin(source) then return false end
+
+    local success = pcall(function()
+        exports['sv_mr_x']:OfferSnitchService(source)
+    end)
+
+    Log(MrXConstants.EventTypes.ADMIN_ACTION, GetCitizenId(source), {
+        action = 'offer_snitch_service'
+    }, source)
+
+    return success
+end)
+
+---Offer snitch service to another player
+lib.callback.register('mrx:admin:offerSnitchServiceTo', function(source, targetSource)
+    if not IsAdmin(source) then return false end
+
+    local player = exports.qbx_core:GetPlayer(targetSource)
+    if not player then return false end
+
+    local success = pcall(function()
+        exports['sv_mr_x']:OfferSnitchService(targetSource)
+    end)
+
+    Log(MrXConstants.EventTypes.ADMIN_ACTION, GetCitizenId(source), {
+        action = 'offer_snitch_service_to',
+        target = targetSource
+    }, source)
+
+    return success
+end)
+
 end) -- End CreateThread for lib.callback registrations
 
 -- ============================================

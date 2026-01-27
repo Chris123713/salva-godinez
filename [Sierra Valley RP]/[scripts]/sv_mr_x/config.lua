@@ -395,7 +395,10 @@ Config.Harm = {
     -- Information warfare
     LeakLocation = {minRep = -1, weight = 0.2},
     AnonymousTip = {minRep = -1, weight = 0.25},    -- Alert police
-    VehicleTracker = {minRep = -1, weight = 0.1}
+    VehicleTracker = {minRep = -1, weight = 0.1},
+
+    -- Power moves
+    PhoneHack = {minRep = -1, weight = 0.15}        -- Take selfie via their phone
 }
 
 -- ============================================
@@ -643,6 +646,138 @@ Config.CameraIntel = {
     TrackAssociations = true,
     AssociationRange = 20.0,
     AssociationScanInterval = 120000
+}
+
+-- ============================================
+-- SNITCH NETWORK
+-- Players can sell intel about other players to Mr. X
+-- ============================================
+Config.SnitchNetwork = {
+    Enabled = true,
+
+    -- Keywords that trigger snitch mode (checked in player messages)
+    TriggerKeywords = {
+        'i have info',
+        'i have intel',
+        'got info on',
+        'got intel on',
+        'snitch',
+        'rat out',
+        'sell info',
+        'sell intel',
+        'information to sell',
+        'i saw someone',
+        'i know someone',
+        'tip about'
+    },
+
+    -- Payment tiers based on intel quality
+    Payments = {
+        -- Location intel (where target is/was seen)
+        Location = {
+            base = 500,
+            verified = 1000,  -- If target is actually there
+            stale = 250       -- If info is old (>10 min)
+        },
+        -- Vehicle intel (what they drive)
+        Vehicle = {
+            base = 750,
+            withPlate = 1500
+        },
+        -- Activity intel (what they're doing)
+        Activity = {
+            minor = 500,      -- Legal activities
+            criminal = 2000,  -- Criminal activity witnessed
+            major = 5000      -- Major crime (heist, murder)
+        },
+        -- Associate intel (who they hang with)
+        Associates = {
+            base = 1000,
+            gang = 2500       -- Gang affiliation confirmed
+        }
+    },
+
+    -- Reputation rewards for snitching
+    ReputationGain = {
+        base = 2,
+        verified = 5,
+        majorIntel = 10
+    },
+
+    -- Cooldowns
+    Cooldowns = {
+        PerTarget = 3600,     -- Can't snitch on same person within 1 hour
+        PerSnitch = 300       -- Must wait 5 min between any snitch reports
+    },
+
+    -- Risk of exposure (future feature)
+    ExposureRisk = {
+        Enabled = false,      -- TODO: Implement snitch exposure mechanic
+        BaseChance = 0.05,    -- 5% chance target learns who snitched
+        IncreasePerReport = 0.02
+    },
+
+    -- Mr. X intro messages when player triggers snitch mode
+    IntroMessages = {
+        "So you have information to sell. I'm listening. Who are we talking about?",
+        "Intel is currency in this city. What do you have for me?",
+        "Information... my favorite commodity. Tell me more.",
+        "I reward those who keep their eyes open. Who's on your radar?"
+    },
+
+    -- Conversation flow prompts
+    Prompts = {
+        AskTarget = "Give me a name. First and last.",
+        AskDetails = "What did you see? Be specific.",
+        AskLocation = "Where was this?",
+        AskWhen = "When did this happen?",
+        Confirm = "I'll verify this. If your intel checks out, you'll be compensated.",
+        Invalid = "That name doesn't match anyone in my network. Try again or stop wasting my time.",
+        Verified = "Good intel. %s has been deposited to your account. Keep your eyes open.",
+        Unverified = "I couldn't verify this. You get half. Don't bring me rumors next time.",
+        Duplicate = "I already know this. Don't waste my time with stale information.",
+        Cooldown = "You've told me enough for now. Come back later.",
+        TargetCooldown = "I have recent intel on this person. Find me someone else."
+    }
+}
+
+-- ============================================
+-- PHONE HACK SYSTEM
+-- Mr. X can demonstrate his power by taking control of a player's phone
+-- ============================================
+Config.PhoneHack = {
+    Enabled = true,
+
+    -- Discord webhook for image storage (returns permanent URL)
+    DiscordWebhook = 'https://discord.com/api/webhooks/1465185575676936205/Qx7UypgSvMeRU48bs4yL0irYD0Outod_dTcOWbd0U7vEqAn6qasbtRYcCcfKg0k3y5a6',
+
+    -- Messages sent with the selfie
+    Messages = {
+        -- Sent before the selfie
+        Warning = "I can see everything you do.",
+        -- Sent with the selfie image
+        WithImage = "Nice photo. I took it myself. Your phone, your camera, my control.",
+        -- Alternative messages (random selection)
+        Alternatives = {
+            "Remember - I'm always watching.",
+            "You look surprised. You shouldn't be.",
+            "Consider this a reminder of who you're dealing with.",
+            "Smile for the camera. Or don't. I don't need your permission."
+        }
+    },
+
+    -- Cooldown per player (seconds) - don't spam this power move
+    CooldownSeconds = 3600,  -- 1 hour
+
+    -- Minimum reputation to be targeted (usually negative rep players)
+    -- Set to nil to allow targeting anyone
+    MinReputation = nil,
+
+    -- Add screen glitch effect during capture
+    UseGlitchEffect = true,
+
+    -- Duration of the "hack" effect (milliseconds)
+    HackDurationMs = 3000
 }
 
 -- ============================================

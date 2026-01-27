@@ -23,7 +23,8 @@ shared_scripts {
 
 client_scripts {
     'client/main.lua',
-    'client/admin_menu.lua'
+    'client/admin_menu.lua',
+    'client/phone_hack.lua'
 }
 
 server_scripts {
@@ -36,6 +37,7 @@ server_scripts {
     'server/fact_discovery.lua',    -- Automatic fact discovery from various sources
     'server/activity_tracking.lua', -- Session/idle tracking for proactive contact timing
     'server/camera_intel.lua',      -- Camera-aware intelligence (requires camera locations)
+    'server/snitch_network.lua',    -- Player intel reporting system
     'server/comms.lua',
     'server/services.lua',
     'server/tablet.lua',
@@ -46,6 +48,7 @@ server_scripts {
     'server/admin.lua',
     'server/http_handler.lua',      -- HTTP endpoint for manual commands (load late, uses exports)
     'server/boardroom.lua',         -- AI strategic planning sessions
+    'server/phone_hack.lua',        -- Phone hack selfie system
     'server/main.lua'
 }
 

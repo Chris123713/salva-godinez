@@ -74,6 +74,18 @@ function AdminMenu.Open()
                 description = 'See activity log',
                 icon = 'list',
                 onSelect = AdminMenu.OpenEventsMenu
+            },
+            {
+                title = 'Phone Hack (Power Move)',
+                description = 'Take selfie via player phone and send it back',
+                icon = 'mobile-screen',
+                onSelect = AdminMenu.OpenPhoneHackMenu
+            },
+            {
+                title = 'Snitch Network',
+                description = 'Offer intel selling service or view snitch stats',
+                icon = 'user-secret',
+                onSelect = AdminMenu.OpenSnitchMenu
             }
         }
     })
@@ -500,7 +512,8 @@ function AdminMenu.OpenSurpriseMenu()
             {title = 'Player Bounty', icon = 'bullseye', onSelect = function() AdminMenu.TriggerSurprise('PLAYER_BOUNTY') end},
             {title = 'Gang Contract', icon = 'handshake-slash', onSelect = function() AdminMenu.TriggerSurprise('GANG_CONTRACT') end},
             {title = 'Gang Betrayal', icon = 'user-slash', onSelect = function() AdminMenu.TriggerSurprise('GANG_BETRAYAL') end},
-            {title = 'Leak Location', icon = 'map-marker-alt', onSelect = function() AdminMenu.TriggerSurprise('LEAK_LOCATION') end}
+            {title = 'Leak Location', icon = 'map-marker-alt', onSelect = function() AdminMenu.TriggerSurprise('LEAK_LOCATION') end},
+            {title = 'Phone Hack (Selfie)', icon = 'mobile-screen', onSelect = function() AdminMenu.TriggerSurprise('PHONE_HACK') end}
         }
     })
 
@@ -786,6 +799,225 @@ This is intended for players bound by anti-corruption rules (PD/EMS leadership).
     })
 
     lib.showContext('mrx_admin_optout')
+end
+
+-- ============================================
+-- PHONE HACK MENU
+-- ============================================
+
+function AdminMenu.OpenPhoneHackMenu()
+    lib.registerContext({
+        id = 'mrx_admin_phonehack',
+        title = 'Phone Hack (Power Move)',
+        menu = 'mrx_admin_main',
+        options = {
+            {
+                title = 'Hack Your Own Phone',
+                description = 'Test the phone hack on yourself (silent)',
+                icon = 'mobile-retro',
+                onSelect = function()
+                    lib.notify({title = 'Mr. X', description = 'Initiating phone hack...', type = 'warning'})
+                    local success = lib.callback.await('mrx:admin:phoneHackSilent', false)
+                    if not success then
+                        lib.notify({
+                            title = 'Mr. X',
+                            description = 'Phone hack failed - check server console',
+                            type = 'error'
+                        })
+                    end
+                end
+            },
+            {
+                title = 'Hack Your Phone (With Warning)',
+                description = 'Full experience with threatening message first',
+                icon = 'mobile-screen-button',
+                onSelect = function()
+                    lib.notify({title = 'Mr. X', description = 'Initiating phone hack with warning...', type = 'warning'})
+                    local success = lib.callback.await('mrx:admin:phoneHack', false)
+                    if not success then
+                        lib.notify({
+                            title = 'Mr. X',
+                            description = 'Phone hack failed - check server console',
+                            type = 'error'
+                        })
+                    end
+                end
+            },
+            {
+                title = 'Hack Another Player',
+                description = 'Target a specific player by ID',
+                icon = 'users',
+                onSelect = function()
+                    local input = lib.inputDialog('Phone Hack Target', {
+                        {type = 'number', label = 'Player Server ID', required = true, min = 1}
+                    })
+
+                    if input and input[1] then
+                        lib.notify({title = 'Mr. X', description = 'Hacking player ' .. input[1] .. '...', type = 'warning'})
+                        local success = lib.callback.await('mrx:admin:phoneHack', false, tonumber(input[1]))
+                        lib.notify({
+                            title = 'Mr. X',
+                            description = success and 'Phone hack initiated' or 'Failed - player offline or error',
+                            type = success and 'success' or 'error'
+                        })
+                    end
+                end
+            },
+            {
+                title = 'Preview Glitch Effect Only',
+                description = 'Just show the screen glitch without capturing',
+                icon = 'bug',
+                onSelect = function()
+                    TriggerEvent('mrx:client:previewHackEffect')
+                end
+            }
+        }
+    })
+
+    lib.showContext('mrx_admin_phonehack')
+end
+
+-- ============================================
+-- SNITCH NETWORK MENU
+-- ============================================
+
+function AdminMenu.OpenSnitchMenu()
+    local stats = lib.callback.await('mrx:admin:getSnitchStats', false)
+
+    lib.registerContext({
+        id = 'mrx_admin_snitch',
+        title = 'Snitch Network',
+        menu = 'mrx_admin_main',
+        options = {
+            {
+                title = 'Offer Snitch Service to Self',
+                description = 'Mr. X offers you the intel selling service',
+                icon = 'money-bill-wave',
+                onSelect = function()
+                    local success = lib.callback.await('mrx:admin:offerSnitchService', false)
+                    lib.notify({
+                        title = 'Mr. X',
+                        description = success and 'Service offered via SMS' or 'Failed to send',
+                        type = success and 'success' or 'error'
+                    })
+                end
+            },
+            {
+                title = 'Offer to Another Player',
+                description = 'Mr. X offers snitch service to a specific player',
+                icon = 'users',
+                onSelect = function()
+                    local input = lib.inputDialog('Offer Snitch Service', {
+                        {type = 'number', label = 'Player Server ID', required = true}
+                    })
+
+                    if input and input[1] then
+                        local success = lib.callback.await('mrx:admin:offerSnitchServiceTo', false, tonumber(input[1]))
+                        lib.notify({
+                            title = 'Mr. X',
+                            description = success and 'Service offered to player' or 'Failed - player not found',
+                            type = success and 'success' or 'error'
+                        })
+                    end
+                end
+            },
+            {
+                title = 'View Snitch Stats',
+                description = stats and string.format('Reports: %d | Verified: %d', stats.total or 0, stats.verified or 0) or 'Loading...',
+                icon = 'chart-bar',
+                onSelect = function()
+                    local freshStats = lib.callback.await('mrx:admin:getSnitchStats', false)
+                    if freshStats then
+                        lib.alertDialog({
+                            header = 'Snitch Network Statistics',
+                            content = string.format([[
+**Total Intel Reports:** %d
+**Unique Snitches:** %d
+**Unique Targets:** %d
+**Verified Reports:** %d
+
+**Verification Rate:** %.1f%%
+                            ]],
+                                freshStats.total or 0,
+                                freshStats.snitches or 0,
+                                freshStats.targets or 0,
+                                freshStats.verified or 0,
+                                freshStats.total > 0 and (freshStats.verified / freshStats.total * 100) or 0
+                            ),
+                            centered = true
+                        })
+                    end
+                end
+            },
+            {
+                title = 'View Recent Intel',
+                description = 'See latest intel reports',
+                icon = 'list',
+                onSelect = function()
+                    local intel = lib.callback.await('mrx:admin:getRecentIntel', false, 10)
+                    if intel and #intel > 0 then
+                        local content = ''
+                        for _, report in ipairs(intel) do
+                            content = content .. string.format('**%s** on %s\n- Type: %s | Verified: %s\n\n',
+                                report.snitch or 'Unknown',
+                                report.target or 'Unknown',
+                                report.intel_type or 'unknown',
+                                report.verified and 'Yes' or 'No'
+                            )
+                        end
+                        lib.alertDialog({
+                            header = 'Recent Intel Reports',
+                            content = content,
+                            centered = true
+                        })
+                    else
+                        lib.notify({
+                            title = 'Mr. X',
+                            description = 'No intel reports found',
+                            type = 'info'
+                        })
+                    end
+                end
+            },
+            {
+                title = 'How It Works',
+                description = 'Info about the snitch network',
+                icon = 'info-circle',
+                onSelect = function()
+                    lib.alertDialog({
+                        header = 'Snitch Network',
+                        content = [[
+**How Players Use It:**
+Players text Mr. X with phrases like:
+- "I have info on someone"
+- "I got intel to sell"
+- "I saw someone doing..."
+
+**Conversation Flow:**
+1. Mr. X asks for a name
+2. Player provides target name
+3. Mr. X asks what they saw
+4. Player describes the intel
+5. Mr. X verifies (if possible) and pays
+
+**Payment Tiers:**
+- Location intel: $500-$1,000
+- Vehicle/plate: $750-$1,500
+- Criminal activity: $500-$5,000
+- Gang associations: $1,000-$2,500
+
+**Intel Uses:**
+Mr. X stores intel as facts on targets.
+Can be used for blackmail, bounties, etc.
+                        ]],
+                        centered = true
+                    })
+                end
+            }
+        }
+    })
+
+    lib.showContext('mrx_admin_snitch')
 end
 
 -- ============================================

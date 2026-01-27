@@ -453,6 +453,15 @@ function Chaos.ExecuteSurprise(source, citizenid, surpriseType)
         -- Would need vehicle tracking system integration
         SendMessage(source, "Something feels off with your vehicle...")
         success = true
+
+    elseif surpriseType == 'PHONE_HACK' or surpriseType == 'PhoneHack' then
+        -- Power move: Take a selfie via their phone and send it back
+        if Config.PhoneHack and Config.PhoneHack.Enabled then
+            success = exports['sv_mr_x']:InitiatePhoneHack(source, false)
+        else
+            SendMessage(source, "I can see everything you do.")
+            success = true
+        end
     end
 
     Log(MrXConstants.EventTypes.CHAOS_TRIGGERED, citizenid, {
