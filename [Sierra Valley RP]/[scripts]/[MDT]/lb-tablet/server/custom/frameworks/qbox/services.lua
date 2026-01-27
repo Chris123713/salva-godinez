@@ -368,42 +368,50 @@ RegisterCallback("qbx:services:getEmployees", function(source)
         return employees
     end
 
-    local members = exports.qbx_core:GetGroupMembers(job.name, "job")
+    -- Query players table directly instead of relying on player_groups table
+    -- This works even if player_groups is not populated
+    local members = MySQL.query.await([[
+        SELECT citizenid, charinfo, job
+        FROM players
+        WHERE JSON_VALUE(job, '$.name') = ?
+    ]], { job.name })
 
-    -- Safety check: ensure members is a table
     if not members or type(members) ~= "table" then
         return employees
+    end
+
+    -- Get online player citizenids for online status check
+    local onlinePlayers = exports.qbx_core:GetQBPlayers()
+    local onlineCitizenIds = {}
+    for _, qPlayer in pairs(onlinePlayers) do
+        if qPlayer?.PlayerData?.citizenid then
+            onlineCitizenIds[qPlayer.PlayerData.citizenid] = true
+        end
     end
 
     for i = 1, #members do
         local member = members[i]
         if member and member.citizenid then
-            local gradeLevel = member.grade or 0
-            local citizenid = member.citizenid
-            local targetPlayer = exports.qbx_core:GetPlayerByCitizenId(citizenid) or exports.qbx_core:GetOfflinePlayer(citizenid)
+            local charinfo = json.decode(member.charinfo)
+            local jobData = json.decode(member.job)
 
-            if targetPlayer and targetPlayer.PlayerData and targetPlayer.PlayerData.charinfo and targetPlayer.PlayerData.job then
-                local charinfo = targetPlayer.PlayerData.charinfo
-                local jobData = targetPlayer.PlayerData.job
-
+            if charinfo and jobData and jobData.grade then
                 employees[#employees+1] = {
                     name = (charinfo.firstname or "??") .. " " .. (charinfo.lastname or ""),
-                    id = citizenid,
+                    id = member.citizenid,
 
-                    gradeLabel = (jobData.grade and jobData.grade.name) or "??",
-                    grade = gradeLevel,
+                    gradeLabel = jobData.grade.name or "??",
+                    grade = jobData.grade.level or 0,
 
-                    canInteract = not (targetPlayer.PlayerData.job.isboss),
+                    canInteract = not jobData.isboss,
 
-                    online = not targetPlayer.Offline
+                    online = onlineCitizenIds[member.citizenid] or false
                 }
             end
         end
     end
 
-    -- DEBUG: Log employees before returning
-    print("^3[LB-Tablet Server Debug] Returning " .. tostring(#employees) .. " employees")
-    print("^3[LB-Tablet Server Debug] Employees: " .. json.encode(employees))
+    debugprint("qbx:services:getEmployees returning " .. tostring(#employees) .. " employees for job: " .. job.name)
 
     return employees
 end)
