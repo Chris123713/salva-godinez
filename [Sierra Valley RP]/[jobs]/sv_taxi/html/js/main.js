@@ -227,79 +227,134 @@ function spawnVehicle(model) {
 }
 
 // Load Dispatch Calls
+let currentDispatchZone = 'los_santos';
+let dispatchData = null;
+
 function loadDispatchCalls() {
     fetch('https://sv_taxi/getDispatchCalls', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({})
-    }).then(resp => resp.json()).then(calls => {
-        const callsList = $('#dispatchCallsList');
-        callsList.empty();
+    }).then(resp => resp.json()).then(data => {
+        dispatchData = data;
 
-        if (!calls || calls.length === 0) {
-            callsList.html(`
-                <div class="no-calls-message">
-                    <i class="fas fa-phone-slash"></i>
-                    <p>No calls available right now.<br>Rent a vehicle to start receiving calls!</p>
-                </div>
-            `);
-            return;
+        // Generate tabs based on zones
+        generateDispatchTabs(data.zones, data.playerRank);
+
+        // Show calls for current zone
+        displayCallsForZone(currentDispatchZone);
+    }).catch(err => {
+        console.error('Failed to load dispatch calls:', err);
+    });
+}
+
+// Generate dispatch tabs based on zones and player rank
+function generateDispatchTabs(zones, playerRank) {
+    const tabsContainer = $('#dispatchTabs');
+    tabsContainer.empty();
+
+    zones.forEach((zone, index) => {
+        const isLocked = playerRank < zone.minRank;
+        const isActive = zone.id === currentDispatchZone;
+
+        let tabClass = 'dispatch-tab';
+        if (isActive) tabClass += ' active';
+        if (isLocked) tabClass += ' locked';
+
+        const tab = $(`
+            <div class="${tabClass}" data-zone="${zone.id}">
+                ${isLocked ?
+                    `<i class="fas fa-lock"></i>` :
+                    `<span>${zone.name}</span>`
+                }
+            </div>
+        `);
+
+        if (!isLocked) {
+            tab.click(function() {
+                $('.dispatch-tab').removeClass('active');
+                $(this).addClass('active');
+                currentDispatchZone = zone.id;
+                displayCallsForZone(zone.id);
+            });
         }
 
-        calls.forEach(call => {
-            const isLocked = call.locked;
-            const cardClass = isLocked ? 'dispatch-call-item locked' : 'dispatch-call-item';
+        tabsContainer.append(tab);
+    });
+}
 
-            const card = $(`
-                <div class="${cardClass}">
-                    <div class="call-header">
-                        <div class="call-name">${call.passengerName}</div>
-                        ${isLocked ? `<div class="call-lock"><i class="fas fa-lock"></i></div>` : ''}
+// Display calls for a specific zone
+function displayCallsForZone(zoneId) {
+    if (!dispatchData) return;
+
+    const callsList = $('#dispatchCallsList');
+    callsList.empty();
+
+    // Filter calls for this zone
+    const zoneCalls = dispatchData.calls.filter(call => call.zoneId === zoneId);
+
+    if (!zoneCalls || zoneCalls.length === 0) {
+        callsList.html(`
+            <div class="no-calls-message">
+                <i class="fas fa-phone-slash"></i>
+                <p>No calls available in this area right now.</p>
+            </div>
+        `);
+        return;
+    }
+
+    zoneCalls.forEach(call => {
+        const isLocked = call.locked;
+        const cardClass = isLocked ? 'dispatch-call-item locked' : 'dispatch-call-item';
+
+        const card = $(`
+            <div class="${cardClass}">
+                <div class="call-header">
+                    <div>
+                        <div class="call-passenger-name">${call.passengerName}</div>
                     </div>
-                    <div class="call-info-row">
-                        <div class="call-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>${call.label}</span>
-                        </div>
-                        <div class="call-location">
-                            <i class="fas fa-location-dot"></i>
-                            <span>Los Santos</span>
-                        </div>
-                    </div>
-                    <div class="call-rewards-row">
-                        <div class="reward-badge money">
-                            <i class="fas fa-dollar-sign"></i>
+                    <div class="call-rewards">
+                        <div class="call-reward-item money">
+                            <i class="fas fa-coins"></i>
                             <span>$${call.baseReward}</span>
                         </div>
-                        <div class="reward-badge xp">
+                        <div class="call-reward-item xp">
                             <i class="fas fa-star"></i>
                             <span>${call.xpReward} XP</span>
                         </div>
-                        ${isLocked ?
-                            `<button class="start-route-btn locked" disabled>
-                                <i class="fas fa-lock"></i>
-                                <span>Rank ${call.minRank}</span>
-                            </button>` :
-                            `<button class="start-route-btn" data-call-id="${call.id}">
-                                <i class="fas fa-route"></i>
-                                <span>Start Route</span>
-                            </button>`
-                        }
                     </div>
                 </div>
-            `);
+                <div class="call-details">
+                    <div class="call-detail-row">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span class="call-type-label">${call.label}</span>
+                    </div>
+                    <div class="call-detail-row">
+                        <i class="fas fa-location-dot"></i>
+                        <span>${call.streetName || 'Los Santos'}</span>
+                    </div>
+                </div>
+                ${isLocked ?
+                    `<button class="start-route-btn" disabled style="opacity: 0.5; cursor: not-allowed;">
+                        <i class="fas fa-lock"></i>
+                        <span>Requires Rank ${call.minRank}</span>
+                    </button>` :
+                    `<button class="start-route-btn" data-call-id="${call.id}">
+                        <i class="fas fa-route"></i>
+                        <span>Start Route</span>
+                    </button>`
+                }
+            </div>
+        `);
 
-            if (!isLocked) {
-                card.find('.start-route-btn').click(function(e) {
-                    e.stopPropagation();
-                    acceptDispatchCall(call.id);
-                });
-            }
+        if (!isLocked) {
+            card.find('.start-route-btn').click(function(e) {
+                e.stopPropagation();
+                acceptDispatchCall(call.id);
+            });
+        }
 
-            callsList.append(card);
-        });
-    }).catch(err => {
-        console.error('Failed to load dispatch calls:', err);
+        callsList.append(card);
     });
 }
 

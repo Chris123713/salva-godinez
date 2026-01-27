@@ -378,35 +378,97 @@ end
 
 lib.callback.register('sv_taxi:getDispatchCalls', function(source)
     local player = exports.qbx_core:GetPlayer(source)
-    if not player then return {} end
+    if not player then return {zones = {}, calls = {}, playerRank = 1} end
 
     local profile = GetDriverProfile(player.PlayerData.citizenid)
-    if not profile then return {} end
+    if not profile then return {zones = {}, calls = {}, playerRank = 1} end
 
     local playerRank = profile.rank
-    local availableCalls = {}
+    local allCalls = {}
+    local zones = {}
 
-    -- Generate calls based on call types
-    for _, callType in ipairs(Config.CallTypes) do
-        local isLocked = playerRank < callType.minRank
-
-        table.insert(availableCalls, {
-            id = callType.id,
-            label = callType.label,
-            description = callType.description,
-            icon = callType.icon,
-            minRank = callType.minRank,
-            baseReward = callType.baseReward,
-            xpReward = callType.xpReward,
-            color = callType.color,
-            locked = isLocked,
-            passengerName = GeneratePassengerName()
+    -- Build zones array for UI
+    for _, zone in ipairs(Config.NPC.zones) do
+        table.insert(zones, {
+            id = zone.id,
+            name = zone.name,
+            minRank = zone.minRank
         })
     end
 
-    Debug(('Generated %d dispatch calls for rank %d'):format(#availableCalls, playerRank))
+    -- Generate calls for each zone
+    for _, zone in ipairs(Config.NPC.zones) do
+        -- Generate 2-3 calls per zone
+        local callsPerZone = math.random(2, 3)
+        for i = 1, callsPerZone do
+            -- Pick random call type appropriate for this zone/rank
+            local validCallTypes = {}
+            for _, callType in ipairs(Config.CallTypes) do
+                if callType.minRank <= zone.minRank + 2 then -- Keep calls relevant to zone level
+                    table.insert(validCallTypes, callType)
+                end
+            end
 
-    return availableCalls
+            if #validCallTypes > 0 then
+                local callType = validCallTypes[math.random(#validCallTypes)]
+                local isLocked = playerRank < callType.minRank
+
+                -- Get pickup location for this call
+                local pickupLoc = nil
+                if callType.fixedPickup then
+                    -- Use fixed pickup (like Standard Fare)
+                    pickupLoc = callType.fixedPickup
+                else
+                    -- Pick random location from zone
+                    if #zone.locations > 0 then
+                        pickupLoc = zone.locations[math.random(#zone.locations)]
+                    end
+                end
+
+                -- Request street name from client (only if we have a location)
+                local streetName = zone.name
+                local coordsTable = nil
+
+                if pickupLoc then
+                    -- Get accurate street name from the exact coordinates
+                    streetName = lib.callback.await('sv_taxi:getStreetName', source, pickupLoc.x, pickupLoc.y, pickupLoc.z) or zone.name
+
+                    -- Convert vector4 to table for NUI
+                    coordsTable = {
+                        x = pickupLoc.x,
+                        y = pickupLoc.y,
+                        z = pickupLoc.z,
+                        w = pickupLoc.w or 0.0
+                    }
+                end
+
+                table.insert(allCalls, {
+                    id = callType.id .. '_' .. zone.id .. '_' .. i,
+                    callTypeId = callType.id,
+                    zoneId = zone.id,
+                    label = callType.label,
+                    description = callType.description,
+                    icon = callType.icon,
+                    minRank = callType.minRank,
+                    baseReward = callType.baseReward,
+                    xpReward = callType.xpReward,
+                    color = callType.color,
+                    locked = isLocked,
+                    passengerName = GeneratePassengerName(),
+                    streetName = streetName,
+                    coords = coordsTable
+                })
+            end
+        end
+    end
+
+    Debug(('Generated %d dispatch calls across %d zones for rank %d'):format(#allCalls, #zones, playerRank))
+
+    return {
+        zones = zones,
+        calls = allCalls,
+        playerRank = playerRank
+    }
 end)
 
 lib.callback.register('sv_taxi:getLeaderboard', function(source)

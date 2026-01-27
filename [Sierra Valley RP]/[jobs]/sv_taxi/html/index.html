@@ -203,14 +203,18 @@
     <div id="dispatchOverlay" class="dispatch-overlay hidden">
         <div class="dispatch-container">
             <div class="dispatch-header-bar">
-                <div class="dispatch-title">
-                    <i class="fas fa-phone-volume"></i>
-                    <span>TAXI DISPATCH</span>
-                </div>
+                <div class="dispatch-title">TAXI CALLS</div>
                 <button class="dispatch-close-btn" onclick="hideDispatch()">
-                    <i class="fas fa-times"></i>
+                    CLOSE <span class="close-key">ESC</span>
                 </button>
             </div>
+
+            <!-- Dispatch Tabs (dynamically populated by JS) -->
+            <div class="dispatch-tabs" id="dispatchTabs">
+                <!-- Tabs populated by JS based on player rank -->
+            </div>
+
+            <!-- Dispatch Calls List -->
             <div id="dispatchCallsList" class="dispatch-calls-container">
                 <!-- Calls populated by JS -->
             </div>

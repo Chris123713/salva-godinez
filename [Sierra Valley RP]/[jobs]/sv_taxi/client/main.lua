@@ -139,9 +139,19 @@ RegisterNUICallback('cancelJob', function(data, cb)
     cb('ok')
 end)
 
+-- Store dispatch calls locally so we don't lose them when accepting
+local cachedDispatchCalls = {}
+
 RegisterNUICallback('getDispatchCalls', function(data, cb)
-    lib.callback('sv_taxi:getDispatchCalls', false, function(calls)
-        cb(calls)
+    lib.callback('sv_taxi:getDispatchCalls', false, function(dispatchData)
+        -- Cache the calls for later use
+        if dispatchData and dispatchData.calls then
+            cachedDispatchCalls = {}
+            for _, call in ipairs(dispatchData.calls) do
+                cachedDispatchCalls[call.id] = call
+            end
+        end
+        cb(dispatchData)
     end)
 end)
 
@@ -458,46 +468,76 @@ function StartDispatchCall(callId)
         return
     end
 
+    -- Get the actual call data from cached dispatch data
+    Debug('Received callId: ' .. callId)
+
+    -- Find the call in cache
+    local selectedCall = cachedDispatchCalls[callId]
+
+    if not selectedCall then
+        Debug('Failed to find call with ID: ' .. callId .. ' in cache')
+        lib.notify({type = 'error', description = 'Call not found - please refresh dispatch'})
+        return
+    end
+
+    local callTypeId = selectedCall.callTypeId
+    local zoneId = selectedCall.zoneId
+
+    Debug('Found call - callTypeId: ' .. callTypeId .. ', zoneId: ' .. zoneId)
+
     -- Find the call type config
     local callType = nil
     for _, ct in ipairs(Config.CallTypes) do
-        if ct.id == callId then
+        if ct.id == callTypeId then
             callType = ct
             break
         end
     end
 
     if not callType then
-        lib.notify({type = 'error', description = 'Invalid call type'})
+        Debug('Failed to find call type for ID: ' .. callTypeId)
+        lib.notify({type = 'error', description = 'Invalid call type: ' .. callTypeId})
         return
     end
 
-    Debug('Starting dispatch call: ' .. callType.label)
+    -- Continue with the rest of the function
+    ProcessDispatchCall(callType, zoneId, selectedCall.coords)
+end
 
-    -- Determine pickup location
-    local pickupLoc = nil
-    if callType.fixedPickup then
-        -- Use fixed pickup (e.g., airport)
-        pickupLoc = vector4(callType.fixedPickup.x, callType.fixedPickup.y, callType.fixedPickup.z, 0.0)
-        Debug('Using fixed pickup location')
-    else
-        -- Use safe locations within appropriate distance range
-        local playerCoords = GetEntityCoords(PlayerPedId())
-        local validPickups = {}
+-- New function to process the dispatch call after we have all the data
+function ProcessDispatchCall(callType, zoneId, providedCoords)
+    -- Find the zone config
+    local zone = nil
+    for _, z in ipairs(Config.NPC.zones) do
+        if z.id == zoneId then
+            zone = z
+            break
+        end
+    end
 
-        for _, loc in ipairs(Config.NPC.safeLocations) do
-            local dist = #(playerCoords - vector3(loc.x, loc.y, loc.z))
-            -- Within range for this call type
-            if dist >= callType.distanceRange[1] * 0.3 and dist <= callType.distanceRange[2] * 0.7 then
-                table.insert(validPickups, loc)
+    Debug('Starting dispatch call: ' .. callType.label .. ' in zone: ' .. (zone and zone.name or 'Unknown'))
+
+    -- Use the coordinates provided by the server (they already selected the location)
+    local pickupLoc = providedCoords
+    if not pickupLoc then
+        -- Fallback: determine pickup location ourselves
+        if callType.fixedPickup then
+            -- Use fixed pickup (e.g., Standard Fare at Legion Square)
+            pickupLoc = callType.fixedPickup
+            Debug('Using fixed pickup location')
+        else
+            -- Use random location from zone
+            if zone and #zone.locations > 0 then
+                pickupLoc = zone.locations[math.random(#zone.locations)]
+                Debug('Using random zone location')
+            else
+                -- Fallback to safe locations
+                pickupLoc = Config.NPC.safeLocations[math.random(#Config.NPC.safeLocations)]
+                Debug('Using fallback safe location')
             end
         end
-
-        if #validPickups > 0 then
-            pickupLoc = validPickups[math.random(#validPickups)]
-        else
-            pickupLoc = Config.NPC.safeLocations[math.random(#Config.NPC.safeLocations)]
-        end
+    else
+        Debug('Using pickup coords from server')
     end
 
     if not pickupLoc then
@@ -509,7 +549,11 @@ function StartDispatchCall(callId)
 
     -- Determine dropoff location based on call type distance range
     local validDropoffs = {}
-    for _, loc in ipairs(Config.NPC.safeLocations) do
+
+    -- Use locations from the zone if available
+    local locationPool = zone and zone.locations or Config.NPC.safeLocations
+
+    for _, loc in ipairs(locationPool) do
         local dist = #(npcJob.pickupCoords - vector3(loc.x, loc.y, loc.z))
         if dist >= callType.distanceRange[1] and dist <= callType.distanceRange[2] then
             table.insert(validDropoffs, vector3(loc.x, loc.y, loc.z))
@@ -518,7 +562,7 @@ function StartDispatchCall(callId)
 
     if #validDropoffs == 0 then
         -- Relax requirements
-        for _, loc in ipairs(Config.NPC.safeLocations) do
+        for _, loc in ipairs(locationPool) do
             local dist = #(npcJob.pickupCoords - vector3(loc.x, loc.y, loc.z))
             if dist >= callType.distanceRange[1] * 0.7 then
                 table.insert(validDropoffs, vector3(loc.x, loc.y, loc.z))
@@ -564,8 +608,6 @@ function StartDispatchCall(callId)
 
     -- Load collision and streaming around spawn point
     RequestCollisionAtCoord(spawnX, spawnY, spawnZ)
-    local playerPed = PlayerPedId()
-    SetEntityCoords(playerPed, GetEntityCoords(playerPed).x, GetEntityCoords(playerPed).y, GetEntityCoords(playerPed).z, false, false, false, false)
     Wait(500) -- Give more time for streaming
 
     -- Create the ped at exact safe location (network = false, spawn instantly = true)
@@ -600,47 +642,21 @@ function StartDispatchCall(callId)
     SetPedCanRagdoll(npcJob.ped, false)
     SetEntityLoadCollisionFlag(npcJob.ped, true)
 
-    -- Validate spawn position - ensure ped is on sidewalk, not in building
-    local validPosition = false
-    local attempts = 0
-    local finalX, finalY, finalZ = spawnX, spawnY, spawnZ
-
-    while not validPosition and attempts < 10 do
-        -- Try to find safe pedestrian coordinate near spawn point
-        local safeFound, safeX, safeY, safeZ = GetSafeCoordForPed(finalX, finalY, finalZ, true, 28)
-
-        if safeFound then
-            -- Found a safe position, use it
-            finalX, finalY, finalZ = safeX, safeY, safeZ
-            validPosition = true
-            Debug(('Found safe position: %.2f, %.2f, %.2f'):format(finalX, finalY, finalZ))
-        else
-            -- No safe position found, try offsetting slightly
-            local angle = math.random() * 2 * math.pi
-            local distance = 2.0 + (attempts * 0.5)
-            finalX = spawnX + (math.cos(angle) * distance)
-            finalY = spawnY + (math.sin(angle) * distance)
-
-            local foundGround, groundZ = GetGroundZFor_3dCoord(finalX, finalY, spawnZ + 5.0, false)
-            if foundGround then
-                finalZ = groundZ
-            end
-
-            attempts = attempts + 1
-        end
-    end
-
-    -- Place ped at validated position
-    SetEntityCoordsNoOffset(npcJob.ped, finalX, finalY, finalZ, false, false, false)
+    -- Place ped at exact spawn position (no validation to avoid moving into buildings)
+    SetEntityCoordsNoOffset(npcJob.ped, spawnX, spawnY, spawnZ, false, false, false)
     PlaceObjectOnGroundProperly(npcJob.ped)
+    SetEntityHeading(npcJob.ped, spawnHeading)
     FreezeEntityPosition(npcJob.ped, true)
 
-    -- Get final ped position after placement
+    -- Force render the ped at max distance
     Wait(100)
+    SetEntityLodDist(npcJob.ped, 1000)
+
     local finalPedCoords = GetEntityCoords(npcJob.ped)
     npcJob.pickupCoords = vector3(finalPedCoords.x, finalPedCoords.y, finalPedCoords.z)
 
-    Debug(('NPC spawned successfully at: %.2f, %.2f, %.2f (attempts: %d)'):format(finalPedCoords.x, finalPedCoords.y, finalPedCoords.z, attempts))
+    Debug(('NPC spawned at exact coords: %.2f, %.2f, %.2f, heading: %.2f'):format(finalPedCoords.x, finalPedCoords.y, finalPedCoords.z, spawnHeading))
+    print('^2[TAXI] NPC Entity: ' .. tostring(npcJob.ped) .. ' | Exists: ' .. tostring(DoesEntityExist(npcJob.ped)) .. ' | Visible: ' .. tostring(IsEntityVisible(npcJob.ped)) .. '^7')
 
     -- Create blip at actual ped location
     if npcJob.pickupBlip then
@@ -753,8 +769,6 @@ function StartNPCJob()
 
     -- Load collision and streaming around spawn point
     RequestCollisionAtCoord(spawnX, spawnY, spawnZ)
-    local playerPed = PlayerPedId()
-    SetEntityCoords(playerPed, GetEntityCoords(playerPed).x, GetEntityCoords(playerPed).y, GetEntityCoords(playerPed).z, false, false, false, false)
     Wait(500) -- Give more time for streaming
 
     -- Create the ped at exact safe location (network = false, spawn instantly = true)
@@ -789,47 +803,21 @@ function StartNPCJob()
     SetPedCanRagdoll(npcJob.ped, false)
     SetEntityLoadCollisionFlag(npcJob.ped, true)
 
-    -- Validate spawn position - ensure ped is on sidewalk, not in building
-    local validPosition = false
-    local attempts = 0
-    local finalX, finalY, finalZ = spawnX, spawnY, spawnZ
-
-    while not validPosition and attempts < 10 do
-        -- Try to find safe pedestrian coordinate near spawn point
-        local safeFound, safeX, safeY, safeZ = GetSafeCoordForPed(finalX, finalY, finalZ, true, 28)
-
-        if safeFound then
-            -- Found a safe position, use it
-            finalX, finalY, finalZ = safeX, safeY, safeZ
-            validPosition = true
-            Debug(('Found safe position: %.2f, %.2f, %.2f'):format(finalX, finalY, finalZ))
-        else
-            -- No safe position found, try offsetting slightly
-            local angle = math.random() * 2 * math.pi
-            local distance = 2.0 + (attempts * 0.5)
-            finalX = spawnX + (math.cos(angle) * distance)
-            finalY = spawnY + (math.sin(angle) * distance)
-
-            local foundGround, groundZ = GetGroundZFor_3dCoord(finalX, finalY, spawnZ + 5.0, false)
-            if foundGround then
-                finalZ = groundZ
-            end
-
-            attempts = attempts + 1
-        end
-    end
-
-    -- Place ped at validated position
-    SetEntityCoordsNoOffset(npcJob.ped, finalX, finalY, finalZ, false, false, false)
+    -- Place ped at exact spawn position (no validation to avoid moving into buildings)
+    SetEntityCoordsNoOffset(npcJob.ped, spawnX, spawnY, spawnZ, false, false, false)
     PlaceObjectOnGroundProperly(npcJob.ped)
+    SetEntityHeading(npcJob.ped, spawnHeading)
     FreezeEntityPosition(npcJob.ped, true)
 
-    -- Get final ped position after placement
+    -- Force render the ped at max distance
     Wait(100)
+    SetEntityLodDist(npcJob.ped, 1000)
+
     local finalPedCoords = GetEntityCoords(npcJob.ped)
     npcJob.pickupCoords = vector3(finalPedCoords.x, finalPedCoords.y, finalPedCoords.z)
 
-    Debug(('NPC spawned successfully at: %.2f, %.2f, %.2f (attempts: %d)'):format(finalPedCoords.x, finalPedCoords.y, finalPedCoords.z, attempts))
+    Debug(('NPC spawned at exact coords: %.2f, %.2f, %.2f, heading: %.2f'):format(finalPedCoords.x, finalPedCoords.y, finalPedCoords.z, spawnHeading))
+    print('^2[TAXI] NPC Entity: ' .. tostring(npcJob.ped) .. ' | Exists: ' .. tostring(DoesEntityExist(npcJob.ped)) .. ' | Visible: ' .. tostring(IsEntityVisible(npcJob.ped)) .. '^7')
 
     -- Create blip at actual ped location
     if npcJob.pickupBlip then
@@ -1178,6 +1166,19 @@ CreateThread(function()
         end
 
         wasInTaxiVehicle = inTaxiVehicle
+    end
+end)
+
+-- Callback to get street name for dispatch
+lib.callback.register('sv_taxi:getStreetName', function(x, y, z)
+    local streetHash, crossingHash = GetStreetNameAtCoord(x, y, z)
+    local streetName = GetStreetNameFromHashKey(streetHash)
+    local crossingName = GetStreetNameFromHashKey(crossingHash)
+
+    if crossingName and crossingName ~= '' and crossingName ~= streetName then
+        return streetName .. ' / ' .. crossingName
+    else
+        return streetName or 'Los Santos'
     end
 end)
 
