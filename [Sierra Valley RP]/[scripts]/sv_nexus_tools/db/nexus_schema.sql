@@ -393,6 +393,206 @@ CREATE TABLE IF NOT EXISTS `nexus_blueprints` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ============================================
+-- ELEMENT LIBRARY (Reusable Mission Assets)
+-- ============================================
+
+-- Core element storage - reusable placement points
+CREATE TABLE IF NOT EXISTS `nexus_elements` (
+    `id` VARCHAR(36) PRIMARY KEY,
+    `element_type` ENUM('npc', 'vehicle', 'prop', 'zone') NOT NULL,
+    `model` VARCHAR(100),
+    `coords_x` FLOAT NOT NULL,
+    `coords_y` FLOAT NOT NULL,
+    `coords_z` FLOAT NOT NULL,
+    `heading` FLOAT DEFAULT 0.0,
+    `radius` FLOAT DEFAULT NULL COMMENT 'For zone-type elements',
+
+    `source_mission_id` VARCHAR(36),
+    `source_blueprint_id` VARCHAR(36),
+
+    `reusable` BOOLEAN DEFAULT TRUE,
+    `verified` BOOLEAN DEFAULT FALSE,
+    `quality_score` FLOAT DEFAULT 0.5 COMMENT '0-1 based on usage success',
+
+    `primary_tag` VARCHAR(50),
+    `location_tag` VARCHAR(50),
+    `notes` TEXT,
+    `created_by` VARCHAR(50),
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    INDEX `idx_type` (`element_type`),
+    INDEX `idx_tags` (`primary_tag`, `location_tag`),
+    INDEX `idx_reusable` (`reusable`, `verified`),
+    INDEX `idx_quality` (`quality_score`),
+    INDEX `idx_coords` (`coords_x`, `coords_y`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Multi-tag junction table for flexible tagging
+CREATE TABLE IF NOT EXISTS `nexus_element_tags` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `element_id` VARCHAR(36) NOT NULL,
+    `tag_name` VARCHAR(50) NOT NULL,
+    `tag_category` ENUM('role', 'location', 'use_case', 'scenario', 'custom') NOT NULL,
+    `weight` FLOAT DEFAULT 1.0 COMMENT 'Tag relevance weight',
+
+    UNIQUE KEY `uk_element_tag` (`element_id`, `tag_name`),
+    INDEX `idx_tag_name` (`tag_name`),
+    INDEX `idx_tag_category` (`tag_category`),
+    FOREIGN KEY (`element_id`) REFERENCES `nexus_elements`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Track element usage across missions for quality scoring
+CREATE TABLE IF NOT EXISTS `nexus_element_usage` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `element_id` VARCHAR(36) NOT NULL,
+    `mission_id` VARCHAR(36) NOT NULL,
+    `role_in_mission` VARCHAR(100) NOT NULL,
+    `spawned_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `was_successful` BOOLEAN COMMENT 'Mission completed successfully',
+
+    UNIQUE KEY `uk_element_mission` (`element_id`, `mission_id`),
+    INDEX `idx_element` (`element_id`),
+    INDEX `idx_mission` (`mission_id`),
+    FOREIGN KEY (`element_id`) REFERENCES `nexus_elements`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- MISSION PATTERNS (Template Definitions)
+-- ============================================
+
+CREATE TABLE IF NOT EXISTS `nexus_mission_patterns` (
+    `id` VARCHAR(36) PRIMARY KEY,
+    `name` VARCHAR(100) NOT NULL,
+    `category` ENUM('heist', 'escort', 'pursuit', 'stealth', 'investigation',
+                    'sabotage', 'surveillance', 'extraction', 'ambush',
+                    'cleanup', 'territory', 'courier') NOT NULL,
+
+    `phases` JSON NOT NULL COMMENT 'Array of phase names and requirements',
+    `required_elements` JSON NOT NULL COMMENT 'Element types needed',
+    `optional_elements` JSON COMMENT 'Nice-to-have elements',
+
+    `min_players` INT DEFAULT 1,
+    `max_players` INT DEFAULT 4,
+    `role_definitions` JSON COMMENT 'Available roles for multi-player',
+
+    `compatible_modifiers` JSON COMMENT 'Modifiers that work with this pattern',
+
+    `generation_hints` TEXT COMMENT 'Tips for LLM when generating this pattern',
+    `example_brief` TEXT COMMENT 'Example mission brief',
+
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_category` (`category`),
+    INDEX `idx_players` (`min_players`, `max_players`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- MULTI-PLAYER MISSION SUPPORT
+-- ============================================
+
+-- Handoff points for baton-pass missions
+CREATE TABLE IF NOT EXISTS `nexus_handoff_points` (
+    `id` VARCHAR(36) PRIMARY KEY,
+    `mission_id` VARCHAR(36) NOT NULL,
+    `coords` JSON NOT NULL,
+    `item_name` VARCHAR(100) NOT NULL,
+    `from_citizenid` VARCHAR(50) NOT NULL,
+    `to_citizenid` VARCHAR(50) NOT NULL,
+    `status` ENUM('pending', 'dropped', 'picked_up', 'expired') DEFAULT 'pending',
+    `dropped_at` TIMESTAMP NULL,
+    `picked_up_at` TIMESTAMP NULL,
+    `expires_at` TIMESTAMP NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    INDEX `idx_mission` (`mission_id`),
+    INDEX `idx_from` (`from_citizenid`),
+    INDEX `idx_to` (`to_citizenid`),
+    INDEX `idx_status` (`status`),
+    FOREIGN KEY (`mission_id`) REFERENCES `nexus_missions`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Isolated scenes (routing bucket tracking)
+CREATE TABLE IF NOT EXISTS `nexus_isolated_scenes` (
+    `id` VARCHAR(36) PRIMARY KEY,
+    `scene_id` VARCHAR(100) NOT NULL UNIQUE,
+    `bucket_id` INT NOT NULL,
+    `weather` VARCHAR(50),
+    `hour` INT,
+    `exit_coords` JSON COMMENT 'Auto-exit when reaching these coords',
+    `exit_radius` FLOAT DEFAULT 50.0,
+    `status` ENUM('active', 'ended') DEFAULT 'active',
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `ended_at` TIMESTAMP NULL,
+
+    INDEX `idx_scene_id` (`scene_id`),
+    INDEX `idx_bucket` (`bucket_id`),
+    INDEX `idx_status` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Players in isolated scenes
+CREATE TABLE IF NOT EXISTS `nexus_isolated_scene_players` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `scene_db_id` VARCHAR(36) NOT NULL,
+    `citizenid` VARCHAR(50) NOT NULL,
+    `original_bucket` INT DEFAULT 0,
+    `joined_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `left_at` TIMESTAMP NULL,
+
+    UNIQUE KEY `uk_scene_player` (`scene_db_id`, `citizenid`),
+    FOREIGN KEY (`scene_db_id`) REFERENCES `nexus_isolated_scenes`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Element placement requests (human-assisted workflow)
+CREATE TABLE IF NOT EXISTS `nexus_placement_requests` (
+    `id` VARCHAR(36) PRIMARY KEY,
+    `mission_draft_id` VARCHAR(36),
+    `element_type` ENUM('npc', 'vehicle', 'prop', 'zone') NOT NULL,
+    `requirements` TEXT NOT NULL,
+    `suggested_tags` JSON,
+    `priority` ENUM('low', 'normal', 'high', 'urgent') DEFAULT 'normal',
+    `status` ENUM('pending', 'in_progress', 'completed', 'cancelled') DEFAULT 'pending',
+    `assigned_to` VARCHAR(50),
+    `result_element_id` VARCHAR(36),
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `completed_at` TIMESTAMP NULL,
+
+    INDEX `idx_status` (`status`),
+    INDEX `idx_priority` (`priority`),
+    INDEX `idx_assigned` (`assigned_to`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Mission drafts (LLM-generated specs awaiting human placement)
+CREATE TABLE IF NOT EXISTS `nexus_mission_drafts` (
+    `id` VARCHAR(36) PRIMARY KEY,
+    `type` VARCHAR(50) NOT NULL,
+    `synopsis` TEXT,
+    `story_brief` TEXT,
+    `intended_outcomes` JSON,
+    `area_coords` JSON,
+    `required_assets` JSON COMMENT 'Checklist of assets to place',
+    `pattern_id` VARCHAR(36),
+    `target_archetype` VARCHAR(50),
+    `status` ENUM('draft', 'placing', 'ready', 'instantiated', 'cancelled') DEFAULT 'draft',
+    `created_by` VARCHAR(50),
+    `placed_by` VARCHAR(50),
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `ready_at` TIMESTAMP NULL,
+
+    INDEX `idx_status` (`status`),
+    INDEX `idx_type` (`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- MODIFY EXISTING TABLES
+-- ============================================
+
+-- Add multi-player role fields to participants
+ALTER TABLE `nexus_mission_participants`
+ADD COLUMN `role_type` ENUM('cooperative', 'baton_pass', 'adversarial') DEFAULT 'cooperative' AFTER `role`,
+ADD COLUMN `linked_participant_id` INT DEFAULT NULL AFTER `role_type`,
+ADD COLUMN `handoff_item` VARCHAR(100) DEFAULT NULL AFTER `linked_participant_id`,
+ADD COLUMN `handoff_completed` BOOLEAN DEFAULT FALSE AFTER `handoff_item`;
+
+-- ============================================
 -- CLEANUP VIEWS
 -- ============================================
 
@@ -427,6 +627,51 @@ JOIN nexus_missions m ON p.mission_id = m.id
 LEFT JOIN nexus_mission_objectives o ON m.id = o.mission_id AND p.citizenid = o.citizenid
 GROUP BY p.citizenid, m.id;
 
+-- View for high-quality reusable elements
+CREATE OR REPLACE VIEW `nexus_reusable_elements_view` AS
+SELECT
+    e.id,
+    e.element_type,
+    e.model,
+    e.coords_x,
+    e.coords_y,
+    e.coords_z,
+    e.heading,
+    e.primary_tag,
+    e.location_tag,
+    e.quality_score,
+    COUNT(u.id) as usage_count,
+    SUM(CASE WHEN u.was_successful = TRUE THEN 1 ELSE 0 END) as successful_uses,
+    GROUP_CONCAT(DISTINCT t.tag_name) as all_tags
+FROM nexus_elements e
+LEFT JOIN nexus_element_usage u ON e.id = u.element_id
+LEFT JOIN nexus_element_tags t ON e.id = t.element_id
+WHERE e.reusable = TRUE AND e.verified = TRUE
+GROUP BY e.id
+ORDER BY e.quality_score DESC, usage_count DESC;
+
+-- View for pending placement requests
+CREATE OR REPLACE VIEW `nexus_pending_placements_view` AS
+SELECT
+    pr.id,
+    pr.element_type,
+    pr.requirements,
+    pr.priority,
+    pr.created_at,
+    md.type as mission_type,
+    md.synopsis
+FROM nexus_placement_requests pr
+LEFT JOIN nexus_mission_drafts md ON pr.mission_draft_id = md.id
+WHERE pr.status = 'pending'
+ORDER BY
+    CASE pr.priority
+        WHEN 'urgent' THEN 1
+        WHEN 'high' THEN 2
+        WHEN 'normal' THEN 3
+        WHEN 'low' THEN 4
+    END,
+    pr.created_at ASC;
+
 -- ============================================
 -- INDEXES FOR PERFORMANCE
 -- ============================================
@@ -457,5 +702,55 @@ BEGIN
     -- Archive completed missions older than 7 days
     UPDATE nexus_missions SET status = 'completed'
     WHERE status = 'active' AND created_at < NOW() - INTERVAL 7 DAY;
+
+    -- Expire handoff points
+    UPDATE nexus_handoff_points SET status = 'expired'
+    WHERE expires_at < NOW() AND status IN ('pending', 'dropped');
+
+    -- End stale isolated scenes (12 hours old)
+    UPDATE nexus_isolated_scenes SET status = 'ended', ended_at = NOW()
+    WHERE status = 'active' AND created_at < NOW() - INTERVAL 12 HOUR;
+
+    -- Cancel old placement requests (7 days)
+    UPDATE nexus_placement_requests SET status = 'cancelled'
+    WHERE status = 'pending' AND created_at < NOW() - INTERVAL 7 DAY;
+
+    -- Cancel old mission drafts (14 days)
+    UPDATE nexus_mission_drafts SET status = 'cancelled'
+    WHERE status IN ('draft', 'placing') AND created_at < NOW() - INTERVAL 14 DAY;
+
+    -- Update element quality scores based on usage success rate
+    UPDATE nexus_elements e
+    SET quality_score = (
+        SELECT COALESCE(
+            (SUM(CASE WHEN u.was_successful = TRUE THEN 1.0 ELSE 0.0 END) / COUNT(u.id)),
+            0.5
+        )
+        FROM nexus_element_usage u
+        WHERE u.element_id = e.id
+    )
+    WHERE EXISTS (SELECT 1 FROM nexus_element_usage u WHERE u.element_id = e.id);
+END //
+DELIMITER ;
+
+-- ============================================
+-- ELEMENT QUALITY SCORING TRIGGER
+-- ============================================
+
+DELIMITER //
+CREATE TRIGGER IF NOT EXISTS `trg_element_usage_quality`
+AFTER INSERT ON `nexus_element_usage`
+FOR EACH ROW
+BEGIN
+    -- Update quality score when new usage is recorded
+    IF NEW.was_successful IS NOT NULL THEN
+        UPDATE nexus_elements
+        SET quality_score = (
+            SELECT (SUM(CASE WHEN was_successful = TRUE THEN 1.0 ELSE 0.0 END) / COUNT(*))
+            FROM nexus_element_usage
+            WHERE element_id = NEW.element_id
+        )
+        WHERE id = NEW.element_id;
+    END IF;
 END //
 DELIMITER ;

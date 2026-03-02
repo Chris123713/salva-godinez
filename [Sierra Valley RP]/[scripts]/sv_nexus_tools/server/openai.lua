@@ -566,6 +566,276 @@ function ExecuteMrXMission(source, mission, callback)
     end)
 end
 
+-- ============================================
+-- MISSION DRAFT GENERATION (Human-Assisted Workflow)
+-- ============================================
+
+-- Build system prompt for draft generation
+local function BuildDraftSystemPrompt()
+    return [[You are a mission architect designing missions for human testers to place assets in a GTA V roleplay server.
+
+## Your Task
+Generate a mission specification that a human will use to visually place elements in-game. You provide the "what" and "where roughly", the human provides the exact "where".
+
+## Output Format
+Return valid JSON only:
+{
+    "synopsis": "2-3 sentence mission overview for the tester",
+    "story_brief": "Longer narrative description (1-2 paragraphs)",
+    "intended_outcomes": ["What should happen", "Player experience goal"],
+    "area_coords": {"x": 123.4, "y": 456.7, "z": 32.0},
+    "area_description": "General description of the area (industrial docks, downtown alley, etc)",
+    "required_assets": [
+        {
+            "name": "Contact NPC",
+            "type": "npc",
+            "role": "contact_npc",
+            "description": "The player's initial contact point",
+            "suggested_model": "a_m_m_business_01",
+            "placement_hint": "Near a phone booth or corner",
+            "required": true
+        },
+        {
+            "name": "Getaway Vehicle",
+            "type": "vehicle",
+            "role": "getaway",
+            "description": "Vehicle for escape",
+            "suggested_model": "sultan",
+            "placement_hint": "Parked in a side street with clear exit",
+            "required": true
+        }
+    ],
+    "optional_assets": [
+        {
+            "name": "Ambient Guard",
+            "type": "npc",
+            "role": "enemy",
+            "description": "Optional patrol NPC",
+            "suggested_model": "s_m_m_security_01",
+            "placement_hint": "Roaming the area"
+        }
+    ],
+    "suggested_tags": {
+        "scenario": "heist",
+        "location": "industrial"
+    }
+}
+
+## Asset Types
+- npc: Character placement (model, behavior)
+- vehicle: Vehicle placement (model, state)
+- prop: Object placement (interactive or static)
+- zone: Area marker (trigger zones, checkpoints)
+
+## Guidelines
+1. Keep required_assets to 3-7 items for reasonable placement sessions
+2. Be specific about placement hints - "near a dumpster" is better than "somewhere hidden"
+3. Suggest models that fit the scenario
+4. Consider multiple player paths through the mission
+5. Include at least one "escape" or "extraction" point]]
+end
+
+-- Generate a mission draft for human placement
+function GenerateMissionDraft(source, options, callback)
+    options = options or {}
+
+    local archetype = options.archetype or 'criminal'
+    local pattern = options.pattern or 'general'
+    local difficulty = options.difficulty or 'medium'
+    local playerCount = options.playerCount or 1
+    local areaCoords = options.areaCoords
+
+    local systemPrompt = BuildDraftSystemPrompt()
+
+    local prompt = string.format([[Generate a mission draft with these parameters:
+
+## Mission Parameters
+- Target Archetype: %s (criminal, opportunist, authority)
+- Mission Pattern: %s (heist, escort, pursuit, stealth, investigation, delivery, etc)
+- Difficulty: %s
+- Player Count: %d
+
+## Area Suggestion
+%s
+
+## Requirements
+1. Create a compelling story brief
+2. List all required placement assets
+3. Provide placement hints for the human tester
+4. Suggest appropriate models for each asset
+5. Consider the difficulty when determining:
+   - Number of enemies
+   - Complexity of objectives
+   - Available escape routes]],
+        archetype,
+        pattern,
+        difficulty,
+        playerCount,
+        areaCoords and string.format('Near coordinates: %.1f, %.1f, %.1f', areaCoords.x, areaCoords.y, areaCoords.z) or 'Use a suitable Los Santos location'
+    )
+
+    CallOpenAI(prompt, systemPrompt, function(success, content, error)
+        if not success then
+            Utils.Error('Failed to generate mission draft:', error)
+            if callback then callback(nil) end
+            return
+        end
+
+        -- Parse JSON
+        local draft = Utils.JsonDecode(content)
+        if not draft then
+            local jsonMatch = content:match('```json%s*(.-)%s*```') or content:match('```%s*(.-)%s*```')
+            if jsonMatch then
+                draft = Utils.JsonDecode(jsonMatch)
+            end
+        end
+
+        if not draft then
+            Utils.Error('Failed to parse draft response:', content)
+            if callback then callback(nil) end
+            return
+        end
+
+        -- Ensure required fields
+        draft.required_assets = draft.required_assets or {}
+        draft.optional_assets = draft.optional_assets or {}
+        draft.synopsis = draft.synopsis or 'Mission draft'
+
+        Utils.Success('Generated mission draft with', #draft.required_assets, 'required assets')
+
+        if callback then
+            callback({
+                success = true,
+                synopsis = draft.synopsis,
+                story_brief = draft.story_brief,
+                intended_outcomes = draft.intended_outcomes,
+                area_coords = draft.area_coords,
+                area_description = draft.area_description,
+                required_assets = draft.required_assets,
+                optional_assets = draft.optional_assets,
+                suggested_tags = draft.suggested_tags
+            })
+        end
+    end)
+end
+
+-- Server event to request draft from client
+RegisterNetEvent('nexus:server:requestMissionDraft', function(archetype)
+    local src = source
+
+    -- Permission check
+    if not Utils.HasPermission(src, 'admin') then
+        lib.notify(src, { title = 'Error', description = 'Admin permission required', type = 'error' })
+        return
+    end
+
+    GenerateMissionDraft(src, {
+        archetype = archetype or 'criminal',
+        pattern = 'general',
+        difficulty = 'medium'
+    }, function(result)
+        if result and result.success then
+            TriggerClientEvent('nexus:client:draftGenerated', src, {
+                draftId = Utils.GenerateUUID(),
+                synopsis = result.synopsis,
+                required_assets = result.required_assets
+            })
+        else
+            TriggerClientEvent('nexus:client:notify', src, {
+                title = 'Error',
+                description = 'Failed to generate draft',
+                type = 'error'
+            })
+        end
+    end)
+end)
+
+-- Server event to create element from NUI placement
+RegisterNetEvent('nexus:server:createElementFromPlacement', function(data)
+    local src = source
+    local citizenid = Utils.GetCitizenId(src)
+
+    local ElementLibrary = exports['sv_nexus_tools']:GetElementLibrary()
+    if not ElementLibrary then
+        Utils.Error('Element library not available')
+        return
+    end
+
+    local element, err = ElementLibrary.Create({
+        element_type = data.type,
+        model = data.model,
+        coords_x = data.coords.x,
+        coords_y = data.coords.y,
+        coords_z = data.coords.z,
+        heading = data.heading or 0.0,
+        primary_tag = data.primary_tag,
+        location_tag = data.location_tag,
+        notes = data.notes,
+        created_by = citizenid or tostring(src),
+        reusable = true,
+        verified = false
+    })
+
+    if element then
+        Utils.Success('Element created from placement:', element.id)
+    else
+        Utils.Error('Failed to create element:', err)
+    end
+end)
+
+-- Server event to save blueprint from NUI
+RegisterNetEvent('nexus:server:saveMissionBlueprint', function(data)
+    local src = source
+    local citizenid = Utils.GetCitizenId(src)
+
+    local blueprintId = Utils.GenerateUUID()
+    local items = data.items or {}
+    local history = data.history or {}
+
+    -- Create elements for each placed item
+    local ElementLibrary = exports['sv_nexus_tools']:GetElementLibrary()
+    if ElementLibrary then
+        for _, item in ipairs(history) do
+            if item.coords then
+                ElementLibrary.Create({
+                    element_type = item.type,
+                    model = item.model,
+                    coords_x = item.coords.x,
+                    coords_y = item.coords.y,
+                    coords_z = item.coords.z,
+                    heading = item.heading or 0.0,
+                    source_blueprint_id = blueprintId,
+                    created_by = citizenid or tostring(src),
+                    reusable = true,
+                    verified = false
+                })
+            end
+        end
+    end
+
+    -- Save blueprint to database
+    MySQL.insert.await([[
+        INSERT INTO nexus_blueprints (id, name, type, brief, elements, created_by, approved)
+        VALUES (?, ?, ?, ?, ?, ?, FALSE)
+    ]], {
+        blueprintId,
+        'Draft Blueprint',
+        data.draft_id and 'from_draft' or 'manual',
+        'Blueprint created via mission creator',
+        json.encode(items),
+        citizenid or tostring(src)
+    })
+
+    -- Update draft if applicable
+    if data.draft_id then
+        MySQL.update.await([[
+            UPDATE nexus_mission_drafts SET status = 'ready', ready_at = NOW() WHERE id = ?
+        ]], {data.draft_id})
+    end
+
+    Utils.Success('Blueprint saved:', blueprintId)
+end)
+
 -- Export for external resources
 exports('CallOpenAI', CallOpenAI)
 exports('GenerateAIProfile', GenerateAIProfile)
@@ -574,3 +844,4 @@ exports('BuildMrXSystemPrompt', BuildMrXSystemPrompt)
 exports('GenerateMrXMission', GenerateMrXMission)
 exports('ValidateMission', ValidateMission)
 exports('ExecuteMrXMission', ExecuteMrXMission)
+exports('GenerateMissionDraft', GenerateMissionDraft)

@@ -494,6 +494,125 @@ local function HandleAIStatus(req, res)
     res.send(json.encode(status))
 end
 
+-- ============================================
+-- AGENT LOOP TESTING ENDPOINT
+-- Triggers agent loop manually for testing (bypasses TestMode)
+-- ============================================
+
+local function HandleAgentLoop(req, res, bodyData)
+    local success, body = pcall(json.decode, bodyData or '{}')
+    if not success or not body or not body.citizenid then
+        res.writeHead(400, {['Content-Type'] = 'application/json'})
+        res.send(json.encode({error = 'Missing citizenid'}))
+        return
+    end
+
+    local citizenid = body.citizenid
+    local customPrompt = body.prompt
+    local triggerType = body.triggerType or 'manual_test'
+
+    print('^3[MR_X:AGENT]^7 Manual agent loop triggered for ' .. citizenid)
+
+    -- Find player source (optional - agent can work with offline players too)
+    local playerSource = exports['sv_mr_x']:FindPlayerSource(citizenid)
+    local isOnline = playerSource ~= nil
+
+    -- Check exemption if online
+    if playerSource then
+        local isExempt, exemptReason = exports['sv_mr_x']:IsExempt(playerSource)
+        if isExempt then
+            res.writeHead(403, {['Content-Type'] = 'application/json'})
+            res.send(json.encode({error = 'Player is exempt', reason = exemptReason}))
+            return
+        end
+    end
+
+    -- Build the trigger prompt
+    local prompt = customPrompt
+    if not prompt or prompt == '' then
+        -- Default prompts based on trigger type
+        if triggerType == 'login' then
+            local isProspect = playerSource and exports['sv_mr_x']:IsProspect(playerSource)
+            if isProspect then
+                prompt = string.format(
+                    'New player %s has logged in. They appear to be new to the city (prospect). ' ..
+                    'Consider welcoming them and building rapport.',
+                    citizenid
+                )
+            else
+                local profile = exports['sv_mr_x']:GetProfile(citizenid)
+                local rep = profile and profile.reputation or 50
+                prompt = string.format(
+                    'Player %s has logged in. Reputation: %d. ' ..
+                    'Consider whether any proactive contact is appropriate.',
+                    citizenid, rep
+                )
+            end
+        elseif triggerType == 'mission_complete' then
+            prompt = string.format(
+                'Player %s completed a mission successfully. ' ..
+                'Decide on appropriate response (message, reputation adjustment, follow-up).',
+                citizenid
+            )
+        elseif triggerType == 'mission_failed' then
+            prompt = string.format(
+                'Player %s failed a mission. ' ..
+                'Decide on appropriate response (disappointment message, reputation penalty, follow-up).',
+                citizenid
+            )
+        elseif triggerType == 'debt_check' then
+            prompt = string.format(
+                'Check if player %s has any outstanding debts or loans. ' ..
+                'If so, consider sending a reminder or escalating collection.',
+                citizenid
+            )
+        else
+            prompt = string.format(
+                'Analyze player %s and decide if any action is needed. ' ..
+                'Check their context first, then determine the appropriate response.',
+                citizenid
+            )
+        end
+    end
+
+    -- Run the agent loop (this bypasses TestMode check since we're calling directly)
+    local startTime = os.time()
+
+    -- Call the executor directly (not through the trigger functions that check TestMode)
+    local result = exports['sv_mr_x']:RunAgentLoop(prompt, {
+        citizenid = citizenid,
+        source = playerSource,
+        trigger_type = triggerType
+    }, 5)
+
+    local endTime = os.time()
+    local duration = endTime - startTime
+
+    print(string.format('^3[MR_X:AGENT]^7 Agent loop complete: %s, Iterations: %d, Actions: %d, Duration: %ds',
+        tostring(result.complete),
+        result.iterations or 0,
+        result.actions and #result.actions or 0,
+        duration
+    ))
+
+    -- Build response
+    local response = {
+        success = result.complete or false,
+        citizenid = citizenid,
+        isOnline = isOnline,
+        triggerType = triggerType,
+        prompt = prompt,
+        iterations = result.iterations or 0,
+        actions = result.actions or {},
+        message = result.message,
+        duration = duration,
+        timestamp = os.time()
+    }
+
+    res.writeHead(200, {['Content-Type'] = 'application/json'})
+    res.send(json.encode(response))
+end
+
 local function HandlePlayerContext(req, res)
     local citizenid = req.headers['X-Citizenid'] or req.headers['x-citizenid']
 
@@ -702,7 +821,7 @@ SetHttpHandler(function(req, res)
 
     -- Only handle our endpoints
     -- FiveM strips resource name prefix, so /sv_mr_x/manual becomes /manual
-    local validPaths = {'/manual', '/status', '/profile', '/mrx-status', '/prospects', '/prospect-needs', '/prospect-welcome', '/prospect-nudge', '/test-conversation', '/ai-status', '/player-context'}
+    local validPaths = {'/manual', '/status', '/profile', '/mrx-status', '/prospects', '/prospect-needs', '/prospect-welcome', '/prospect-nudge', '/test-conversation', '/ai-status', '/player-context', '/agent-loop'}
     local isValidPath = false
     for _, path in ipairs(validPaths) do
         if req.path == path then
@@ -757,6 +876,19 @@ SetHttpHandler(function(req, res)
     -- PLAYER CONTEXT ENDPOINT
     if req.path == '/player-context' then
         HandlePlayerContext(req, res)
+        return
+    end
+
+    -- AGENT LOOP ENDPOINT (for testing Brain Feed)
+    if req.path == '/agent-loop' and req.method == 'POST' then
+        local bodyChunks = {}
+        req.setDataHandler(function(data)
+            table.insert(bodyChunks, data)
+        end, 'text')
+        Citizen.SetTimeout(50, function()
+            local bodyData = table.concat(bodyChunks)
+            HandleAgentLoop(req, res, bodyData)
+        end)
         return
     end
 

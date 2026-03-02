@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Creator</title>
+    <link rel="stylesheet" href="css/mission_creator.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Main Container -->
+    <div id="mission-creator" class="hidden">
+        <!-- Slide-out Panel -->
+        <div id="panel" class="panel">
+            <!-- Panel Header -->
+            <div class="panel-header">
+                <div class="panel-title">
+                    <span class="title-icon">&#9670;</span>
+                    MISSION CREATOR
+                </div>
+                <button id="collapse-btn" class="collapse-btn" title="Collapse">
+                    <span>&lt;</span>
+                </button>
+            </div>
+
+            <!-- Teleport Section -->
+            <div class="panel-section">
+                <button id="teleport-btn" class="action-btn teleport-btn">
+                    <span class="btn-icon">&#128205;</span>
+                    Teleport to Area
+                </button>
+            </div>
+
+            <!-- Draft Info Section (shown when draft is loaded) -->
+            <div id="draft-info" class="panel-section hidden">
+                <div class="section-label">MISSION SYNOPSIS</div>
+                <div id="draft-synopsis" class="synopsis-text"></div>
+            </div>
+
+            <!-- Placement Checklist -->
+            <div class="panel-section checklist-section">
+                <div class="section-header">
+                    <span class="section-label">PLACEMENT CHECKLIST</span>
+                    <span id="checklist-progress" class="progress-badge">0/0</span>
+                </div>
+                <div id="checklist-container" class="checklist-container">
+                    <!-- Checklist items will be inserted here -->
+                    <div class="empty-state">No assets to place</div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="panel-section actions-section">
+                <div class="action-row">
+                    <button id="preview-btn" class="action-btn secondary">
+                        <span class="btn-icon">&#128065;</span>
+                        Preview All
+                    </button>
+                    <button id="save-btn" class="action-btn primary">
+                        <span class="btn-icon">&#128190;</span>
+                        Save Blueprint
+                    </button>
+                </div>
+                <div class="action-row">
+                    <button id="undo-btn" class="action-btn secondary">
+                        <span class="btn-icon">&#8630;</span>
+                        Undo Last
+                    </button>
+                    <button id="cancel-btn" class="action-btn danger">
+                        <span class="btn-icon">&#10005;</span>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collapsed Panel Indicator -->
+        <div id="collapsed-indicator" class="collapsed-indicator hidden">
+            <button id="expand-btn" class="expand-btn" title="Expand Panel">
+                <span>&#9776;</span>
+            </button>
+        </div>
+
+        <!-- Placement Mode HUD (bottom center) -->
+        <div id="placement-hud" class="placement-hud hidden">
+            <div class="hud-content">
+                <div class="hud-controls">
+                    <span class="control-item"><kbd>LMB</kbd> Place</span>
+                    <span class="control-divider">|</span>
+                    <span class="control-item"><kbd>R</kbd>/<kbd>Q</kbd> Rotate</span>
+                    <span class="control-divider">|</span>
+                    <span class="control-item"><kbd>Scroll</kbd> Height</span>
+                    <span class="control-divider">|</span>
+                    <span class="control-item"><kbd>ESC</kbd> Cancel</span>
+                </div>
+                <div class="hud-info">
+                    <span id="hud-heading">Heading: 0&deg;</span>
+                    <span class="info-divider">|</span>
+                    <span id="hud-height">Height: +0.0m</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tag Selection Modal -->
+        <div id="tag-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title">Assign Tags</span>
+                    <button id="tag-modal-close" class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="tag-section">
+                        <label class="tag-label">Primary Tag (Role)</label>
+                        <div id="role-tags" class="tag-grid">
+                            <!-- Tags will be inserted -->
+                        </div>
+                    </div>
+                    <div class="tag-section">
+                        <label class="tag-label">Location Tag</label>
+                        <div id="location-tags" class="tag-grid">
+                            <!-- Tags will be inserted -->
+                        </div>
+                    </div>
+                    <div class="tag-section">
+                        <label class="tag-label">Notes (optional)</label>
+                        <input type="text" id="element-notes" class="notes-input" placeholder="Add notes about this placement...">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="tag-save-btn" class="action-btn primary">Save Element</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Model Selection Modal -->
+        <div id="model-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title">Select Model</span>
+                    <button id="model-modal-close" class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="model-search" class="model-search" placeholder="Search models...">
+                    <div id="model-list" class="model-list">
+                        <!-- Models will be inserted -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="model-confirm-btn" class="action-btn primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/mission_creator.js"></script>
+</body>
+</html>

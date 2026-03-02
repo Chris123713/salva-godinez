@@ -823,6 +823,463 @@ ToolsDefinitions['witness_event'] = {
     }
 }
 
+-- ============================================
+-- ELEMENT LIBRARY TOOLS
+-- ============================================
+
+ToolsDefinitions['search_elements'] = {
+    description = 'Search element library for reusable placement points (NPCs, vehicles, props, zones)',
+    category = Constants.ToolCategory.ELEMENTS,
+    params = {
+        tags = {type = 'table', required = false, description = 'Array of tags to search for (any match)'},
+        element_type = {type = 'string', required = false, description = 'npc, vehicle, prop, or zone'},
+        near_coords = {type = 'vector3', required = false, description = 'Find elements near this location'},
+        radius = {type = 'number', required = false, default = 500, description = 'Search radius when using near_coords'},
+        limit = {type = 'number', required = false, default = 5, description = 'Max results to return'},
+        min_quality = {type = 'number', required = false, description = 'Minimum quality score (0-1)'},
+        verified_only = {type = 'boolean', required = false, default = false, description = 'Only return verified elements'}
+    },
+    returns = {elements = 'table', count = 'number'},
+    roleHint = 'any',
+    example = {
+        name = 'search_elements',
+        params = {
+            tags = {'contact_npc', 'industrial'},
+            element_type = 'npc',
+            near_coords = {x = 500.0, y = 600.0, z = 30.0},
+            radius = 300,
+            limit = 5
+        }
+    }
+}
+
+ToolsDefinitions['spawn_from_element'] = {
+    description = 'Spawn entity at a library element position (reuses verified placement points)',
+    category = Constants.ToolCategory.ELEMENTS,
+    params = {
+        element_id = {type = 'string', required = true, description = 'Element ID from library'},
+        mission_id = {type = 'string', required = true, description = 'Mission this spawn belongs to'},
+        role = {type = 'string', required = true, description = 'Role in mission (e.g. contact_npc, getaway_vehicle)'},
+        override_model = {type = 'string', required = false, description = 'Use different model than stored'},
+        override_behavior = {type = 'string', required = false, description = 'Override NPC behavior'}
+    },
+    returns = {success = 'boolean', netId = 'number', coords = 'vector3'},
+    roleHint = 'any',
+    example = {
+        name = 'spawn_from_element',
+        params = {
+            element_id = 'elem-abc123',
+            mission_id = 'mission-xyz789',
+            role = 'informant',
+            override_model = 'a_m_m_business_01'
+        }
+    }
+}
+
+ToolsDefinitions['request_element_placement'] = {
+    description = 'Queue a request for human tester to place new element visually',
+    category = Constants.ToolCategory.ELEMENTS,
+    params = {
+        requirements = {type = 'string', required = true, description = 'Description of what placement needs'},
+        element_type = {type = 'string', required = true, description = 'npc, vehicle, prop, or zone'},
+        suggested_tags = {type = 'table', required = false, description = 'Tags to assign when placed'},
+        priority = {type = 'string', required = false, default = 'normal', description = 'low, normal, high, urgent'},
+        near_coords = {type = 'vector3', required = false, description = 'Suggested area for placement'}
+    },
+    returns = {request_id = 'string', queued = 'boolean'},
+    roleHint = 'any',
+    example = {
+        name = 'request_element_placement',
+        params = {
+            requirements = 'Need an NPC position in an alley for a shady informant meeting',
+            element_type = 'npc',
+            suggested_tags = {'informant', 'alley', 'criminal'},
+            priority = 'normal',
+            near_coords = {x = 200.0, y = 300.0, z = 30.0}
+        }
+    }
+}
+
+-- ============================================
+-- GAMEPLAY TOOLS (Direct Game Manipulation)
+-- ============================================
+
+ToolsDefinitions['trigger_explosion'] = {
+    description = 'Create explosion at location for combat effects or destruction set pieces',
+    category = Constants.ToolCategory.GAMEPLAY,
+    params = {
+        coords = {type = 'vector3', required = true, description = 'Explosion center'},
+        type = {type = 'string', required = false, default = 'GRENADE', description = 'Explosion type: GRENADE, MOLOTOV, ROCKET, CAR, PLANE, etc'},
+        damage_scale = {type = 'number', required = false, default = 1.0, description = 'Damage multiplier (0.1-2.0)'},
+        is_audible = {type = 'boolean', required = false, default = true, description = 'Play explosion sound'},
+        is_visible = {type = 'boolean', required = false, default = true, description = 'Show explosion VFX'},
+        no_damage = {type = 'boolean', required = false, default = false, description = 'Purely visual, no damage'}
+    },
+    returns = {success = 'boolean'},
+    roleHint = 'any',
+    example = {
+        name = 'trigger_explosion',
+        params = {
+            coords = {x = 100.0, y = 200.0, z = 30.0},
+            type = 'CAR',
+            damage_scale = 0.5,
+            is_audible = true
+        }
+    }
+}
+
+ToolsDefinitions['set_wanted_level'] = {
+    description = 'Set player wanted level to trigger police pursuit or add mission pressure',
+    category = Constants.ToolCategory.GAMEPLAY,
+    params = {
+        source = {type = 'number', required = true, description = 'Player server ID'},
+        level = {type = 'number', required = true, description = 'Wanted level 0-5'},
+        flash = {type = 'boolean', required = false, default = true, description = 'Flash wanted stars'}
+    },
+    returns = {success = 'boolean', level = 'number'},
+    roleHint = 'criminal',
+    example = {
+        name = 'set_wanted_level',
+        params = {
+            source = 1,
+            level = 3,
+            flash = true
+        }
+    }
+}
+
+ToolsDefinitions['screen_effect'] = {
+    description = 'Apply visual screen effect for immersion (drugs, injury, focus, etc)',
+    category = Constants.ToolCategory.GAMEPLAY,
+    params = {
+        source = {type = 'number', required = true, description = 'Player server ID'},
+        effect = {type = 'string', required = true, description = 'Effect name: DRUG_DRIVING, DRUNK, FOCUS, DAMAGE, NIGHT_VISION, etc'},
+        duration = {type = 'number', required = false, default = 5000, description = 'Duration in milliseconds (0 for permanent until stopped)'},
+        looped = {type = 'boolean', required = false, default = false, description = 'Loop the effect'}
+    },
+    returns = {success = 'boolean'},
+    roleHint = 'any',
+    example = {
+        name = 'screen_effect',
+        params = {
+            source = 1,
+            effect = 'DRUG_DRIVING',
+            duration = 30000,
+            looped = true
+        }
+    }
+}
+
+ToolsDefinitions['stop_screen_effect'] = {
+    description = 'Stop a screen effect on a player',
+    category = Constants.ToolCategory.GAMEPLAY,
+    params = {
+        source = {type = 'number', required = true, description = 'Player server ID'},
+        effect = {type = 'string', required = true, description = 'Effect name to stop'}
+    },
+    returns = {success = 'boolean'},
+    roleHint = 'any'
+}
+
+ToolsDefinitions['distant_sirens'] = {
+    description = 'Play distant police siren audio for tension building',
+    category = Constants.ToolCategory.GAMEPLAY,
+    params = {
+        source = {type = 'number', required = true, description = 'Player server ID'},
+        duration = {type = 'number', required = false, default = 30000, description = 'Duration in milliseconds'},
+        intensity = {type = 'string', required = false, default = 'medium', description = 'low, medium, high (affects volume/frequency)'}
+    },
+    returns = {success = 'boolean'},
+    roleHint = 'any',
+    example = {
+        name = 'distant_sirens',
+        params = {
+            source = 1,
+            duration = 60000,
+            intensity = 'high'
+        }
+    }
+}
+
+ToolsDefinitions['start_vehicle_chase'] = {
+    description = 'Make NPC vehicle pursue or flee from player',
+    category = Constants.ToolCategory.GAMEPLAY,
+    params = {
+        vehicle_net_id = {type = 'number', required = true, description = 'NPC vehicle network ID'},
+        target_source = {type = 'number', required = true, description = 'Target player server ID'},
+        mode = {type = 'string', required = false, default = 'chase', description = 'chase or flee'},
+        driving_style = {type = 'string', required = false, default = 'aggressive', description = 'normal, aggressive, reckless'}
+    },
+    returns = {success = 'boolean'},
+    roleHint = 'any',
+    example = {
+        name = 'start_vehicle_chase',
+        params = {
+            vehicle_net_id = 12345,
+            target_source = 1,
+            mode = 'chase',
+            driving_style = 'aggressive'
+        }
+    }
+}
+
+ToolsDefinitions['flee_area'] = {
+    description = 'Make NPCs in area flee from coordinates (panic scenario)',
+    category = Constants.ToolCategory.GAMEPLAY,
+    params = {
+        coords = {type = 'vector3', required = true, description = 'Center point to flee from'},
+        radius = {type = 'number', required = false, default = 50.0, description = 'Radius of effect'},
+        include_players = {type = 'boolean', required = false, default = false, description = 'Also affect ambient peds (not just spawned)'}
+    },
+    returns = {success = 'boolean', affected_count = 'number'},
+    roleHint = 'any'
+}
+
+ToolsDefinitions['disable_vehicle'] = {
+    description = 'Disable vehicle engine (breakdown, EMP scenarios)',
+    category = Constants.ToolCategory.GAMEPLAY,
+    params = {
+        vehicle_net_id = {type = 'number', required = true, description = 'Vehicle network ID'},
+        disable_type = {type = 'string', required = false, default = 'engine', description = 'engine, tires, all'},
+        repairable = {type = 'boolean', required = false, default = true, description = 'Can player repair it'}
+    },
+    returns = {success = 'boolean'},
+    roleHint = 'any'
+}
+
+-- ============================================
+-- ISOLATED SCENE TOOLS (Routing Buckets)
+-- ============================================
+
+ToolsDefinitions['create_isolated_scene'] = {
+    description = 'Move player(s) to private routing bucket for isolated scene. USE SPARINGLY - prefer shared world.',
+    category = Constants.ToolCategory.WORLD,
+    params = {
+        sources = {type = 'table', required = true, description = 'Array of player server IDs to isolate'},
+        scene_id = {type = 'string', required = true, description = 'Unique scene identifier'},
+        weather = {type = 'string', required = false, description = 'Weather in isolated bucket: CLEAR, RAIN, THUNDER, SNOW, etc'},
+        hour = {type = 'number', required = false, description = 'Time in isolated bucket (0-23)'},
+        exit_coords = {type = 'vector3', required = false, description = 'Auto-exit when player reaches these coords'},
+        exit_radius = {type = 'number', required = false, default = 50.0, description = 'Radius for auto-exit trigger'}
+    },
+    returns = {success = 'boolean', bucket_id = 'number'},
+    roleHint = 'any',
+    example = {
+        name = 'create_isolated_scene',
+        params = {
+            sources = {1},
+            scene_id = 'horror_reveal_001',
+            weather = 'THUNDER',
+            hour = 2,
+            exit_coords = {x = 500.0, y = 600.0, z = 30.0},
+            exit_radius = 25.0
+        }
+    }
+}
+
+ToolsDefinitions['end_isolated_scene'] = {
+    description = 'Return player(s) from isolated scene to main world (bucket 0)',
+    category = Constants.ToolCategory.WORLD,
+    params = {
+        sources = {type = 'table', required = true, description = 'Array of player server IDs to return'},
+        scene_id = {type = 'string', required = true, description = 'Scene identifier to end'}
+    },
+    returns = {success = 'boolean'},
+    roleHint = 'any',
+    example = {
+        name = 'end_isolated_scene',
+        params = {
+            sources = {1},
+            scene_id = 'horror_reveal_001'
+        }
+    }
+}
+
+ToolsDefinitions['set_scene_weather'] = {
+    description = 'Set weather in an isolated scene bucket (does not affect main world)',
+    category = Constants.ToolCategory.WORLD,
+    params = {
+        scene_id = {type = 'string', required = true, description = 'Scene identifier'},
+        weather = {type = 'string', required = true, description = 'Weather type: CLEAR, RAIN, THUNDER, SNOW, FOGGY, etc'}
+    },
+    returns = {success = 'boolean'},
+    roleHint = 'any'
+}
+
+ToolsDefinitions['set_scene_time'] = {
+    description = 'Set time in an isolated scene bucket (does not affect main world)',
+    category = Constants.ToolCategory.WORLD,
+    params = {
+        scene_id = {type = 'string', required = true, description = 'Scene identifier'},
+        hour = {type = 'number', required = true, description = 'Hour (0-23)'},
+        minute = {type = 'number', required = false, default = 0, description = 'Minute (0-59)'}
+    },
+    returns = {success = 'boolean'},
+    roleHint = 'any'
+}
+
+-- ============================================
+-- MULTI-PLAYER MISSION TOOLS
+-- ============================================
+
+ToolsDefinitions['create_handoff_point'] = {
+    description = 'Create dead drop location for baton-pass missions where one player leaves item for another',
+    category = Constants.ToolCategory.MULTIPLAYER,
+    params = {
+        coords = {type = 'vector3', required = true, description = 'Dead drop location'},
+        item = {type = 'string', required = true, description = 'Item to be handed off'},
+        from_citizenid = {type = 'string', required = true, description = 'Player dropping the item'},
+        to_citizenid = {type = 'string', required = true, description = 'Player picking up the item'},
+        mission_id = {type = 'string', required = true, description = 'Associated mission'},
+        timeout_minutes = {type = 'number', required = false, default = 30, description = 'Minutes before handoff expires'}
+    },
+    returns = {success = 'boolean', handoff_id = 'string'},
+    roleHint = 'any',
+    example = {
+        name = 'create_handoff_point',
+        params = {
+            coords = {x = 300.0, y = 400.0, z = 30.0},
+            item = 'intel_document',
+            from_citizenid = 'ABC12345',
+            to_citizenid = 'DEF67890',
+            mission_id = 'courier_chain_001',
+            timeout_minutes = 45
+        }
+    }
+}
+
+ToolsDefinitions['create_adversarial_mission'] = {
+    description = 'Create mission where players work against each other with opposing objectives',
+    category = Constants.ToolCategory.MULTIPLAYER,
+    params = {
+        mission_type = {type = 'string', required = true, description = 'Mission pattern type'},
+        player_a_citizenid = {type = 'string', required = true, description = 'First player'},
+        player_a_objective = {type = 'string', required = true, description = 'First player objective description'},
+        player_b_citizenid = {type = 'string', required = true, description = 'Second player'},
+        player_b_objective = {type = 'string', required = true, description = 'Second player objective description'},
+        shared_target = {type = 'table', required = true, description = 'Shared target: {type: "vehicle"|"coords"|"item", value: ...}'},
+        reveal_opponent = {type = 'boolean', required = false, default = false, description = 'Tell players about each other'}
+    },
+    returns = {success = 'boolean', mission_id = 'string'},
+    roleHint = 'any',
+    example = {
+        name = 'create_adversarial_mission',
+        params = {
+            mission_type = 'heist',
+            player_a_citizenid = 'ABC12345',
+            player_a_objective = 'Steal the car and deliver to chop shop',
+            player_b_citizenid = 'DEF67890',
+            player_b_objective = 'Stop the thief and return the car',
+            shared_target = {type = 'vehicle', value = {plate = 'XYZ123'}},
+            reveal_opponent = false
+        }
+    }
+}
+
+ToolsDefinitions['link_participants'] = {
+    description = 'Link two mission participants for cooperative or sequential objectives',
+    category = Constants.ToolCategory.MULTIPLAYER,
+    params = {
+        mission_id = {type = 'string', required = true, description = 'Mission ID'},
+        participant_a_citizenid = {type = 'string', required = true, description = 'First participant'},
+        participant_b_citizenid = {type = 'string', required = true, description = 'Second participant'},
+        link_type = {type = 'string', required = true, description = 'cooperative, baton_pass, or adversarial'}
+    },
+    returns = {success = 'boolean'},
+    roleHint = 'any'
+}
+
+ToolsDefinitions['start_mission_timer'] = {
+    description = 'Start a mission timer for timed challenges',
+    category = Constants.ToolCategory.MISSION,
+    params = {
+        mission_id = {type = 'string', required = true, description = 'Mission ID'},
+        duration_seconds = {type = 'number', required = true, description = 'Timer duration'},
+        fail_on_expire = {type = 'boolean', required = false, default = true, description = 'Auto-fail mission on timer expiry'},
+        show_to_sources = {type = 'table', required = false, description = 'Player server IDs to show timer to'}
+    },
+    returns = {success = 'boolean', timer_id = 'string'},
+    roleHint = 'any',
+    example = {
+        name = 'start_mission_timer',
+        params = {
+            mission_id = 'heist_001',
+            duration_seconds = 300,
+            fail_on_expire = true,
+            show_to_sources = {1, 2}
+        }
+    }
+}
+
+ToolsDefinitions['check_mission_timer'] = {
+    description = 'Check remaining time on a mission timer',
+    category = Constants.ToolCategory.MISSION,
+    params = {
+        mission_id = {type = 'string', required = true, description = 'Mission ID'}
+    },
+    returns = {active = 'boolean', remaining_seconds = 'number', expired = 'boolean'},
+    roleHint = 'any'
+}
+
+ToolsDefinitions['cancel_mission_timer'] = {
+    description = 'Cancel a mission timer without triggering failure',
+    category = Constants.ToolCategory.MISSION,
+    params = {
+        mission_id = {type = 'string', required = true, description = 'Mission ID'}
+    },
+    returns = {success = 'boolean'},
+    roleHint = 'any'
+}
+
+-- ============================================
+-- MISSION DRAFT TOOLS (Human-Assisted)
+-- ============================================
+
+ToolsDefinitions['generate_mission_draft'] = {
+    description = 'Generate a mission draft for human placement of assets',
+    category = Constants.ToolCategory.MISSION,
+    params = {
+        archetype = {type = 'string', required = true, description = 'Target player archetype: criminal, opportunist, authority'},
+        pattern = {type = 'string', required = false, description = 'Mission pattern: heist, escort, pursuit, etc'},
+        area_coords = {type = 'vector3', required = false, description = 'Suggested mission area'},
+        difficulty = {type = 'string', required = false, default = 'medium', description = 'easy, medium, hard'},
+        player_count = {type = 'number', required = false, default = 1, description = 'Target number of players'}
+    },
+    returns = {success = 'boolean', draft_id = 'string', synopsis = 'string', required_assets = 'table'},
+    roleHint = 'any',
+    example = {
+        name = 'generate_mission_draft',
+        params = {
+            archetype = 'criminal',
+            pattern = 'heist',
+            area_coords = {x = 200.0, y = 300.0, z = 30.0},
+            difficulty = 'hard',
+            player_count = 2
+        }
+    }
+}
+
+ToolsDefinitions['get_mission_draft'] = {
+    description = 'Retrieve a mission draft by ID',
+    category = Constants.ToolCategory.MISSION,
+    params = {
+        draft_id = {type = 'string', required = true, description = 'Draft ID to retrieve'}
+    },
+    returns = {draft = 'table'},
+    roleHint = 'any'
+}
+
+ToolsDefinitions['instantiate_draft'] = {
+    description = 'Convert a completed draft into an active mission',
+    category = Constants.ToolCategory.MISSION,
+    params = {
+        draft_id = {type = 'string', required = true, description = 'Draft ID to instantiate'},
+        target_citizenid = {type = 'string', required = true, description = 'Player to assign mission to'}
+    },
+    returns = {success = 'boolean', mission_id = 'string'},
+    roleHint = 'any'
+}
+
 -- Utility function to get all tool definitions for AI prompts
 function GetToolDefinitionsForAI()
     local definitions = {}

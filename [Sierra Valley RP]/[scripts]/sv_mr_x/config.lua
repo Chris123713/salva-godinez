@@ -77,7 +77,8 @@ Config.Comms = {
 -- ============================================
 Config.ProactiveContact = {
     -- Master enable/disable for proactive outreach
-    Enabled = true,
+    -- DISABLED: All contact should be triggered via dashboard testing only
+    Enabled = false,
 
     -- Minimum time between Mr. X initiating contact (in minutes)
     -- This is GLOBAL per player - includes mission offers, check-ins, etc.
